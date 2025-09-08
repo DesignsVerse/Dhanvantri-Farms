@@ -1,4 +1,9 @@
-import { Lightbulb, Cpu, Leaf, Globe, Award,Droplets, Users } from 'lucide-react';
+"use client"
+import { Lightbulb, Cpu, Leaf, Globe, Award, Droplets, Users } from 'lucide-react';
+import { motion } from 'framer-motion'; // Added Framer Motion for premium animations
+import { useInView } from 'react-intersection-observer'; // For scroll-triggered animations
+
+// Enhanced with premium styling: better gradients, shadows, animations, and responsive design
 
 export default function InnovationPage() {
   const innovations = [
@@ -94,203 +99,274 @@ export default function InnovationPage() {
     }
   ];
 
+  const milestones = [
+    {
+      year: '2024',
+      title: 'AI-Powered Crop Monitoring',
+      description: 'Launch of advanced AI systems for real-time crop health monitoring and predictive analytics'
+    },
+    {
+      year: '2023',
+      title: 'Solar Integration Systems',
+      description: 'Development of fully solar-powered polyhouse automation systems'
+    },
+    {
+      year: '2022',
+      title: 'Vertical Farming Solutions',
+      description: 'Introduction of space-efficient vertical hydroponic systems for urban farming'
+    },
+    {
+      year: '2021',
+      title: 'IoT Platform Launch',
+      description: 'Comprehensive IoT platform for remote farm monitoring and control'
+    }
+  ];
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="gradient-hero py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              <span className="text-gradient">Innovation</span> & Research
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto">
-              Pioneering the future of agriculture through cutting-edge research, 
-              sustainable technologies, and innovative farming solutions.
-            </p>
-          </div>
+    <div className="min-h-screen bg-gray-50"> {/* Light background for premium feel */}
+      {/* Hero Section - Enhanced with parallax-like animation */}
+      <section className="relative overflow-hidden py-24 md:py-32 bg-gradient-to-br from-green-700 to-green-900 text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="absolute inset-0 bg-[url('/path/to/hero-bg.jpg')] bg-cover bg-center opacity-20" // Add a subtle background image for premium look (replace with actual path)
+        />
+        <div className="relative max-w-7xl mx-auto px-4 text-center z-10">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight"
+          >
+            <span className="bg-gradient-to-r from-green-300 to-green-100 bg-clip-text text-transparent">Innovation</span> & Research
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl md:text-2xl max-w-4xl mx-auto"
+          >
+            Pioneering the future of agriculture through cutting-edge research, sustainable technologies, and innovative farming solutions.
+          </motion.p>
         </div>
       </section>
 
-      {/* Innovation Areas */}
+      {/* Innovation Areas - Added hover animations and premium shadows */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our <span className="text-gradient">Innovation Areas</span>
+              Our <span className="bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">Innovation Areas</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Leading breakthrough technologies that are shaping the future of farming
             </p>
           </div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            {innovations.map((innovation, index) => (
-              <div key={index} className="bg-gradient-to-br from-green-50 to-cream rounded-2xl p-8 card-hover">
-                <div className="flex items-start space-x-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-700 text-white rounded-full flex-shrink-0">
-                    <innovation.icon className="w-8 h-8" />
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
+            {innovations.map((innovation, index) => {
+              const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+              return (
+                <motion.div
+                  ref={ref}
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-green-100 hover:border-green-300"
+                >
+                  <div className="flex items-start space-x-6">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className="inline-flex items-center justify-center w-16 h-16 bg-green-700 text-white rounded-full flex-shrink-0"
+                    >
+                      <innovation.icon className="w-8 h-8" />
+                    </motion.div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-3">{innovation.title}</h3>
+                      <p className="text-lg text-gray-600 mb-4">{innovation.description}</p>
+                      <ul className="space-y-3">
+                        {innovation.details.map((detail, idx) => (
+                          <li key={idx} className="flex items-center space-x-3">
+                            <motion.div
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ duration: 0.3, delay: idx * 0.1 }}
+                              className="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"
+                            />
+                            <span className="text-gray-700">{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{innovation.title}</h3>
-                    <p className="text-lg text-gray-600 mb-4">{innovation.description}</p>
-                    <ul className="space-y-2">
-                      {innovation.details.map((detail, idx) => (
-                        <li key={idx} className="flex items-start space-x-2">
-                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
-                          <span className="text-gray-700">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Research Progress */}
+      {/* Research Progress - Added smooth progress bar animations */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-green-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Current <span className="text-gradient">Research Projects</span>
+              Current <span className="bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">Research Projects</span>
             </h2>
             <p className="text-xl text-gray-600">
               Ongoing research initiatives driving agricultural innovation
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 gap-8">
-            {researchAreas.map((area, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{area.title}</h3>
-                <p className="text-gray-600 mb-6">{area.description}</p>
-                <div className="mb-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Progress</span>
-                    <span className="text-green-700 font-semibold">{area.progress}%</span>
+            {researchAreas.map((area, index) => {
+              const [ref, inView] = useInView({ triggerOnce: true });
+              return (
+                <motion.div
+                  ref={ref}
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6 }}
+                  className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{area.title}</h3>
+                  <p className="text-gray-600 mb-6">{area.description}</p>
+                  <div className="mb-2">
+                    <div className="flex justify-between text-sm font-medium">
+                      <span className="text-gray-600">Progress</span>
+                      <span className="text-green-700">{area.progress}%</span>
+                    </div>
                   </div>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-3">
-                  <div 
-                    className="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full transition-all duration-1000"
-                    style={{ width: `${area.progress}%` }}
-                  />
-                </div>
-              </div>
-            ))}
+                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={inView ? { width: `${area.progress}%` } : {}}
+                      transition={{ duration: 1.5, ease: 'easeOut' }}
+                      className="bg-gradient-to-r from-green-500 to-green-700 h-3"
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Partnerships */}
+      {/* Partnerships - Added scale hover effects */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Research <span className="text-gradient">Partnerships</span>
+              Research <span className="bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">Partnerships</span>
             </h2>
             <p className="text-xl text-gray-600">
               Collaborating with leading institutions and organizations worldwide
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {partnerships.map((partnership, index) => (
-              <div key={index} className="text-center p-6 bg-gradient-to-br from-green-50 to-cream rounded-xl card-hover">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
                 <div className="text-4xl font-bold text-green-700 mb-2">{partnership.count}</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{partnership.name}</h3>
                 <p className="text-gray-600 text-sm">{partnership.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Innovation Timeline */}
+      {/* Innovation Timeline - Enhanced with smoother animations and alternating layout */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-green-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Innovation <span className="text-gradient">Timeline</span>
+              Innovation <span className="bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">Timeline</span>
             </h2>
             <p className="text-xl text-gray-600">
               Key milestones in our journey of agricultural innovation
             </p>
           </div>
-
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-green-300"></div>
-            
-            <div className="space-y-12">
-              {[
-                {
-                  year: '2024',
-                  title: 'AI-Powered Crop Monitoring',
-                  description: 'Launch of advanced AI systems for real-time crop health monitoring and predictive analytics'
-                },
-                {
-                  year: '2023',
-                  title: 'Solar Integration Systems',
-                  description: 'Development of fully solar-powered polyhouse automation systems'
-                },
-                {
-                  year: '2022',
-                  title: 'Vertical Farming Solutions',
-                  description: 'Introduction of space-efficient vertical hydroponic systems for urban farming'
-                },
-                {
-                  year: '2021',
-                  title: 'IoT Platform Launch',
-                  description: 'Comprehensive IoT platform for remote farm monitoring and control'
-                }
-              ].map((milestone, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  <div className="flex-1 px-8">
-                    <div className={`bg-white rounded-2xl p-6 shadow-lg ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                      <div className="text-2xl font-bold text-green-700 mb-2">{milestone.year}</div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{milestone.title}</h3>
-                      <p className="text-gray-600">{milestone.description}</p>
+            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-full md:w-1 h-full md:h-auto bg-green-300 md:bg-green-300" /> {/* Vertical line for desktop, horizontal for mobile */}
+            <div className="space-y-12 md:space-y-16">
+              {milestones.map((milestone, index) => {
+                const [ref, inView] = useInView({ triggerOnce: true });
+                return (
+                  <motion.div
+                    ref={ref}
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.8 }}
+                    className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} md:gap-8`}
+                  >
+                    <div className="flex-1 px-4 md:px-8 w-full md:w-auto">
+                      <div className="bg-white rounded-2xl p-6 shadow-lg">
+                        <div className="text-2xl font-bold text-green-700 mb-2">{milestone.year}</div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{milestone.title}</h3>
+                        <p className="text-gray-600">{milestone.description}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="w-4 h-4 bg-green-600 rounded-full border-4 border-white shadow-lg z-10"></div>
-                  <div className="flex-1"></div>
-                </div>
-              ))}
+                    <div className="w-4 h-4 bg-green-600 rounded-full border-4 border-white shadow-lg z-10 my-4 md:my-0" />
+                    <div className="flex-1 hidden md:block" />
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Future Vision */}
-      <section className="py-20 bg-gradient-to-br from-green-600 to-green-800 text-white">
+      {/* Future Vision - Added subtle animations and premium icons */}
+      <section className="py-20 bg-gradient-to-br from-green-700 to-green-900 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-3xl md:text-4xl font-bold mb-6"
+            >
               Our Vision for the Future
-            </h2>
-            <p className="text-xl text-green-100 mb-8 max-w-4xl mx-auto">
-              We envision a world where technology and nature work in harmony to create 
-              sustainable, efficient, and profitable farming systems that can feed the 
-              growing global population while preserving our planet.
-            </p>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl text-green-100 mb-8 max-w-4xl mx-auto"
+            >
+              We envision a world where technology and nature work in harmony to create sustainable, efficient, and profitable farming systems that can feed the growing global population while preserving our planet.
+            </motion.p>
             <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <Lightbulb className="w-16 h-16 mx-auto mb-4 text-green-200" />
-                <h3 className="text-xl font-semibold mb-2">Innovation</h3>
-                <p className="text-green-100">Continuous research and development</p>
-              </div>
-              <div className="text-center">
-                <Globe className="w-16 h-16 mx-auto mb-4 text-green-200" />
-                <h3 className="text-xl font-semibold mb-2">Sustainability</h3>
-                <p className="text-green-100">Environmentally responsible solutions</p>
-              </div>
-              <div className="text-center">
-                <Users className="w-16 h-16 mx-auto mb-4 text-green-200" />
-                <h3 className="text-xl font-semibold mb-2">Collaboration</h3>
-                <p className="text-green-100">Global partnerships for impact</p>
-              </div>
+              {[
+                { icon: Lightbulb, title: 'Innovation', desc: 'Continuous research and development' },
+                { icon: Globe, title: 'Sustainability', desc: 'Environmentally responsible solutions' },
+                { icon: Users, title: 'Collaboration', desc: 'Global partnerships for impact' }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="text-center"
+                >
+                  <item.icon className="w-16 h-16 mx-auto mb-4 text-green-200" />
+                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-green-100">{item.desc}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
