@@ -1,4 +1,4 @@
-import { Lightbulb, Cpu, Leaf, Globe, Award, Users } from 'lucide-react';
+import { Lightbulb, Cpu, Leaf, Globe, Award,Droplets, Users } from 'lucide-react';
 
 export default function InnovationPage() {
   const innovations = [
