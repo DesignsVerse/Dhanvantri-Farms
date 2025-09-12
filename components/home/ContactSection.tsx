@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -44,8 +44,8 @@ const ContactSection = () => {
     }));
   };
 
-  // Animation variants
-  const containerVariants = {
+  // Animation variants with explicit type
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -55,7 +55,7 @@ const ContactSection = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,

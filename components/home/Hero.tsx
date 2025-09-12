@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowRight, ArrowLeftCircle, ArrowRightCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
 
 const HeroSection = () => {
@@ -56,13 +56,13 @@ const HeroSection = () => {
   }, []);
 
   // Consistent animation variant for all elements including buttons
-  const variant = {
+  const variant: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
   };
 
   return (
-    <section className="relative h-[80vh] min-h-[650px] flex items-center overflow-hidden shadow-2xl mx- lg:mx-0">
+    <section className="relative h-[80vh] min-h-[650px] flex items-center overflow-hidden shadow-2xl mx-4 lg:mx-0">
       {/* Background Images with sliding animation */}
       <div className="absolute inset-0 overflow-hidden">
         {slides.map((slide, index) => (
@@ -78,7 +78,7 @@ const HeroSection = () => {
       </div>
       
       {/* Gradient overlay for better text visibility */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
       
       {/* Content */}
       <div className="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
