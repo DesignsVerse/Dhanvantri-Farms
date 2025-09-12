@@ -15,7 +15,7 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, threshold: 0.5 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="relative flex items-center justify-center overflow-hidden rounded-2xl shadow-md hover:bg-white/10 hover:backdrop-blur-md transition-all duration-300"
           style={{ y: parallax, willChange: 'opacity, transform' }}
@@ -41,7 +41,6 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, threshold: 0.5 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="lg:px-6"
         >
