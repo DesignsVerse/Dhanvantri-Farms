@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -12,10 +13,28 @@ const ContactSection = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      console.log('Form submitted:', formData);
+      setIsSubmitting(false);
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        interest: '',
+        message: ''
+      });
+      
+      // Show success message (you could replace this with a toast notification)
+      alert('Thank you for your message! We will contact you soon.');
+    }, 1500);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -25,173 +44,253 @@ const ContactSection = () => {
     }));
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut'
+      }
+    }
+  };
+
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-green-50">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Get in <span className="text-gradient">Touch</span>
+    <section className="py-24 bg-gradient-to-br from-white to-green-50 relative overflow-hidden">
+      {/* Enhanced Decorative elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238bc34a' fill-opacity='0.1'%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }} />
+      </div>
+      
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="max-w-7xl mx-auto px-6 relative z-10"
+      >
+        <motion.div 
+          variants={itemVariants}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">Touch</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="h-1 w-48 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
+          <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
             Ready to start your smart farming journey? Contact our experts for personalized guidance
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <MapPin className="w-8 h-8 text-green-700 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Visit Us</h3>
-              <p className="text-gray-600">
+          {/* Contact Information - Enhanced with hover animations */}
+          <motion.div 
+            variants={itemVariants}
+            className="space-y-8"
+          >
+            <motion.div 
+              whileHover={{ scale: 1.03 }}
+              className="bg-white p-8 rounded-3xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="p-4 bg-green-50 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+                <MapPin className="w-7 h-7 text-[#8bc34a]" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Visit Us</h3>
+              <p className="text-gray-600 text-center leading-relaxed">
                 123 Agriculture Innovation Park<br />
                 Sector 15, Gurugram<br />
                 Haryana 122001, India
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <Phone className="w-8 h-8 text-green-700 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Call Us</h3>
-              <p className="text-gray-600">
+            <motion.div 
+              whileHover={{ scale: 1.03 }}
+              className="bg-white p-8 rounded-3xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="p-4 bg-green-50 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+                <Phone className="w-7 h-7 text-[#8bc34a]" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Call Us</h3>
+              <p className="text-gray-600 text-center leading-relaxed">
                 Sales: +91-9876543210<br />
                 Support: +91-9876543211<br />
                 WhatsApp: +91-9876543212
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <Mail className="w-8 h-8 text-green-700 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Us</h3>
-              <p className="text-gray-600">
+            <motion.div 
+              whileHover={{ scale: 1.03 }}
+              className="bg-white p-8 rounded-3xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="p-4 bg-green-50 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+                <Mail className="w-7 h-7 text-[#8bc34a]" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Email Us</h3>
+              <p className="text-gray-600 text-center leading-relaxed">
                 info@dhanvantrifarms.com<br />
                 support@dhanvantrifarms.com<br />
                 sales@dhanvantrifarms.com
               </p>
-            </div>
+            </motion.div>
+          </motion.div>
 
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <Clock className="w-8 h-8 text-green-700 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Business Hours</h3>
-              <p className="text-gray-600">
-                Mon - Fri: 9:00 AM - 6:00 PM<br />
-                Saturday: 9:00 AM - 4:00 PM<br />
-                Sunday: Closed
-              </p>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Send us a Message
-              </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
-                      Area of Interest *
-                    </label>
-                    <select
-                      id="interest"
-                      name="interest"
-                      required
-                      value={formData.interest}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    >
-                      <option value="">Select an option</option>
-                      <option value="polyhouse">Polyhouse</option>
-                      <option value="net-house">Net House</option>
-                      <option value="hydroponics">Hydroponics</option>
-                      <option value="automation">Automation</option>
-                      <option value="consultation">General Consultation</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message
+          {/* Contact Form - Enhanced with field animations */}
+          <motion.div 
+            variants={itemVariants}
+            className="lg:col-span-2 bg-white p-10 rounded-3xl shadow-xl border border-green-100"
+          >
+            <h3 className="text-3xl font-bold text-gray-900 mb-3">
+              Send us a Message
+            </h3>
+            <p className="text-gray-600 mb-8">We'll respond within 2 hours during business hours</p>
+            
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    Full Name *
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    value={formData.message}
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
                     onChange={handleChange}
-                    placeholder="Tell us about your farming requirements, land size, current challenges, or any specific questions..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#8bc34a] focus:border-transparent transition-all duration-200 shadow-sm hover:shadow-md"
+                    placeholder="Your full name"
                   />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full btn-primary"
-                >
-                  Send Message
-                </button>
-              </form>
-              
-              <div className="mt-6 p-4 bg-green-50 rounded-lg">
-                <p className="text-sm text-green-800">
-                  <strong>Quick Response:</strong> Our experts will contact you within 2 hours during business hours. 
-                  For urgent inquiries, please call us directly.
-                </p>
+                </motion.div>
+                
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#8bc34a] focus:border-transparent transition-all duration-200 shadow-sm hover:shadow-md"
+                    placeholder="your.email@example.com"
+                  />
+                </motion.div>
               </div>
-            </div>
-          </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#8bc34a] focus:border-transparent transition-all duration-200 shadow-sm hover:shadow-md"
+                    placeholder="+91 98765 43210"
+                  />
+                </motion.div>
+                
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
+                    Area of Interest *
+                  </label>
+                  <select
+                    id="interest"
+                    name="interest"
+                    required
+                    value={formData.interest}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#8bc34a] focus:border-transparent transition-all duration-200 shadow-sm hover:shadow-md appearance-none"
+                  >
+                    <option value="">Select an option</option>
+                    <option value="polyhouse">Polyhouse</option>
+                    <option value="net-house">Net House</option>
+                    <option value="hydroponics">Hydroponics</option>
+                    <option value="automation">Automation</option>
+                    <option value="consultation">General Consultation</option>
+                  </select>
+                </motion.div>
+              </div>
+
+              <motion.div variants={itemVariants}>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your farming requirements, land size, current challenges, or any specific questions..."
+                  className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#8bc34a] focus:border-transparent transition-all duration-200 shadow-sm hover:shadow-md"
+                />
+              </motion.div>
+
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                variants={itemVariants}
+                className="w-full bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-white py-5 px-8 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-6 h-6 border-t-2 border-r-2 border-white rounded-full animate-spin"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <Send className="w-6 h-6" />
+                  </>
+                )}
+              </motion.button>
+            </form>
+            
+            <motion.div 
+              variants={itemVariants}
+              className="mt-8 p-6 bg-green-50 rounded-2xl border border-green-100 shadow-sm"
+            >
+              <div className="flex items-start gap-4">
+                <div className="bg-green-100 p-3 rounded-full">
+                  <Clock className="w-6 h-6 text-[#8bc34a]" />
+                </div>
+                <div>
+                  <p className="text-base font-bold text-green-800 mb-1">
+                    Quick Response Guarantee
+                  </p>
+                  <p className="text-sm text-green-700 leading-relaxed">
+                    Our experts will contact you within 2 hours during business hours. 
+                    For urgent inquiries, please call us directly.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

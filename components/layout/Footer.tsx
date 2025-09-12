@@ -51,10 +51,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <footer className="bg-gradient-to-br from-gray-900 to-green-900 text-white">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-6 gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid lg:grid-cols-6 gap-12">
           {/* Company Info - Enhanced with animations */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -63,44 +63,44 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-2"
           >
-            <Link href="/" className="flex items-center space-x-2 mb-6">
+            <Link href="/" className="flex items-center space-x-3 mb-8">
               <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
-                <Leaf className="w-8 h-8 text-green-400" />
+                <Leaf className="w-10 h-10 text-[#8bc34a]" />
               </motion.div>
-              <span className="text-2xl font-bold">Dhanvantri Farms</span>
+              <span className="text-3xl font-extrabold">Dhanvantri Farms</span>
             </Link>
             
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <p className="text-gray-300 mb-8 leading-relaxed text-lg">
               Global leader in smart farming solutions, delivering premium infrastructure and 
               technology in Polyhouse, Net House, Hydroponics, and Automation to transform 
               agriculture into a profitable, sustainable, and future-ready practice.
             </p>
             
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-green-400" />
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center space-x-4">
+                <Phone className="w-6 h-6 text-[#8bc34a]" />
                 <span>+91-9876543210</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-green-400" />
+              <div className="flex items-center space-x-4">
+                <Mail className="w-6 h-6 text-[#8bc34a]" />
                 <span>info@dhanvantrifarms.com</span>
               </div>
-              <div className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-green-400 mt-1" />
+              <div className="flex items-start space-x-4">
+                <MapPin className="w-6 h-6 text-[#8bc34a] mt-1" />
                 <span>Agriculture Innovation Park, Sector 15, Gurugram, Haryana 122001</span>
               </div>
             </div>
             
-            <div className="flex space-x-4 mt-6">
+            <div className="flex space-x-6">
               {[Facebook, Twitter, Instagram, Youtube, Linkedin].map((Icon, index) => (
                 <motion.a 
                   key={index} 
                   href="#" 
                   whileHover={{ scale: 1.2, rotate: 360 }}
-                  transition={{ duration: 0.3 }}
-                  className="p-2 bg-gray-800 rounded-lg hover:bg-green-600 transition-colors duration-300"
+                  transition={{ duration: 0.4 }}
+                  className="p-3 bg-gray-800 rounded-full hover:bg-[#8bc34a] transition-all duration-300 shadow-md hover:shadow-lg"
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-6 h-6" />
                 </motion.a>
               ))}
             </div>
@@ -115,24 +115,24 @@ const Footer = () => {
           ].map((section, sectionIndex) => (
             <div key={section.title}>
               <motion.h3 
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: sectionIndex * 0.1 }}
-                className="text-lg font-semibold mb-4 text-green-400"
+                transition={{ duration: 0.6, delay: sectionIndex * 0.15 }}
+                className="text-xl font-bold mb-6 text-[#8bc34a]"
               >
                 {section.title}
               </motion.h3>
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-3">
                 {section.items.map((link, index) => (
                   <motion.li 
                     key={link.label}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: (sectionIndex * 0.1) + (index * 0.05) }}
+                    transition={{ duration: 0.6, delay: (sectionIndex * 0.15) + (index * 0.08) }}
                   >
-                    <Link href={link.href} className="text-gray-300 hover:text-green-400 transition-colors duration-200">
+                    <Link href={link.href} className="text-gray-300 hover:text-[#8bc34a] transition-colors duration-300 text-base">
                       {link.label}
                     </Link>
                   </motion.li>
@@ -142,24 +142,24 @@ const Footer = () => {
               {section.additional && (
                 <>
                   <motion.h3 
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: (sectionIndex * 0.1) + 0.3 }}
-                    className="text-lg font-semibold mb-4 text-green-400"
+                    transition={{ duration: 0.6, delay: (sectionIndex * 0.15) + 0.4 }}
+                    className="text-xl font-bold mb-6 text-[#8bc34a] mt-8"
                   >
                     {section.additional.title}
                   </motion.h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {section.additional.items.map((link, index) => (
                       <motion.li 
                         key={link.label}
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: (sectionIndex * 0.1) + 0.3 + (index * 0.05) }}
+                        transition={{ duration: 0.6, delay: (sectionIndex * 0.15) + 0.4 + (index * 0.08) }}
                       >
-                        <Link href={link.href} className="text-gray-300 hover:text-green-400 transition-colors duration-200">
+                        <Link href={link.href} className="text-gray-300 hover:text-[#8bc34a] transition-colors duration-300 text-base">
                           {link.label}
                         </Link>
                       </motion.li>
@@ -173,10 +173,10 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar - Enhanced with subtle animation */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="border-t border-gray-800 bg-gray-900/50">
+        <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-base mb-4 md:mb-0">
               © 2024 Dhanvantri Farms. All rights reserved.
             </p>
             
@@ -185,17 +185,17 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex items-center space-x-6 mt-4 md:mt-0"
+              className="flex items-center space-x-8"
             >
-              <span className="text-sm text-gray-400">Trusted by 15,000+ farmers</span>
-              <div className="flex items-center space-x-1">
-                <span className="text-sm text-gray-400">Made with</span>
+              <span className="text-base text-gray-400">Trusted by 15,000+ farmers</span>
+              <div className="flex items-center space-x-2">
+                <span className="text-base text-gray-400">Made with</span>
                 <motion.span 
-                  animate={{ scale: [1, 1.2, 1] }}
+                  animate={{ scale: [1, 1.3, 1] }}
                   transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
-                  className="text-green-400"
+                  className="text-[#8bc34a] text-xl"
                 >♥</motion.span>
-                <span className="text-sm text-gray-400">in India</span>
+                <span className="text-base text-gray-400">in India</span>
               </div>
             </motion.div>
           </div>
