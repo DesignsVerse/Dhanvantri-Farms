@@ -2,82 +2,105 @@
 
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 
 const About = () => {
   const { scrollYProgress } = useScroll();
-  const parallax = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const parallax = useTransform(scrollYProgress, [0, 1], [0, -30]);
 
   return (
-    <section className="bg-gradient-to-br from-white to-green-50 py-20 lg:py-32 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 px-6 md:px-12 items-center">
-        {/* Enhanced Image with parallax and overlay */}
+    <section className="py-8 sm:py-12 bg-white">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 sm:px-6 items-center">
+        {/* Image Section */}
         <motion.div
-          initial={{ opacity: 0, x: -80 }}
+          initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="relative flex items-center justify-center overflow-hidden rounded-3xl shadow-2xl"
-          style={{ y: parallax }}
+          viewport={{ once: true, threshold: 0.5 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="relative flex items-center justify-center overflow-hidden rounded-2xl shadow-md hover:bg-white/10 hover:backdrop-blur-md transition-all duration-300"
+          style={{ y: parallax, willChange: 'opacity, transform' }}
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
-          <img
+          <Image
             src="/hero/1.jpg"
             alt="Farmer in greenhouse"
-            className="object-cover w-full h-[480px] lg:h-[560px] transition-transform duration-500 hover:scale-105"
+            width={600}
+            height={400}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover h-[280px] sm:h-[360px] lg:h-[400px] transition-transform duration-400 hover:scale-105 brightness-90"
+            priority
+            quality={75}
           />
-          <div className="absolute bottom-8 left-8 z-20 text-white">
-            <h3 className="text-3xl font-bold drop-shadow-lg">Transforming Farms</h3>
-            <p className="text-lg drop-shadow-md">Innovative Solutions for Modern Agriculture</p>
+          <div className="absolute inset-0 bg-gradient-to-t from-green-800/80 to-transparent z-10" />
+          <div className="absolute bottom-4 left-4 z-20 text-white">
+            <h3 className="text-lg sm:text-xl font-semibold drop-shadow-md">Transforming Farms</h3>
+            <p className="text-xs sm:text-sm drop-shadow-sm">Innovative Agriculture Solutions</p>
           </div>
         </motion.div>
-        
-        {/* Enhanced Text Content with staggered animations */}
+
+        {/* Text Content */}
         <motion.div
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="lg:px-8"
+          viewport={{ once: true, threshold: 0.5 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="lg:px-6"
         >
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight leading-tight"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-2xl sm:text-5xl font-extrabold text-green-950 mb-3 tracking-tight font-sans"
           >
-            <span className="text-[#8bc34a] drop-shadow-md">Success</span> Stories
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-green-700">
+              Success
+            </span>{' '}
+            Stories
           </motion.h2>
-          <motion.div 
+          <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="h-1 w-48 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mb-8 rounded-full shadow-md"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="h-1 w-24 bg-lime-400 mb-3 rounded-full shadow-sm"
           />
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xl lg:text-2xl text-gray-700 mb-10 leading-relaxed font-medium"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed font-semibold"
           >
-            Discover our success stories in protected cultivation, showcasing thriving farms, increased yields, and sustainable agriculture practices. Our innovative solutions empower farmers to create a brighter, more prosperous future. With a focus on sustainability and high productivity, we transform agricultural practices across India.
+            Explore our success stories in protected cultivation, showcasing thriving farms, increased yields, and sustainable practices. Our solutions empower farmers for a prosperous future.
           </motion.p>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="mb-10"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed font-semibold"
           >
-            <span className="text-3xl lg:text-4xl font-bold text-[#8bc34a]">Cultivating success</span>
-            <span className="text-3xl lg:text-4xl font-light text-gray-900"> for a better tomorrow.</span>
+            Explore our success stories in protected cultivation, showcasing thriving farms, increased yields, and sustainable practices. Our solutions empower farmers for a prosperous future.
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mb-4"
+          >
+            <span className="text-lg sm:text-xl font-semibold text-lime-400">
+              Cultivating success
+            </span>
+            <span className="text-lg sm:text-xl font-light text-green-950">
+              {' '}
+              for a better tomorrow.
+            </span>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
           >
             <Link href="/success-stories" className="inline-block">
-              <button className="bg-[#8bc34a] text-white text-xl px-10 py-5 rounded-xl font-bold shadow-lg hover:shadow-2xl hover:bg-[#689f38] transition-all duration-300 transform hover:scale-105">
-                READ SUCCESS STORIES
+              <button className="bg-gradient-to-r from-lime-400 to-green-700 text-white text-sm sm:text-base px-6 py-2.5 rounded-lg font-semibold shadow-md hover:bg-green-700 transition-all duration-300 transform hover:scale-105">
+                Read Success Stories
               </button>
             </Link>
           </motion.div>
