@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Snowflake, Thermometer, Zap, Leaf, ArrowRight, ChevronRight, Warehouse, ChevronDown, Menu, X, BarChart, Cloud, Shield, Users, Clock, Building, Phone, Mail, MapPin } from 'lucide-react';
+import { Snowflake, Thermometer, Zap, Leaf, ArrowRight, Shield, BarChart, Warehouse, Clock, Users } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,19 +9,18 @@ import Tilt from 'react-parallax-tilt';
 
 export default function ColdStoragePage() {
   const [activeSection, setActiveSection] = useState('benefits');
-  const [activeFAQ, setActiveFAQ] = useState(null);
+  const [activeFAQ, setActiveFAQ] = useState<number | null>(null);
   const [layoutView, setLayoutView] = useState('blast-freezer');
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [tempRange, setTempRange] = useState(-20);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [hoveredImage, setHoveredImage] = useState(null);
 
   const sectionRefs = {
-    benefits: useRef(null),
-    features: useRef(null),
-    layouts: useRef(null),
-    gallery: useRef(null),
-    faqs: useRef(null),
+    benefits: useRef<HTMLElement>(null),
+    features: useRef<HTMLElement>(null),
+    layouts: useRef<HTMLElement>(null),
+    gallery: useRef<HTMLElement>(null),
+    faqs: useRef<HTMLElement>(null),
   };
 
   const { scrollYProgress } = useScroll();
@@ -36,7 +35,8 @@ export default function ColdStoragePage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
+  // Fix: add type annotation to parameter id as string
+  const scrollToSection = (id: string) => {
     setActiveSection(id);
     setIsNavOpen(false);
     const element = document.getElementById(id);
@@ -85,7 +85,7 @@ export default function ColdStoragePage() {
       description: 'Multi-layered security systems with 24/7 monitoring and access control.',
     },
     {
-      icon: Cloud,
+      icon: BarChart,
       title: 'Cloud Integration',
       description: 'Seamless connectivity with your supply chain management systems for complete visibility.',
     },
@@ -122,7 +122,7 @@ export default function ColdStoragePage() {
       image: 'https://images.pexels.com/photos/723240/pexels-photo-723240.jpeg',
       suitableFor: 'Meat, seafood, prepared meals',
       temperature: '-40°C to -10°C',
-      capacity: 'Up to 50 pallets'
+      capacity: 'Up to 50 pallets',
     },
     {
       id: 'chiller',
@@ -131,7 +131,7 @@ export default function ColdStoragePage() {
       image: 'https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg',
       suitableFor: 'Fruits, vegetables, dairy, flowers',
       temperature: '0°C to 5°C',
-      capacity: 'Up to 100 pallets'
+      capacity: 'Up to 100 pallets',
     },
     {
       id: 'frozen',
@@ -140,39 +140,35 @@ export default function ColdStoragePage() {
       image: 'https://images.pexels.com/photos/731082/pexels-photo-731082.jpeg',
       suitableFor: 'Ice cream, frozen foods, pharmaceuticals',
       temperature: '-25°C to -18°C',
-      capacity: 'Up to 200 pallets'
+      capacity: 'Up to 200 pallets',
     },
-  ];
-
-  const galleryImages = [
-    { src: 'https://images.pexels.com/photos/723240/pexels-photo-723240.jpeg', title: 'Blast Freezing Facility' },
-    { src: 'https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg', title: 'Chiller Storage Area' },
-    { src: 'https://images.pexels.com/photos/731082/pexels-photo-731082.jpeg', title: 'Frozen Goods Warehouse' },
-    { src: 'https://images.pexels.com/photos/373553/pexels-photo-373553.jpeg', title: 'Control Room' },
-    { src: 'https://images.pexels.com/photos/4488198/pexels-photo-4488198.jpeg', title: 'Automated Racking System' },
-    { src: 'https://images.pexels.com/photos/4488281/pexels-photo-4488281.jpeg', title: 'Quality Inspection' },
   ];
 
   const faqs = [
     {
       question: 'What industries benefit from cold storage solutions?',
-      answer: 'Food and beverage, pharmaceuticals, biotechnology, floral, and chemical industries all utilize cold storage to preserve product integrity and extend shelf life.',
+      answer:
+        'Food and beverage, pharmaceuticals, biotechnology, floral, and chemical industries all utilize cold storage to preserve product integrity and extend shelf life.',
     },
     {
       question: 'How does automation improve cold storage operations?',
-      answer: 'Automation enhances accuracy in temperature control, reduces energy consumption, minimizes human error, optimizes inventory management, and provides real-time monitoring and alerts for any deviations.',
+      answer:
+        'Automation enhances accuracy in temperature control, reduces energy consumption, minimizes human error, optimizes inventory management, and provides real-time monitoring and alerts for any deviations.',
     },
     {
       question: 'Are your cold storage facilities environmentally friendly?',
-      answer: 'Yes, we use natural refrigerants like CO2 and ammonia, energy-efficient systems, solar power integration where possible, and sustainable building materials to minimize our environmental footprint.',
+      answer:
+        'Yes, we use natural refrigerants like CO2 and ammonia, energy-efficient systems, solar power integration where possible, and sustainable building materials to minimize our environmental footprint.',
     },
     {
       question: 'What security measures are in place?',
-      answer: 'Our facilities feature 24/7 monitoring, biometric access controls, temperature breach alerts, backup power systems, and insurance-compliant security protocols.',
+      answer:
+        'Our facilities feature 24/7 monitoring, biometric access controls, temperature breach alerts, backup power systems, and insurance-compliant security protocols.',
     },
     {
       question: 'Can you handle temperature-sensitive pharmaceuticals?',
-      answer: 'Absolutely. We offer GDP-compliant storage solutions with precise temperature control, documentation, and monitoring specifically designed for pharmaceuticals and healthcare products.',
+      answer:
+        'Absolutely. We offer GDP-compliant storage solutions with precise temperature control, documentation, and monitoring specifically designed for pharmaceuticals and healthcare products.',
     },
   ];
 
@@ -185,10 +181,8 @@ export default function ColdStoragePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      
-
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-    ">
+      <section className="relative min-h-screen flex items-center justify-center pt-0">
         <div className="absolute inset-0 bg-gradient-to-r from-green-900/80 to-blue-900/80 z-10" />
         <Image
           src="https://images.pexels.com/photos/723240/pexels-photo-723240.jpeg"
@@ -222,13 +216,13 @@ export default function ColdStoragePage() {
               href="/contact"
               className="border-2 border-white text-white hover:bg-white hover:text-green-700 py-3 px-6 rounded-full font-semibold transition-all flex items-center"
             >
-              <Phone size={18} className="mr-2" /> Contact Sales
+              Contact Sales
             </Link>
           </div>
         </motion.div>
-        
+
         {/* Stats Bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
@@ -263,7 +257,7 @@ export default function ColdStoragePage() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: '-100px' }}
         className="py-20 lg:py-28 bg-white"
       >
         <div className="max-w-7xl mx-auto px-4">
@@ -289,7 +283,7 @@ export default function ColdStoragePage() {
               </div>
             </motion.div>
             <div className="lg:w-1/2">
-              <motion.span 
+              <motion.span
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -349,11 +343,11 @@ export default function ColdStoragePage() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: '-100px' }}
         className="py-20 lg:py-28 bg-gradient-to-br from-green-50 to-blue-50"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -399,11 +393,11 @@ export default function ColdStoragePage() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: '-100px' }}
         className="py-20 lg:py-28 bg-white"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -449,11 +443,11 @@ export default function ColdStoragePage() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: '-100px' }}
         className="py-20 lg:py-28 bg-gradient-to-br from-green-50 to-blue-50"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -468,7 +462,7 @@ export default function ColdStoragePage() {
               Customizable configurations designed for specific temperature requirements
             </p>
           </motion.div>
-          
+
           <div className="flex flex-wrap gap-4 justify-center mb-12">
             {layouts.map((layout) => (
               <motion.button
@@ -487,7 +481,7 @@ export default function ColdStoragePage() {
               </motion.button>
             ))}
           </div>
-          
+
           <AnimatePresence mode="wait">
             <motion.div
               key={layoutView}
@@ -499,44 +493,44 @@ export default function ColdStoragePage() {
             >
               <div className="lg:w-1/2 relative h-96 lg:h-auto rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src={layouts.find((l) => l.id === layoutView).image}
-                  alt={layouts.find((l) => l.id === layoutView).name}
+                  src={layouts.find((l) => l.id === layoutView)!.image}
+                  alt={layouts.find((l) => l.id === layoutView)!.name}
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent flex items-end">
                   <div className="p-6 text-white">
-                    <h3 className="text-2xl font-semibold">{layouts.find((l) => l.id === layoutView).name}</h3>
-                    <p className="text-green-100">Optimized for {layouts.find((l) => l.id === layoutView).suitableFor}</p>
+                    <h3 className="text-2xl font-semibold">{layouts.find((l) => l.id === layoutView)!.name}</h3>
+                    <p className="text-green-100">Optimized for {layouts.find((l) => l.id === layoutView)!.suitableFor}</p>
                   </div>
                 </div>
               </div>
               <div className="lg:w-1/2 p-8 bg-white rounded-3xl shadow-lg flex flex-col justify-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{layouts.find((l) => l.id === layoutView).name} Details</h3>
-                <p className="text-gray-600 mb-6">{layouts.find((l) => l.id === layoutView).description}</p>
-                
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{layouts.find((l) => l.id === layoutView)!.name} Details</h3>
+                <p className="text-gray-600 mb-6">{layouts.find((l) => l.id === layoutView)!.description}</p>
+
                 <div className="grid grid-cols-2 gap-6 mb-6">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-500 mb-1">TEMPERATURE RANGE</h4>
-                    <p className="text-lg font-bold text-green-600">{layouts.find((l) => l.id === layoutView).temperature}</p>
+                    <p className="text-lg font-bold text-green-600">{layouts.find((l) => l.id === layoutView)!.temperature}</p>
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-gray-500 mb-1">CAPACITY</h4>
-                    <p className="text-lg font-bold text-green-600">{layouts.find((l) => l.id === layoutView).capacity}</p>
+                    <p className="text-lg font-bold text-green-600">{layouts.find((l) => l.id === layoutView)!.capacity}</p>
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-gray-500 mb-1">SUITABLE FOR</h4>
-                    <p className="text-lg font-bold text-green-600">{layouts.find((l) => l.id === layoutView).suitableFor}</p>
+                    <p className="text-lg font-bold text-green-600">{layouts.find((l) => l.id === layoutView)!.suitableFor}</p>
                   </div>
                 </div>
-                
+
                 <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-full font-semibold transition-colors self-start flex items-center">
                   Request Custom Quote <ArrowRight size={18} className="ml-2" />
                 </button>
               </div>
             </motion.div>
           </AnimatePresence>
-          
+
           <div className="mt-16 bg-white rounded-3xl p-8 shadow-lg">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Temperature Control Visualizer</h3>
             <div className="max-w-2xl mx-auto">
@@ -545,7 +539,7 @@ export default function ColdStoragePage() {
                 min="-40"
                 max="5"
                 value={tempRange}
-                onChange={(e) => setTempRange(e.target.value)}
+                onChange={(e) => setTempRange(parseInt(e.target.value))}
                 className="w-full h-2 bg-green-100 rounded-lg appearance-none cursor-pointer accent-green-600"
               />
               <div className="flex justify-between text-sm text-gray-500 mt-2">
@@ -559,18 +553,16 @@ export default function ColdStoragePage() {
                 </p>
                 <p className="text-gray-500 mt-2">
                   {tempRange < -25
-                    ? "Ideal for long-term frozen storage and sensitive pharmaceuticals"
+                    ? 'Ideal for long-term frozen storage and sensitive pharmaceuticals'
                     : tempRange < 0
-                    ? "Perfect for frozen goods, ice cream, and certain pharmaceuticals"
-                    : "Optimal for fresh produce, dairy, and floral products"}
+                    ? 'Perfect for frozen goods, ice cream, and certain pharmaceuticals'
+                    : 'Optimal for fresh produce, dairy, and floral products'}
                 </p>
               </div>
             </div>
           </div>
         </div>
       </motion.section>
-
-    
-      </div>
+    </div>
   );
 }

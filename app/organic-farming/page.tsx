@@ -1,26 +1,27 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Leaf, Sprout, Droplets, Heart, ChevronRight, ChevronLeft, ChevronDown,ArrowRight } from 'lucide-react';
+import { Leaf, Sprout, Droplets, Heart, ChevronRight, ChevronLeft, ChevronDown, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function OrganicFarmingPage() {
+  // Fix: annotate activeFAQ state type as number | null
   const [activeSection, setActiveSection] = useState('benefits');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [activeFAQ, setActiveFAQ] = useState(null);
+  const [activeFAQ, setActiveFAQ] = useState<number | null>(null);
 
   const sectionRefs = {
-    benefits: useRef(null),
-    methods: useRef(null),
-    gallery: useRef(null),
-    testimonials: useRef(null),
-    faqs: useRef(null),
+    benefits: useRef<HTMLElement>(null),
+    methods: useRef<HTMLElement>(null),
+    gallery: useRef<HTMLElement>(null),
+    testimonials: useRef<HTMLElement>(null),
+    faqs: useRef<HTMLElement>(null),
   };
 
-  const scrollToSection = (id) => {
+  // Fix: annotate id parameter type as string
+  const scrollToSection = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
@@ -157,7 +158,10 @@ export default function OrganicFarmingPage() {
             className="text-center text-white px-4"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">Organic Farming</span> Solutions
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">
+                Organic Farming
+              </span>{' '}
+              Solutions
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto">
               Sustainable, eco-friendly farming for healthier crops and planet.
