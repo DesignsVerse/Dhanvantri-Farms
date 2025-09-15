@@ -24,7 +24,7 @@ const HeroSection = () => {
     {
       title: 'Smart Mushroom Cultivation',
       description: 'Revolutionary climate control for maximum yields.',
-      image: '/hero/1.jpg',
+      image: '/hero/8.jpg',
       cta: 'Explore Mushroom Tech',
       features: ['Smart Climate', 'High Yields', 'Sustainable'],
       color: 'from-green-800/80 via-green-600/50 to-transparent',
@@ -32,7 +32,7 @@ const HeroSection = () => {
     {
       title: 'Hydroponic Farming Future',
       description: 'Grow more with 90% less water.',
-      image: '/hero/2.jpg',
+      image: '/hero/3.jpg',
       cta: 'Discover Hydroponics',
       features: ['Water-Efficient', '3x Growth', 'Year-Round'],
       color: 'from-teal-800/80 via-teal-600/50 to-transparent',
@@ -40,10 +40,26 @@ const HeroSection = () => {
     {
       title: 'AI-Powered Greenhouses',
       description: 'Precision agriculture with automated systems.',
-      image: '/hero/3.jpg',
+      image: '/hero/4.jpg',
       cta: 'View Smart Greenhouses',
       features: ['AI-Driven', 'Automated', 'Eco-Friendly'],
       color: 'from-lime-800/80 via-lime-600/50 to-transparent',
+    },
+    {
+      title: 'Advanced Polyhouse Solutions',
+      description: 'Protected cultivation for high-yield farming in controlled environments.',
+      image: '/hero/1.jpg',
+      cta: 'Explore Polyhouses',
+      features: ['Climate Control', 'Pest Protection', 'Higher Production'],
+      color: 'from-emerald-800/80 via-emerald-600/50 to-transparent',
+    },
+    {
+      title: 'Premium Warehouse Storage',
+      description: 'Secure, climate-controlled storage to preserve your harvest and reduce losses.',
+      image: '/hero/6.jpg',
+      cta: 'Discover Warehouses',
+      features: ['Spacious Capacity', 'Humidity Control', 'Pest Protection'],
+      color: 'from-green-900/80 via-green-700/50 to-transparent',
     },
   ];
 

@@ -15,6 +15,8 @@ const Navigation = () => {
       label: 'Polyhouse',
       href: '/polyhouse',
       dropdown: [
+        { label: 'Polyhouse', href: '/polyhouse' },
+
         { label: 'Overview', href: '/polyhouse/polyhouse-advantages#menu1' },
         { label: 'Features', href: '/polyhouse/polyhouse-advantages#menu2' },
         { label: 'Cost', href: '/polyhouse/polyhouse-advantages#menu3' },

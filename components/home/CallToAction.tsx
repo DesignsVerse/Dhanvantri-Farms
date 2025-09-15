@@ -26,9 +26,23 @@ const CallToAction = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[#8bc34a] to-[#689f38] text-white relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-[#8bc34a]/90 to-[#689f38]/90 text-white relative overflow-hidden">
+      {/* Background Image with Parallax Effect */}
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")',
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center 30%'
+          }}
+        />
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
+      
       {/* Enhanced Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10 z-1">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }} />

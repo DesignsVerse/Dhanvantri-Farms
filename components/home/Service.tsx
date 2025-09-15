@@ -14,7 +14,7 @@ const OurServices = () => {
       description: 'Climate-controlled farming solutions',
       color: 'from-[#8bc34a] to-[#689f38]',
       href: '/polyhouse',
-      image: '/hero/3.jpg',
+      image: '/hero/1.jpg',
     },
     {
       icon: Sprout,
@@ -22,7 +22,7 @@ const OurServices = () => {
       description: 'Protected cultivation structures',
       color: 'from-[#8bc34a] to-[#689f38]',
       href: '/net-house',
-      image: '/hero/4.jpg',
+      image: '/hero/2.jpg',
     },
     {
       icon: Droplets,
@@ -30,7 +30,7 @@ const OurServices = () => {
       description: 'Soilless farming systems',
       color: 'from-[#8bc34a] to-[#689f38]',
       href: '/hydroponics',
-      image: '/hero/5.jpg',
+      image: '/hero/3.jpg',
     },
     {
       icon: Settings,
@@ -38,7 +38,7 @@ const OurServices = () => {
       description: 'Smart IoT-integrated solutions',
       color: 'from-[#8bc34a] to-[#689f38]',
       href: '/automation',
-      image: '/hero/2.jpg',
+      image: '/hero/4.jpg',
     },
     {
       icon: Leaf,
@@ -46,7 +46,7 @@ const OurServices = () => {
       description: 'Sustainable and chemical-free agriculture',
       color: 'from-[#8bc34a] to-[#689f38]',
       href: '/organic-farming',
-      image: '/hero/organic.jpg',
+      image: '/hero/5.jpg',
     },
     {
       icon: Warehouse,
@@ -54,7 +54,7 @@ const OurServices = () => {
       description: 'Efficient storage solutions',
       color: 'from-[#8bc34a] to-[#689f38]',
       href: '/warehouse',
-      image: '/hero/warehouse.jpg',
+      image: '/hero/6.jpg',
     },
     {
       icon: Snowflake,
@@ -62,7 +62,7 @@ const OurServices = () => {
       description: 'Temperature-controlled storage',
       color: 'from-[#8bc34a] to-[#689f38]',
       href: '/cold-storage',
-      image: '/hero/cold-storage.jpg',
+      image: '/hero/7.jpg',
     },
   ];
 
