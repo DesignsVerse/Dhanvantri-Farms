@@ -123,7 +123,7 @@ const OurServices = () => {
                   <div className="p-6">
                     <div className="flex items-start space-x-4 mb-4">
                       <div className="flex-1">
-                        <p className="text-gray-800 font-medium text-base mb-4">
+                        <p className="text-gray-800 font-medium text-base mb-4 hidden md:block">
                           {category.description}
                         </p>
                         <Link
@@ -148,8 +148,8 @@ const OurServices = () => {
             })}
           </div>
 
-          {/* Second Row: 2 boxes, centered */}
-          <div className="grid grid-cols-3 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          {/* Second Row: 3 boxes but grid 2 columns on mobile, 3 on md */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {categories.slice(4, 7).map((category, index) => {
               const [ref, inView] = useInView({
                 triggerOnce: true,
@@ -185,7 +185,7 @@ const OurServices = () => {
                   <div className="p-6">
                     <div className="flex items-start space-x-4 mb-4">
                       <div className="flex-1">
-                        <p className="text-gray-800 font-medium text-base mb-4">
+                        <p className="text-gray-800 font-medium text-base mb-4 hidden md:block">
                           {category.description}
                         </p>
                         <Link
@@ -209,8 +209,6 @@ const OurServices = () => {
               );
             })}
           </div>
-
-          
         </div>
       </div>
     </section>
