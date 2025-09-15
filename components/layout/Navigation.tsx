@@ -9,26 +9,25 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
+  // ✅ Simplified menu (only main items)
   const menuItems = [
     {
       label: 'Polyhouse',
       href: '/polyhouse',
       dropdown: [
-        { label: 'Naturally Ventilated Polyhouse', href: '/polyhouse/naturally-ventilated' },
-        { label: 'Types of Polyhouse', href: '/polyhouse/types' },
-        { label: 'Advantages', href: '/polyhouse/advantages' },
-        { label: 'Features', href: '/polyhouse/features' },
-        { label: 'Setup Cost', href: '/polyhouse/cost' },
-        { label: 'FAQs', href: '/polyhouse/faqs' },
+        { label: 'Overview', href: '/polyhouse/polyhouse-advantages#menu1' },
+        { label: 'Features', href: '/polyhouse/polyhouse-advantages#menu2' },
+        { label: 'Cost', href: '/polyhouse/polyhouse-advantages#menu3' },
+        { label: 'Advantages', href: '/polyhouse/polyhouse-advantages#menu4' },
+        { label: 'Disadvantages', href: '/polyhouse/polyhouse-advantages#menu5' },
       ],
     },
     {
       label: 'Net House',
       href: '/net-house',
       dropdown: [
-        { label: 'What is Net House?', href: '/net-house/introduction' },
+        { label: 'Introduction', href: '/net-house/introduction' },
         { label: 'Types', href: '/net-house/types' },
-        { label: 'Benefits', href: '/net-house/benefits' },
         { label: '1 Acre Cost Planning', href: '/net-house/cost-planning' },
       ],
     },
@@ -36,11 +35,9 @@ const Navigation = () => {
       label: 'Hydroponics',
       href: '/hydroponics',
       dropdown: [
-        { label: 'What is Hydroponics?', href: '/hydroponics/introduction' },
-        { label: 'Types (NFT, DWC, Drip, Vertical)', href: '/hydroponics/types' },
-        { label: 'Advantages', href: '/hydroponics/advantages' },
+        { label: 'Introduction', href: '/hydroponics/introduction' },
+        { label: 'Types (NFT, DWC, Vertical)', href: '/hydroponics/types' },
         { label: 'Why Choose Us?', href: '/hydroponics/why-choose-us' },
-        { label: 'FAQs', href: '/hydroponics/faqs' },
       ],
     },
     {
@@ -50,8 +47,32 @@ const Navigation = () => {
         { label: 'Polyhouse Automation', href: '/automation/polyhouse' },
         { label: 'Hydroponics Automation', href: '/automation/hydroponics' },
         { label: 'Priva Systems', href: '/automation/priva' },
-        { label: 'Autogrow Solutions', href: '/automation/autogrow' },
-        { label: 'Bluelab Tools', href: '/automation/bluelab' },
+      ],
+    },
+    {
+      label: 'Organic Farming',
+      href: '/organic-farming',
+      dropdown: [
+        { label: 'Introduction', href: '/organic-farming/introduction' },
+        { label: 'Techniques', href: '/organic-farming/techniques' },
+        { label: 'Certification', href: '/organic-farming/certification' },
+      ],
+    },
+    {
+      label: 'Warehouse',
+      href: '/warehouse',
+      dropdown: [
+        { label: 'Solutions', href: '/warehouse/solutions' },
+        { label: 'Cost Planning', href: '/warehouse/cost-planning' },
+      ],
+    },
+    {
+      label: 'Cold Storage',
+      href: '/cold-storage',
+      dropdown: [
+        { label: 'Introduction', href: '/cold-storage/introduction' },
+        { label: 'Types', href: '/cold-storage/types' },
+        { label: 'Setup Cost', href: '/cold-storage/cost' },
       ],
     },
     { label: 'About', href: '/about' },
@@ -68,28 +89,24 @@ const Navigation = () => {
           transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
           className="inline-block font-medium"
         >
-          Transforming Agriculture with Smart Solutions&nbsp;&nbsp;•&nbsp;&nbsp;Increase Yields by 400%&nbsp;&nbsp;•&nbsp;&nbsp;Sustainable Farming for the Future&nbsp;&nbsp;•&nbsp;&nbsp;Contact Us for Free Consultation&nbsp;&nbsp;•&nbsp;&nbsp;
-          Transforming Agriculture with Smart Solutions&nbsp;&nbsp;•&nbsp;&nbsp;Increase Yields by 400%&nbsp;&nbsp;•&nbsp;&nbsp;Sustainable Farming for the Future&nbsp;&nbsp;•&nbsp;&nbsp;Contact Us for Free Consultation&nbsp;&nbsp;•&nbsp;&nbsp;
+          Transforming Agriculture with Smart Solutions • Increase Yields by 400% • Sustainable Farming for the Future • Contact Us for Free Consultation • 
         </motion.div>
       </div>
 
       <nav className="bg-white shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-2">
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-              >
+              <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
                 <Leaf className="w-8 h-8 text-lime-400" />
               </motion.div>
-              <span className="text-2xl sm:text-3xl font-extrabold text-green-950">
+              <span className="text-xl sm:text-2xl font-extrabold text-green-950">
                 Dhanvantri Farms
               </span>
             </Link>
 
             {/* Desktop Menu */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-4">
               {menuItems.map((item) => (
                 <div
                   key={item.label}
@@ -99,7 +116,7 @@ const Navigation = () => {
                 >
                   <Link
                     href={item.href}
-                    className="flex items-center space-x-1 text-green-950 hover:text-lime-400 font-semibold text-base transition-colors duration-300"
+                    className="flex items-center text-sm space-x-1 text-green-950 hover:text-lime-400 font-semibold transition-colors duration-300"
                   >
                     <span>{item.label}</span>
                     {item.dropdown && (
@@ -114,14 +131,13 @@ const Navigation = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="absolute top-full left-0 mt-2 w-64 bg-white/10 backdrop-blur-md rounded-xl shadow-xl border border-lime-400/20 py-3 z-50 overflow-hidden"
-                        style={{ willChange: 'opacity, transform' }}
+                        className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-lime-400/20 py-3 z-50"
                       >
                         {item.dropdown.map((subItem) => (
                           <Link
                             key={subItem.label}
                             href={subItem.href}
-                            className="block px-4 py-2 text-sm text-gray-200 hover:bg-green-600/20 hover:text-lime-400 transition-all duration-300"
+                            className="block px-4 py-2 text-sm text-black hover:bg-green-600/20 hover:text-lime-800 transition-all duration-300"
                           >
                             {subItem.label}
                           </Link>
@@ -157,7 +173,6 @@ const Navigation = () => {
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
                 className="lg:hidden py-4 border-t border-lime-400/20 overflow-hidden"
-                style={{ willChange: 'opacity, height' }}
               >
                 {menuItems.map((item) => (
                   <div key={item.label}>

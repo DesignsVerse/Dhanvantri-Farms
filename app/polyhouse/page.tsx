@@ -1,208 +1,612 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Home, TrendingUp, Shield, Thermometer, Droplets, Sun } from 'lucide-react';
+import Image from 'next/image';
+import { Home, TrendingUp, Shield, Thermometer, Droplets, Sun, Sprout, Leaf, Globe, BarChart, Users, Mail, ArrowRight } from 'lucide-react';
 
 export default function PolyhousePage() {
   const features = [
     {
       icon: Thermometer,
-      title: 'Climate Control',
-      description: 'Advanced temperature and humidity management systems'
+      title: 'Precise Climate Control',
+      description: 'Intelligent sensors and automated systems maintain optimal temperature, humidity, and CO2 levels for year-round growth.'
     },
     {
       icon: Shield,
-      title: 'Weather Protection',
-      description: 'Complete protection from harsh weather conditions'
+      title: 'Robust Weather Protection',
+      description: 'Durable structures shield crops from extreme weather, including heavy rains, hail, strong winds, and frost.'
     },
     {
       icon: Droplets,
-      title: 'Water Efficiency',
-      description: 'Optimized irrigation systems for maximum water conservation'
+      title: 'Smart Water Management',
+      description: 'Drip irrigation and fogging systems ensure efficient water usage, reducing consumption by up to 90% while preventing water stress.'
     },
     {
       icon: Sun,
-      title: 'Light Management',
-      description: 'Controlled light exposure for optimal plant growth'
+      title: 'Advanced Light Optimization',
+      description: 'UV-stabilized polyethylene covers with light diffusion properties maximize photosynthesis and promote uniform plant growth.'
+    },
+    {
+      icon: Sprout,
+      title: 'Crop-Specific Customization',
+      description: 'Tailored designs for various crops like vegetables, flowers, and exotic fruits to maximize yield and quality.'
+    },
+    {
+      icon: Leaf,
+      title: 'Integrated Pest Management',
+      description: 'Insect-proof netting and bio-control systems minimize pesticide use and promote organic farming practices.'
     }
   ];
 
   const advantages = [
-    'Higher yield (3-4x compared to open field)',
-    'Year-round cultivation regardless of season',
-    'Protection from pests, diseases, and weather',
-    'Water conservation up to 90%',
-    'Better quality produce with longer shelf life',
-    'Reduced dependency on pesticides',
-    'Controlled growing environment',
-    'Higher market prices for premium quality'
+    '3-5x higher crop yields compared to traditional open-field farming',
+    'Extended growing seasons enabling multiple harvests per year',
+    'Superior protection against pests, diseases, and environmental stresses',
+    'Water savings of 70-90% through precision irrigation',
+    'Premium quality produce with better size, color, and nutritional value',
+    'Reduced chemical inputs for healthier, eco-friendly farming',
+    'Controlled microclimate for consistent production quality',
+    'Higher profitability with access to off-season markets and premium pricing',
+    'Scalable from small farms to large commercial operations',
+    'Government subsidies and incentives available in many regions'
+  ];
+
+  const types = [
+    {
+      title: 'Naturally Ventilated Polyhouse',
+      description: 'Cost-effective design using roof and side vents for natural airflow. Ideal for moderate climates and vegetable cultivation.',
+      image: 'https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg'
+    },
+    {
+      title: 'Fan and Pad Cooling System',
+      description: 'Advanced evaporative cooling for hot climates. Maintains lower temperatures through exhaust fans and wet pads.',
+      image: 'https://images.pexels.com/photos/1068474/pexels-photo-1068474.jpeg'
+    },
+    {
+      title: 'Hi-Tech Climate-Controlled Polyhouse',
+      description: 'Fully automated with HVAC, CO2 enrichment, and computerized controls. Perfect for high-value crops like flowers and herbs.',
+      image: 'https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg'
+    },
+    {
+      title: 'Shade Net House',
+      description: 'Partial shading structure for light-sensitive crops. Combines polyhouse benefits with shade cloth for temperature regulation.',
+      image: 'https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg'
+    }
+  ];
+
+  const components = [
+    'Galvanized steel frame for long-lasting structure (20+ years durability)',
+    'UV-stabilized polyethylene film (200 micron thickness) with anti-drip and anti-fog properties',
+    'Automated ventilation systems with motorized vents and fans',
+    'Precision drip irrigation and fertigation systems',
+    'Insect-proof netting (40-50 mesh) on sides and entrances',
+    'Climate control sensors and IoT-based monitoring dashboard',
+    'Optional heating systems for cold regions',
+    'Rainwater harvesting integration for sustainability'
+  ];
+
+  const caseStudies = [
+    {
+      title: 'Tomato Farm in Maharashtra',
+      description: 'Increased yield from 20 tons/acre to 80 tons/acre with our naturally ventilated polyhouse. ROI achieved in 2 years.',
+      image: 'https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg',
+      metrics: ['400% yield increase', '50% water savings', 'Premium market access']
+    },
+    {
+      title: 'Flower Cultivation in Karnataka',
+      description: 'Hi-tech polyhouse enabled export-quality roses year-round, with 30% reduction in pesticide use and higher shelf life.',
+      image: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg',
+      metrics: ['Year-round production', 'Export standards met', '35% profit margin']
+    }
+  ];
+
+  const testimonials = [
+    {
+      quote: 'Our polyhouse from this company transformed our farm. We now produce high-quality vegetables throughout the year with minimal water usage.',
+      author: 'Rajesh Patel, Farmer in Gujarat',
+      image: 'https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg' // Placeholder
+    },
+    {
+      quote: 'The climate control features are outstanding. We\'ve seen a massive increase in yield and quality for our exotic flowers.',
+      author: 'Priya Sharma, Agri-Entrepreneur in Tamil Nadu',
+      image: 'https://images.pexels.com/photos/7654321/pexels-photo-7654321.jpeg' // Placeholder
+    }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-green-50">
       {/* Hero Section */}
-      <section className="gradient-hero py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              <span className="text-gradient">Polyhouse</span> Solutions
+      <section className="relative h-[80vh] overflow-hidden">
+        <Image
+          src="https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg"
+          alt="Modern Polyhouse Landscape"
+          fill
+          className="object-cover brightness-50"
+          priority
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-green-800/60 to-transparent">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-center px-4 max-w-5xl"
+          >
+            <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
+              Revolutionize Your Farming with <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-300">Polyhouse</span> Technology
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto">
-              Advanced naturally ventilated polyhouses designed for optimal crop production 
-              with superior climate control and maximum yield potential.
+            <p className="text-2xl md:text-3xl text-gray-100 max-w-4xl mx-auto mb-8 drop-shadow-md">
+              Unlock maximum yields, sustainable practices, and premium produce with our state-of-the-art polyhouse solutions.
             </p>
-          </div>
+            <Link href="/contact" className="inline-flex items-center px-10 py-4 bg-lime-400 text-green-900 rounded-full font-bold text-lg hover:bg-lime-300 transition-all shadow-lg hover:shadow-xl">
+              Get Started Today <ArrowRight className="ml-2" size={20} />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-white">
+      {/* What is Polyhouse Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-white"
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Key <span className="text-gradient">Features</span>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                What is a <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Polyhouse</span>?
+              </h2>
+              <p className="text-xl text-gray-700 mb-6">
+                A polyhouse, also known as a polytunnel or greenhouse, is a controlled environment structure covered with transparent polyethylene film. It creates an ideal microclimate for crop cultivation by regulating temperature, humidity, light, and ventilation.
+              </p>
+              <p className="text-xl text-gray-700 mb-6">
+                Unlike traditional farming, polyhouses protect plants from adverse weather, pests, and diseases while optimizing resource use. They are widely used for growing high-value crops like vegetables, flowers, fruits, and herbs.
+              </p>
+              <div className="flex items-center space-x-4">
+                <Globe className="w-6 h-6 text-green-600" />
+                <span className="text-gray-700 font-semibold">Popular in India for sustainable agriculture</span>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative h-96"
+            >
+              <Image
+                src="https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg"
+                alt="Inside a Polyhouse"
+                fill
+                className="object-cover rounded-3xl shadow-2xl"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Features Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-gradient-to-br from-green-50 to-emerald-50"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Cutting-Edge <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Features</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our polyhouses are engineered with cutting-edge technology for maximum efficiency
+              Engineered for efficiency, durability, and maximum productivity in modern agriculture.
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          </motion.div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="text-center p-6 card-hover bg-gradient-to-br from-green-50 to-cream rounded-xl">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-700 text-white rounded-full mb-4">
-                  <feature.icon className="w-8 h-8" />
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all border border-green-100"
+              >
+                <div className="flex items-center justify-center w-14 h-14 bg-green-600 text-white rounded-full mb-4 mx-auto shadow-md">
+                  <feature.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3 text-center">{feature.title}</h3>
+                <p className="text-gray-600 text-center">{feature.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Advantages Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-green-50">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-white"
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                <span className="text-gradient">Advantages</span> of Polyhouse
-              </h2>
-              <div className="space-y-4">
-                {advantages.map((advantage, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
-                    <span className="text-gray-700">{advantage}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8">
-                <Link href="/polyhouse/advantages" className="btn-primary">
-                  Learn More About Advantages
-                </Link>
-              </div>
-            </div>
-            <div className="relative">
-              <img 
-                src="https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg"
-                alt="Modern Polyhouse"
-                className="w-full h-96 object-cover rounded-2xl shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent rounded-2xl" />
-            </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Unmatched <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Advantages</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover why polyhouses are transforming agriculture worldwide.
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {advantages.map((advantage, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl shadow-sm hover:bg-green-50 transition-all"
+              >
+                <div className="w-3 h-3 bg-emerald-500 rounded-full mt-1.5 flex-shrink-0" />
+                <span className="text-lg text-gray-800">{advantage}</span>
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/polyhouse/advantages" className="inline-flex items-center px-8 py-4 bg-lime-400 text-green-900 rounded-full font-bold text-lg hover:bg-lime-300 transition-all shadow-lg hover:shadow-xl">
+              Explore Detailed Benefits <ArrowRight className="ml-2" size={20} />
+            </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
+
+      {/* Types Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-gradient-to-br from-emerald-50 to-green-50"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Types of <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Polyhouses</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Choose the perfect polyhouse design based on your climate, crops, and budget.
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {types.map((type, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ scale: 1.03 }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all"
+              >
+                <div className="relative h-64">
+                  <Image
+                    src={type.image}
+                    alt={type.title}
+                    fill
+                    className="object-cover brightness-90 hover:brightness-100 transition-all"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{type.title}</h3>
+                  <p className="text-gray-600">{type.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Components Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-white"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative h-96 order-last lg:order-first"
+            >
+              <Image
+                src="https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg"
+                alt="Polyhouse Components"
+                fill
+                className="object-cover rounded-3xl shadow-2xl"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Essential <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Components</span> & Specifications
+              </h2>
+              <p className="text-xl text-gray-700 mb-8">
+                Our polyhouses are built with premium materials and innovative technology for superior performance.
+              </p>
+              <div className="space-y-4">
+                {components.map((component, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.05 }}
+                    className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-green-50 transition-all"
+                  >
+                    <BarChart className="w-5 h-5 text-green-600 mt-1" />
+                    <span className="text-gray-700">{component}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Case Studies Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-gradient-to-br from-green-50 to-emerald-50"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Success <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Stories</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Real-world examples of how our polyhouses are boosting farm productivity.
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {caseStudies.map((study, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                whileHover={{ scale: 1.03 }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all"
+              >
+                <div className="relative h-64">
+                  <Image
+                    src={study.image}
+                    alt={study.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{study.title}</h3>
+                  <p className="text-gray-600 mb-4">{study.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {study.metrics.map((metric, i) => (
+                      <span key={i} className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium shadow-sm">
+                        {metric}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Testimonials Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-white"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              What Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Clients</span> Say
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Hear from farmers who have transformed their operations with our polyhouse solutions.
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all"
+              >
+                <Users className="w-8 h-8 text-green-600 mb-4 mx-auto" />
+                <p className="text-gray-700 text-lg mb-6 italic">"{testimonial.quote}"</p>
+                <div className="flex items-center justify-center space-x-4">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-md">
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.author}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <span className="font-semibold text-gray-900">{testimonial.author}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
 
       {/* Quick Links Section */}
-      <section className="py-20 bg-white">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-gradient-to-br from-emerald-50 to-green-50"
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Explore Our <span className="text-gradient">Polyhouse Solutions</span>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Explore More About <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Polyhouses</span>
             </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Dive deeper into specifications, costs, and expert insights.
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Naturally Ventilated Polyhouse',
-                description: 'Designed for better airflow & temperature control',
-                href: '/polyhouse/naturally-ventilated',
-                image: 'https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg'
-              },
-              {
-                title: 'Types of Polyhouse',
-                description: 'Different structures as per crop & region',
-                href: '/polyhouse/types',
-                image: 'https://images.pexels.com/photos/1068474/pexels-photo-1068474.jpeg'
-              },
-              {
-                title: 'Features & Specifications',
-                description: 'Durable, UV-protected, cost-efficient',
-                href: '/polyhouse/features',
-                image: 'https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg'
-              },
-              {
-                title: 'Setup Cost & Investment',
-                description: 'Approx. investment with subsidy guidance',
+                title: 'Setup Cost & Subsidies',
+                description: 'Detailed investment breakdown and government scheme guidance',
                 href: '/polyhouse/cost',
-                image: 'https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg'
+                image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg'
               },
               {
-                title: 'Crop Economics',
-                description: 'ROI, crop cycles, profit margins',
+                title: 'Crop Economics & ROI',
+                description: 'Profit calculations for popular crops and payback periods',
                 href: '/polyhouse/crop-economics',
                 image: 'https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg'
               },
               {
-                title: 'FAQs',
-                description: 'Frequently asked questions about polyhouses',
+                title: 'Installation Guide',
+                description: 'Step-by-step setup process and maintenance tips',
+                href: '/polyhouse/installation',
+                image: 'https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg'
+              },
+              {
+                title: 'Sustainable Practices',
+                description: 'Eco-friendly features and environmental impact',
+                href: '/polyhouse/sustainability',
+                image: 'https://images.pexels.com/photos/1068474/pexels-photo-1068474.jpeg'
+              },
+              {
+                title: 'Common FAQs',
+                description: 'Answers to your burning questions about polyhouses',
                 href: '/polyhouse/faqs',
                 image: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg'
+              },
+              {
+                title: 'Custom Design Request',
+                description: 'Get a tailored polyhouse plan for your farm',
+                href: '/polyhouse/custom',
+                image: 'https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg'
               }
             ].map((item, index) => (
-              <Link key={index} href={item.href} className="group">
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                  <div className="relative h-48">
-                    <img 
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ scale: 1.03 }}
+              >
+                <Link href={item.href} className="block">
+                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                    <div className="relative h-48">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 hover:text-emerald-700 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-600">{item.description}</p>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600">{item.description}</p>
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-green-600 to-green-800 text-white">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-gradient-to-r from-green-700 to-emerald-600 text-white"
+      >
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Start Your Polyhouse Project?
+          <Mail className="w-12 h-12 mx-auto mb-6 text-lime-300" />
+          <h2 className="text-4xl font-bold mb-6 drop-shadow-md">
+            Ready to Elevate Your Farming Game?
           </h2>
-          <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
-            Get expert consultation and customized polyhouse solutions for your farming needs
+          <p className="text-xl mb-8 max-w-3xl mx-auto drop-shadow-md">
+            Join thousands of successful farmers using our polyhouse solutions. Get personalized advice and start your journey today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="bg-white text-green-700 hover:bg-green-50 px-8 py-4 rounded-lg font-bold text-lg transition-colors">
-              Get Free Consultation
+            <Link href="/contact" className="inline-flex items-center px-10 py-4 bg-lime-400 text-green-900 rounded-full font-bold text-lg hover:bg-lime-300 transition-all shadow-lg hover:shadow-xl">
+              Request Free Quote <ArrowRight className="ml-2" size={20} />
             </Link>
-            <Link href="/polyhouse/cost" className="border-2 border-white hover:bg-white hover:text-green-700 px-8 py-4 rounded-lg font-bold text-lg transition-colors">
-              View Pricing
+            <Link href="/polyhouse/demo" className="inline-flex items-center px-10 py-4 border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white hover:text-green-700 transition-all shadow-lg hover:shadow-xl">
+              Schedule Demo <ArrowRight className="ml-2" size={20} />
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }

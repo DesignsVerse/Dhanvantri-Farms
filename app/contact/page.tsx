@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, ArrowRight, User, Building, Map, Leaf } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import type { Variants } from "framer-motion";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
