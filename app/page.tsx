@@ -14,10 +14,10 @@ export default function Home() {
     <>
       <HeroSection />
       <Service />
-      <Achievements/>
       <About/>
+      <Achievements/>
+
       <BusinessPartners />
-      
       <SuccessStories />
       <Testimonials />
       <FAQ />

@@ -1,511 +1,276 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { Leaf, Sprout, Droplets, Heart, ChevronRight, ChevronLeft, ChevronDown, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
+import { motion, Variants } from 'framer-motion';
+import { ArrowRight, Leaf, Sprout, Droplets, ShieldCheck, Flower2, TreePine } from 'lucide-react';
 
-export default function OrganicFarmingPage() {
-  // Fix: annotate activeFAQ state type as number | null
-  const [activeSection, setActiveSection] = useState('benefits');
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [activeFAQ, setActiveFAQ] = useState<number | null>(null);
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.4, 0, 0.2, 1] } },
+};
 
-  const sectionRefs = {
-    benefits: useRef<HTMLElement>(null),
-    methods: useRef<HTMLElement>(null),
-    gallery: useRef<HTMLElement>(null),
-    testimonials: useRef<HTMLElement>(null),
-    faqs: useRef<HTMLElement>(null),
-  };
-
-  // Fix: annotate id parameter type as string
-  const scrollToSection = (id: string) => {
-    setActiveSection(id);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', `#${id}`);
-    }
-  };
-
-  useEffect(() => {
-    if (window.location.hash) {
-      const id = window.location.hash.replace('#', '');
-      const el = document.getElementById(id);
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
-      }
-    }
-  }, []);
-
-  const benefits = [
-    {
-      icon: Leaf,
-      title: 'Eco-Friendly',
-      description: 'Reduces chemical runoff and promotes soil health.',
-    },
-    {
-      icon: Heart,
-      title: 'Healthier Produce',
-      description: 'Nutrient-rich crops free from synthetic pesticides.',
-    },
-    {
-      icon: Droplets,
-      title: 'Water Conservation',
-      description: 'Efficient practices minimize water usage.',
-    },
-    {
-      icon: Sprout,
-      title: 'Sustainable Yields',
-      description: 'Long-term soil fertility ensures consistent production.',
-    },
-  ];
-
-  const methods = [
-    {
-      id: 'compost',
-      name: 'Composting',
-      description: 'Converts organic waste into nutrient-rich compost for soil enrichment.',
-      image: 'https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg',
-      suitableFor: 'All crops',
-    },
-    {
-      id: 'crop-rotation',
-      name: 'Crop Rotation',
-      description: 'Alternates crops to prevent soil depletion and pests.',
-      image: 'https://images.pexels.com/photos/2886937/pexels-photo-2886937.jpeg',
-      suitableFor: 'Vegetables, grains',
-    },
-    {
-      id: 'cover-cropping',
-      name: 'Cover Cropping',
-      description: 'Grows cover crops to protect soil and enhance fertility.',
-      image: 'https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg',
-      suitableFor: 'Field crops',
-    },
-    {
-      id: 'natural-pest',
-      name: 'Natural Pest Control',
-      description: 'Uses beneficial insects and organic sprays to manage pests.',
-      image: 'https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg',
-      suitableFor: 'Fruits, vegetables',
-    },
-  ];
-
-  const galleryImages = [
-    'https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg',
-    'https://images.pexels.com/photos/2886937/pexels-photo-2886937.jpeg',
-    'https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg',
-    'https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg',
-  ];
-
-  const testimonials = [
-    {
-      name: 'Anita Sharma',
-      quote: 'Organic farming transformed my farm’s productivity and soil health!',
-      location: 'Himachal Pradesh',
-    },
-    {
-      name: 'Vijay Rao',
-      quote: 'The support and training we received were exceptional.',
-      location: 'Karnataka',
-    },
-    {
-      name: 'Rakesh Patel',
-      quote: 'Higher yields and better prices with organic produce.',
-      location: 'Gujarat',
-    },
-  ];
-
-  const faqs = [
-    {
-      question: 'What is organic farming?',
-      answer: 'Organic farming grows crops without synthetic pesticides or fertilizers, focusing on natural methods.',
-    },
-    {
-      question: 'How to get organic certification?',
-      answer: 'Apply through agencies like NPOP in India, following their guidelines.',
-    },
-    {
-      question: 'Is organic farming profitable?',
-      answer: 'Yes, it offers higher market prices and sustainable yields.',
-    },
-  ];
-
-  const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
-  const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
-
+export default function OrganicVisualPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-100 to-white">
-      {/* Hero Section */}
-      <section className="relative h-[80vh] w-full overflow-hidden">
-        <Image
-          src="https://images.pexels.com/photos/4397885/pexels-photo-4397885.jpeg"
-          alt="Organic Farming"
-          layout="fill"
-          objectFit="cover"
-          className="brightness-75"
-        />
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-center text-white px-4"
-          >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">
-                Organic Farming
-              </span>{' '}
-              Solutions
+    <main className="bg-white text-gray-900">
+      {/* Section 1: Image-led Story (alternating rows, no borders) */}
+      <section id="story" className="relative overflow-hidden bg-green-900 text-white">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/organic/hero.jpg"
+            alt="Organic fields at sunrise"
+            fill
+            sizes="100vw"
+            priority
+            className="object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-green-950/70 via-green-900/30 to-green-900" />
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4 pt-24 pb-16 md:pt-32 md:pb-20">
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur text-green-100 text-xs md:text-sm mb-4">
+              <span className="inline-block h-2 w-2 rounded-full bg-lime-300" />
+              Organic Farming
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+              Image‑First Guide to Organic Excellence
             </h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-              Sustainable, eco-friendly farming for healthier crops and planet.
+            <p className="text-lg md:text-xl text-green-100/95 max-w-2xl mt-4">
+              Build living soils, protect biodiversity, and deliver consistent quality—powered by rotations, cover crops, and organic inputs.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="mt-6 bg-green-600 text-white py-3 px-8 rounded-full font-semibold flex items-center mx-auto"
-              onClick={() => scrollToSection('benefits')}
+            <a
+              href="#gallery"
+              className="inline-flex items-center gap-2 px-5 py-3 mt-8 rounded-xl font-semibold text-green-900 bg-gradient-to-b from-lime-300 to-lime-400 shadow-[0_12px_24px_-8px_rgba(163,230,53,0.45)] hover:shadow-[0_16px_28px_-6px_rgba(163,230,53,0.55)] transition-all duration-300 hover:-translate-y-0.5"
             >
-              Get Started <ArrowRight size={20} className="ml-2" />
-            </motion.button>
+              Explore Visuals <ArrowRight className="h-5 w-5" />
+            </a>
           </motion.div>
+        </div>
+
+        {/* Alternating rows */}
+        <div className="relative z-10 container mx-auto px-4 pb-14 space-y-12">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden">
+              <Image
+                src="/images/organic/soil.jpg"
+                alt="Rich organic soil"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <h3 className="text-2xl md:text-3xl font-extrabold">Soil Health First</h3>
+              <p className="text-green-100/95 mt-3 text-lg">
+                Living soils drive nutrient cycling and resilience; compost, cover crops, and reduced disturbance keep biology thriving for stable yields.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 items-center md:flex-row-reverse">
+            <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden md:order-2">
+              <Image
+                src="/images/organic/rotation.jpg"
+                alt="Crop rotation diversity"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="md:order-1">
+              <h3 className="text-2xl md:text-3xl font-extrabold">Rotations & Diversity</h3>
+              <p className="text-green-100/95 mt-3 text-lg">
+                Rotate families, integrate legumes, and mix canopies to break pest cycles, balance fertility, and stabilize production quality year‑round.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden">
+              <Image
+                src="/images/organic/cover-crops.jpg"
+                alt="Cover cropping for protection"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <h3 className="text-2xl md:text-3xl font-extrabold">Cover Crops & Habitat</h3>
+              <p className="text-green-100/95 mt-3 text-lg">
+                Protect soil, fix nitrogen, smother weeds, and host beneficials; habitat strips and refuges lift natural pest control over time.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Sticky Navigation */}
-      <div className="sticky top-0 bg-white shadow-lg z-20">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex flex-wrap gap-4 justify-center">
+      {/* Section 2: Showcase Gallery (cards feel without boxes; big imagery + overlays) */}
+      <section id="gallery" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Showcase Gallery</h2>
+            <p className="text-gray-600 mt-3">
+              A visual playlist of organic practices: composting, IPM habitat, on‑farm amendments, and climate‑smart water management.
+            </p>
+          </div>
+
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { id: 'benefits', name: 'Benefits' },
-              { id: 'methods', name: 'Methods' },
-              { id: 'gallery', name: 'Gallery' },
-              { id: 'testimonials', name: 'Testimonials' },
-              { id: 'faqs', name: 'FAQs' },
-            ].map((section) => (
-              <motion.button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                whileHover={{ scale: 1.05 }}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                  activeSection === section.id
-                    ? 'bg-green-600 text-white'
-                    : 'bg-green-100 text-green-800 hover:bg-green-200'
-                }`}
-              >
-                {section.name}
-              </motion.button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* What is Organic Farming */}
-      <motion.section
-        id="benefits"
-        ref={sectionRefs.benefits}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                What is <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">Organic Farming?</span>
-              </h2>
-              <div className="space-y-4 text-lg text-gray-700">
-                <p>
-                  Organic farming is a sustainable agricultural practice that avoids synthetic fertilizers, pesticides, and GMOs, relying on natural methods like composting and crop rotation.
-                </p>
-                <p>
-                  It promotes soil health, biodiversity, and eco-friendly practices, producing healthier crops while reducing environmental impact.
-                </p>
-                <p>
-                  Ideal for small farms or large-scale operations, organic farming supports long-term sustainability and consumer demand for natural produce.
-                </p>
-              </div>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="relative"
-            >
-              <Image
-                src="https://images.pexels.com/photos/4397885/pexels-photo-4397885.jpeg"
-                alt="Organic Farming"
-                width={600}
-                height={400}
-                className="w-full h-96 object-cover rounded-2xl shadow-2xl"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Key Benefits */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-br from-gray-50 to-green-50"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Key <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">Benefits</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover why organic farming is the future of agriculture.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all"
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-600 text-white rounded-full mb-4">
-                  <benefit.icon className="w-8 h-8" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Organic Farming Methods */}
-      <motion.section
-        id="methods"
-        ref={sectionRefs.methods}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Organic Farming <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">Methods</span>
-            </h2>
-            <p className="text-xl text-gray-600">
-              Explore sustainable techniques for organic farming.
-            </p>
-          </div>
-          <div className="grid lg:grid-cols-2 gap-8">
-            {methods.map((method, index) => (
-              <motion.div
-                key={method.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-green-50 to-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
-              >
+              {
+                title: 'Compost in Action',
+                text: 'Stable organic matter feeds microbes, improves tilth, and boosts CEC for nutrient retention.',
+                src: '/images/organic/compost.jpg',
+                icon: <Droplets className="h-5 w-5" />,
+              },
+              {
+                title: 'Pollinator Strips',
+                text: 'Flowering borders attract beneficials, increasing biological control and fruit set.',
+                src: '/images/organic/habitat.jpg',
+                icon: <Flower2 className="h-5 w-5" />,
+              },
+              {
+                title: 'Agroforestry Lanes',
+                text: 'Trees buffer wind, cycle nutrients, and add perennial value to annual rotations.',
+                src: '/images/organic/agroforestry.jpg',
+                icon: <TreePine className="h-5 w-5" />,
+              },
+              {
+                title: 'Irrigation Efficiency',
+                text: 'Scheduling and mulches reduce evaporation and improve water productivity.',
+                src: '/images/organic/irrigation.jpg',
+                icon: <ShieldCheck className="h-5 w-5" />,
+              },
+              {
+                title: 'Seedling Vigor',
+                text: 'Transplants from biologically active media establish fast and uniform.',
+                src: '/images/organic/seedlings.jpg',
+                icon: <Sprout className="h-5 w-5" />,
+              },
+              {
+                title: 'Leafy Quality',
+                text: 'Cooler canopies and balanced nutrition deliver color, texture, and shelf life.',
+                src: '/images/organic/greens.jpg',
+                icon: <Leaf className="h-5 w-5" />,
+              },
+            ].map((card, idx) => (
+              <a key={idx} href="#details" className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
                 <div className="relative h-64">
                   <Image
-                    src={method.image}
-                    alt={method.name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="hover:scale-105 transition-transform duration-300"
+                    src={card.src}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width:1024px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4">
-                    <h3 className="text-xl font-bold text-white">{method.name}</h3>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-90" />
                 </div>
-                <div className="p-6">
-                  <p className="text-gray-700 mb-4">{method.description}</p>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm font-medium text-gray-600">Suitable for:</span>
-                    <span className="text-sm text-green-700 font-semibold">{method.suitableFor}</span>
+                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-sm mb-2">
+                    {card.icon}
+                    <span>Organic Practice</span>
                   </div>
+                  <h3 className="text-xl font-bold">{card.title}</h3>
+                  <p className="text-white/90 text-sm mt-1">{card.text}</p>
                 </div>
-              </motion.div>
+              </a>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Gallery Section */}
-      <motion.section
-        id="gallery"
-        ref={sectionRefs.gallery}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-br from-gray-50 to-green-50"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 mb-10 text-center">
-            Organic Farming <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">Gallery</span>
-          </h2>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative"
-          >
+      {/* Section 3: Longform with full-bleed images (minimal chrome, more content) */}
+      <section id="deep-dive" className="bg-gray-50">
+        <div className="container mx-auto px-0 md:px-4 py-16 md:py-20">
+          <div className="mx-auto max-w-4xl px-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Deep Dive: From Transition to Certification</h2>
+            <p className="text-gray-700 mt-4 text-lg">
+              Transition usually spans three seasons without prohibited substances while building soil organic matter, redesigning rotations, and documenting an Organic System Plan that covers inputs, water, habitats, and post‑harvest handling.
+            </p>
+          </div>
+
+          {/* Full-bleed image block */}
+          <div className="relative w-full h-[320px] sm:h-[420px] md:h-[520px] mt-10">
             <Image
-              src={galleryImages[currentImageIndex]}
-              alt={`Organic Farming Image ${currentImageIndex + 1}`}
-              width={1200}
-              height={600}
-              className="w-full h-[600px] object-cover rounded-3xl shadow-2xl"
+              src="/images/organic/transition.jpg"
+              alt="Organic transition landscape"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
-            <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 p-4 rounded-full shadow-lg hover:bg-white transition-all"
-            >
-              <ChevronLeft size={28} className="text-green-800" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 p-4 rounded-full shadow-lg hover:bg-white transition-all"
-            >
-              <ChevronRight size={28} className="text-green-800" />
-            </button>
-          </motion.div>
-          <div className="flex justify-center gap-3 mt-6">
-            {galleryImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentImageIndex(index)}
-                className={`w-4 h-4 rounded-full ${index === currentImageIndex ? 'bg-green-600' : 'bg-green-200'} transition-all`}
-              />
-            ))}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 md:left-10 md:right-10 text-white">
+              <h3 className="text-2xl md:text-3xl font-bold">Three‑Year Transition</h3>
+              <p className="mt-2 max-w-3xl text-white/95">
+                Map fields, track histories, and shift to allowed inputs; prioritize compost, cover crops, and preventive IPM to set a durable baseline.
+              </p>
+            </div>
+          </div>
+
+          <div className="mx-auto max-w-4xl px-4 mt-10 space-y-6">
+            <p className="text-gray-700 text-lg">
+              Prevention, monitoring, and habitat are the backbone of organic IPM; only after thresholds are crossed should allowed biopesticides be considered, applied precisely to conserve beneficials and resistance management.
+            </p>
+            <p className="text-gray-700 text-lg">
+              Inspections review records, inputs, buffer zones, equipment sanitation, and handling; annual updates keep certification current and transparent for supply chains and markets.
+            </p>
+          </div>
+
+          {/* Second full-bleed image block */}
+          <div className="relative w-full h-[300px] sm:h-[380px] md:h-[460px] mt-12">
+            <Image
+              src="/images/organic/cert.jpg"
+              alt="Organic certification check"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 md:left-10 md:right-10 text-white">
+              <h3 className="text-2xl md:text-3xl font-bold">Certification & Integrity</h3>
+              <p className="mt-2 max-w-3xl text-white/95">
+                Keep input logs, seed searches, invoices, and field activities organized; clear documentation smooths inspections and protects label integrity.
+              </p>
+            </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Testimonials Section */}
-      <motion.section
-        id="testimonials"
-        ref={sectionRefs.testimonials}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 mb-10 text-center">
-            What <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">Farmers Say</span>
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-gradient-to-br from-green-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all"
+      {/* CTA */}
+      <section id="cta" className="relative overflow-hidden bg-green-900 text-white">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/organic/cta.jpg"
+            alt="Get organic help"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-25"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-green-950/70 via-green-900/30 to-green-900" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4 py-16 md:py-20">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Plan an Organic Upgrade</h2>
+            <p className="text-green-100 mt-3">
+              Get a field‑by‑field roadmap from transition tasks to IPM, rotations, and certification support with timelines and milestones.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-green-900 bg-gradient-to-b from-[#8bc34a] to-[#689f38] shadow-[0_12px_24px_-8px_rgba(139,195,74,0.45)] hover:shadow-[0_16px_28px_-6px_rgba(104,159,56,0.55)] transition-all duration-300 hover:-translate-y-0.5"
               >
-                <p className="text-gray-600 mb-4 italic">"{testimonial.quote}"</p>
-                <div className="flex items-center">
-                  <Leaf size={24} className="text-green-600 mr-2" />
-                  <div>
-                    <h4 className="font-semibold text-green-700">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-500">{testimonial.location}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* FAQs Section */}
-      <motion.section
-        id="faqs"
-        ref={sectionRefs.faqs}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-br from-gray-50 to-green-50"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 mb-10 text-center">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600">Frequently Asked Questions</span>
-          </h2>
-          <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white rounded-2xl shadow-lg"
+                Get a Quote <ArrowRight className="h-5 w-5" />
+              </a>
+              <a
+                href="#story"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur transition-all duration-300"
               >
-                <button
-                  onClick={() => setActiveFAQ(activeFAQ === index ? null : index)}
-                  className="w-full p-6 flex justify-between items-center text-left font-semibold text-green-800 hover:bg-green-50 transition-all rounded-2xl"
-                >
-                  {faq.question}
-                  <ChevronDown size={24} className={`transition-transform ${activeFAQ === index ? 'rotate-180' : ''}`} />
-                </button>
-                {activeFAQ === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="p-6 pt-0 text-gray-600 bg-green-50 rounded-b-2xl"
-                  >
-                    {faq.answer}
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
+                Learn More
+              </a>
+            </div>
           </div>
         </div>
-      </motion.section>
-
-      {/* CTA Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-r from-green-600 to-green-800 text-white"
-      >
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Start Your Organic Farming Journey</h2>
-          <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
-            Connect with our experts to adopt sustainable farming practices today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="bg-white text-green-700 hover:bg-green-50 px-8 py-4 rounded-lg font-bold text-lg transition-colors"
-            >
-              Get Free Consultation
-            </Link>
-            <Link
-              href="/organic-farming/methods"
-              className="border-2 border-white hover:bg-white hover:text-green-700 px-8 py-4 rounded-lg font-bold text-lg transition-colors"
-            >
-              Explore Methods
-            </Link>
-          </div>
-        </div>
-      </motion.section>
-
-      <footer className="bg-green-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-lg">© {new Date().getFullYear()} Organic Farming Solutions. All Rights Reserved.</p>
-        </div>
-      </footer>
-    </div>
+      </section>
+    </main>
   );
 }

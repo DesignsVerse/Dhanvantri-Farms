@@ -1,645 +1,622 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Warehouse, Shield, Thermometer, Droplets, Sun, Sprout, Leaf, Globe, BarChart, Users, Mail, ArrowRight, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { motion, Variants } from 'framer-motion';
+import {
+  Boxes,
+  Package,
+  
+  Warehouse,
+  Truck,
+  Container,
+  ClipboardList,
+  ScanBarcode,
+  QrCode,
+  AlarmClock,
+  Navigation,
+  BarChart3,
+  LineChart,
+  Gauge,
+  Layers,
+  BatteryCharging,
+  Cpu,
+  Users,
+  ShieldCheck,
+  Sparkles,
+  Recycle,
+  Lightbulb,
+  Wind,
+  Bolt,
+  Thermometer,
+  ArrowRight,
+  ChevronRight,
+  CheckCircle2,
+  XCircle,
+} from 'lucide-react';
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.4, 0, 0.2, 1] } },
+};
+const stagger = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.08 } } };
+
+type StorageBlock = { title: string; image: string; icon: any; points: string[] };
+type FlowStep = { n: number; title: string; text: string; icon: any; image: string };
+type Feature = { title: string; text: string; icon: any; image: string };
+type CaseStudy = { title: string; client: string; impact: string; image: string; bullets: string[] };
+type CompareRow = { feature: string; advanced: string; basic: string };
 
 export default function WarehousePage() {
-  const [activeFAQ, setActiveFAQ] = useState<number | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const features = [
-    {
-      icon: Warehouse,
-      title: 'Spacious Storage Capacity',
-      description: 'Large-scale facilities designed to store bulk agricultural products with optimal space utilization.'
-    },
-    {
-      icon: Shield,
-      title: 'Climate-Controlled Environment',
-      description: 'Maintains ideal temperature and humidity to preserve crop quality and prevent spoilage.'
-    },
-    {
-      icon: Thermometer,
-      title: 'Temperature Monitoring',
-      description: 'Advanced sensors ensure consistent conditions for perishable goods like fruits and vegetables.'
-    },
-    {
-      icon: Droplets,
-      title: 'Humidity Control',
-      description: 'Prevents moisture-related issues, extending the shelf life of stored produce.'
-    },
-    {
-      icon: Leaf,
-      title: 'Pest Protection',
-      description: 'Sealed structures with pest control systems to safeguard against infestations.'
-    },
-    {
-      icon: Sprout,
-      title: 'Customizable Racking',
-      description: 'Flexible shelving and pallet systems tailored for different crop types and equipment.'
-    }
-  ];
+  // Storage solutions
+  const storage = useMemo<StorageBlock[]>(
+    () => [
+      {
+        title: 'Selective Pallet Racking',
+        image: '/images/warehouse/storage-selective.jpg',
+        icon: Boxes,
+        points: [
+          '100% SKU accessibility for high mix warehouses',
+          'Configurable beam levels for varied pallet heights',
+          'Ideal for fast-moving FMCG and 3PL nodes',
+        ],
+      },
+      {
+        title: 'Drive-in / Drive-through',
+        image: '/images/warehouse/storage-drivein.jpg',
+        icon: Boxes,
+        points: [
+          'High-density lanes for low-SKU, high-volume products',
+          'FIFO/LIFO modes based on access strategy',
+          'Reduced travel distance and improved cube utilization',
+        ],
+      },
+      {
+        title: 'Push-back & Gravity Flow',
+        image: '/images/warehouse/storage-flow.jpg',
+        icon: Layers,
+        points: [
+          'Cart-based or roller lanes for dynamic storage',
+          'Excellent for batch, waves, and promotion builds',
+          'Lower picker travel and higher pick rates',
+        ],
+      },
+      {
+        title: 'Mezzanine & Shelving',
+        image: '/images/warehouse/storage-mezz.jpg',
+        icon: Package,
+        points: [
+          'Multi-tier for eComm bins and cartons',
+          'Modular spans, fire-rated decking options',
+          'Integrates with spiral chutes and conveyors',
+        ],
+      },
+      {
+        title: 'Automation Ready (AS/RS)',
+        image: '/images/warehouse/storage-asrs.jpg',
+        icon: Cpu,
+        points: [
+          'Shuttles/miniloads for totes and cartons',
+          'Micro-fulfillment and dark-store configurations',
+          'Integrated WMS and WCS orchestration',
+        ],
+      },
+      {
+        title: 'Yard & Container Staging',
+        image: '/images/warehouse/storage-yard.jpg',
+        icon: Container,
+        points: [
+          'Dock scheduling and yard visibility',
+          'Staging plans with cross-dock support',
+          'Dock-to-stock KPIs and dwell time reduction',
+        ],
+      },
+    ],
+    []
+  );
 
-  const advantages = [
-    'Reduces post-harvest losses by up to 40%',
-    'Enables off-season storage for better market prices',
-    'Protects against weather damage and contamination',
-    'Efficient inventory management with modern tracking',
-    'Supports large-scale farming operations',
-    'Eco-friendly designs with energy-efficient cooling',
-    'Compliant with food safety standards',
-    'Scalable from small holdings to commercial farms',
-    'Integrated with transportation logistics',
-    'Government subsidies available for construction'
-  ];
+  // Ops flow
+  const flow = useMemo<FlowStep[]>(
+    () => [
+      {
+        n: 1,
+        title: 'Inbound & GRN',
+        text: 'ASN matching, barcode/QR capture, and quality checks ensure accurate receipts and traceability.',
+        icon: ClipboardList,
+        image: '/images/warehouse/flow-inbound.jpg',
+      },
+      {
+        n: 2,
+        title: 'Putaway',
+        text: 'Rules-based slotting by velocity, size, and compatibility drives lower travel and better cube use.',
+        icon: Navigation,
+        image: '/images/warehouse/flow-putaway.jpg',
+      },
+      {
+        n: 3,
+        title: 'Replenishment',
+        text: 'Auto-replenish forward pick faces from reserve based on min/max and forecast signals.',
+        icon: Gauge,
+        image: '/images/warehouse/flow-repl.jpg',
+      },
+      {
+        n: 4,
+        title: 'Picking',
+        text: 'Batch, wave, zone, or cluster picking with RF/voice for high accuracy and throughput.',
+        icon: ScanBarcode,
+        image: '/images/warehouse/flow-pick.jpg',
+      },
+      {
+        n: 5,
+        title: 'Packing & Dispatch',
+        text: 'Weight checks, labeling, and dock scheduling streamline trailer loading and turnaround.',
+        icon: Truck,
+        image: '/images/warehouse/flow-dispatch.jpg',
+      },
+    ],
+    []
+  );
 
-  const types = [
-    {
-      title: 'General Purpose Warehouse',
-      description: 'Versatile storage for non-perishable items like grains and equipment. Cost-effective for basic needs.',
-      image: 'https://images.pexels.com/photos/2882234/pexels-photo-2882234.jpeg'
-    },
-    {
-      title: 'Cold Storage Warehouse',
-      description: 'Refrigerated facilities for perishable produce. Maintains low temperatures to preserve freshness.',
-      image: 'https://images.pexels.com/photos/1267321/pexels-photo-1267321.jpeg'
-    },
-    {
-      title: 'Controlled Atmosphere Warehouse',
-      description: 'Advanced storage with modified oxygen and CO2 levels. Ideal for fruits and vegetables to extend shelf life.',
-      image: 'https://images.pexels.com/photos/1267322/pexels-photo-1267322.jpeg'
-    },
-    {
-      title: 'Bulk Grain Silo',
-      description: 'Specialized for storing grains in large quantities. Protects against moisture and pests.',
-      image: 'https://images.pexels.com/photos/2882235/pexels-photo-2882235.jpeg'
-    }
-  ];
+  // WMS & Ops features
+  const features = useMemo<Feature[]>(
+    () => [
+      {
+        title: 'WMS Integrations',
+        text: 'ERP/eCom integrations, ASN/EDI flows, and API-driven sync for inventory and orders.',
+        icon: Cpu,
+        image: '/images/warehouse/feat-wms.jpg',
+      },
+      {
+        title: 'Auto-ID & Traceability',
+        text: 'Barcode/QR/RFID support; lot/serial tracking and audit trails by user and device.',
+        icon: QrCode,
+        image: '/images/warehouse/feat-autoid.jpg',
+      },
+      {
+        title: 'Safety & Compliance',
+        text: 'Aisle guards, rack inspections, load charts; SOPs with digital checklists.',
+        icon: ShieldCheck,
+        image: '/images/warehouse/feat-safety.jpg',
+      },
+      {
+        title: 'Sustainability',
+        text: 'LED lighting, HVLS fans, skylights, and waste segregation for greener ops.',
+        icon: Recycle,
+        image: '/images/warehouse/feat-sustain.jpg',
+      },
+    ],
+    []
+  );
 
-  const components = [
-    'Reinforced concrete or steel frame for durability',
-    'Insulated panels for temperature regulation',
-    'Automated ventilation and cooling systems',
-    'Security features including CCTV and access control',
-    'Loading docks and material handling equipment',
-    'IoT sensors for real-time monitoring',
-    'Fire suppression systems',
-    'Solar-powered options for sustainability'
-  ];
+  // Case studies
+  const cases = useMemo<CaseStudy[]>(
+    () => [
+      {
+        title: 'Apparel 3PL — Mega Fulfillment',
+        client: 'National 3PL',
+        impact: 'Order cycle time -28%',
+        image: '/images/warehouse/case-apparel.jpg',
+        bullets: [
+          'Multi-tier mezzanine with carton flow',
+          'Cluster picking and dynamic batching',
+          'Dock-to-stock and pack-to-ship SLAs met',
+        ],
+      },
+      {
+        title: 'FMCG DC — Regional Hub',
+        client: 'FMCG Major',
+        impact: 'Pick productivity +35%',
+        image: '/images/warehouse/case-fmcg.jpg',
+        bullets: [
+          'Selective + drive-in hybrid layout',
+          'ABC slotting and rule-based replenishment',
+          'Exception workflows via WMS mobile',
+        ],
+      },
+      {
+        title: 'Spare Parts — MRO Center',
+        client: 'Engineering OEM',
+        impact: 'Inventory accuracy 99.6%',
+        image: '/images/warehouse/case-mro.jpg',
+        bullets: [
+          'Bin shelving with miniload AS/RS',
+          'Serial tracking and reverse logistics',
+          'Cycle counting with rolling audits',
+        ],
+      },
+    ],
+    []
+  );
 
-  const caseStudies = [
-    {
-      title: 'Grain Storage in Punjab',
-      description: 'Reduced losses from 25% to 5% with our bulk silo warehouse. Handled 500 tons efficiently.',
-      image: 'https://images.pexels.com/photos/2882236/pexels-photo-2882236.jpeg',
-      metrics: ['80% loss reduction', 'Increased storage capacity', 'Better price realization']
-    },
-    {
-      title: 'Fruit Warehouse in Maharashtra',
-      description: 'Cold storage extended mango shelf life by 3 weeks, enabling export opportunities.',
-      image: 'https://images.pexels.com/photos/1267323/pexels-photo-1267323.jpeg',
-      metrics: ['Extended freshness', 'Export enabled', '30% profit increase']
-    }
+  // Comparison
+  const compare: CompareRow[] = [
+    { feature: 'Racking', advanced: 'Selective + density mix, seismic anchors', basic: 'Single-type legacy, ad-hoc anchors' },
+    { feature: 'Slotting', advanced: 'ABC/XYZ with rules and forecasts', basic: 'Static map, manual edits' },
+    { feature: 'Picking', advanced: 'Batch/zone/cluster with RF/voice', basic: 'Discrete, paper-based' },
+    { feature: 'Replenishment', advanced: 'Auto forward pick min/max triggers', basic: 'Manual, reactive' },
+    { feature: 'Traceability', advanced: 'Lot/serial, device/user trails', basic: 'Limited or absent' },
+    { feature: 'Energy', advanced: 'LED + HVLS + skylights zoning', basic: 'Legacy HID, always-on' },
+    { feature: 'Safety', advanced: 'Rack inspections, load charts, SOPs', basic: 'Occasional checks' },
   ];
-
-  const testimonials = [
-    {
-      quote: 'This warehouse solution saved our harvest from spoilage. Highly recommended for farmers!',
-      author: 'Amit Singh, Farmer in Uttar Pradesh',
-      image: 'https://images.pexels.com/photos/1234568/pexels-photo-1234568.jpeg' // Placeholder
-    },
-    {
-      quote: 'Excellent climate control features. Our produce stays fresh longer.',
-      author: 'Sunita Devi, Agri-Business Owner in Bihar',
-      image: 'https://images.pexels.com/photos/7654322/pexels-photo-7654322.jpeg' // Placeholder
-    }
-  ];
-
-  const faqs = [
-    { question: 'What is the typical size of a farming warehouse?', answer: 'Sizes vary from 1,000 sq ft for small farms to over 50,000 sq ft for commercial operations.' },
-    { question: 'How much does it cost to build?', answer: 'Costs range from ₹500-1,500 per sq ft depending on features and location.' },
-    { question: 'Are subsidies available?', answer: 'Yes, government schemes like NHB provide up to 50% subsidies for cold storage units.' },
-    { question: 'What maintenance is required?', answer: 'Regular cleaning, sensor checks, and pest control every 3-6 months.' },
-    { question: 'Can it be customized?', answer: 'Absolutely, we tailor designs based on crop types and storage needs.' }
-  ];
-
-  const galleryImages = [
-    'https://images.pexels.com/photos/2882234/pexels-photo-2882234.jpeg',
-    'https://images.pexels.com/photos/1267321/pexels-photo-1267321.jpeg',
-    'https://images.pexels.com/photos/1267322/pexels-photo-1267322.jpeg',
-    'https://images.pexels.com/photos/2882235/pexels-photo-2882235.jpeg',
-    'https://images.pexels.com/photos/2882236/pexels-photo-2882236.jpeg',
-    'https://images.pexels.com/photos/1267323/pexels-photo-1267323.jpeg'
-  ];
+  const [q, setQ] = useState('');
+  const filtered = useMemo(() => {
+    if (!q) return compare;
+    const s = q.toLowerCase();
+    return compare.filter((r) => r.feature.toLowerCase().includes(s) || r.advanced.toLowerCase().includes(s) || r.basic.toLowerCase().includes(s));
+  }, [q]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-lime-50">
-      {/* Hero Section with Parallax Effect */}
-      <section className="relative h-screen overflow-hidden">
-        <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5 }}
-          className="absolute inset-0"
-        >
-          <Image
-            src="https://user-gen-media-assets.s3.amazonaws.com/gemini_images/d21300f1-82ee-49e0-aabf-50ef760eddc7.png"
-            alt="Premium modern agricultural warehouse exterior with open doors"
-            fill
-            className="object-cover brightness-75"
-            priority
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-r from-green-900/70 to-transparent flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2 }}
-            className="text-center px-6 max-w-6xl"
-          >
-            <h1 className="text-6xl md:text-8xl font-extrabold text-white mb-8 tracking-wide drop-shadow-2xl">
-              Premium <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-300 to-emerald-200">Warehouse</span> Solutions for Modern Farming
-            </h1>
-            <p className="text-3xl text-gray-100 max-w-4xl mx-auto mb-12 drop-shadow-lg">
-              Secure, scalable, and sustainable storage to protect your harvest and boost profitability.
-            </p>
-            <Link href="/contact" className="inline-flex items-center px-12 py-5 bg-emerald-500 text-white rounded-full font-bold text-xl hover:bg-emerald-400 transition-all shadow-2xl hover:shadow-emerald-300/50">
-              Start Building Now <ArrowRight className="ml-3" size={24} />
-            </Link>
-          </motion.div>
-        </div>
-[7]
-      </section>
-
-      {/* Introduction Section with New Layout */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-white"
+    <main className="bg-white text-gray-900">
+      {/* Sticky nav */}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: scrolled ? 0 : -100 }}
+        transition={{ duration: 0.3 }}
+        className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-md py-3"
       >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-              className="lg:w-1/2"
-            >
-              <h2 className="text-5xl font-extrabold text-gray-900 mb-8">
-                Discover the Power of <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">Farming Warehouses</span>
-              </h2>
-              <p className="text-2xl text-gray-700 mb-8 leading-relaxed">
-                Farming warehouses are essential structures for post-harvest storage, designed to maintain product quality, reduce losses, and optimize supply chain efficiency.
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Warehouse className="h-5 w-5 text-green-700" />
+            <span className="text-xl font-bold text-green-700">Warehouse</span>
+          </div>
+          <div className="hidden md:flex space-x-6">
+            <a href="#hero" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Home</a>
+            <a href="#storage" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Storage</a>
+            <a href="#flow" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Operations</a>
+            <a href="#features" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">WMS</a>
+            <a href="#kpi" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">KPIs</a>
+            <a href="#gallery" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Gallery</a>
+            <a href="#cases" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Case Studies</a>
+            <a href="#compare" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Comparison</a>
+            <a href="#faq" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">FAQ</a>
+            <a href="#cta" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Contact</a>
+          </div>
+          <a href="#cta" className="px-4 py-2 bg-green-700 text-white rounded-full text-sm font-medium hover:bg-green-800 transition">Get Quote</a>
+        </div>
+      </motion.nav>
+
+      {/* Hero */}
+      <section id="hero" className="relative overflow-hidden bg-green-900 text-white pt-20">
+        <div className="absolute inset-0">
+          <Image src="/images/warehouse/hero.jpg" alt="Modern warehouse" fill sizes="100vw" priority className="object-cover opacity-35" />
+          <div className="absolute inset-0 bg-gradient-to-b from-green-950/70 via-green-900/30 to-green-900" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4 py-20 md:py-28">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="grid md:grid-cols-2 gap-10 items-center">
+            <motion.div variants={fadeUp}>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur text-green-100 text-xs md:text-sm mb-4">
+                <span className="inline-block h-2 w-2 rounded-full bg-lime-300" />
+                Advanced Warehouse Solutions
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+                Higher Throughput, Lower Touches
+              </h1>
+              <div className="w-28 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full my-6" />
+              <p className="text-lg md:text-xl text-green-100/95 max-w-2xl">
+                Storage, workflows, and WMS orchestration designed to reduce travel, lift pick accuracy, and scale efficiently.
               </p>
-              <p className="text-2xl text-gray-700 mb-8 leading-relaxed">
-                From grains to perishables, our warehouses offer tailored solutions that protect your investment and open new market opportunities.
-              </p>
-              <div className="flex items-center space-x-6">
-                <Globe className="w-8 h-8 text-emerald-500" />
-                <span className="text-xl text-gray-800 font-semibold">Revolutionizing storage across India</span>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#storage" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-green-900 bg-gradient-to-b from-lime-300 to-lime-400 shadow-[0_12px_24px_-8px_rgba(163,230,53,0.45)] hover:shadow-[0_16px_28px_-6px_rgba(163,230,53,0.55)] transition-all duration-300 hover:-translate-y-0.5">
+                  Explore Storage <ArrowRight className="h-5 w-5" />
+                </a>
+                <a href="#features" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur transition-all duration-300">
+                  WMS & Mobile <ChevronRight className="h-5 w-5" />
+                </a>
               </div>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="lg:w-1/2 relative h-[600px]"
-            >
-              <Image
-                src="https://images.pexels.com/photos/2882234/pexels-photo-2882234.jpeg"
-                alt="Warehouse Interior"
-                fill
-                className="object-cover rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Features Section with Carousel-Style Grid */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-gradient-to-tr from-emerald-100 to-lime-100"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-extrabold text-gray-900 mb-6">
-              Innovative <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">Features</span> for Superior Storage
-            </h2>
-            <p className="text-2xl text-gray-700 max-w-4xl mx-auto">
-              Cutting-edge technology meets practical design for unbeatable warehouse performance.
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.15 }}
-                whileHover={{ scale: 1.08, rotate: 2 }}
-                className="bg-white p-10 rounded-3xl shadow-2xl hover:shadow-emerald-300/40 transition-all border border-emerald-100"
-              >
-                <div className="flex items-center justify-center w-20 h-20 bg-emerald-500 text-white rounded-2xl mb-6 mx-auto shadow-lg">
-                  <feature.icon className="w-10 h-10" />
-                </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">{feature.title}</h3>
-                <p className="text-lg text-gray-600 text-center">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Advantages Section with Expanded Content */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-extrabold text-gray-900 mb-6">
-              Transformative <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">Advantages</span> of Our Warehouses
-            </h2>
-            <p className="text-2xl text-gray-700 max-w-4xl mx-auto mb-12">
-              Experience the difference in storage efficiency and crop preservation.
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {advantages.map((advantage, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="p-6 bg-gradient-to-br from-lime-50 to-emerald-50 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-              >
-                <div className="w-4 h-4 bg-emerald-400 rounded-full mb-4 mx-auto" />
-                <p className="text-xl text-gray-800 text-center">{advantage}</p>
-              </motion.div>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link href="/warehouse/advantages" className="inline-flex items-center px-10 py-5 bg-emerald-500 text-white rounded-full font-bold text-xl hover:bg-emerald-400 transition-all shadow-2xl hover:shadow-emerald-300/50">
-              Learn More Advantages <ArrowRight className="ml-3" size={24} />
-            </Link>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Types Section with Image Gallery Layout */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-gradient-to-tr from-emerald-100 to-lime-100"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-extrabold text-gray-900 mb-6">
-              Diverse <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">Warehouse Types</span> for Every Need
-            </h2>
-            <p className="text-2xl text-gray-700 max-w-4xl mx-auto">
-              Select from our range of specialized warehouses tailored to your farming requirements.
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            {types.map((type, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.15 }}
-                whileHover={{ scale: 1.05 }}
-                className="relative overflow-hidden rounded-3xl shadow-2xl"
-              >
-                <Image
-                  src={type.image}
-                  alt={type.title}
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 to-transparent flex flex-col justify-end p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">{type.title}</h3>
-                  <p className="text-white">{type.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Components Section with Detailed Breakdown */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="lg:w-1/2 relative h-[600px]"
-            >
-              <Image
-                src="https://images.pexels.com/photos/2882235/pexels-photo-2882235.jpeg"
-                alt="Warehouse Components"
-                fill
-                className="object-cover rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-              className="lg:w-1/2"
-            >
-              <h2 className="text-5xl font-extrabold text-gray-900 mb-8">
-                Key <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">Components</span> & Innovations
-              </h2>
-              <p className="text-2xl text-gray-700 mb-12 leading-relaxed">
-                Built with cutting-edge materials and smart tech for reliable, long-term performance.
-              </p>
-              <div className="space-y-6">
-                {components.map((component, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="flex items-center space-x-4 p-4 bg-gradient-to-r from-lime-50 to-emerald-50 rounded-xl shadow-md hover:shadow-lg transition-all"
-                  >
-                    <BarChart className="w-6 h-6 text-emerald-500" />
-                    <span className="text-xl text-gray-800">{component}</span>
-                  </motion.div>
+            <motion.div variants={fadeUp}>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: LineChart, label: 'Pick Productivity', value: '+30%' },
+                  { icon: BarChart3, label: 'Inventory Accuracy', value: '99.5%' },
+                  { icon: BatteryCharging, label: 'Energy Savings', value: 'up to 20%' },
+                  { icon: Users, label: 'Training Time', value: '-25%' },
+                ].map((kpi) => (
+                  <div key={kpi.label} className="rounded-2xl border border-white/15 bg-white/10 backdrop-blur p-5 shadow">
+                    <kpi.icon className="h-6 w-6 text-white" />
+                    <div className="text-2xl font-extrabold mt-2">{kpi.value}</div>
+                    <div className="text-green-100/90">{kpi.label}</div>
+                  </div>
                 ))}
               </div>
             </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Case Studies Section with Cards */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-gradient-to-tr from-emerald-100 to-lime-100"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-extrabold text-gray-900 mb-6">
-              Real-World <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">Success Stories</span>
-            </h2>
-            <p className="text-2xl text-gray-700 max-w-4xl mx-auto">
-              See how our warehouses are making a difference for farmers across India.
-            </p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {caseStudies.map((study, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-white rounded-3xl shadow-2xl overflow-hidden"
-              >
-                <div className="relative h-80">
-                  <Image
-                    src={study.image}
-                    alt={study.title}
-                    fill
-                    className="object-cover hover:scale-110 transition-transform duration-500"
-                  />
+        </div>
+      </section>
+
+      {/* Storage solutions */}
+      <section id="storage" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Storage Solutions</h2>
+            <p className="text-gray-600 mt-3">Mix the right racking, density, and accessibility for SKU profile, velocity and growth.</p>
+          </div>
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {storage.map((s) => (
+              <article key={s.title} className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+                <div className="relative h-64">
+                  <Image src={s.image} alt={s.title} fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
                 </div>
-                <div className="p-8">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">{study.title}</h3>
-                  <p className="text-lg text-gray-600 mb-6">{study.description}</p>
-                  <div className="flex flex-wrap gap-3">
-                    {study.metrics.map((metric, i) => (
-                      <span key={i} className="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-base font-medium shadow-sm">
-                        {metric}
-                      </span>
+                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-sm mb-2">
+                    <s.icon className="h-4 w-4" />
+                    <span>Storage</span>
+                  </div>
+                  <h3 className="text-xl font-bold">{s.title}</h3>
+                  <ul className="mt-3 grid grid-cols-1 gap-1 text-sm text-white/90">
+                    {s.points.map((p) => (
+                      <li key={p} className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-lime-300 mt-0.5" />
+                        <span>{p}</span>
+                      </li>
                     ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Operations flow */}
+      <section id="flow" className="bg-gray-50">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Operations Flow</h2>
+            <p className="text-gray-600 mt-3">From receipt to dispatch — standard work, fewer touches, higher accuracy.</p>
+          </div>
+          <div className="mt-10 grid lg:grid-cols-5 gap-6">
+            {flow.map((f) => (
+              <article key={f.n} className="group rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
+                <div className="relative h-44">
+                  <Image src={f.image} alt={f.title} fill sizes="(max-width:1280px) 100vw, 20vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
+                  <div className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/30 backdrop-blur text-white text-sm shadow">
+                    <f.icon className="h-4 w-4" />
+                    <span>Step {f.n}</span>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Testimonials Section with Slider Layout */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-extrabold text-gray-900 mb-6">
-              Voices from Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">Satisfied Farmers</span>
-            </h2>
-            <p className="text-2xl text-gray-700 max-w-4xl mx-auto">
-              Real feedback from those who trust our warehouse solutions.
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="relative p-8 bg-gradient-to-br from-lime-50 to-emerald-50 rounded-3xl shadow-2xl hover:shadow-emerald-300/40 transition-all"
-              >
-                <Users className="absolute top-4 right-4 w-12 h-12 text-emerald-300 opacity-50" />
-                <p className="text-xl text-gray-700 mb-8 italic leading-relaxed">"{testimonial.quote}"</p>
-                <div className="flex items-center space-x-4">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-lg">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.author}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <span className="text-2xl font-semibold text-gray-900">{testimonial.author}</span>
+                <div className="p-5">
+                  <h3 className="font-bold text-lg">{f.title}</h3>
+                  <p className="text-gray-600 mt-1 text-sm">{f.text}</p>
                 </div>
-              </motion.div>
+              </article>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Gallery Section (New, Expanded with More Images) */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-gradient-to-tr from-emerald-100 to-lime-100"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-extrabold text-gray-900 mb-6">
-              Explore Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">Warehouse Gallery</span>
-            </h2>
-            <p className="text-2xl text-gray-700 max-w-4xl mx-auto">
-              Visual showcase of our state-of-the-art farming storage solutions.
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {galleryImages.map((img, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ scale: 1.1 }}
-                className="relative h-80 rounded-3xl overflow-hidden shadow-2xl"
-              >
-                <Image
-                  src={img}
-                  alt={`Warehouse Gallery Image ${index + 1}`}
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-500"
-                />
-              </motion.div>
+      {/* WMS & Ops features */}
+      <section id="features" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">WMS & Mobile Workflows</h2>
+            <p className="text-gray-600 mt-3">Integrations, auto-ID, safety and sustainability — orchestrated for scale.</p>
+          </div>
+          <div className="mt-10 grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {features.map((ft) => (
+              <article key={ft.title} className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
+                <div className="relative h-44">
+                  <Image src={ft.image} alt={ft.title} fill sizes="(max-width:1280px) 100vw, 25vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </div>
+                <div className="p-5">
+                  <div className="h-10 w-10 rounded-lg bg-green-100 text-green-700 flex items-center justify-center mb-3">
+                    <ft.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-1">{ft.title}</h3>
+                  <p className="text-gray-600 text-sm">{ft.text}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* FAQ Section (New, with Accordion) */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-extrabold text-gray-900 mb-6">
-              Frequently Asked <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-400">Questions</span>
-            </h2>
-            <p className="text-2xl text-gray-700 max-w-4xl mx-auto">
-              Get answers to common queries about our warehouse solutions.
-            </p>
-          </motion.div>
-          <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-r from-lime-50 to-emerald-50 rounded-2xl shadow-lg overflow-hidden"
-              >
-                <button
-                  onClick={() => setActiveFAQ(activeFAQ === index ? null : index)}
-                  className="w-full p-8 flex justify-between items-center text-left text-2xl font-bold text-gray-900 hover:bg-emerald-100 transition-all"
-                >
-                  {faq.question}
-                  <ChevronDown className={`w-8 h-8 transition-transform ${activeFAQ === index ? 'rotate-180' : ''}`} />
-                </button>
-                {activeFAQ === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="p-8 text-lg text-gray-700 bg-white"
-                  >
-                    {faq.answer}
-                  </motion.div>
-                )}
-              </motion.div>
+      {/* KPIs snapshot */}
+      <section id="kpi" className="bg-gray-50">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">KPI Snapshot</h2>
+            <p className="text-gray-600 mt-3">Track what matters: productivity, accuracy, space use, and energy.</p>
+          </div>
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: LineChart, label: 'Lines Picked/Hour', value: '↑ 30%' },
+              { icon: BarChart3, label: 'Inventory Accuracy', value: '99.5%' },
+              { icon: Layers, label: 'Space Utilization', value: '↑ 18%' },
+              { icon: BatteryCharging, label: 'Energy/Order', value: '↓ 15%' },
+            ].map((k) => (
+              <div key={k.label} className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                <div className="flex justify-center mb-4">
+                  <div className="h-14 w-14 rounded-full bg-green-100 flex items-center justify-center">
+                    <k.icon className="h-6 w-6 text-green-700" />
+                  </div>
+                </div>
+                <div className="text-xl font-bold text-green-800 mb-1">{k.value}</div>
+                <div className="text-gray-600">{k.label}</div>
+              </div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* CTA Section with Full-Width Design */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-32 bg-gradient-to-r from-green-800 to-emerald-600 text-white"
-      >
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <Mail className="w-16 h-16 mx-auto mb-8 text-lime-300" />
-          <h2 className="text-6xl font-extrabold mb-8 drop-shadow-2xl">
-            Ready to Revolutionize Your Storage?
-          </h2>
-          <p className="text-3xl mb-12 max-w-5xl mx-auto drop-shadow-lg">
-            Partner with us for custom warehouse solutions that protect your harvest and grow your business.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link href="/contact" className="inline-flex items-center px-12 py-5 bg-lime-400 text-green-900 rounded-full font-bold text-2xl hover:bg-lime-300 transition-all shadow-2xl hover:shadow-lime-300/50">
-              Get Free Consultation <ArrowRight className="ml-3" size={28} />
-            </Link>
-            <Link href="/warehouse/demo" className="inline-flex items-center px-12 py-5 border-4 border-lime-300 text-lime-300 rounded-full font-bold text-2xl hover:bg-lime-300 hover:text-green-900 transition-all shadow-2xl hover:shadow-lime-300/50">
-              Book a Site Visit <ArrowRight className="ml-3" size={28} />
-            </Link>
+      {/* Gallery */}
+      <section id="gallery" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Gallery</h2>
+            <p className="text-gray-600 mt-3">Racks, docks, mezzanines, and mobile workstations.</p>
+          </div>
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              '/images/warehouse/g1.jpg',
+              '/images/warehouse/g2.jpg',
+              '/images/warehouse/g3.jpg',
+              '/images/warehouse/g4.jpg',
+              '/images/warehouse/g5.jpg',
+              '/images/warehouse/g6.jpg',
+              '/images/warehouse/g7.jpg',
+              '/images/warehouse/g8.jpg',
+              '/images/warehouse/g9.jpg',
+            ].map((src) => (
+              <div key={src} className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+                <div className="relative h-56">
+                  <Image src={src} alt="Warehouse image" fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent opacity-90" />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </motion.section>
-    </div>
+      </section>
+
+      {/* Case studies */}
+      <section id="cases" className="bg-gray-50">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Case Studies</h2>
+            <p className="text-gray-600 mt-3">Measured outcomes from re-slotting, layout redesigns, and WMS rollouts.</p>
+          </div>
+          <div className="mt-10 grid lg:grid-cols-3 gap-8">
+            {cases.map((c) => (
+              <article key={c.title} className="group bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl border border-green-100 hover:border-[#8bc34a]/50">
+                <div className="relative h-56">
+                  <Image src={c.image} alt={c.title} fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
+                    {c.impact}
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-gray-900">{c.title}</h3>
+                  <p className="text-[#689f38] font-medium mb-4">{c.client}</p>
+                  <ul className="text-sm text-gray-700 space-y-2">
+                    {c.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison */}
+      <section id="compare" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Advanced vs Basic</h2>
+            <p className="text-gray-600 mt-3">Feature comparison across storage, picking, replenishment, and energy.</p>
+            <div className="w-40 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full mx-auto mt-6" />
+          </div>
+          <div className="mt-8 max-w-xl mx-auto">
+            <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 shadow-sm">
+              <LineChart className="h-5 w-5 text-gray-500" />
+              <input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Search features, specs, or workflows…"
+                className="w-full bg-transparent outline-none text-sm md:text-base placeholder:text-gray-400"
+              />
+            </div>
+          </div>
+          <div className="mt-10 hidden lg:block">
+            <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+              <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
+                <div className="grid grid-cols-12 px-6 py-4 text-sm font-semibold text-gray-700">
+                  <div className="col-span-4">Feature</div>
+                  <div className="col-span-4">Advanced</div>
+                  <div className="col-span-4">Basic</div>
+                </div>
+              </div>
+              <div className="divide-y divide-gray-200">
+                {filtered.map((r) => (
+                  <div key={r.feature} className="grid grid-cols-12 px-6 py-4 items-start hover:bg-gray-50/70 transition">
+                    <div className="col-span-4 font-semibold text-gray-900">{r.feature}</div>
+                    <div className="col-span-4 text-gray-800">{r.advanced}</div>
+                    <div className="col-span-4 text-gray-700">{r.basic}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="lg:hidden mt-8 grid sm:grid-cols-2 gap-6">
+            {filtered.map((r) => (
+              <div key={r.feature} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                <div className="font-bold text-gray-900 mb-3">{r.feature}</div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-[#689f38] mt-0.5" />
+                    <div className="text-sm text-gray-800">{r.advanced}</div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <XCircle className="h-5 w-5 text-red-600 mt-0.5" />
+                    <div className="text-sm text-gray-700">{r.basic}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="bg-gray-50">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              { q: 'Kaun sa racking mix best hota hai?', a: 'SKU velocity, dimensions, and seasonality ke hisaab se selective + density lanes blend optimal hota hai.' },
+              { q: 'Pick accuracy kaise badhega?', a: 'RF/voice guidance, check-digit scans, cluster/batch strategies, aur QC checks accuracy boost karte hain.' },
+              { q: 'Energy savings kahan milte hain?', a: 'LED + zoning, HVLS fans, skylights, and charger management se kWh/order reduce hota hai.' },
+              { q: 'WMS integration?', a: 'ERP/eCom/APIs ke saath ASN, orders, inventory sync; device trails aur audit logs traceability ensure karte hain.' },
+            ].map((f, i) => (
+              <details key={i} className="group border border-gray-200 rounded-xl bg-white overflow-hidden">
+                <summary className="w-full flex justify-between items-center p-5 text-left font-semibold text-lg cursor-pointer list-none">
+                  {f.q}
+                  <span className="ml-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-green-100 text-green-700">
+                    <ChevronRight className="h-4 w-4 transition-transform group-open:rotate-90" />
+                  </span>
+                </summary>
+                <div className="p-5 pt-0 text-gray-600">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="cta" className="relative overflow-hidden bg-green-900 text-white">
+        <div className="absolute inset-0">
+          <Image src="/images/warehouse/cta.jpg" alt="Plan warehouse project" fill sizes="100vw" className="object-cover opacity-25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-green-950/70 via-green-900/30 to-green-900" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4 py-16 md:py-20">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Plan a Warehouse Upgrade</h2>
+            <p className="text-green-100 mt-3">Layout, slotting, WMS, and energy plan tailored to profile and growth roadmap.</p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-green-900 bg-gradient-to-b from-[#8bc34a] to-[#689f38] shadow-[0_12px_24px_-8px_rgba(139,195,74,0.45)] hover:shadow-[0_16px_28px_-6px_rgba(104,159,56,0.55)] transition-all duration-300 hover:-translate-y-0.5">
+                Get a Quote <ArrowRight className="h-5 w-5" />
+              </a>
+              <a href="#storage" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur transition-all duration-300">
+                Explore Storage
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

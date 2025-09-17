@@ -489,7 +489,7 @@ export default function PolyhousePage() {
       </motion.section>
 
       {/* Quick Links Section */}
-      <motion.section
+      {/* <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -579,7 +579,7 @@ export default function PolyhousePage() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </motion.section> */}
 
       {/* CTA Section */}
       <motion.section

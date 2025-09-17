@@ -1,568 +1,851 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { Snowflake, Thermometer, Zap, Leaf, ArrowRight, Shield, BarChart, Warehouse, Clock, Users } from 'lucide-react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import Tilt from 'react-parallax-tilt';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
+import {
+  Snowflake,
+  Thermometer,
+  ThermometerSnowflake,
+  Gauge,
+  Wind,
+  Droplets,
+  ShieldCheck,
+  Bolt,
+  BatteryCharging,
+  Factory,
+  Boxes,
+  Package,
+  Clock,
+  LineChart,
+  Cpu,
+  Satellite,
+  BarChart3,
+  ChartLine,
+  Cog,
+  Recycle,
+  Leaf,
+  Sparkles,
+  ArrowRight,
+  ChevronRight,
+  CheckCircle2,
+  XCircle,
+  AlarmClock,
+  Flame,
+  ThermometerSun,
+} from 'lucide-react';
+
+/**
+ * Cold Storage — Advanced Page
+ * Sections:
+ * - Sticky nav
+ * - Hero (image + gradient + KPIs)
+ * - Temperature Zones (Frozen/Chilled/CA/Blast/Pre-cool)
+ * - Infrastructure (Panels/Doors/Flooring/Racks)
+ * - Process Timeline (Inbound→Dispatch)
+ * - Monitoring & IoT (Sensors/Alarms/Reports)
+ * - Energy Efficiency (VFD/Heat recovery/LED/Solar)
+ * - Gallery (12+ images, overlays)
+ * - Case Studies (3-6 items)
+ * - Comparison (Advanced vs Basic)
+ * - FAQ
+ * - CTA
+ */
+
+/* Motion variants */
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.4, 0, 0.2, 1] } },
+};
+const stagger = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.08 } },
+};
+
+type Zone = {
+  key: string;
+  title: string;
+  temp: string;
+  desc: string;
+  image: string;
+  icon: any;
+  bullets: string[];
+};
+
+type Infra = {
+  title: string;
+  image: string;
+  icon: any;
+  points: string[];
+};
+
+type ProcessStep = {
+  n: number;
+  title: string;
+  text: string;
+  icon: any;
+  image: string;
+};
+
+type CaseStudy = {
+  title: string;
+  vertical: string;
+  uplift: string;
+  image: string;
+  bullets: string[];
+};
+
+type CompareRow = {
+  feature: string;
+  advanced: string;
+  basic: string;
+};
 
 export default function ColdStoragePage() {
-  const [activeSection, setActiveSection] = useState('benefits');
-  const [activeFAQ, setActiveFAQ] = useState<number | null>(null);
-  const [layoutView, setLayoutView] = useState('blast-freezer');
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [tempRange, setTempRange] = useState(-20);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  const sectionRefs = {
-    benefits: useRef<HTMLElement>(null),
-    features: useRef<HTMLElement>(null),
-    layouts: useRef<HTMLElement>(null),
-    gallery: useRef<HTMLElement>(null),
-    faqs: useRef<HTMLElement>(null),
-  };
-
-  const { scrollYProgress } = useScroll();
-  const backgroundOpacity = useTransform(scrollYProgress, [0, 0.2], [0.8, 0.3]);
-  const headerBackground = useTransform(scrollYProgress, [0, 0.1], ['rgba(6, 95, 70, 0)', 'rgba(6, 95, 70, 0.95)']);
-
+  /* Sticky nav */
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Fix: add type annotation to parameter id as string
-  const scrollToSection = (id: string) => {
-    setActiveSection(id);
-    setIsNavOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', `#${id}`);
-    }
-  };
+  /* Temperature zones */
+  const zones = useMemo<Zone[]>(
+    () => [
+      {
+        key: 'frozen',
+        title: 'Frozen Storage',
+        temp: '-18°C to -25°C',
+        desc:
+          'Deep-freeze chambers for meat, seafood, and long-term storage where temperature stability and door discipline are critical.',
+        image: '/images/cold/zones-frozen.jpg',
+        icon: Snowflake,
+        bullets: [
+          'High-density insulation and vapor barrier',
+          'Rapid doors and anti-frost strategies',
+          'Floor heating loops to prevent subfloor frost',
+        ],
+      },
+      {
+        key: 'chilled',
+        title: 'Chilled Storage',
+        temp: '0°C to +4°C',
+        desc:
+          'Fresh produce, dairy, and beverages benefit from tight temperature uniformity with gentle airflow and humidity control.',
+        image: '/images/cold/zones-chilled.jpg',
+        icon: Thermometer,
+        bullets: [
+          'EC fans for uniform airflow',
+          'Smart dehumidification balance',
+          'Product-safe coil temperatures',
+        ],
+      },
+      {
+        key: 'ca',
+        title: 'CA/MA Storage',
+        temp: '0°C to +2°C',
+        desc:
+          'Controlled/Modified Atmosphere rooms modulate O2/CO2 for apples, pears, and exotics to extend shelf life significantly.',
+        image: '/images/cold/zones-ca.jpg',
+        icon: Gauge,
+        bullets: [
+          'Gas-tight envelope with scrubbers',
+          'Door interlocks and slow ramping',
+          'Continuous gas monitoring & logs',
+        ],
+      },
+      {
+        key: 'blast',
+        title: 'Blast Freezer',
+        temp: '-30°C to -40°C',
+        desc:
+          'High-capacity blast tunnels to rapidly remove field heat and pass through the danger zone for quality retention.',
+        image: '/images/cold/zones-blast.jpg',
+        icon: ThermometerSnowflake,
+        bullets: [
+          'High static evaporators and ducting',
+          'Staged defrost strategies',
+          'Throughput-optimized cart flow',
+        ],
+      },
+      {
+        key: 'precool',
+        title: 'Pre-Cooling',
+        temp: '+2°C to +8°C',
+        desc:
+          'Hydrovac/forced-air pre-cool before storage reduces respiration rates and post-harvest losses.',
+        image: '/images/cold/zones-precool.jpg',
+        icon: Wind,
+        bullets: [
+          'Forced-air plenums and shrouds',
+          'Product-specific cooling curves',
+          'Data-logged core temperature',
+        ],
+      },
+    ],
+    []
+  );
 
-  useEffect(() => {
-    if (window.location.hash) {
-      const id = window.location.hash.replace('#', '');
-      const el = document.getElementById(id);
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
-      }
-    }
-  }, []);
+  /* Infrastructure blocks */
+  const infra = useMemo<Infra[]>(
+    () => [
+      {
+        title: 'Insulated Panels',
+        image: '/images/cold/infra-panels.jpg',
+        icon: ShieldCheck,
+        points: [
+          'PUF/PIR panels with camlocks, 60–200 mm thickness',
+          'Food-grade laminates, cleanable finishes',
+          'Detailed vapor barrier and joint sealing',
+        ],
+      },
+      {
+        title: 'Doors & Docking',
+        image: '/images/cold/infra-doors.jpg',
+        icon: Boxes,
+        points: [
+          'Rapid roll-up and swing doors with heaters',
+          'Dock levelers, shelters, and bumpers',
+          'Air curtains for infiltration control',
+        ],
+      },
+      {
+        title: 'Flooring & Racking',
+        image: '/images/cold/infra-floor.jpg',
+        icon: Package,
+        points: [
+          'Heated slab or glycol loops for frozen areas',
+          'Antiskid coatings with drainage slopes',
+          'Mobile/drive-in racking for high density',
+        ],
+      },
+      {
+        title: 'Refrigeration Plant',
+        image: '/images/cold/infra-plant.jpg',
+        icon: Factory,
+        points: [
+          'Ammonia/Freon with VFD compressors',
+          'Hot gas defrost, heat recovery',
+          'PLC/SCADA with remote access',
+        ],
+      },
+    ],
+    []
+  );
 
-  const benefits = [
-    {
-      icon: Snowflake,
-      title: 'Precision Temperature Control',
-      description: 'Advanced monitoring systems maintain exact temperatures for optimal preservation of perishable goods.',
-    },
-    {
-      icon: Thermometer,
-      title: 'Energy Efficiency',
-      description: 'State-of-the-art insulation and cooling technology reduce energy consumption by up to 40%.',
-    },
-    {
-      icon: Zap,
-      title: 'Smart Automation',
-      description: 'AI-powered systems for real-time monitoring, inventory management, and predictive maintenance.',
-    },
-    {
-      icon: Leaf,
-      title: 'Eco-Friendly Solutions',
-      description: 'Sustainable refrigerants and carbon-neutral operations minimize environmental impact.',
-    },
-    {
-      icon: Shield,
-      title: 'Enhanced Security',
-      description: 'Multi-layered security systems with 24/7 monitoring and access control.',
-    },
-    {
-      icon: BarChart,
-      title: 'Cloud Integration',
-      description: 'Seamless connectivity with your supply chain management systems for complete visibility.',
-    },
+  /* Process timeline */
+  const process = useMemo<ProcessStep[]>(
+    () => [
+      {
+        n: 1,
+        title: 'Inbound & Pre-Check',
+        text: 'Dock intake, visual checks, probe sampling, and ASN reconciliation to validate conditions and paperwork.',
+        icon: AlarmClock,
+        image: '/images/cold/process-inbound.jpg',
+      },
+      {
+        n: 2,
+        title: 'Pre-Cool / Blast',
+        text: 'Remove field heat or rapidly freeze to pass the danger zone quickly while tracking core temperatures.',
+        icon: Flame,
+        image: '/images/cold/process-blast.jpg',
+      },
+      {
+        n: 3,
+        title: 'Putaway',
+        text: 'Location assignment by temperature zone, rotation rules (FEFO/FIFO), and SKU compatibility.',
+        icon: Boxes,
+        image: '/images/cold/process-putaway.jpg',
+      },
+      {
+        n: 4,
+        title: 'Monitoring',
+        text: 'Continuous sensing of temp/humidity/door and real-time alerts with audit-friendly logs and graphs.',
+        icon: Satellite,
+        image: '/images/cold/process-monitor.jpg',
+      },
+      {
+        n: 5,
+        title: 'Picking & Dispatch',
+        text: 'Order consolidation with minimal door time; validation, labeling, and cold-chain handoff.',
+        icon: Clock,
+        image: '/images/cold/process-dispatch.jpg',
+      },
+    ],
+    []
+  );
+
+  /* Case studies */
+  const cases = useMemo<CaseStudy[]>(
+    () => [
+      {
+        title: 'Dairy DC — North Region',
+        vertical: 'Chilled Dairy',
+        uplift: 'Energy -18%',
+        image: '/images/cold/case-dairy.jpg',
+        bullets: [
+          'VFD retrofit on screw compressors',
+          'Defrost optimization, night set-back',
+          'Door discipline analytics and SOPs',
+        ],
+      },
+      {
+        title: 'Meat Export Hub',
+        vertical: 'Frozen Meat',
+        uplift: 'Throughput +22%',
+        image: '/images/cold/case-meat.jpg',
+        bullets: [
+          'Blast tunnel redesign and duct balancing',
+          'Cart flow and staging optimization',
+          'Core temp tracking automation',
+        ],
+      },
+      {
+        title: 'Apple CA Complex',
+        vertical: 'F&V CA Rooms',
+        uplift: 'Losses -30%',
+        image: '/images/cold/case-apple.jpg',
+        bullets: [
+          'Gas-tight sealing and scrubber tuning',
+          'O2/CO2 curve optimization by cultivar',
+          'Integrated reporting for season closeout',
+        ],
+      },
+    ],
+    []
+  );
+
+  /* Comparison table */
+  const compare: CompareRow[] = [
+    { feature: 'Envelope', advanced: 'PIR 120–200mm, sealed vapor barrier', basic: 'PUF 60–80mm, basic sealant' },
+    { feature: 'Refrigeration', advanced: 'VFD + PLC/SCADA, heat recovery', basic: 'Fixed-speed, basic controls' },
+    { feature: 'Airflow', advanced: 'EC fans, CFD-tuned ducting', basic: 'Legacy fans, uneven distribution' },
+    { feature: 'Doors', advanced: 'Rapid doors with heaters & interlocks', basic: 'Swing doors, manual curtains' },
+    { feature: 'Flooring', advanced: 'Heated slab, anti-frost design', basic: 'Unheated slab, frost risk' },
+    { feature: 'Monitoring', advanced: 'IoT sensors, alerts, reports', basic: 'Manual logs, spot checks' },
+    { feature: 'Energy', advanced: 'VFD, defrost optimization, LEDs', basic: 'High kWh/t with frequent defrost' },
   ];
 
-  const features = [
-    {
-      name: 'IoT Monitoring System',
-      description: 'Real-time temperature, humidity, and equipment performance tracking with automated alerts.',
-      icon: Zap,
-    },
-    {
-      name: 'Premium Insulation',
-      description: 'High-performance polyurethane panels with exceptional thermal efficiency and durability.',
-      icon: Snowflake,
-    },
-    {
-      name: 'Automated Storage & Retrieval',
-      description: 'Robotic systems that optimize space utilization and reduce human intervention.',
-      icon: Warehouse,
-    },
-    {
-      name: 'Backup Power Systems',
-      description: 'Redundant cooling and power systems ensure uninterrupted operation during outages.',
-      icon: BarChart,
-    },
-  ];
+  /* Search filter for comparison (optional) */
+  const [q, setQ] = useState('');
 
-  const layouts = [
-    {
-      id: 'blast-freezer',
-      name: 'Blast Freezer',
-      description: 'Rapid freezing technology that preserves food quality by quickly bringing temperatures down to -40°C, locking in freshness and nutritional value.',
-      image: 'https://images.pexels.com/photos/723240/pexels-photo-723240.jpeg',
-      suitableFor: 'Meat, seafood, prepared meals',
-      temperature: '-40°C to -10°C',
-      capacity: 'Up to 50 pallets',
-    },
-    {
-      id: 'chiller',
-      name: 'Chiller Storage',
-      description: 'Precision climate control maintains 0-5°C environments ideal for fresh produce, dairy, and floral products with optimal humidity management.',
-      image: 'https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg',
-      suitableFor: 'Fruits, vegetables, dairy, flowers',
-      temperature: '0°C to 5°C',
-      capacity: 'Up to 100 pallets',
-    },
-    {
-      id: 'frozen',
-      name: 'Frozen Storage',
-      description: 'Long-term preservation at sub-zero temperatures with advanced air circulation systems to prevent freezer burn and maintain product integrity.',
-      image: 'https://images.pexels.com/photos/731082/pexels-photo-731082.jpeg',
-      suitableFor: 'Ice cream, frozen foods, pharmaceuticals',
-      temperature: '-25°C to -18°C',
-      capacity: 'Up to 200 pallets',
-    },
-  ];
-
-  const faqs = [
-    {
-      question: 'What industries benefit from cold storage solutions?',
-      answer:
-        'Food and beverage, pharmaceuticals, biotechnology, floral, and chemical industries all utilize cold storage to preserve product integrity and extend shelf life.',
-    },
-    {
-      question: 'How does automation improve cold storage operations?',
-      answer:
-        'Automation enhances accuracy in temperature control, reduces energy consumption, minimizes human error, optimizes inventory management, and provides real-time monitoring and alerts for any deviations.',
-    },
-    {
-      question: 'Are your cold storage facilities environmentally friendly?',
-      answer:
-        'Yes, we use natural refrigerants like CO2 and ammonia, energy-efficient systems, solar power integration where possible, and sustainable building materials to minimize our environmental footprint.',
-    },
-    {
-      question: 'What security measures are in place?',
-      answer:
-        'Our facilities feature 24/7 monitoring, biometric access controls, temperature breach alerts, backup power systems, and insurance-compliant security protocols.',
-    },
-    {
-      question: 'Can you handle temperature-sensitive pharmaceuticals?',
-      answer:
-        'Absolutely. We offer GDP-compliant storage solutions with precise temperature control, documentation, and monitoring specifically designed for pharmaceuticals and healthcare products.',
-    },
-  ];
-
-  const stats = [
-    { value: '99.9%', label: 'Uptime Guarantee', icon: Clock },
-    { value: '500+', label: 'Satisfied Clients', icon: Users },
-    { value: '40%', label: 'Energy Savings', icon: Leaf },
-    { value: '24/7', label: 'Monitoring', icon: Shield },
-  ];
+  const filteredCompare = useMemo(() => {
+    if (!q) return compare;
+    const s = q.toLowerCase();
+    return compare.filter((r) => r.feature.toLowerCase().includes(s) || r.advanced.toLowerCase().includes(s) || r.basic.toLowerCase().includes(s));
+  }, [q, compare]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-green-900/80 to-blue-900/80 z-10" />
-        <Image
-          src="https://images.pexels.com/photos/723240/pexels-photo-723240.jpeg"
-          alt="Cold Storage"
-          fill
-          className="object-cover"
-          priority
-        />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="relative z-20 text-center px-4 max-w-4xl mx-auto"
-        >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-            <span className="text-green-300">Premium</span> Cold Storage Solutions
-          </h1>
-          <p className="text-xl md:text-2xl text-green-100 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Advanced, energy-efficient storage systems for perishable goods with cutting-edge technology and unmatched reliability.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-green-600 hover:bg-green-500 text-white py-4 px-8 rounded-full font-semibold flex items-center shadow-lg hover:shadow-green-500/30 transition-all"
-              onClick={() => scrollToSection('benefits')}
-            >
-              Explore Solutions <ArrowRight size={20} className="ml-2" />
-            </motion.button>
-            <Link
-              href="/contact"
-              className="border-2 border-white text-white hover:bg-white hover:text-green-700 py-3 px-6 rounded-full font-semibold transition-all flex items-center"
-            >
-              Contact Sales
-            </Link>
+    <main className="bg-white text-gray-900">
+      {/* Sticky nav */}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: scrolled ? 0 : -100 }}
+        transition={{ duration: 0.3 }}
+        className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-md py-3"
+      >
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Snowflake className="h-5 w-5 text-green-700" />
+            <span className="text-xl font-bold text-green-700">Cold Storage</span>
           </div>
-        </motion.div>
+          <div className="hidden md:flex space-x-6">
+            <a href="#hero" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Home</a>
+            <a href="#zones" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Zones</a>
+            <a href="#infra" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Infrastructure</a>
+            <a href="#process" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Process</a>
+            <a href="#iot" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Monitoring</a>
+            <a href="#energy" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Energy</a>
+            <a href="#gallery" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Gallery</a>
+            <a href="#cases" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Case Studies</a>
+            <a href="#compare" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Comparison</a>
+            <a href="#faq" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">FAQ</a>
+            <a href="#cta" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Contact</a>
+          </div>
+          <a href="#cta" className="px-4 py-2 bg-green-700 text-white rounded-full text-sm font-medium hover:bg-green-800 transition">Get Quote</a>
+        </div>
+      </motion.nav>
 
-        {/* Stats Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="absolute bottom-10 left-0 right-0 z-20"
-        >
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center border border-white/20"
-                >
-                  <div className="flex justify-center mb-2">
-                    <stat.icon size={24} className="text-green-300" />
+      {/* Hero */}
+      <section id="hero" className="relative overflow-hidden bg-green-900 text-white pt-20">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/cold/hero.jpg"
+            alt="Cold storage warehouse"
+            fill
+            sizes="100vw"
+            priority
+            className="object-cover opacity-35"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-green-950/70 via-green-900/30 to-green-900" />
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4 py-20 md:py-28">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="grid md:grid-cols-2 gap-10 items-center">
+            <motion.div variants={fadeUp}>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur text-green-100 text-xs md:text-sm mb-4">
+                <span className="inline-block h-2 w-2 rounded-full bg-lime-300" />
+                Advanced Cold Storage Solutions
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+                Precision Cooling, Reliable Cold Chain
+              </h1>
+              <div className="w-28 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full my-6" />
+              <p className="text-lg md:text-xl text-green-100/95 max-w-2xl">
+                Design, construction, and operation tuned for stability, efficiency, and audit-ready compliance across frozen, chilled, and CA rooms.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#zones" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-green-900 bg-gradient-to-b from-lime-300 to-lime-400 shadow-[0_12px_24px_-8px_rgba(163,230,53,0.45)] hover:shadow-[0_16px_28px_-6px_rgba(163,230,53,0.55)] transition-all duration-300 hover:-translate-y-0.5">
+                  Explore Zones <ArrowRight className="h-5 w-5" />
+                </a>
+                <a href="#iot" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur transition-all duration-300">
+                  Monitoring & Alerts <ChevronRight className="h-5 w-5" />
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeUp}>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: LineChart, label: 'Energy/t Reduced', value: 'up to 20%' },
+                  { icon: Snowflake, label: 'Setpoint Stability', value: '±0.5°C' },
+                  { icon: Droplets, label: 'RH Control', value: '35–90% RH' },
+                  { icon: ShieldCheck, label: 'Uptime SLA', value: '99.9%' },
+                ].map((kpi) => (
+                  <div key={kpi.label} className="rounded-2xl border border-white/15 bg-white/10 backdrop-blur p-5 shadow">
+                    <kpi.icon className="h-6 w-6 text-white" />
+                    <div className="text-2xl font-extrabold mt-2">{kpi.value}</div>
+                    <div className="text-green-100/90">{kpi.label}</div>
                   </div>
-                  <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-green-100 text-sm">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
       </section>
 
-      {/* What is Cold Storage */}
-      <motion.section
-        id="benefits"
-        ref={sectionRefs.benefits}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: '-100px' }}
-        className="py-20 lg:py-28 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-              className="lg:w-1/2 relative h-96 rounded-3xl overflow-hidden shadow-2xl"
-            >
-              <Image
-                src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg"
-                alt="Cold Storage"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent flex items-end">
-                <div className="p-6 text-white">
-                  <h3 className="text-xl font-semibold">GMP-Compliant Facilities</h3>
-                  <p className="text-green-100">Meeting the highest industry standards</p>
-                </div>
-              </div>
-            </motion.div>
-            <div className="lg:w-1/2">
-              <motion.span
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-green-600 font-semibold mb-2 block"
-              >
-                ABOUT OUR SOLUTIONS
-              </motion.span>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Advanced <span className="text-green-600">Temperature-Controlled</span> Storage
-              </h2>
-              <div className="space-y-6 text-lg text-gray-700">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  Our state-of-the-art cold storage facilities maintain precise temperature environments to preserve perishable goods including food, pharmaceuticals, and chemicals.
-                </motion.p>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  viewport={{ once: true }}
-                >
-                  Equipped with advanced insulation, automation, and IoT monitoring systems, we ensure product safety, operational efficiency, and environmental sustainability.
-                </motion.p>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  viewport={{ once: true }}
-                  className="flex flex-wrap gap-4 mt-8"
-                >
-                  <div className="flex items-center">
-                    <div className="bg-green-100 p-2 rounded-full mr-3">
-                      <Shield size={20} className="text-green-600" />
-                    </div>
-                    <span className="font-medium">GDP & FDA Compliant</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="bg-green-100 p-2 rounded-full mr-3">
-                      <Leaf size={20} className="text-green-600" />
-                    </div>
-                    <span className="font-medium">Eco-Friendly Refrigerants</span>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Key Benefits */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: '-100px' }}
-        className="py-20 lg:py-28 bg-gradient-to-br from-green-50 to-blue-50"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="text-green-600 font-semibold mb-2 block">WHY CHOOSE US</span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Key <span className="text-green-600">Benefits</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our cold storage solutions deliver unmatched value through innovation and reliability
+      {/* Zones */}
+      <section id="zones" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Temperature Zones</h2>
+            <p className="text-gray-600 mt-3">
+              Calibrated environments for diverse SKUs — from blast-freezing tunnels to CA rooms for long-term fruit storage.
             </p>
-          </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} key={index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all border border-green-500/10 group"
-                >
-                  <div className="flex items-center mb-5">
-                    <div className="bg-green-100 p-3 rounded-xl mr-4 group-hover:bg-green-200 transition-colors">
-                      <benefit.icon size={28} className="text-green-600" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900">{benefit.title}</h3>
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {zones.map((z) => (
+              <article key={z.key} className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+                <div className="relative h-64">
+                  <Image
+                    src={z.image}
+                    alt={z.title}
+                    fill
+                    sizes="(max-width:1280px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-sm mb-2">
+                    <z.icon className="h-4 w-4" />
+                    <span>{z.temp}</span>
                   </div>
-                  <p className="text-gray-600">{benefit.description}</p>
-                </motion.div>
-              </Tilt>
+                  <h3 className="text-xl font-bold">{z.title}</h3>
+                  <p className="text-white/90 text-sm mt-1">{z.desc}</p>
+                  <ul className="mt-3 grid grid-cols-1 gap-1 text-sm text-white/90">
+                    {z.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-lime-300 mt-0.5" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Cold Storage Features */}
-      <motion.section
-        id="features"
-        ref={sectionRefs.features}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: '-100px' }}
-        className="py-20 lg:py-28 bg-white"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="text-green-600 font-semibold mb-2 block">OUR TECHNOLOGY</span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Advanced <span className="text-green-600">Features</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Cutting-edge technology designed for reliability, efficiency, and precision
+      {/* Infrastructure */}
+      <section id="infra" className="bg-gray-50">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Infrastructure & Build</h2>
+            <p className="text-gray-600 mt-3">
+              Food-grade envelope, engineered floors, rapid doors, and modern plant rooms — tuned for hygiene, durability, and safety.
             </p>
-          </motion.div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {features.map((feature, index) => (
-              <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} key={index}>
-                <motion.div
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="p-8 bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all border border-green-500/20 group"
-                >
-                  <div className="flex items-center mb-5">
-                    <div className="bg-green-600 p-3 rounded-xl mr-4 group-hover:bg-green-700 transition-colors">
-                      <feature.icon size={28} className="text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900">{feature.name}</h3>
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {infra.map((i) => (
+              <article key={i.title} className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
+                <div className="relative h-44">
+                  <Image
+                    src={i.image}
+                    alt={i.title}
+                    fill
+                    sizes="(max-width:1280px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </div>
+                <div className="p-5">
+                  <div className="h-10 w-10 rounded-lg bg-green-100 text-green-700 flex items-center justify-center mb-3">
+                    <i.icon className="h-5 w-5" />
                   </div>
-                  <p className="text-gray-600">{feature.description}</p>
-                </motion.div>
-              </Tilt>
+                  <h3 className="font-bold text-lg mb-1">{i.title}</h3>
+                  <ul className="text-gray-700 text-sm space-y-1">
+                    {i.points.map((p) => (
+                      <li key={p} className="flex gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Cold Storage Layouts */}
-      <motion.section
-        id="layouts"
-        ref={sectionRefs.layouts}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: '-100px' }}
-        className="py-20 lg:py-28 bg-gradient-to-br from-green-50 to-blue-50"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="text-green-600 font-semibold mb-2 block">OUR SOLUTIONS</span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Storage <span className="text-green-600">Layouts</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Customizable configurations designed for specific temperature requirements
+      {/* Process Timeline */}
+      <section id="process" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Cold Chain Process</h2>
+            <p className="text-gray-600 mt-3">
+              From dock to dispatch — staged controls and visibility reduce losses and protect product integrity end-to-end.
             </p>
-          </motion.div>
-
-          <div className="flex flex-wrap gap-4 justify-center mb-12">
-            {layouts.map((layout) => (
-              <motion.button
-                key={layout.id}
-                onClick={() => setLayoutView(layout.id)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all flex items-center ${
-                  layoutView === layout.id
-                    ? 'bg-green-600 text-white shadow-lg'
-                    : 'bg-white text-green-800 hover:bg-green-100 shadow-md'
-                }`}
-              >
-                {layoutView === layout.id && <Snowflake size={16} className="mr-2" />}
-                {layout.name}
-              </motion.button>
-            ))}
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={layoutView}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col lg:flex-row gap-8 items-stretch"
-            >
-              <div className="lg:w-1/2 relative h-96 lg:h-auto rounded-3xl overflow-hidden shadow-2xl">
-                <Image
-                  src={layouts.find((l) => l.id === layoutView)!.image}
-                  alt={layouts.find((l) => l.id === layoutView)!.name}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent flex items-end">
-                  <div className="p-6 text-white">
-                    <h3 className="text-2xl font-semibold">{layouts.find((l) => l.id === layoutView)!.name}</h3>
-                    <p className="text-green-100">Optimized for {layouts.find((l) => l.id === layoutView)!.suitableFor}</p>
+          <div className="mt-10 grid lg:grid-cols-5 gap-6">
+            {process.map((s) => (
+              <article key={s.n} className="group rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
+                <div className="relative h-44">
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    fill
+                    sizes="(max-width:1280px) 100vw, 20vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
+                  <div className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/30 backdrop-blur text-white text-sm shadow">
+                    <s.icon className="h-4 w-4" />
+                    <span>Step {s.n}</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-bold text-lg">{s.title}</h3>
+                  <p className="text-gray-600 mt-1 text-sm">{s.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Monitoring & IoT */}
+      <section id="iot" className="bg-gray-50">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Monitoring & IoT</h2>
+            <p className="text-gray-600 mt-3">
+              Multi-point sensing for temperature, humidity, and doors; smart thresholds trigger alerts, and dashboards retain audit trails.
+            </p>
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Sensors & Gateways',
+                text: 'Wireless sensors push data to gateways with failover; door interlocks and CTs add context.',
+                icon: Satellite,
+                image: '/images/cold/iot-sensors.jpg',
+              },
+              {
+                title: 'Real-time Alerts',
+                text: 'SMS/Email/WhatsApp escalation trees with acknowledgement and closure notes for CAPA.',
+                icon: AlarmClock,
+                image: '/images/cold/iot-alerts.jpg',
+              },
+              {
+                title: 'Reports & Analytics',
+                text: 'Daily summaries, deviation logs, and trend lines simplify audits and continuous improvement.',
+                icon: BarChart3,
+                image: '/images/cold/iot-reports.jpg',
+              },
+            ].map((card) => (
+              <article key={card.title} className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
+                <div className="relative h-44">
+                  <Image src={card.image} alt={card.title} fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </div>
+                <div className="p-5">
+                  <div className="h-10 w-10 rounded-lg bg-green-100 text-green-700 flex items-center justify-center mb-3">
+                    <card.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-1">{card.title}</h3>
+                  <p className="text-gray-600 text-sm">{card.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Energy Efficiency */}
+      <section id="energy" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Energy & Reliability</h2>
+            <p className="text-gray-600 mt-3">
+              VFD compressors, defrost optimization, heat recovery, and LED retrofits — integrated for lower kWh/t and higher uptime.
+            </p>
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {[
+              { title: 'VFD & Sequencing', text: 'Match capacity to load; reduce starts, extend life.', icon: Bolt, image: '/images/cold/energy-vfd.jpg' },
+              { title: 'Defrost Strategy', text: 'Smart intervals minimize frost and fan downtime.', icon: Wind, image: '/images/cold/energy-defrost.jpg' },
+              { title: 'Heat Recovery', text: 'Sanitary hot water via condenser reclaim.', icon: Flame, image: '/images/cold/energy-heat.jpg' },
+              { title: 'LED & Controls', text: 'Sensors and zoning cut idle lighting loads.', icon: Sparkles, image: '/images/cold/energy-led.jpg' },
+            ].map((card) => (
+              <article key={card.title} className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
+                <div className="relative h-44">
+                  <Image src={card.image} alt={card.title} fill sizes="(max-width:1280px) 100vw, 25vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </div>
+                <div className="p-5">
+                  <div className="h-10 w-10 rounded-lg bg-green-100 text-green-700 flex items-center justify-center mb-3">
+                    <card.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-1">{card.title}</h3>
+                  <p className="text-gray-600 text-sm">{card.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section id="gallery" className="bg-gray-50">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Gallery</h2>
+            <p className="text-gray-600 mt-3">A look across docks, chambers, plant rooms, and smart controls.</p>
+          </div>
+
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              '/images/cold/g1.jpg',
+              '/images/cold/g2.jpg',
+              '/images/cold/g3.jpg',
+              '/images/cold/g4.jpg',
+              '/images/cold/g5.jpg',
+              '/images/cold/g6.jpg',
+              '/images/cold/g7.jpg',
+              '/images/cold/g8.jpg',
+              '/images/cold/g9.jpg',
+              '/images/cold/g10.jpg',
+              '/images/cold/g11.jpg',
+              '/images/cold/g12.jpg',
+            ].map((src) => (
+              <div key={src} className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+                <div className="relative h-56">
+                  <Image src={src} alt="Cold storage image" fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent opacity-90" />
+                </div>
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-xs">
+                    <Snowflake className="h-4 w-4" />
+                    <span>Cold Storage</span>
                   </div>
                 </div>
               </div>
-              <div className="lg:w-1/2 p-8 bg-white rounded-3xl shadow-lg flex flex-col justify-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{layouts.find((l) => l.id === layoutView)!.name} Details</h3>
-                <p className="text-gray-600 mb-6">{layouts.find((l) => l.id === layoutView)!.description}</p>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                <div className="grid grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-500 mb-1">TEMPERATURE RANGE</h4>
-                    <p className="text-lg font-bold text-green-600">{layouts.find((l) => l.id === layoutView)!.temperature}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-500 mb-1">CAPACITY</h4>
-                    <p className="text-lg font-bold text-green-600">{layouts.find((l) => l.id === layoutView)!.capacity}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-500 mb-1">SUITABLE FOR</h4>
-                    <p className="text-lg font-bold text-green-600">{layouts.find((l) => l.id === layoutView)!.suitableFor}</p>
+      {/* Case Studies */}
+      <section id="cases" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Case Studies</h2>
+            <p className="text-gray-600 mt-3">Measured impact across energy, throughput, and quality metrics.</p>
+          </div>
+
+          <div className="mt-10 grid lg:grid-cols-3 gap-8">
+            {cases.map((cs) => (
+              <article key={cs.title} className="group bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl border border-green-100 hover:border-[#8bc34a]/50">
+                <div className="relative h-56">
+                  <Image src={cs.image} alt={cs.title} fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
+                    {cs.uplift}
                   </div>
                 </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-gray-900">{cs.title}</h3>
+                  <p className="text-[#689f38] font-medium mb-4">{cs.vertical}</p>
+                  <ul className="text-sm text-gray-700 space-y-2">
+                    {cs.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-full font-semibold transition-colors self-start flex items-center">
-                  Request Custom Quote <ArrowRight size={18} className="ml-2" />
-                </button>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+      {/* Comparison */}
+      <section id="compare" className="bg-gray-50">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Advanced vs Basic</h2>
+            <p className="text-gray-600 mt-3">Feature comparison across envelope, refrigeration, airflow, and monitoring.</p>
+            <div className="w-40 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full mx-auto mt-6" />
+          </div>
 
-          <div className="mt-16 bg-white rounded-3xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Temperature Control Visualizer</h3>
-            <div className="max-w-2xl mx-auto">
+          <div className="mt-8 max-w-xl mx-auto">
+            <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 shadow-sm">
+              <LineChart className="h-5 w-5 text-gray-500" />
               <input
-                type="range"
-                min="-40"
-                max="5"
-                value={tempRange}
-                onChange={(e) => setTempRange(parseInt(e.target.value))}
-                className="w-full h-2 bg-green-100 rounded-lg appearance-none cursor-pointer accent-green-600"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Search features, specs, or materials…"
+                className="w-full bg-transparent outline-none text-sm md:text-base placeholder:text-gray-400"
               />
-              <div className="flex justify-between text-sm text-gray-500 mt-2">
-                <span>-40°C (Blast Freezing)</span>
-                <span>0°C (Chiller)</span>
-                <span>5°C (Cool Storage)</span>
+            </div>
+          </div>
+
+          <div className="mt-10 hidden lg:block">
+            <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+              <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
+                <div className="grid grid-cols-12 px-6 py-4 text-sm font-semibold text-gray-700">
+                  <div className="col-span-4">Feature</div>
+                  <div className="col-span-4">Advanced</div>
+                  <div className="col-span-4">Basic</div>
+                </div>
               </div>
-              <div className="mt-6 text-center">
-                <p className="text-lg text-gray-600">
-                  Selected Temperature: <span className="text-green-700 font-bold">{tempRange}°C</span>
-                </p>
-                <p className="text-gray-500 mt-2">
-                  {tempRange < -25
-                    ? 'Ideal for long-term frozen storage and sensitive pharmaceuticals'
-                    : tempRange < 0
-                    ? 'Perfect for frozen goods, ice cream, and certain pharmaceuticals'
-                    : 'Optimal for fresh produce, dairy, and floral products'}
-                </p>
+              <div className="divide-y divide-gray-200">
+                {filteredCompare.map((r) => (
+                  <div key={r.feature} className="grid grid-cols-12 px-6 py-4 items-start hover:bg-gray-50/70 transition">
+                    <div className="col-span-4 font-semibold text-gray-900">{r.feature}</div>
+                    <div className="col-span-4 text-gray-800">{r.advanced}</div>
+                    <div className="col-span-4 text-gray-700">{r.basic}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
+
+          <div className="lg:hidden mt-8 grid sm:grid-cols-2 gap-6">
+            {filteredCompare.map((r) => (
+              <div key={r.feature} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                <div className="font-bold text-gray-900 mb-3">{r.feature}</div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-[#689f38] mt-0.5" />
+                    <div className="text-sm text-gray-800">{r.advanced}</div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <XCircle className="h-5 w-5 text-red-600 mt-0.5" />
+                    <div className="text-sm text-gray-700">{r.basic}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </motion.section>
-    </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="bg-white">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              {
+                q: 'What determines insulation thickness?',
+                a: 'Ambient, setpoint, and usage (door cycles) drive conductance and infiltration loads; frozen rooms often need 120–200 mm.',
+              },
+              {
+                q: 'How do you keep floors from freezing?',
+                a: 'Heated slabs or glycol loops under frozen chambers prevent permafrost and slab heave from sub-soil freezing.',
+              },
+              {
+                q: 'What improves energy per ton stored?',
+                a: 'VFDs, optimized defrost, tight envelope sealing, LED controls, and disciplined door operations reduce kWh/t.',
+              },
+              {
+                q: 'Can RH be controlled independently?',
+                a: 'Yes, via coil temperatures, air changes, and dehumidification/humidification strategies per commodity.',
+              },
+              {
+                q: 'How is monitoring audit-ready?',
+                a: 'Time-stamped logs, threshold alarms, acknowledgements, and reports establish traceable compliance.',
+              },
+            ].map((f, i) => (
+              <details key={i} className="group border border-gray-200 rounded-xl bg-white overflow-hidden">
+                <summary className="w-full flex justify-between items-center p-5 text-left font-semibold text-lg cursor-pointer list-none">
+                  {f.q}
+                  <span className="ml-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-green-100 text-green-700">
+                    <ChevronRight className="h-4 w-4 transition-transform group-open:rotate-90" />
+                  </span>
+                </summary>
+                <div className="p-5 pt-0 text-gray-600">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="cta" className="relative overflow-hidden bg-green-900 text-white">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/cold/cta.jpg"
+            alt="Plan cold storage project"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-25"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-green-950/70 via-green-900/30 to-green-900" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4 py-16 md:py-20">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Plan a Cold Storage Project</h2>
+            <p className="text-green-100 mt-3">
+              Get a tailored design — zones, airflow, plant sizing, monitoring, and energy plan — aligned to throughput and quality goals.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-green-900 bg-gradient-to-b from-[#8bc34a] to-[#689f38] shadow-[0_12px_24px_-8px_rgba(139,195,74,0.45)] hover:shadow-[0_16px_28px_-6px_rgba(104,159,56,0.55)] transition-all duration-300 hover:-translate-y-0.5"
+              >
+                Get a Quote <ArrowRight className="h-5 w-5" />
+              </a>
+              <a
+                href="#zones"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur transition-all duration-300"
+              >
+                Explore Zones
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
