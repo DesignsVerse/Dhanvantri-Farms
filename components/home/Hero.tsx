@@ -25,13 +25,13 @@ const HeroSection = () => {
     () => [
       {
         type: 'video',
-        src: '/video/hero.mp4',
+        src: '',
         title: 'Polyhouse Farming',
         subtitle: 'Revolutionize your crop production with climate-controlled polyhouse structures.',
       },
       {
         type: 'image',
-        src: '/hero/1.jpg',
+        src: '',
         title: 'Organic Farming',
         subtitle: 'Adopt chemical-free farming methods for healthier crops and sustainable growth.',
       },
