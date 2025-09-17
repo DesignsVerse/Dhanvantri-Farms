@@ -119,7 +119,7 @@ export default function ColdStoragePage() {
         temp: '-18°C to -25°C',
         desc:
           'Deep-freeze chambers for meat, seafood, and long-term storage where temperature stability and door discipline are critical.',
-        image: '/images/cold/zones-frozen.jpg',
+        image: '/hero/2.jpg',
         icon: Snowflake,
         bullets: [
           'High-density insulation and vapor barrier',
@@ -133,8 +133,8 @@ export default function ColdStoragePage() {
         temp: '0°C to +4°C',
         desc:
           'Fresh produce, dairy, and beverages benefit from tight temperature uniformity with gentle airflow and humidity control.',
-        image: '/images/cold/zones-chilled.jpg',
-        icon: Thermometer,
+          image: '/hero/3.jpg',
+          icon: Thermometer,
         bullets: [
           'EC fans for uniform airflow',
           'Smart dehumidification balance',
@@ -147,8 +147,8 @@ export default function ColdStoragePage() {
         temp: '0°C to +2°C',
         desc:
           'Controlled/Modified Atmosphere rooms modulate O2/CO2 for apples, pears, and exotics to extend shelf life significantly.',
-        image: '/images/cold/zones-ca.jpg',
-        icon: Gauge,
+          image: '/hero/4.jpg',
+          icon: Gauge,
         bullets: [
           'Gas-tight envelope with scrubbers',
           'Door interlocks and slow ramping',
@@ -161,8 +161,8 @@ export default function ColdStoragePage() {
         temp: '-30°C to -40°C',
         desc:
           'High-capacity blast tunnels to rapidly remove field heat and pass through the danger zone for quality retention.',
-        image: '/images/cold/zones-blast.jpg',
-        icon: ThermometerSnowflake,
+          image: '/hero/5.jpg',
+          icon: ThermometerSnowflake,
         bullets: [
           'High static evaporators and ducting',
           'Staged defrost strategies',
@@ -175,8 +175,8 @@ export default function ColdStoragePage() {
         temp: '+2°C to +8°C',
         desc:
           'Hydrovac/forced-air pre-cool before storage reduces respiration rates and post-harvest losses.',
-        image: '/images/cold/zones-precool.jpg',
-        icon: Wind,
+          image: '/hero/6.jpg',
+          icon: Wind,
         bullets: [
           'Forced-air plenums and shrouds',
           'Product-specific cooling curves',
@@ -338,40 +338,12 @@ export default function ColdStoragePage() {
 
   return (
     <main className="bg-white text-gray-900">
-      {/* Sticky nav */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: scrolled ? 0 : -100 }}
-        transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-md py-3"
-      >
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <Snowflake className="h-5 w-5 text-green-700" />
-            <span className="text-xl font-bold text-green-700">Cold Storage</span>
-          </div>
-          <div className="hidden md:flex space-x-6">
-            <a href="#hero" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Home</a>
-            <a href="#zones" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Zones</a>
-            <a href="#infra" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Infrastructure</a>
-            <a href="#process" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Process</a>
-            <a href="#iot" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Monitoring</a>
-            <a href="#energy" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Energy</a>
-            <a href="#gallery" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Gallery</a>
-            <a href="#cases" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Case Studies</a>
-            <a href="#compare" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Comparison</a>
-            <a href="#faq" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">FAQ</a>
-            <a href="#cta" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Contact</a>
-          </div>
-          <a href="#cta" className="px-4 py-2 bg-green-700 text-white rounded-full text-sm font-medium hover:bg-green-800 transition">Get Quote</a>
-        </div>
-      </motion.nav>
-
+  
       {/* Hero */}
       <section id="hero" className="relative overflow-hidden bg-green-900 text-white pt-20">
         <div className="absolute inset-0">
           <Image
-            src="/images/cold/hero.jpg"
+            src="/hero/8.jpg"
             alt="Cold storage warehouse"
             fill
             sizes="100vw"

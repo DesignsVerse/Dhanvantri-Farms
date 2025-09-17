@@ -263,7 +263,7 @@ export default function AutomationPage() {
               <div className="aspect-video">
                 <iframe
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/31_1BOYBQpA?autoplay=1&mute=1"
+                  src=""
                   title="Automation demo"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

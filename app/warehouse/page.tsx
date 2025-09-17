@@ -254,33 +254,7 @@ export default function WarehousePage() {
 
   return (
     <main className="bg-white text-gray-900">
-      {/* Sticky nav */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: scrolled ? 0 : -100 }}
-        transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-md py-3"
-      >
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <Warehouse className="h-5 w-5 text-green-700" />
-            <span className="text-xl font-bold text-green-700">Warehouse</span>
-          </div>
-          <div className="hidden md:flex space-x-6">
-            <a href="#hero" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Home</a>
-            <a href="#storage" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Storage</a>
-            <a href="#flow" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Operations</a>
-            <a href="#features" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">WMS</a>
-            <a href="#kpi" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">KPIs</a>
-            <a href="#gallery" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Gallery</a>
-            <a href="#cases" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Case Studies</a>
-            <a href="#compare" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Comparison</a>
-            <a href="#faq" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">FAQ</a>
-            <a href="#cta" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Contact</a>
-          </div>
-          <a href="#cta" className="px-4 py-2 bg-green-700 text-white rounded-full text-sm font-medium hover:bg-green-800 transition">Get Quote</a>
-        </div>
-      </motion.nav>
+     
 
       {/* Hero */}
       <section id="hero" className="relative overflow-hidden bg-green-900 text-white pt-20">
@@ -331,40 +305,273 @@ export default function WarehousePage() {
         </div>
       </section>
 
-      {/* Storage solutions */}
-      <section id="storage" className="bg-white">
-        <div className="container mx-auto px-4 py-16 md:py-20">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold">Storage Solutions</h2>
-            <p className="text-gray-600 mt-3">Mix the right racking, density, and accessibility for SKU profile, velocity and growth.</p>
+      /* Keep your imports and header/hero code as-is above this line */
+
+{/* Storage solutions — NEW: mosaic + mobile carousel */}
+<section id="storage" className="bg-white">
+  <div className="container mx-auto px-4 py-16 md:py-20">
+    <div className="max-w-3xl mx-auto text-center">
+      <h2 className="text-3xl md:text-4xl font-extrabold">Storage Solutions</h2>
+      <p className="text-gray-600 mt-3">Curated mix of accessibility and density tailored to SKU velocity and growth plans.</p>
+    </div>
+
+    {/* Mobile: horizontal snap */}
+    <div className="mt-8 md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory">
+      <div className="flex gap-4">
+        {storage.map((s) => (
+          <article key={s.title} className="snap-start shrink-0 w-80 group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+            <div className="relative h-56">
+              <Image src={s.image} alt={s.title} fill sizes="100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-sm mb-2">
+                <s.icon className="h-4 w-4" />
+                <span>Storage</span>
+              </div>
+              <h3 className="text-lg font-bold">{s.title}</h3>
+              <ul className="mt-2 grid gap-1 text-xs text-white/90">
+                {s.points.slice(0, 2).map((p) => (
+                  <li key={p} className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-lime-300 mt-0.5" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    {/* Desktop: mosaic grid */}
+    <div className="mt-10 hidden md:grid grid-cols-12 gap-6 auto-rows-[14rem]">
+      {storage.map((s, idx) => {
+        const spanCols = idx === 0 ? 'md:col-span-7' : idx === 1 ? 'md:col-span-5' : 'md:col-span-4';
+        const spanRows = idx === 0 ? 'row-span-2' : 'row-span-1';
+        return (
+          <article
+            key={s.title}
+            className={`group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition ${spanCols} ${spanRows}`}
+          >
+            <div className="absolute inset-0">
+              <Image src={s.image} alt={s.title} fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-sm mb-2">
+                <s.icon className="h-4 w-4" />
+                <span>Storage</span>
+              </div>
+              <h3 className="text-xl font-bold">{s.title}</h3>
+              <ul className="mt-3 grid gap-1 text-sm text-white/90">
+                {s.points.map((p) => (
+                  <li key={p} className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-lime-300 mt-0.5" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+{/* Operations flow — NEW: alternating vertical timeline */}
+<section id="flow" className="bg-gray-50">
+  <div className="container mx-auto px-4 py-16 md:py-20">
+    <div className="max-w-3xl mx-auto text-center">
+      <h2 className="text-3xl md:text-4xl font-extrabold">Operations Timeline</h2>
+      <p className="text-gray-600 mt-3">Alternating steps with visual context from dock to dispatch for fewer touches and higher accuracy.</p>
+    </div>
+
+    <div className="mt-10 relative">
+      <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-green-200 via-green-300 to-green-200" />
+      <div className="space-y-10">
+        {flow.map((f, i) => {
+          const left = i % 2 === 0;
+          return (
+            <div key={f.n} className={`grid md:grid-cols-2 gap-6 items-center ${left ? '' : 'md:[&>*:first-child]:order-2'}`}>
+              <div className="relative h-56 rounded-2xl overflow-hidden shadow-md">
+                <Image src={f.image} alt={f.title} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
+                <div className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/25 backdrop-blur text-white text-sm shadow">
+                  <f.icon className="h-4 w-4" />
+                  <span>Step {f.n}</span>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">{f.title}</h3>
+                <p className="text-gray-700 mt-2">{f.text}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* WMS & Ops features — NEW: alternating splits */}
+<section id="features" className="bg-white">
+  <div className="container mx-auto px-4 py-16 md:py-20">
+    <div className="max-w-3xl mx-auto text-center">
+      <h2 className="text-3xl md:text-4xl font-extrabold">WMS & Mobile Workflows</h2>
+      <p className="text-gray-600 mt-3">Editorial-style splits highlight integrations, auto-ID, safety, and sustainability.</p>
+    </div>
+
+    <div className="mt-10 space-y-12">
+      {features.map((ft, i) => (
+        <div key={ft.title} className={`grid md:grid-cols-2 gap-6 items-center ${i % 2 ? 'md:[&>*:first-child]:order-2' : ''}`}>
+          <div className="relative h-56 rounded-2xl overflow-hidden shadow-md">
+            <Image src={ft.image} alt={ft.title} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
           </div>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {storage.map((s) => (
-              <article key={s.title} className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
-                <div className="relative h-64">
-                  <Image src={s.image} alt={s.title} fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-sm mb-2">
-                    <s.icon className="h-4 w-4" />
-                    <span>Storage</span>
-                  </div>
-                  <h3 className="text-xl font-bold">{s.title}</h3>
-                  <ul className="mt-3 grid grid-cols-1 gap-1 text-sm text-white/90">
-                    {s.points.map((p) => (
-                      <li key={p} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-lime-300 mt-0.5" />
-                        <span>{p}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
+          <div>
+            <div className="h-10 w-10 rounded-lg bg-green-100 text-green-700 flex items-center justify-center mb-3">
+              <ft.icon className="h-5 w-5" />
+            </div>
+            <h3 className="font-bold text-2xl">{ft.title}</h3>
+            <p className="text-gray-700 mt-2">{ft.text}</p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+{/* KPI snapshot — NEW: ring stats */}
+<section id="kpi" className="bg-gray-50">
+  <div className="container mx-auto px-4 py-16 md:py-20">
+    <div className="max-w-3xl mx-auto text-center">
+      <h2 className="text-3xl md:text-4xl font-extrabold">KPI Snapshot</h2>
+      <p className="text-gray-600 mt-3">Visual rings emphasize lift and savings across core metrics.</p>
+    </div>
+
+    <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {[
+        { icon: LineChart, label: 'Lines Picked/Hour', value: 30, text: '↑ 30%' },
+        { icon: BarChart3, label: 'Inventory Accuracy', value: 99.5, text: '99.5%' },
+        { icon: Layers, label: 'Space Utilization', value: 18, text: '↑ 18%' },
+        { icon: BatteryCharging, label: 'Energy/Order', value: 15, text: '↓ 15%' },
+      ].map((k) => (
+        <div key={k.label} className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+          <div className="mx-auto mb-4 relative h-24 w-24 rounded-full grid place-items-center"
+               style={{
+                 background: `conic-gradient(#8bc34a ${k.value * 3.6}deg, #e5e7eb 0)`,
+               }}>
+            <div className="h-20 w-20 rounded-full bg-white grid place-items-center">
+              <k.icon className="h-6 w-6 text-green-700" />
+            </div>
+          </div>
+          <div className="text-xl font-bold text-green-800 mb-1">{k.text}</div>
+          <div className="text-gray-600">{k.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+{/* Case studies — refreshed card visuals */}
+<section id="cases" className="bg-gray-50">
+  <div className="container mx-auto px-4 py-16 md:py-20">
+    <div className="max-w-3xl mx-auto text-center">
+      <h2 className="text-3xl md:text-4xl font-extrabold">Case Studies</h2>
+      <p className="text-gray-600 mt-3">Proof points across cycle time, accuracy, and energy outcomes.</p>
+    </div>
+    <div className="mt-10 grid lg:grid-cols-3 gap-8">
+      {cases.map((c) => (
+        <article key={c.title} className="group bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl border border-green-100 hover:border-[#8bc34a]/50">
+          <div className="relative h-56">
+            <Image src={c.image} alt={c.title} fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
+              {c.impact}
+            </div>
+          </div>
+          <div className="p-6">
+            <h3 className="text-2xl font-bold text-gray-900">{c.title}</h3>
+            <p className="text-[#689f38] font-medium mb-4">{c.client}</p>
+            <ul className="text-sm text-gray-700 space-y-2">
+              {c.bullets.map((b) => (
+                <li key={b} className="flex items-start gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+{/* Comparison — keep logic, refine styling */}
+<section id="compare" className="bg-white">
+  <div className="container mx-auto px-4 py-16 md:py-20">
+    <div className="text-center max-w-3xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-extrabold">Advanced vs Basic</h2>
+      <p className="text-gray-600 mt-3">Clear contrasts across storage, picking, replenishment, and energy.</p>
+      <div className="w-40 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full mx-auto mt-6" />
+    </div>
+
+    <div className="mt-8 max-w-xl mx-auto">
+      <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 shadow-sm">
+        <LineChart className="h-5 w-5 text-gray-500" />
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Search features, specs, or workflows…"
+          className="w-full bg-transparent outline-none text-sm md:text-base placeholder:text-gray-400"
+        />
+      </div>
+    </div>
+
+    <div className="mt-10 hidden lg:block">
+      <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+        <div className="sticky top-16 bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
+          <div className="grid grid-cols-12 px-6 py-4 text-sm font-semibold text-gray-700">
+            <div className="col-span-4">Feature</div>
+            <div className="col-span-4">Advanced</div>
+            <div className="col-span-4">Basic</div>
+          </div>
+        </div>
+        <div className="divide-y divide-gray-200">
+          {filtered.map((r) => (
+            <div key={r.feature} className="grid grid-cols-12 px-6 py-4 items-start hover:bg-gray-50/70 transition">
+              <div className="col-span-4 font-semibold text-gray-900">{r.feature}</div>
+              <div className="col-span-4 text-gray-800">{r.advanced}</div>
+              <div className="col-span-4 text-gray-700">{r.basic}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div className="lg:hidden mt-8 grid sm:grid-cols-2 gap-6">
+      {filtered.map((r) => (
+        <div key={r.feature} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+          <div className="font-bold text-gray-900 mb-3">{r.feature}</div>
+          <div className="space-y-3">
+            <div className="flex items-start gap-2">
+              <CheckCircle2 className="h-5 w-5 text-[#689f38] mt-0.5" />
+              <div className="text-sm text-gray-800">{r.advanced}</div>
+            </div>
+            <div className="flex items-start gap-2">
+              <XCircle className="h-5 w-5 text-red-600 mt-0.5" />
+              <div className="text-sm text-gray-700">{r.basic}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Operations flow */}
       <section id="flow" className="bg-gray-50">
@@ -449,128 +656,11 @@ export default function WarehousePage() {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section id="gallery" className="bg-white">
-        <div className="container mx-auto px-4 py-16 md:py-20">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold">Gallery</h2>
-            <p className="text-gray-600 mt-3">Racks, docks, mezzanines, and mobile workstations.</p>
-          </div>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              '/images/warehouse/g1.jpg',
-              '/images/warehouse/g2.jpg',
-              '/images/warehouse/g3.jpg',
-              '/images/warehouse/g4.jpg',
-              '/images/warehouse/g5.jpg',
-              '/images/warehouse/g6.jpg',
-              '/images/warehouse/g7.jpg',
-              '/images/warehouse/g8.jpg',
-              '/images/warehouse/g9.jpg',
-            ].map((src) => (
-              <div key={src} className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition">
-                <div className="relative h-56">
-                  <Image src={src} alt="Warehouse image" fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent opacity-90" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+  
 
-      {/* Case studies */}
-      <section id="cases" className="bg-gray-50">
-        <div className="container mx-auto px-4 py-16 md:py-20">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold">Case Studies</h2>
-            <p className="text-gray-600 mt-3">Measured outcomes from re-slotting, layout redesigns, and WMS rollouts.</p>
-          </div>
-          <div className="mt-10 grid lg:grid-cols-3 gap-8">
-            {cases.map((c) => (
-              <article key={c.title} className="group bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl border border-green-100 hover:border-[#8bc34a]/50">
-                <div className="relative h-56">
-                  <Image src={c.image} alt={c.title} fill sizes="(max-width:1280px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute top-4 right-4 bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
-                    {c.impact}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900">{c.title}</h3>
-                  <p className="text-[#689f38] font-medium mb-4">{c.client}</p>
-                  <ul className="text-sm text-gray-700 space-y-2">
-                    {c.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
-      {/* Comparison */}
-      <section id="compare" className="bg-white">
-        <div className="container mx-auto px-4 py-16 md:py-20">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-extrabold">Advanced vs Basic</h2>
-            <p className="text-gray-600 mt-3">Feature comparison across storage, picking, replenishment, and energy.</p>
-            <div className="w-40 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full mx-auto mt-6" />
-          </div>
-          <div className="mt-8 max-w-xl mx-auto">
-            <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 shadow-sm">
-              <LineChart className="h-5 w-5 text-gray-500" />
-              <input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="Search features, specs, or workflows…"
-                className="w-full bg-transparent outline-none text-sm md:text-base placeholder:text-gray-400"
-              />
-            </div>
-          </div>
-          <div className="mt-10 hidden lg:block">
-            <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
-              <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
-                <div className="grid grid-cols-12 px-6 py-4 text-sm font-semibold text-gray-700">
-                  <div className="col-span-4">Feature</div>
-                  <div className="col-span-4">Advanced</div>
-                  <div className="col-span-4">Basic</div>
-                </div>
-              </div>
-              <div className="divide-y divide-gray-200">
-                {filtered.map((r) => (
-                  <div key={r.feature} className="grid grid-cols-12 px-6 py-4 items-start hover:bg-gray-50/70 transition">
-                    <div className="col-span-4 font-semibold text-gray-900">{r.feature}</div>
-                    <div className="col-span-4 text-gray-800">{r.advanced}</div>
-                    <div className="col-span-4 text-gray-700">{r.basic}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="lg:hidden mt-8 grid sm:grid-cols-2 gap-6">
-            {filtered.map((r) => (
-              <div key={r.feature} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                <div className="font-bold text-gray-900 mb-3">{r.feature}</div>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-[#689f38] mt-0.5" />
-                    <div className="text-sm text-gray-800">{r.advanced}</div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <XCircle className="h-5 w-5 text-red-600 mt-0.5" />
-                    <div className="text-sm text-gray-700">{r.basic}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+  
 
       {/* FAQ */}
       <section id="faq" className="bg-gray-50">

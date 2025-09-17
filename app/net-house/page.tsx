@@ -165,32 +165,7 @@ export default function NetHousePage() {
 
   return (
     <main className="bg-white text-gray-900">
-      {/* Floating navigation */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: isScrolled ? 0 : -100 }}
-        transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-md py-3"
-      >
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center">
-            <span className="text-xl font-bold text-green-700">Agriplast</span>
-            <span className="text-gray-600 ml-1">Net House</span>
-          </div>
-          <div className="hidden md:flex space-x-6">
-            <a href="#intro" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Home</a>
-            <a href="#types" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Systems</a>
-            <a href="#advantages" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Benefits</a>
-            <a href="#stats" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Results</a>
-            <a href="#comparison" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Comparison</a>
-            <a href="#faq" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">FAQ</a>
-            <a href="#cta" className="text-sm font-medium text-gray-700 hover:text-green-700 transition">Contact</a>
-          </div>
-          <a href="#cta" className="px-4 py-2 bg-green-700 text-white rounded-full text-sm font-medium hover:bg-green-800 transition">
-            Get Started
-          </a>
-        </div>
-      </motion.nav>
+      
 
       {/* Intro */}
       <section id="intro" className="relative overflow-hidden bg-green-900 text-white pt-20">
@@ -229,7 +204,7 @@ export default function NetHousePage() {
                 <div className="aspect-video">
                   <iframe
                     className="w-full h-full"
-                    src="https://www.youtube.com/embed/31_1BOYBQpA"
+                    src=""
                     title="Net house overview"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
