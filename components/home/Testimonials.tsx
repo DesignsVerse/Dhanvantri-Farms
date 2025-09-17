@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 
 const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
   const testimonials = [
     {
       name: 'Rajesh Kumar',
@@ -42,6 +42,14 @@ const Testimonials = () => {
     }
   ];
 
+  // Auto-slide effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 7000); // 7 seconds per slide
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
@@ -50,9 +58,10 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-white to-green-50">
+    <section className="py-20 bg-gradient-to-br from-white to-green-50">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div 
+        {/* Heading */}
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -60,104 +69,97 @@ const Testimonials = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">Farmers Say</span>
+            What Our{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">
+              Farmers Say
+            </span>
           </h2>
           <div className="h-1 w-48 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Success stories from farmers who trusted us with their agricultural transformation
           </p>
         </motion.div>
+
+        {/* Testimonial Card */}
         <div className="relative max-w-5xl mx-auto">
-          {/* AnimatePresence for smooth transitions */}
           <AnimatePresence mode="wait">
-            <motion.div 
+            <motion.div
               key={currentTestimonial}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.7, ease: 'easeInOut' }}
-              className="bg-white rounded-3xl shadow-lg p-8 md:p-12 relative overflow-hidden border border-green-100"
+              className="bg-white rounded-3xl shadow-lg p-8 md:p-12 relative overflow-hidden border border-green-100 hover:border-[#8bc34a]/60 transition-all duration-300"
             >
               <Quote className="absolute top-6 left-6 w-12 h-12 text-green-100 opacity-50" />
-              
-              <div className="flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-12">
-                <motion.img 
+
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <motion.img
                   whileHover={{ scale: 1.05 }}
                   src={testimonials[currentTestimonial].image}
                   alt={testimonials[currentTestimonial].name}
-                  className="w-32 h-32 rounded-full object-cover shadow-md"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover shadow-md"
                 />
-                
+
                 <div className="flex-1 text-center md:text-left">
-                  <div className="flex justify-center md:justify-start space-x-1 mb-6">
+                  {/* Stars */}
+                  <div className="flex justify-center md:justify-start space-x-1 mb-4">
                     {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                      <motion.div 
-                        key={i}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 0.3, delay: i * 0.1, ease: 'easeInOut' }}
-                      >
-                        <Star className="w-6 h-6 fill-yellow-400 text-yellow-400" />
-                      </motion.div>
+                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: 'easeInOut', delay: 0.2 }}
-                    className="text-xl text-gray-700 mb-8 leading-relaxed italic"
-                  >
+
+                  {/* Text */}
+                  <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed italic">
                     "{testimonials[currentTestimonial].text}"
-                  </motion.p>
-                  
+                  </p>
+
+                  {/* Author */}
                   <div>
-                    <div className="font-bold text-2xl text-gray-900 mb-1">
+                    <div className="font-bold text-xl sm:text-2xl text-gray-900 mb-1">
                       {testimonials[currentTestimonial].name}
                     </div>
-                    <div className="text-[#8bc34a] text-lg font-medium">
-                      {testimonials[currentTestimonial].crop} - {testimonials[currentTestimonial].location}
+                    <div className="text-[#8bc34a] text-sm sm:text-lg font-medium">
+                      {testimonials[currentTestimonial].crop} • {testimonials[currentTestimonial].location}
                     </div>
                   </div>
                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
+
           {/* Navigation */}
           <div className="flex justify-center items-center mt-10 space-x-6">
-            <motion.button 
+            <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={prevTestimonial}
               className="p-4 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-300"
-              aria-label="Previous Testimonial"
             >
-              <ChevronLeft className="w-7 h-7 text-[#8bc34a]" />
+              <ChevronLeft className="w-6 h-6 text-[#8bc34a]" />
             </motion.button>
-            
+
+            {/* Dots */}
             <div className="flex space-x-3">
               {testimonials.map((_, index) => (
                 <motion.button
                   key={index}
                   whileHover={{ scale: 1.2 }}
                   onClick={() => setCurrentTestimonial(index)}
-                  className={`w-4 h-4 rounded-full transition-colors duration-300 cursor-pointer ${index === currentTestimonial ? 'bg-[#8bc34a]' : 'bg-gray-300'}`}
-                  aria-label={`Go to testimonial ${index + 1}`}
+                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                    index === currentTestimonial ? 'bg-[#8bc34a]' : 'bg-gray-300'
+                  }`}
                 />
               ))}
             </div>
-            
-            <motion.button 
+
+            <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={nextTestimonial}
               className="p-4 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-300"
-              aria-label="Next Testimonial"
             >
-              <ChevronRight className="w-7 h-7 text-[#8bc34a]" />
+              <ChevronRight className="w-6 h-6 text-[#8bc34a]" />
             </motion.button>
           </div>
         </div>
@@ -165,4 +167,5 @@ const Testimonials = () => {
     </section>
   );
 };
+
 export default Testimonials;

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -18,147 +18,138 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
+
     setTimeout(() => {
       console.log('Form submitted:', formData);
       setIsSubmitting(false);
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        interest: '',
-        message: ''
-      });
-      
-      // Show success message (you could replace this with a toast notification)
-      alert('Thank you for your message! We will contact you soon.');
+      setFormData({ name: '', email: '', phone: '', interest: '', message: '' });
+      alert('✅ Thank you for your message! We will contact you soon.');
     }, 1500);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
   };
 
-  // Animation variants with explicit type
+  // Animations
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
   };
 
   const itemVariants: Variants = {
     hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut'
-      }
-    }
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } }
   };
 
   return (
     <section className="py-24 bg-gradient-to-br from-white to-green-50 relative overflow-hidden">
-      {/* Enhanced Decorative elements */}
+      {/* Decorative Background */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238bc34a' fill-opacity='0.1'%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238bc34a' fill-opacity='0.1'%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}
+        />
       </div>
-      
-      <motion.div 
+
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         className="max-w-7xl mx-auto px-6 relative z-10"
       >
-        <motion.div 
-          variants={itemVariants}
-          className="text-center mb-16"
-        >
+        {/* Section Heading */}
+        <motion.div variants={itemVariants} className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">Touch</span>
+            Get in{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">
+              Touch
+            </span>
           </h2>
           <div className="h-1 w-48 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
           <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-            Ready to start your smart farming journey? Contact our experts for personalized guidance
+            Ready to start your smart farming journey? Contact our experts for personalized
+            guidance.
           </p>
         </motion.div>
 
+        {/* Grid Layout */}
         <div className="grid lg:grid-cols-3 gap-12">
-          {/* Contact Information - Enhanced with hover animations */}
-          <motion.div 
-            variants={itemVariants}
-            className="space-y-8"
-          >
-            <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="bg-white p-8 rounded-3xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300"
-            >
-              <div className="p-4 bg-green-50 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                <MapPin className="w-7 h-7 text-[#8bc34a]" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Visit Us</h3>
-              <p className="text-gray-600 text-center leading-relaxed">
-                123 Agriculture Innovation Park<br />
-                Sector 15, Gurugram<br />
-                Haryana 122001, India
-              </p>
-            </motion.div>
-
-            <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="bg-white p-8 rounded-3xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300"
-            >
-              <div className="p-4 bg-green-50 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                <Phone className="w-7 h-7 text-[#8bc34a]" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Call Us</h3>
-              <p className="text-gray-600 text-center leading-relaxed">
-                Sales: +91-9876543210<br />
-                Support: +91-9876543211<br />
-                WhatsApp: +91-9876543212
-              </p>
-            </motion.div>
-
-            <motion.div 
-              whileHover={{ scale: 1.03 }}
-              className="bg-white p-8 rounded-3xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300"
-            >
-              <div className="p-4 bg-green-50 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                <Mail className="w-7 h-7 text-[#8bc34a]" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Email Us</h3>
-              <p className="text-gray-600 text-center leading-relaxed">
-                info@dhanvantrifarms.com<br />
-                support@dhanvantrifarms.com<br />
-                sales@dhanvantrifarms.com
-              </p>
-            </motion.div>
+          {/* Left: Contact Info */}
+          <motion.div variants={itemVariants} className="space-y-8">
+            {[
+              {
+                icon: <MapPin className="w-7 h-7 text-[#8bc34a]" />,
+                title: 'Visit Us',
+                text: (
+                  <>
+                    123 Agriculture Innovation Park
+                    <br />
+                    Sector 15, Gurugram
+                    <br />
+                    Haryana 122001, India
+                  </>
+                )
+              },
+              {
+                icon: <Phone className="w-7 h-7 text-[#8bc34a]" />,
+                title: 'Call Us',
+                text: (
+                  <>
+                    Sales: +91-9876543210
+                    <br />
+                    Support: +91-9876543211
+                    <br />
+                    WhatsApp: +91-9876543212
+                  </>
+                )
+              },
+              {
+                icon: <Mail className="w-7 h-7 text-[#8bc34a]" />,
+                title: 'Email Us',
+                text: (
+                  <>
+                    info@dhanvantrifarms.com
+                    <br />
+                    support@dhanvantrifarms.com
+                    <br />
+                    sales@dhanvantrifarms.com
+                  </>
+                )
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.03 }}
+                className="bg-white p-8 rounded-3xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="p-4 bg-green-50 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">{item.title}</h3>
+                <p className="text-gray-600 text-center leading-relaxed">{item.text}</p>
+              </motion.div>
+            ))}
           </motion.div>
 
-          {/* Contact Form - Enhanced with field animations */}
-          <motion.div 
+          {/* Right: Contact Form */}
+          <motion.div
             variants={itemVariants}
             className="lg:col-span-2 bg-white p-10 rounded-3xl shadow-xl border border-green-100"
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-3">
-              Send us a Message
-            </h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-3">Send us a Message</h3>
             <p className="text-gray-600 mb-8">We'll respond within 2 hours during business hours</p>
-            
+
             <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Name + Email */}
               <div className="grid md:grid-cols-2 gap-8">
                 <motion.div variants={itemVariants}>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -175,7 +166,7 @@ const ContactSection = () => {
                     placeholder="Your full name"
                   />
                 </motion.div>
-                
+
                 <motion.div variants={itemVariants}>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email Address *
@@ -193,6 +184,7 @@ const ContactSection = () => {
                 </motion.div>
               </div>
 
+              {/* Phone + Interest */}
               <div className="grid md:grid-cols-2 gap-8">
                 <motion.div variants={itemVariants}>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
@@ -209,7 +201,7 @@ const ContactSection = () => {
                     placeholder="+91 98765 43210"
                   />
                 </motion.div>
-                
+
                 <motion.div variants={itemVariants}>
                   <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
                     Area of Interest *
@@ -232,6 +224,7 @@ const ContactSection = () => {
                 </motion.div>
               </div>
 
+              {/* Message */}
               <motion.div variants={itemVariants}>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                   Message
@@ -242,11 +235,12 @@ const ContactSection = () => {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Tell us about your farming requirements, land size, current challenges, or any specific questions..."
+                  placeholder="Tell us about your farming requirements, land size, current challenges..."
                   className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#8bc34a] focus:border-transparent transition-all duration-200 shadow-sm hover:shadow-md"
                 />
               </motion.div>
 
+              {/* Submit Button */}
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
@@ -268,8 +262,9 @@ const ContactSection = () => {
                 )}
               </motion.button>
             </form>
-            
-            <motion.div 
+
+            {/* Response Guarantee */}
+            <motion.div
               variants={itemVariants}
               className="mt-8 p-6 bg-green-50 rounded-2xl border border-green-100 shadow-sm"
             >
@@ -278,12 +273,10 @@ const ContactSection = () => {
                   <Clock className="w-6 h-6 text-[#8bc34a]" />
                 </div>
                 <div>
-                  <p className="text-base font-bold text-green-800 mb-1">
-                    Quick Response Guarantee
-                  </p>
+                  <p className="text-base font-bold text-green-800 mb-1">Quick Response Guarantee</p>
                   <p className="text-sm text-green-700 leading-relaxed">
-                    Our experts will contact you within 2 hours during business hours. 
-                    For urgent inquiries, please call us directly.
+                    Our experts will contact you within 2 hours during business hours. For urgent
+                    inquiries, please call us directly.
                   </p>
                 </div>
               </div>

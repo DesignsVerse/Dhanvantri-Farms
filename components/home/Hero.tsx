@@ -26,31 +26,43 @@ const HeroSection = () => {
       {
         type: 'video',
         src: '/video/hero.mp4',
-        title: 'Advanced Solutions for Protected Farming',
-        subtitle: 'Maximise your production with Agriplast Structures',
+        title: 'Polyhouse Farming',
+        subtitle: 'Revolutionize your crop production with climate-controlled polyhouse structures.',
       },
       {
         type: 'image',
         src: '/hero/1.jpg',
-        title: 'Innovative Greenhouse Designs',
-        subtitle: 'Explore custom greenhouse structures designed to meet your specific farming needs.',
+        title: 'Organic Farming',
+        subtitle: 'Adopt chemical-free farming methods for healthier crops and sustainable growth.',
       },
       {
         type: 'image',
-        src: '/hero/2.jpg',
-        title: 'Sustainable Farming Solutions',
-        subtitle: 'Implement eco-friendly practices that increase efficiency and reduce environmental impact.',
+        src: '/hero/nethouse.jpg',
+        title: 'Nethouse Solutions',
+        subtitle: 'Protect your crops with advanced nethouse structures designed for durability and yield.',
+      },
+      {
+        type: 'video',
+        src: '/video/mushroom-farming.mp4',
+        title: 'Mushroom Farming',
+        subtitle: 'Unlock new income streams with modern mushroom farming techniques and setups.',
       },
       {
         type: 'image',
-        src: '/hero/3.jpg',
-        title: 'Precision Agriculture Technologies',
-        subtitle: 'Harness cutting-edge technology to optimize yield and improve crop health.',
+        src: '/hero/warehouse.jpg',
+        title: 'Agri Warehousing',
+        subtitle: 'Secure and preserve your harvest with world-class agricultural warehousing solutions.',
+      },
+      {
+        type: 'image',
+        src: '/hero/hydroponics.jpg',
+        title: 'Hydroponics',
+        subtitle: 'Grow more with less—experience soil-less farming powered by hydroponic systems.',
       },
     ],
     []
   );
-
+  
   // Auto-slide with hover/pause
   useEffect(() => {
     if (!isPlaying || isHovering) return;

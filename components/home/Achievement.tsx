@@ -34,7 +34,7 @@ const AchievementCard: React.FC<AchievementCardProps> = ({ label, target, suffix
     if (inView) {
       controls.start('visible');
       let start = 0;
-      const increment = target / (countUpDuration * 60); // Frames assuming 60fps
+      const increment = target / (countUpDuration * 60); // 60fps
       const interval = setInterval(() => {
         start += increment;
         if (start >= target) {
@@ -56,13 +56,13 @@ const AchievementCard: React.FC<AchievementCardProps> = ({ label, target, suffix
         hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
       }}
-      className="flex flex-col items-center justify-center p-8 bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+      className="flex flex-col items-center justify-center p-6 sm:p-8 bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
     >
-      <div className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-transparent bg-clip-text">
+      <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-transparent bg-clip-text">
         {count.toLocaleString()}
         {suffix}
       </div>
-      <div className="mt-3 text-lg lg:text-xl font-semibold text-gray-800">
+      <div className="mt-3 text-base sm:text-lg lg:text-xl font-semibold text-gray-800 text-center">
         {label}
       </div>
     </motion.div>
@@ -71,30 +71,30 @@ const AchievementCard: React.FC<AchievementCardProps> = ({ label, target, suffix
 
 const Achievements = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-white to-green-50">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-20 sm:py-24 bg-gradient-to-br from-white to-green-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-14 sm:mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
             Our{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">
               Achievements
             </span>
           </h2>
-          <div className="h-1 w-40 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
-          <p className="text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <div className="h-1 w-24 sm:w-40 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
+          <p className="text-base sm:text-lg lg:text-2xl text-gray-700 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed">
             Proud milestones that showcase our dedication and growth in the farming industry
           </p>
         </motion.div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {statsData.map(({ label, value, suffix }, index) => (
             <AchievementCard key={index} label={label} target={value} suffix={suffix} />
           ))}
