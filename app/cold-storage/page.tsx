@@ -344,7 +344,7 @@ export default function ColdStoragePage() {
         <div className="absolute inset-0">
           <Image
             src="/hero/8.jpg"
-            alt="Cold storage warehouse"
+            alt="Dhanvantri Farms Cold Storage Facility"
             fill
             sizes="100vw"
             priority
@@ -358,14 +358,14 @@ export default function ColdStoragePage() {
             <motion.div variants={fadeUp}>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur text-green-100 text-xs md:text-sm mb-4">
                 <span className="inline-block h-2 w-2 rounded-full bg-lime-300" />
-                Advanced Cold Storage Solutions
+                Sustainable Cold Chain Solutions
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-                Precision Cooling, Reliable Cold Chain
+                Advanced Cold Storage Technology
               </h1>
               <div className="w-28 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full my-6" />
               <p className="text-lg md:text-xl text-green-100/95 max-w-2xl">
-                Design, construction, and operation tuned for stability, efficiency, and audit-ready compliance across frozen, chilled, and CA rooms.
+                Dhanvantri Farms delivers state-of-the-art cold storage solutions, ensuring precision cooling, energy efficiency, and compliance for seamless cold chain logistics.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href="#zones" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-green-900 bg-gradient-to-b from-lime-300 to-lime-400 shadow-[0_12px_24px_-8px_rgba(163,230,53,0.45)] hover:shadow-[0_16px_28px_-6px_rgba(163,230,53,0.55)] transition-all duration-300 hover:-translate-y-0.5">
@@ -646,7 +646,7 @@ export default function ColdStoragePage() {
         </div>
       </section>
 
-      {/* Case Studies */}
+      /* Case Studies */
       <section id="cases" className="bg-white">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl mx-auto text-center">
@@ -681,7 +681,7 @@ export default function ColdStoragePage() {
         </div>
       </section>
 
-      {/* Comparison */}
+      /* Comparison */
       <section id="compare" className="bg-gray-50">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="text-center max-w-3xl mx-auto">
@@ -743,7 +743,7 @@ export default function ColdStoragePage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      /* FAQ */
       <section id="faq" className="bg-white">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl mx-auto space-y-4">
@@ -783,7 +783,7 @@ export default function ColdStoragePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      /* CTA */
       <section id="cta" className="relative overflow-hidden bg-green-900 text-white">
         <div className="absolute inset-0">
           <Image

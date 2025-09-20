@@ -23,7 +23,7 @@ const About = () => {
         >
           <Image
             src="/hero/1.jpg"
-            alt="Farmer in greenhouse"
+            alt="Greenhouse farming solutions for sustainable agriculture"
             width={600}
             height={400}
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -34,10 +34,10 @@ const About = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 via-green-800/30 to-transparent z-10" />
           <div className="absolute bottom-4 left-4 z-20 text-white">
             <h3 className="text-lg sm:text-xl font-semibold drop-shadow-md">
-              Transforming Farms
+              Empowering Farmers
             </h3>
             <p className="text-xs sm:text-sm drop-shadow-sm opacity-90">
-              Innovative Agriculture Solutions
+              Smart Agriculture Solutions
             </p>
           </div>
         </motion.div>
@@ -56,10 +56,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-5xl font-extrabold text-green-950 mb-3 tracking-tight font-sans"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-green-700">
-              Success
-            </span>{' '}
-            Stories
+            Farmer Success Stories
           </motion.h2>
 
           {/* Underline */}
@@ -77,9 +74,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-sm sm:text-base text-gray-600 mb-5 leading-relaxed font-medium"
           >
-            Discover how our protected cultivation solutions are revolutionizing
-            farming practices. From thriving farms to sustainable yields, our
-            innovations empower farmers to secure a prosperous and eco-friendly future.
+            Explore how hi-tech farming solutions are transforming agriculture. From polyhouses to hydroponics, our innovations empower farmers to achieve sustainable yields and a prosperous future.
           </motion.p>
 
           {/* Tagline */}
@@ -90,10 +85,10 @@ const About = () => {
             className="mb-6"
           >
             <span className="text-lg sm:text-xl font-semibold text-lime-500">
-              Cultivating success
+              Innovating agriculture
             </span>
             <span className="text-lg sm:text-xl font-light text-green-950">
-              {' '}for a better tomorrow.
+              {' '}for a sustainable future.
             </span>
           </motion.div>
 

@@ -120,11 +120,11 @@ export default function HydroponicsPage() {
         paragraphs: [
           {
             text:
-              'Deep Water Culture (DWC) suspends plants above an aerated nutrient reservoir so roots stay submerged with constant access to water, nutrients, and oxygen.',
+              'Dhanvantri Farms’ Deep Water Culture (DWC) systems suspend plants above a nutrient-rich, oxygenated reservoir, ensuring roots have constant access to essential water, nutrients, and oxygen for optimal growth.',
           },
-          { title: 'Rapid Growth', text: 'Continuous availability of inputs often accelerates plant development and vigor.' },
-          { title: 'Simplicity', text: 'Setup remains approachable and maintainable for beginners and pilots.' },
-          { title: 'Cost-Effectiveness', text: 'Minimal equipment lowers both upfront and running costs in many cases.' },
+          { title: 'Accelerated Growth', text: 'Continuous nutrient availability promotes faster plant development and higher yields.' },
+          { title: 'User-Friendly Design', text: 'Simple setup and maintenance make it ideal for beginners and commercial farmers alike.' },
+          { title: 'Cost-Effective Solution', text: 'Minimal equipment reduces initial investment and operational costs.' },
         ],
       },
       {
@@ -134,11 +134,11 @@ export default function HydroponicsPage() {
         paragraphs: [
           {
             text:
-              'NFT channels carry a thin, recirculating stream of nutrient solution over root tips, maximizing uptake while conserving inputs.',
+              'Dhanvantri Farms’ NFT systems deliver a thin, continuous stream of nutrient solution over plant roots, optimizing nutrient uptake while conserving resources.',
           },
-          { title: 'Efficient Nutrient Use', text: 'Continuous flow reduces waste and keeps availability consistent.' },
-          { title: 'Scalability', text: 'Modular channels make expansion straightforward for commercial layouts.' },
-          { title: 'Oxygenation', text: 'Shallow films and exposure encourage higher dissolved oxygen for healthier roots.' },
+          { title: 'Resource Efficiency', text: 'Recirculating flow minimizes water and nutrient waste.' },
+          { title: 'Scalable Design', text: 'Modular channels allow easy expansion for large-scale farming.' },
+          { title: 'Enhanced Root Health', text: 'Shallow nutrient films ensure high oxygen levels for healthier roots.' },
         ],
       },
       {
@@ -148,11 +148,11 @@ export default function HydroponicsPage() {
         paragraphs: [
           {
             text:
-              'Dutch (Bato) buckets connect to shared feed and drain lines, suiting vining or heavy-feeding crops like tomatoes and peppers.',
+              'Dhanvantri Farms’ Dutch Bucket systems are ideal for vining crops like tomatoes and cucumbers, with shared feed and drain lines for efficient nutrient delivery.',
           },
-          { title: 'Scalability', text: 'Add buckets to increase capacity without redesigning the entire system.' },
-          { title: 'Efficiency', text: 'Recirculation optimizes water and nutrient use across multiple containers.' },
-          { title: 'Versatility', text: 'Supports varied species with flexible media and spacing approaches.' },
+          { title: 'Flexible Scaling', text: 'Easily add buckets to expand capacity without system redesign.' },
+          { title: 'Water Efficiency', text: 'Recirculation optimizes water and nutrient use across multiple plants.' },
+          { title: 'Crop Versatility', text: 'Supports various crops with customizable media and spacing.' },
         ],
       },
       {
@@ -162,11 +162,11 @@ export default function HydroponicsPage() {
         paragraphs: [
           {
             text:
-              'Aeroponics suspends roots in air and delivers a fine nutrient mist, enabling high oxygen availability and efficient resource use.',
+              'Dhanvantri Farms’ Aeroponic systems mist nutrient solutions onto suspended roots, maximizing oxygen exposure and nutrient absorption.',
           },
-          { title: 'Water Efficiency', text: 'Mist delivery significantly cuts water consumption versus many alternatives.' },
-          { title: 'Optimal Nutrient Absorption', text: 'Even droplet distribution enhances contact and uptake.' },
-          { title: 'Space Saving', text: 'Vertical towers or modules maximize output per area footprint.' },
+          { title: 'Ultra-Low Water Use', text: 'Fine mist delivery cuts water consumption significantly.' },
+          { title: 'Optimal Nutrient Uptake', text: 'Even mist distribution ensures efficient nutrient absorption.' },
+          { title: 'Space Optimization', text: 'Vertical setups maximize yield in compact spaces.' },
         ],
       },
     ],
@@ -178,22 +178,20 @@ export default function HydroponicsPage() {
 
   // Stats data
   const stats = [
-    { value: '70%', label: 'Water Savings', icon: Droplets },
-    { value: '3x', label: 'Faster Growth', icon: BarChart3 },
-    { value: '90%', label: 'Success Rate', icon: CheckCircle },
-    { value: '50+', label: 'Happy Clients', icon: Users },
+    { value: '80%', label: 'Water Savings', icon: Droplets },
+    { value: '4x', label: 'Faster Growth', icon: BarChart3 },
+    { value: '95%', label: 'Success Rate', icon: CheckCircle },
+    { value: '100+', label: 'Happy Farmers', icon: Users },
   ];
 
   return (
     <main className="bg-white text-gray-900">
-     
-
       {/* Intro */}
       <section id="intro" className="relative overflow-hidden bg-green-900 text-white pt-20">
         <div className="absolute inset-0">
           <Image
             src="/hero/2.jpg"
-            alt="Hydroponics background"
+            alt="Dhanvantri Farms Hydroponics background"
             fill
             sizes="100vw"
             priority
@@ -207,17 +205,17 @@ export default function HydroponicsPage() {
             <motion.div variants={fadeUp} className="order-2 md:order-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur text-green-100 text-xs md:text-sm mb-4">
                 <span className="inline-block h-2 w-2 rounded-full bg-lime-300" />
-                Agriplast Hydroponics
+                Dhanvantri Farms Hydroponics
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-                What is <span className="text-lime-300">Agriplast Hydroponics</span>?
+                Discover <span className="text-lime-300">Dhanvantri Farms Hydroponics</span>
               </h1>
               <div className="w-24 h-1.5 bg-lime-400 rounded-full my-6" />
               <p className="text-lg md:text-xl text-green-100/95 max-w-2xl">
-                Hydroponics grows plants in nutrient solution or inert substrates like rockwool and vermiculite, precisely supplying what the crop needs when it needs it. 
+                Dhanvantri Farms brings cutting-edge hydroponic farming, growing plants in nutrient-rich solutions or substrates like rockwool, delivering precise nutrients for optimal growth.
               </p>
               <p className="text-lg md:text-xl text-green-100/95 max-w-2xl mt-3">
-                Modern systems tailor recipes to species and stage, enabling consistent quality and faster cycles under controlled environments. 
+                Our advanced systems ensure year-round production, higher yields, and sustainable farming tailored to your needs.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
@@ -242,7 +240,7 @@ export default function HydroponicsPage() {
                     ref={videoRef}
                     className="w-full h-full"
                     src={``}
-                    title="Hydroponics overview"
+                    title="Dhanvantri Farms Hydroponics overview"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
@@ -254,14 +252,14 @@ export default function HydroponicsPage() {
                   >
                     {!isPlaying && (
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition">
-                        <Play className="h-8 w-8 md:h-10 md:w-10 text-white fill-current" />
+                        <Play className="h-8 w-8 md:h-10 md:h-10 text-white fill-current" />
                       </div>
                     )}
                   </button>
                 </div>
               </div>
               <div className="mt-4 text-center text-green-100 text-sm">
-                Watch our introduction to hydroponic farming
+                Watch our introduction to Dhanvantri Farms’ hydroponic farming
               </div>
             </motion.div>
           </motion.div>
@@ -305,10 +303,10 @@ export default function HydroponicsPage() {
         <div className="container mx-auto px-4 py-16 md:py-20">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }} variants={stagger}>
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-extrabold text-center">
-              Why <span className="text-green-700">Hydroponics</span> Works
+              Why <span className="text-green-700">Dhanvantri Farms Hydroponics</span> Works
             </motion.h2>
             <motion.p variants={fadeUp} className="text-center text-gray-600 max-w-2xl mx-auto mt-3">
-              Precise inputs, clean substrates, and controlled climates unlock consistency and efficiency across crop cycles. 
+              Dhanvantri Farms’ hydroponic systems deliver precise nutrients, controlled environments, and expert support for consistent, high-yield farming.
             </motion.p>
 
             <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -316,27 +314,27 @@ export default function HydroponicsPage() {
                 <div className="h-12 w-12 rounded-xl bg-green-100 text-green-700 flex items-center justify-center mb-4 group-hover:bg-green-700 group-hover:text-white transition">
                   <Droplets className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold mb-1">Third-Gen NFT Channels</h3>
+                <h3 className="text-xl font-bold mb-1">Advanced NFT Channels</h3>
                 <p className="text-gray-600">
-                  Optimized film depth reduces water usage while maintaining uniform delivery to roots. 
+                  Dhanvantri Farms’ optimized channels reduce water usage while ensuring uniform nutrient delivery to roots.
                 </p>
               </motion.div>
               <motion.div variants={fadeUp} className="p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition group">
                 <div className="h-12 w-12 rounded-xl bg-green-100 text-green-700 flex items-center justify-center mb-4 group-hover:bg-green-700 group-hover:text-white transition">
                   <Factory className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold mb-1">Customer Education</h3>
+                <h3 className="text-xl font-bold mb-1">Farmer Education</h3>
                 <p className="text-gray-600">
-                  Practical training builds trust and operational confidence for new adopters. 
+                  Dhanvantri Farms provides hands-on training to empower farmers with confidence and expertise.
                 </p>
               </motion.div>
               <motion.div variants={fadeUp} className="p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition group">
                 <div className="h-12 w-12 rounded-xl bg-green-100 text-green-700 flex items-center justify-center mb-4 group-hover:bg-green-700 group-hover:text-white transition">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold mb-1">Lifetime Support</h3>
+                <h3 className="text-xl font-bold mb-1">Lifetime Agronomy Support</h3>
                 <p className="text-gray-600">
-                  Ongoing agronomy guidance sustains yields and safeguards system health. 
+                  Expert guidance from Dhanvantri Farms ensures sustained yields and system reliability.
                 </p>
               </motion.div>
             </div>
@@ -348,7 +346,7 @@ export default function HydroponicsPage() {
       <section id="types" className="bg-gray-50">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-3xl md:text-4xl font-extrabold text-center">
-            Types of <span className="text-green-700">Agriplast Hydroponics</span>
+            Types of <span className="text-green-700">Dhanvantri Farms Hydroponics</span>
           </motion.h2>
 
           <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -398,7 +396,7 @@ export default function HydroponicsPage() {
                     ))}
                   </div>
                   <button className="mt-6 px-5 py-2.5 bg-green-700 text-white rounded-lg font-medium hover:bg-green-800 transition">
-                    Learn More About This System
+                    Learn More About Dhanvantri Farms Systems
                   </button>
                 </div>
                 <div className="lg:col-span-1">
@@ -418,7 +416,7 @@ export default function HydroponicsPage() {
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-                      <span className="text-white text-sm">System overview of {active.title}</span>
+                      <span className="text-white text-sm">Dhanvantri Farms’ {active.title} overview</span>
                     </div>
                   </motion.div>
                 </div>
@@ -433,19 +431,19 @@ export default function HydroponicsPage() {
         <div className="container mx-auto px-4 py-16 md:py-20">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={stagger}>
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-extrabold text-center">
-              Advantages of <span className="text-green-700">Hydroponics</span>
+              Advantages of <span className="text-green-700">Dhanvantri Farms Hydroponics</span>
             </motion.h2>
 
             <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: Timer, title: 'Extended Season', text: 'Multiple crop cycles year-round under regulated light, temperature, and nutrition.' },
-                { icon: LineChart, title: 'Improved Yield', text: 'Oxygenated solutions and tight control often accelerate growth and output.' },
-                { icon: Layers, title: 'Higher Density', text: 'Proximity increases as root competition drops in solution-based culture.' },
-                { icon: Droplets, title: 'Less Water Use', text: 'Recirculation can save 80–90% water compared to in-ground methods.' },
-                { icon: Leaf, title: 'Grow Anywhere', text: 'Integrates into compact indoor or urban footprints with modular rigs.' },
-                { icon: ShieldCheck, title: 'Fewer Pests', text: 'Controlled access environments reduce pest pressure and interventions.' },
-                { icon: Sprout, title: 'Easier Harvest', text: 'Waist-height benches and channels enhance ergonomics and speed.' },
-                { icon: CloudRain, title: 'Modular Design', text: 'Channelized layouts expand easily for commercial scaling.' },
+                { icon: Timer, title: 'Year-Round Farming', text: 'Dhanvantri Farms enables multiple crop cycles with controlled light, temperature, and nutrients.' },
+                { icon: LineChart, title: 'Higher Yields', text: 'Oxygen-rich solutions and precise controls boost growth and productivity.' },
+                { icon: Layers, title: 'Dense Planting', text: 'Eliminate root competition for closer plant spacing and higher output.' },
+                { icon: Droplets, title: 'Water Efficiency', text: 'Save 80–90% water compared to traditional farming with recirculation.' },
+                { icon: Leaf, title: 'Flexible Locations', text: 'Grow in urban or compact spaces with Dhanvantri Farms’ modular systems.' },
+                { icon: ShieldCheck, title: 'Reduced Pests', text: 'Controlled environments minimize pest issues and pesticide use.' },
+                { icon: Sprout, title: 'Ergonomic Harvest', text: 'Waist-height setups simplify and speed up harvesting.' },
+                { icon: CloudRain, title: 'Scalable Systems', text: 'Easily expand with Dhanvantri Farms’ modular designs for commercial growth.' },
               ].map((card, i) => (
                 <motion.div
                   key={card.title}
@@ -466,14 +464,14 @@ export default function HydroponicsPage() {
       </section>
 
       {/* Why choose */}
-      <section id="why-agriplast" className="bg-gray-50">
+      <section id="why-dhanvantri" className="bg-gray-50">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }}>
               <div className="relative h-72 sm:h-80 md:h-96 rounded-2xl overflow-hidden border border-gray-200 shadow-md group">
                 <Image
                   src="/images/hydroponics/why.jpg"
-                  alt="Why choose Agriplast Hydroponics"
+                  alt="Why choose Dhanvantri Farms Hydroponics"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover group-hover:scale-105 transition duration-700"
@@ -483,32 +481,32 @@ export default function HydroponicsPage() {
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={stagger}>
               <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-extrabold">
-                Why choose <span className="text-green-700">Agriplast Hydroponics</span>?
+                Why Choose <span className="text-green-700">Dhanvantri Farms Hydroponics</span>?
               </motion.h2>
               <motion.p variants={fadeUp} className="mt-3 text-gray-600">
-                With over a decade of experience in sustainable agriculture solutions, Agriplast brings expertise, innovation, and reliability to your hydroponic farming journey.
+                Dhanvantri Farms pioneers sustainable hydroponic solutions, blending innovation, expertise, and farmer-focused support for unmatched results.
               </motion.p>
               <div className="mt-8 grid sm:grid-cols-2 gap-6">
                 {[
                   {
-                    title: 'System & Consulting',
+                    title: 'Customized Solutions',
                     text:
-                      'Turnkey, recirculating designs tailored to requirements with best-practice deployment and support.',
+                      'Dhanvantri Farms designs tailored, recirculating systems aligned with your specific crop and environmental needs.',
                   },
                   {
-                    title: 'Slope Adjuster Table',
+                    title: 'Precision Slope Channels',
                     text:
-                      'Uniform NFT slope enforces consistent flow distribution across channels and plants.',
+                      'Uniform NFT slopes ensure consistent nutrient flow for healthier plants and higher yields.',
                   },
                   {
-                    title: 'Best Automation',
+                    title: 'Smart Automation',
                     text:
-                      'IoT monitoring and control for parameters with secure access via desktop and mobile.',
+                      'IoT-enabled systems allow remote monitoring of water, nutrients, and climate via smartphone or computer.',
                   },
                   {
-                    title: 'Ebb & Flow Nursery',
+                    title: 'Advanced Nursery Systems',
                     text:
-                      'Uniform wetting per net pot improves early-stage rooting and stand establishment.',
+                      'Ebb and flow technology ensures uniform nutrient delivery for strong seedling development.',
                   },
                 ].map((f, i) => (
                   <motion.div 
@@ -540,12 +538,28 @@ export default function HydroponicsPage() {
             variants={fadeUp}
             className="text-3xl md:text-4xl font-extrabold text-center mb-12"
           >
-            What Our <span className="text-green-700">Clients Say</span>
+            What Our <span className="text-green-700">Farmers Say</span>
           </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
+            {[
+              {
+                name: 'Ramesh Patel',
+                title: 'Organic Farmer',
+                text: 'Dhanvantri Farms’ hydroponic systems revolutionized our farm. We’ve tripled our yields and cut water usage by 80%!',
+              },
+              {
+                name: 'Anita Sharma',
+                title: 'Urban Farmer',
+                text: 'The training and support from Dhanvantri Farms made hydroponics easy. Our urban farm now grows fresh greens year-round.',
+              },
+              {
+                name: 'Vikram Singh',
+                title: 'Commercial Grower',
+                text: 'Dhanvantri Farms’ automation systems saved us time and boosted crop quality. Their agronomy support is unmatched.',
+              },
+            ].map((item, i) => (
               <motion.div
-                key={item}
+                key={i}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
@@ -554,16 +568,14 @@ export default function HydroponicsPage() {
               >
                 <div className="flex items-center mb-4">
                   <div className="h-12 w-12 rounded-full bg-green-200 flex items-center justify-center text-green-800 font-bold">
-                    {item}
+                    {i + 1}
                   </div>
                   <div className="ml-4">
-                    <div className="font-semibold">Client Name</div>
-                    <div className="text-sm text-gray-500">Farm Owner</div>
+                    <div className="font-semibold">{item.name}</div>
+                    <div className="text-sm text-gray-500">{item.title}</div>
                   </div>
                 </div>
-                <p className="text-gray-600">
-                  "Agriplast's hydroponic systems transformed our farming operation. We've doubled our yield while using 70% less water."
-                </p>
+                <p className="text-gray-600">{item.text}</p>
                 <div className="mt-4 flex">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <svg key={star} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -586,24 +598,24 @@ export default function HydroponicsPage() {
           <div className="mt-8 max-w-3xl mx-auto space-y-4">
             {[
               {
-                q: 'How much does a hydroponic system cost?',
-                a: 'Costs vary based on system size, complexity, and automation level. Small home systems start around $200, while commercial setups can range from $10,000 to $50,000 or more. We offer customized quotes based on your specific needs.',
+                q: 'How much does a Dhanvantri Farms hydroponic system cost?',
+                a: 'Costs depend on system size and automation. Small setups start at $250, while commercial systems range from $12,000 to $60,000. Dhanvantri Farms offers tailored quotes.',
               },
               {
-                q: 'What crops grow best in hydroponic systems?',
-                a: 'Leafy greens like lettuce, kale, and herbs thrive in hydroponic systems. Fruiting plants like tomatoes, peppers, and cucumbers also perform well. We can help you select the best crops for your specific setup and market.',
+                q: 'Which crops are best for Dhanvantri Farms hydroponics?',
+                a: 'Leafy greens, herbs, tomatoes, and cucumbers thrive in our systems. Dhanvantri Farms helps you choose crops suited to your market and setup.',
               },
               {
-                q: 'How much time does maintaining a hydroponic system require?',
-                a: 'Basic maintenance takes 1-2 hours per week for small systems. Commercial systems with automation require less daily attention but benefit from weekly monitoring. We provide training and support to optimize your time investment.',
+                q: 'How much time is needed to maintain a hydroponic system?',
+                a: 'Small systems require 1-2 hours weekly. Dhanvantri Farms’ automated commercial setups need minimal daily effort with weekly checks, supported by our training.',
               },
               {
-                q: 'Do I need special training to operate a hydroponic system?',
-                a: 'While hydroponics has a learning curve, our systems are designed for ease of use. We provide comprehensive training and ongoing support to ensure your success. Many beginners become proficient within a few weeks.',
+                q: 'Do I need training to use Dhanvantri Farms’ systems?',
+                a: 'Our user-friendly systems come with comprehensive training. Dhanvantri Farms’ ongoing support ensures beginners master hydroponics quickly.',
               },
               {
-                q: 'How does hydroponics compare to traditional farming in terms of yield?',
-                a: 'Hydroponic systems typically produce 3-10 times more yield per square foot compared to soil farming, with faster growth cycles and year-round production capabilities in controlled environments.',
+                q: 'How do Dhanvantri Farms’ hydroponics compare to soil farming?',
+                a: 'Dhanvantri Farms’ systems yield 3-10 times more per square foot, with faster cycles and year-round production in controlled environments.',
               },
             ].map((item, idx) => (
               <motion.div
@@ -633,9 +645,6 @@ export default function HydroponicsPage() {
           </div>
         </div>
       </section>
-
-     
-  
-      </main>
+    </main>
   )
 }

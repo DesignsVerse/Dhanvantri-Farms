@@ -11,32 +11,32 @@ const FAQ = () => {
     {
       question: 'What is the ROI timeline for smart farming investments?',
       answer:
-        'Most farmers see a return on investment within 2-3 years. With our advanced systems, crop yields increase by 300-400%, while operational costs decrease by 30-40%. The exact timeline depends on the crop type, market conditions, and system complexity.',
+        'Most farmers see a return on investment within 2-3 years with Dhanvantri Farms’ smart farming solutions. Our advanced systems boost crop yields by 300-400% while reducing operational costs by 30-40%. The exact timeline depends on crop type, market conditions, and system complexity.',
     },
     {
       question: 'Do you provide installation and maintenance services?',
       answer:
-        'Yes, we provide complete end-to-end services including site preparation, installation, commissioning, training, and ongoing maintenance. Our technical team ensures proper setup and provides 24/7 support for all automated systems.',
+        'Yes, Dhanvantri Farms offers complete end-to-end services, including site preparation, installation, commissioning, training, and ongoing maintenance. Our technical team ensures seamless setup and provides 24/7 support for all automated systems.',
     },
     {
       question: 'Which crops are best suited for hydroponic cultivation?',
       answer:
-        'Leafy vegetables (lettuce, spinach, herbs), tomatoes, cucumbers, peppers, and strawberries perform exceptionally well in hydroponic systems. We help you choose the right crops based on your local market demand and climate conditions.',
+        'Leafy vegetables (lettuce, spinach, herbs), tomatoes, cucumbers, peppers, and strawberries thrive in Dhanvantri Farms’ hydroponic systems. We guide you to select the best crops based on your local market demand and climate conditions.',
     },
     {
       question: 'What financing options are available for large projects?',
       answer:
-        'We offer flexible financing solutions including equipment financing, lease options, and partnerships with agricultural banks. Government subsidies for modern farming technology can cover 40-60% of project costs in many states.',
+        'Dhanvantri Farms provides flexible financing solutions, including equipment financing, lease options, and partnerships with agricultural banks. Government subsidies for modern farming technology can cover 40-60% of project costs in many states.',
     },
     {
       question: 'How much water do hydroponic systems save compared to traditional farming?',
       answer:
-        'Hydroponic systems use 90% less water than traditional soil-based farming. The closed-loop system recirculates nutrient solutions, and precise irrigation eliminates waste. This makes it ideal for water-scarce regions.',
+        'Dhanvantri Farms’ hydroponic systems use 90% less water than traditional soil-based farming. Our closed-loop systems recirculate nutrient solutions, and precise irrigation eliminates waste, making them ideal for water-scarce regions.',
     },
     {
       question: 'What ongoing support do you provide after installation?',
       answer:
-        'We provide comprehensive support including remote monitoring, regular maintenance, troubleshooting, crop guidance, market linkage support, and upgrades. Our agronomists are available for consultation throughout the growing season.',
+        'Dhanvantri Farms offers comprehensive support, including remote monitoring, regular maintenance, troubleshooting, crop guidance, market linkage support, and system upgrades. Our agronomists are available for consultation throughout the growing season.',
     },
   ];
 
@@ -56,15 +56,11 @@ const FAQ = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            Frequently Asked{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">
-              Questions
-            </span>
+            Your Questions, Answered
           </h2>
           <div className="h-1 w-48 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
           <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-            Get answers to common questions about smart farming solutions and our
-            services
+            Explore answers to common queries about Dhanvantri Farms’ smart farming solutions and services.
           </p>
         </motion.div>
 

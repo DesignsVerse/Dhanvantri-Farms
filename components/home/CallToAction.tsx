@@ -60,14 +60,13 @@ const CallToAction = () => {
             variants={childVariants}
             className="text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight"
           >
-            Ready to Transform Your Farm?
+            Start Your Farming Revolution
           </motion.h2>
           <motion.p 
             variants={childVariants}
             className="text-xl lg:text-2xl text-green-100 max-w-4xl mx-auto leading-relaxed"
           >
-            Join thousands of successful farmers who increased their productivity 
-            and profitability with our smart farming solutions
+            Join thousands of farmers who have boosted productivity and profitability with Dhanvantri Farms’ smart farming solutions.
           </motion.p>
         </div>
 
@@ -120,7 +119,7 @@ const CallToAction = () => {
           className="text-center mt-12"
         >
           <p className="text-green-100 text-lg">
-            🌱 Over 15,000 farmers trust us • 98% success rate • 50+ years experience
+            🌱 Over 15,000 farmers trust Dhanvantri Farms • 98% success rate • 50+ years of expertise
           </p>
         </motion.div>
       </motion.div>

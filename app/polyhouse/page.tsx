@@ -120,7 +120,7 @@ export default function PolyhousePage() {
       <section className="relative h-[80vh] overflow-hidden">
         <Image
           src="https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg"
-          alt="Modern Polyhouse Landscape"
+          alt="Dhanvantri Farms Polyhouse Landscape"
           fill
           className="object-cover brightness-50"
           priority
@@ -133,10 +133,10 @@ export default function PolyhousePage() {
             className="text-center px-4 max-w-5xl"
           >
             <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
-              Revolutionize Your Farming with <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-300">Polyhouse</span> Technology
+              Transform Farming with <span className="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-emerald-300">Dhanvantri Farms Polyhouses</span>
             </h1>
             <p className="text-2xl md:text-3xl text-gray-100 max-w-4xl mx-auto mb-8 drop-shadow-md">
-              Unlock maximum yields, sustainable practices, and premium produce with our state-of-the-art polyhouse solutions.
+              Discover Dhanvantri Farms’ advanced polyhouse solutions for sustainable, high-yield farming with year-round crop protection.
             </p>
             <Link href="/contact" className="inline-flex items-center px-10 py-4 bg-lime-400 text-green-900 rounded-full font-bold text-lg hover:bg-lime-300 transition-all shadow-lg hover:shadow-xl">
               Get Started Today <ArrowRight className="ml-2" size={20} />
@@ -161,17 +161,20 @@ export default function PolyhousePage() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                What is a <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Polyhouse</span>?
+                What is a <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Dhanvantri Farms Polyhouse</span>?
               </h2>
               <p className="text-xl text-gray-700 mb-6">
-                A polyhouse, also known as a polytunnel or greenhouse, is a controlled environment structure covered with transparent polyethylene film. It creates an ideal microclimate for crop cultivation by regulating temperature, humidity, light, and ventilation.
+                A Dhanvantri Farms polyhouse is a state-of-the-art controlled environment structure designed for modern agriculture. Covered with durable, UV-stabilized polyethylene film, it creates an optimal microclimate by precisely managing temperature, humidity, light, and ventilation.
               </p>
               <p className="text-xl text-gray-700 mb-6">
-                Unlike traditional farming, polyhouses protect plants from adverse weather, pests, and diseases while optimizing resource use. They are widely used for growing high-value crops like vegetables, flowers, fruits, and herbs.
+                Unlike open-field farming, Dhanvantri Farms polyhouses shield crops from harsh weather, pests, and diseases, while minimizing water and chemical use. Perfect for high-value crops like vegetables, flowers, and fruits, our polyhouses boost yields by 3-5x and enable year-round farming.
+              </p>
+              <p className="text-xl text-gray-700 mb-6">
+                With advanced features like automated climate control and precision irrigation, Dhanvantri Farms polyhouses empower farmers to achieve sustainable, high-quality production with maximum efficiency.
               </p>
               <div className="flex items-center space-x-4">
                 <Globe className="w-6 h-6 text-green-600" />
-                <span className="text-gray-700 font-semibold">Popular in India for sustainable agriculture</span>
+                <span className="text-gray-700 font-semibold">Trusted by farmers across India for protected cultivation</span>
               </div>
             </motion.div>
             <motion.div
@@ -182,7 +185,7 @@ export default function PolyhousePage() {
             >
               <Image
                 src="https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg"
-                alt="Inside a Polyhouse"
+                alt="Inside a Dhanvantri Farms Polyhouse"
                 fill
                 className="object-cover rounded-3xl shadow-2xl"
               />
@@ -487,99 +490,6 @@ export default function PolyhousePage() {
           </div>
         </div>
       </motion.section>
-
-      {/* Quick Links Section */}
-      {/* <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-24 bg-gradient-to-br from-emerald-50 to-green-50"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Explore More About <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300">Polyhouses</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Dive deeper into specifications, costs, and expert insights.
-            </p>
-          </motion.div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Setup Cost & Subsidies',
-                description: 'Detailed investment breakdown and government scheme guidance',
-                href: '/polyhouse/cost',
-                image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg'
-              },
-              {
-                title: 'Crop Economics & ROI',
-                description: 'Profit calculations for popular crops and payback periods',
-                href: '/polyhouse/crop-economics',
-                image: 'https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg'
-              },
-              {
-                title: 'Installation Guide',
-                description: 'Step-by-step setup process and maintenance tips',
-                href: '/polyhouse/installation',
-                image: 'https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg'
-              },
-              {
-                title: 'Sustainable Practices',
-                description: 'Eco-friendly features and environmental impact',
-                href: '/polyhouse/sustainability',
-                image: 'https://images.pexels.com/photos/1068474/pexels-photo-1068474.jpeg'
-              },
-              {
-                title: 'Common FAQs',
-                description: 'Answers to your burning questions about polyhouses',
-                href: '/polyhouse/faqs',
-                image: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg'
-              },
-              {
-                title: 'Custom Design Request',
-                description: 'Get a tailored polyhouse plan for your farm',
-                href: '/polyhouse/custom',
-                image: 'https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg'
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.03 }}
-              >
-                <Link href={item.href} className="block">
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
-                    <div className="relative h-48">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 hover:text-emerald-700 transition-colors">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600">{item.description}</p>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section> */}
 
       {/* CTA Section */}
       <motion.section

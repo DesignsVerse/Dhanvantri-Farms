@@ -56,13 +56,13 @@ const PolyhousePage = () => {
     },
     {
       title: "LESS PESTICIDES",
-      description: "Less pests and insects in a poly house",
+      description: "Less pests and insects in a polyhouse",
       icon: "🚫",
       image: "https://images.pexels.com/photos/4917238/pexels-photo-4917238.jpeg"
     },
     {
       title: "HIGHER PRODUCTION",
-      description: "Quality of produce is higher in poly house",
+      description: "Quality of produce is higher in a polyhouse",
       icon: "📈",
       image: "https://images.pexels.com/photos/6001991/pexels-photo-6001991.jpeg"
     }
@@ -75,20 +75,20 @@ const PolyhousePage = () => {
       image: "https://images.pexels.com/photos/6272328/pexels-photo-6272328.jpeg"
     },
     {
-      title: "Customer Education for plant growing",
+      title: "Customer Education for Plant Growing",
       description: "For years, our strength has been rooted in a balanced approach of educating while fostering trust and expertise.",
       image: "https://images.pexels.com/photos/6001997/pexels-photo-6001997.jpeg"
     },
     {
       title: "Life-time Agronomy Support",
-      description: "Free agronomy support to all the customers from highly experienced agronomist has 20+ years of experience.",
+      description: "Free agronomy support to all the customers from highly experienced agronomist with 20+ years of experience.",
       image: "https://images.pexels.com/photos/4917238/pexels-photo-4917238.jpeg"
     }
   ];
 
   const comparisonData = [
     { feature: "Height of Structure", agriplast: "6.8M to 7.2M from Ground Level", others: "6.2M to 6.5M from Ground Level" },
-    { feature: "Side Ventilation", agriplast: "4 meters", others: "2.5 meteres" },
+    { feature: "Side Ventilation", agriplast: "4 meters", others: "2.5 meters" },
     { feature: "Top Vent", agriplast: "1.2 to 1.4 meters", others: "0.9 meters" },
     { feature: "Pipe Quality and Galvanization", agriplast: "375 GSM to 400 GSM", others: "150 GSM to 250 GSM" },
     { feature: "Nut Bolts and Connectors", agriplast: "22 Micron Zinc Ferrous Coated", others: "No Coating / 2mm Coating" },
@@ -152,114 +152,71 @@ const PolyhousePage = () => {
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       {/* Header */}
       <header className="bg-gradient-to-br from-green-800 via-green-900 to-emerald-900 text-white py-48 relative overflow-hidden">
-      {/* Enhanced Background with Multiple Overlapping Images */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero/1.jpg"
-          alt="Polyhouse background"
-          fill
-          className="object-cover opacity-20"
-          priority
-        />
-        {/* Subtle Overlay for Depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-        {/* Animated Floating Elements for Modern Touch */}
-        <motion.div
-          className="absolute top-10 left-10 w-32 h-32 bg-green-400/10 rounded-full blur-xl"
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.5, 1, 0.5],
-          }}
-          transition={{ duration: 4, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-20 w-48 h-48 bg-emerald-300/10 rounded-full blur-xl"
-          animate={{
-            y: [0, 20, 0],
-            opacity: [0.3, 0.8, 0.3],
-          }}
-          transition={{ duration: 6, repeat: Infinity, delay: 1 }}
-        />
-      </div>
-
-      {/* Optional Background Video for Advanced Feel (if you have a video) */}
-      {/* <video
-        autoPlay
-        loop
-        muted
-        className="absolute inset-0 w-full h-full object-cover opacity-10"
-      >
-        <source src="/videos/polyhouse-bg.mp4" type="video/mp4" />
-      </video> */}
-
-      <div className="container mx-auto px-4 text-center relative z-10">
-        {/* Enhanced Title with Gradient Text and Better Typography */}
-        <motion.div
-          initial={{ opacity: 0, y: -50, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="mb-6"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-green-200 to-emerald-100 bg-clip-text text-transparent leading-tight">
-            Advantages of Agriplast Polyhouse
-          </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-emerald-400 mx-auto rounded-full" />
-        </motion.div>
-
-        {/* Enhanced Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-xl md:text-2xl text-green-100 mb-8 max-w-3xl mx-auto leading-relaxed"
-        >
-          Revolutionizing protected cultivation with advanced polyhouse technology for sustainable and high-yield farming
-        </motion.p>
-
-        {/* Added CTA Buttons for Better Engagement */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-        >
-          <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-            Explore Benefits
-          </button>
-          <button className="border-2 border-green-400 hover:bg-green-400/20 px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300">
-            Learn More
-          </button>
-        </motion.div>
-
-       
-      </div>
-    </header>
-
-      {/* Navigation Tabs */}
-      {/* <div className="sticky top-0 bg-white shadow-md z-10">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-wrap gap-3 justify-center">
-            {polyhouseTypes.map((type) => (
-              <motion.button
-                key={type.id}
-                onClick={() => scrollToSection(type.id)}
-                whileHover={{ scale: 1.05 }}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-colors shadow-sm ${
-                  activeTab === type.id
-                    ? 'bg-green-600 text-white'
-                    : 'bg-green-100 text-green-800 hover:bg-green-200'
-                }`}
-              >
-                {type.name}
-              </motion.button>
-            ))}
-          </div>
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero/1.jpg"
+            alt="Polyhouse Farming Background"
+            fill
+            className="object-cover opacity-20"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+          <motion.div
+            className="absolute top-10 left-10 w-32 h-32 bg-green-400/10 rounded-full blur-xl"
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.5, 1, 0.5],
+            }}
+            transition={{ duration: 4, repeat: Infinity }}
+          />
+          <motion.div
+            className="absolute bottom-20 right-20 w-48 h-48 bg-emerald-300/10 rounded-full blur-xl"
+            animate={{
+              y: [0, 20, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{ duration: 6, repeat: Infinity, delay: 1 }}
+          />
         </div>
-      </div> */}
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: -50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="mb-6"
+          >
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-green-200 to-emerald-100 bg-clip-text text-transparent leading-tight">
+              Advantages of Polyhouse Farming
+            </h1>
+            <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-emerald-400 mx-auto rounded-full" />
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-xl md:text-2xl text-green-100 mb-8 max-w-3xl mx-auto leading-relaxed"
+          >
+            Transform agriculture with Dhanvantri Farms’ advanced polyhouse solutions, designed for sustainable, high-yield farming in India.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              Explore Benefits
+            </button>
+            <button className="border-2 border-green-400 hover:bg-green-400/20 px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300">
+              Learn More
+            </button>
+          </motion.div>
+        </div>
+      </header>
 
       <main className="container mx-auto px-4 py-12">
         {/* Introduction Section */}
-        {/* <motion.section
+        <motion.section
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -270,19 +227,16 @@ const PolyhousePage = () => {
               <div className="md:w-1/2 p-8">
                 <h2 className="text-3xl font-semibold text-green-800 mb-6">What is a Polyhouse?</h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  Polyhouse or a Greenhouse is a house or a structure made of translucent material like polyethylene, 
-                  where the plants grow and develop under controlled climatic conditions. The size of structure can differ 
-                  from small shacks to big-size buildings as per the need.
+                  A polyhouse is a modern agricultural structure made of translucent polyethylene, designed to create a controlled environment for optimal crop growth. At Dhanvantri Farms, our polyhouses use advanced technology to regulate temperature, humidity, and light, ensuring higher yields and better-quality produce.
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Our polyhouses are designed with cutting-edge technology to provide optimal growing conditions for various crops, 
-                  ensuring higher yields and better quality produce throughout the year.
+                  Perfect for protected cultivation, Dhanvantri Farms polyhouses shield crops from harsh weather, pests, and diseases while reducing water usage by up to 50%. Ideal for vegetables, flowers, and exotic fruits, they enable year-round farming with 3-5x higher productivity compared to traditional methods.
                 </p>
               </div>
               <div className="md:w-1/2">
                 <Image
                   src="https://images.pexels.com/photos/105804/pexels-photo-105804.jpeg"
-                  alt="Polyhouse structure"
+                  alt="Dhanvantri Farms Polyhouse Structure"
                   width={600}
                   height={400}
                   className="w-full h-full object-cover"
@@ -290,86 +244,80 @@ const PolyhousePage = () => {
               </div>
             </div>
           </div>
-        </motion.section> */}
+        </motion.section>
 
-<motion.section
-  initial={{ opacity: 0, y: 50 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
-  className="mb-20"
->
-  <h2 className="text-3xl font-semibold text-green-800 mb-8 text-center">Key Advantages of Polyhouse Farming</h2>
-  
-  <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-    <div className="md:flex">
-      {/* Left side - Points */}
-      <div className="md:w-1/2 p-8">
-        <h3 className="text-2xl font-semibold text-green-700 mb-6">Why Choose Polyhouse Farming?</h3>
-        
-        <div className="space-y-6">
-          {advantages.map((advantage, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex items-start"
-            >
-              <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                <span className="text-xl">{advantage.icon}</span>
+        {/* Key Advantages Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-20"
+        >
+          <h2 className="text-3xl font-semibold text-green-800 mb-8 text-center">Key Advantages of Polyhouse Farming</h2>
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div className="md:flex">
+              <div className="md:w-1/2 p-8">
+                <h3 className="text-2xl font-semibold text-green-700 mb-6">Why Choose Polyhouse Farming?</h3>
+                <div className="space-y-6">
+                  {advantages.map((advantage, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="flex items-start"
+                    >
+                      <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                        <span className="text-xl">{advantage.icon}</span>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-green-800 mb-1">{advantage.title}</h4>
+                        <p className="text-gray-600">{advantage.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="mt-8 p-6 bg-green-50 rounded-lg">
+                  <h4 className="text-lg font-semibold text-green-700 mb-3">Additional Benefits:</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-center">
+                      <Check size={18} className="text-green-600 mr-2" />
+                      <span>Water conservation up to 50% compared to open field farming</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Check size={18} className="text-green-600 mr-2" />
+                      <span>Year-round production regardless of external weather conditions</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Check size={18} className="text-green-600 mr-2" />
+                      <span>Protection from extreme weather events</span>
+                    </li>
+                    <li className="flex items-center">
+                      <Check size={18} className="text-green-600 mr-2" />
+                      <span>Higher quality produce with better market value</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h4 className="text-lg font-semibold text-green-800 mb-1">{advantage.title}</h4>
-                <p className="text-gray-600">{advantage.description}</p>
+              <div className="md:w-1/2">
+                <div className="h-full relative">
+                  <Image
+                    src="https://images.pexels.com/photos/6272328/pexels-photo-6272328.jpeg"
+                    alt="Modern Polyhouse Farming by Dhanvantri Farms"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
+                    <div className="p-6 text-white">
+                      <h3 className="text-xl font-semibold mb-2">Modern Agriculture Solution</h3>
+                      <p className="text-green-100">Increase yields by up to 300% with Dhanvantri Farms’ protected cultivation</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Additional benefits list */}
-        <div className="mt-8 p-6 bg-green-50 rounded-lg">
-          <h4 className="text-lg font-semibold text-green-700 mb-3">Additional Benefits:</h4>
-          <ul className="space-y-2 text-gray-700">
-            <li className="flex items-center">
-              <Check size={18} className="text-green-600 mr-2" />
-              <span>Water conservation up to 50% compared to open field farming</span>
-            </li>
-            <li className="flex items-center">
-              <Check size={18} className="text-green-600 mr-2" />
-              <span>Year-round production regardless of external weather conditions</span>
-            </li>
-            <li className="flex items-center">
-              <Check size={18} className="text-green-600 mr-2" />
-              <span>Protection from extreme weather events</span>
-            </li>
-            <li className="flex items-center">
-              <Check size={18} className="text-green-600 mr-2" />
-              <span>Higher quality produce with better market value</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-      {/* Right side - Photo */}
-      <div className="md:w-1/2">
-        <div className="h-full relative">
-          <Image
-            src="https://images.pexels.com/photos/6272328/pexels-photo-6272328.jpeg"
-            alt="Modern polyhouse farming"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
-            <div className="p-6 text-white">
-              <h3 className="text-xl font-semibold mb-2">Modern Agriculture Solution</h3>
-              <p className="text-green-100">Increase yields by up to 300% with controlled environment agriculture</p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</motion.section>
+        </motion.section>
 
         {/* Features Section */}
         <motion.section
@@ -378,7 +326,7 @@ const PolyhousePage = () => {
           transition={{ duration: 0.8 }}
           className="mb-20"
         >
-          <h2 className="text-3xl font-semibold text-green-800 mb-8 text-center">Why Choose Agriplast?</h2>
+          <h2 className="text-3xl font-semibold text-green-800 mb-8 text-center">Why Choose Dhanvantri Farms?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
@@ -441,15 +389,14 @@ const PolyhousePage = () => {
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
             <div className="p-8 bg-green-700 text-white">
               <h2 className="text-3xl font-semibold">Structure Comparison</h2>
-              <p className="text-green-100 mt-2">Agriplast Designed Polyhouse Structure vs other polyhouse structure</p>
+              <p className="text-green-100 mt-2">Dhanvantri Farms Designed Polyhouse Structure vs Other Polyhouse Structures</p>
             </div>
-            
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-green-100">
                     <th className="p-4 font-semibold text-green-800">Features</th>
-                    <th className="p-4 font-semibold text-green-800">Agriplast Designed Structure</th>
+                    <th className="p-4 font-semibold text-green-800">Dhanvantri Farms Structure</th>
                     <th className="p-4 font-semibold text-green-800">Others Structure</th>
                   </tr>
                 </thead>
@@ -484,213 +431,170 @@ const PolyhousePage = () => {
         </motion.section>
 
         {/* Polyhouse Types Sections */}
-{polyhouseTypes.map((type) => (
-  <motion.section 
-    key={type.id} 
-    id={type.id} 
-    ref={sectionRefs[type.id as keyof typeof sectionRefs]}
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    className="mb-20 scroll-mt-24"
-  >
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-      <div className="md:flex md:flex-row-reverse">
-        <div className="md:w-1/2">
-          <Image
-            src={type.image}
-            alt={type.name}
-            width={600}
-            height={400}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="md:w-1/2 p-8">
-          <h2 className="text-3xl font-semibold text-green-800 mb-6">{type.name}</h2>
-          
-          {type.id === 'menu1' && (
-            <>
-              <p className="text-lg text-gray-700 mb-6">
-                Agriplast Protected Cultivation offers a range of Naturally Ventilated Polyhouses, 
-                each designed to suit various climatic conditions and crop types. Our polyhouses utilize 
-                advanced materials and design principles to allow natural air flow, which moderates 
-                temperatures and humidity levels effectively.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Enhanced Climate Control</h3>
-                  <p className="text-gray-600">
-                    These polyhouses are expertly designed to allow for optimal natural airflow, which regulates 
-                    temperature and humidity precisely, ensuring ideal growing conditions for a variety of crops.
-                  </p>
+        {polyhouseTypes.map((type) => (
+          <motion.section
+            key={type.id}
+            id={type.id}
+            ref={sectionRefs[type.id as keyof typeof sectionRefs]}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-20 scroll-mt-24"
+          >
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div className="md:flex md:flex-row-reverse">
+                <div className="md:w-1/2">
+                  <Image
+                    src={type.image}
+                    alt={type.name}
+                    width={600}
+                    height={400}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Energy Efficiency</h3>
-                  <p className="text-gray-600">
-                    By leveraging natural ventilation, these structures reduce the reliance on mechanical systems 
-                    for climate control, significantly cutting energy use and lowering operational costs.
-                  </p>
-                </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Cost-Effectiveness</h3>
-                  <p className="text-gray-600">
-                    The use of durable, transparent materials maximizes sunlight penetration, enhancing plant growth 
-                    and yield, which boosts profitability without the hefty investment in additional climate control technologies.
-                  </p>
-                </div>
-              </div>
-            </>
-          )}
-          
-          {type.id === 'menu2' && (
-            <>
-              <p className="text-lg text-gray-700 mb-6">
-                Agriplast's Butterfly Ventilated Polyhouses feature a unique roof design that opens like butterfly wings, 
-                providing exceptional ventilation and temperature control. This design is perfect for regions with high 
-                humidity and temperature fluctuations.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Superior Ventilation</h3>
-                  <p className="text-gray-600">
-                    The butterfly roof design allows hot air to escape efficiently while drawing in cooler air from the sides, 
-                    creating optimal growing conditions even in hot climates.
-                  </p>
-                </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Rain Protection</h3>
-                  <p className="text-gray-600">
-                    The unique design provides excellent protection against heavy rainfall while maintaining ventilation, 
-                    preventing waterlogging and related plant diseases.
-                  </p>
-                </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Adaptable Design</h3>
-                  <p className="text-gray-600">
-                    Our butterfly ventilated polyhouses can be customized with additional features like insect nets, 
-                    shade systems, and automated climate control based on specific crop requirements.
-                  </p>
-                </div>
-              </div>
-            </>
-          )}
-          
-          {type.id === 'menu3' && (
-            <>
-              <p className="text-lg text-gray-700 mb-6">
-                Specifically designed for tropical regions, Agriplast's Tropical Polyhouses incorporate advanced cooling 
-                technologies and ventilation systems to maintain ideal growing conditions in hot and humid climates.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Advanced Cooling Systems</h3>
-                  <p className="text-gray-600">
-                    Equipped with evaporative cooling pads and exhaust fans, these polyhouses maintain temperatures 
-                    5-8°C lower than outside conditions, perfect for heat-sensitive crops.
-                  </p>
-                </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Humidity Management</h3>
-                  <p className="text-gray-600">
-                    Specialized ventilation systems control humidity levels, preventing fungal diseases and ensuring 
-                    optimal transpiration rates for plant growth.
-                  </p>
-                </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Durable Construction</h3>
-                  <p className="text-gray-600">
-                    Built with reinforced structures to withstand tropical storms and heavy rainfall, ensuring 
-                    year-round protection for your crops.
-                  </p>
-                </div>
-              </div>
-            </>
-          )}
-          
-          {type.id === 'menu4' && (
-            <>
-              <p className="text-lg text-gray-700 mb-6">
-                Agriplast's Gothic Polyhouses feature a distinctive arched roof design that offers superior snow and rain 
-                shedding capabilities, making them ideal for regions with heavy precipitation or extreme weather conditions.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Weather Resistance</h3>
-                  <p className="text-gray-600">
-                    The gothic arch design prevents snow and water accumulation on the roof, reducing structural stress 
-                    and preventing damage during heavy precipitation.
-                  </p>
-                </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Increased Headroom</h3>
-                  <p className="text-gray-600">
-                    The arched design provides more headroom compared to traditional structures, allowing for better 
-                    air circulation and accommodating taller crops.
-                  </p>
-                </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Energy Efficiency</h3>
-                  <p className="text-gray-600">
-                    The curved surface allows for better light diffusion and heat retention, reducing energy costs 
-                    for heating in colder climates.
-                  </p>
+                <div className="md:w-1/2 p-8">
+                  <h2 className="text-3xl font-semibold text-green-800 mb-6">{type.name}</h2>
+                  {type.id === 'menu1' && (
+                    <>
+                      <p className="text-lg text-gray-700 mb-6">
+                        Dhanvantri Farms offers Naturally Ventilated Polyhouses, designed for optimal airflow and cost-effective crop cultivation. These structures are ideal for moderate climates and a variety of crops.
+                      </p>
+                      <div className="space-y-4">
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Enhanced Climate Control</h3>
+                          <p className="text-gray-600">
+                            Designed for optimal natural airflow, Dhanvantri Farms polyhouses regulate temperature and humidity, ensuring ideal growing conditions.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Energy Efficiency</h3>
+                          <p className="text-gray-600">
+                            Natural ventilation reduces reliance on mechanical systems, cutting energy costs and enhancing sustainability.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Cost-Effectiveness</h3>
+                          <p className="text-gray-600">
+                            Durable materials maximize sunlight penetration, boosting plant growth and profitability without high investment.
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  {type.id === 'menu2' && (
+                    <>
+                      <p className="text-lg text-gray-700 mb-6">
+                        Dhanvantri Farms’ Butterfly Ventilated Polyhouses feature a unique roof design for superior ventilation, perfect for high-humidity regions.
+                      </p>
+                      <div className="space-y-4">
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Superior Ventilation</h3>
+                          <p className="text-gray-600">
+                            The butterfly roof allows hot air to escape efficiently, maintaining optimal growing conditions in hot climates.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Rain Protection</h3>
+                          <p className="text-gray-600">
+                            Excellent protection against heavy rainfall, preventing waterlogging and plant diseases.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Adaptable Design</h3>
+                          <p className="text-gray-600">
+                            Customizable with insect nets, shade systems, and automated controls for specific crop needs.
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  {type.id === 'menu3' && (
+                    <>
+                      <p className="text-lg text-gray-700 mb-6">
+                        Dhanvantri Farms’ Tropical Polyhouses are built for hot and humid climates, with advanced cooling and ventilation systems.
+                      </p>
+                      <div className="space-y-4">
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Advanced Cooling Systems</h3>
+                          <p className="text-gray-600">
+                            Equipped with evaporative cooling pads and fans, maintaining temperatures 5-8°C lower than outside.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Humidity Management</h3>
+                          <p className="text-gray-600">
+                            Specialized systems control humidity, preventing fungal diseases and ensuring optimal plant growth.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Durable Construction</h3>
+                          <p className="text-gray-600">
+                            Reinforced structures withstand tropical storms and heavy rainfall for year-round crop protection.
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  {type.id === 'menu4' && (
+                    <>
+                      <p className="text-lg text-gray-700 mb-6">
+                        Dhanvantri Farms’ Gothic Polyhouses feature arched roofs for superior snow and rain shedding, ideal for extreme weather regions.
+                      </p>
+                      <div className="space-y-4">
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Weather Resistance</h3>
+                          <p className="text-gray-600">
+                            The gothic arch prevents snow and water accumulation, reducing structural stress.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Increased Headroom</h3>
+                          <p className="text-gray-600">
+                            More headroom improves air circulation and accommodates taller crops.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Energy Efficiency</h3>
+                          <p className="text-gray-600">
+                            Curved surfaces enhance light diffusion and heat retention, reducing energy costs.
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  {type.id === 'menu5' && (
+                    <>
+                      <p className="text-lg text-gray-700 mb-6">
+                        Dhanvantri Farms’ Customized Polyhouses are tailored to meet unique farming needs, from specialty crops to precision agriculture.
+                      </p>
+                      <div className="space-y-4">
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Tailored Solutions</h3>
+                          <p className="text-gray-600">
+                            Designed to meet specific crop requirements, budgets, and site conditions.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Advanced Technology Integration</h3>
+                          <p className="text-gray-600">
+                            Incorporates automated climate control, precision irrigation, and monitoring sensors.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-lg shadow-sm">
+                          <h3 className="text-xl font-semibold text-green-700 mb-3">Scalable Designs</h3>
+                          <p className="text-gray-600">
+                            Scalable solutions for small research facilities to large commercial operations.
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
-            </>
-          )}
-          
-          {type.id === 'menu5' && (
-            <>
-              <p className="text-lg text-gray-700 mb-6">
-                At Agriplast, we understand that every farming operation has unique requirements. Our Customized Polyhouse 
-                solutions are tailored to meet specific needs, whether you're growing specialty crops, conducting research, 
-                or implementing precision agriculture technologies.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Tailored Solutions</h3>
-                  <p className="text-gray-600">
-                    We work closely with you to design polyhouses that meet your specific crop requirements, 
-                    budget constraints, and site conditions.
-                  </p>
-                </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Advanced Technology Integration</h3>
-                  <p className="text-gray-600">
-                    Our customized solutions can incorporate the latest technologies including automated climate control, 
-                    precision irrigation systems, and monitoring sensors.
-                  </p>
-                </div>
-                
-                <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                  <h3 className="text-xl font-semibold text-green-700 mb-3">Scalable Designs</h3>
-                  <p className="text-gray-600">
-                    Whether you need a small research facility or a large commercial operation, our customized designs 
-                    can scale to meet your current and future needs.
-                  </p>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    </div>
-  </motion.section>
-))}
+            </div>
+          </motion.section>
+        ))}
+
         {/* Gallery Section */}
         <motion.section
           initial={{ opacity: 0, y: 50 }}
@@ -703,7 +607,7 @@ const PolyhousePage = () => {
             <div className="overflow-hidden rounded-2xl shadow-lg">
               <Image
                 src={galleryImages[currentGalleryIndex]}
-                alt={`Polyhouse Image ${currentGalleryIndex + 1}`}
+                alt={`Dhanvantri Farms Polyhouse Image ${currentGalleryIndex + 1}`}
                 width={1200}
                 height={600}
                 className="w-full h-[500px] object-cover"
@@ -768,7 +672,7 @@ const PolyhousePage = () => {
                 <p className="text-gray-600 mb-4 italic">"{testimonial.quote}"</p>
                 <div className="flex items-center text-green-600">
                   <Leaf size={20} className="mr-2" />
-                  <span className="text-sm">Agriplast Customer</span>
+                  <span className="text-sm">Dhanvantri Farms Customer</span>
                 </div>
               </motion.div>
             ))}
@@ -785,17 +689,15 @@ const PolyhousePage = () => {
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
             <div className="p-8 bg-green-700 text-white">
               <h2 className="text-3xl font-semibold">Cost of Polyhouse in India</h2>
-              <p className="text-green-100 mt-2">Get the best value with Agriplast polyhouse solutions</p>
+              <p className="text-green-100 mt-2">Get the best value with Dhanvantri Farms polyhouse solutions</p>
             </div>
-            
             <div className="p-8">
               <p className="text-lg text-gray-700 mb-8">
                 Polyhouse construction cost is calculated per sq. meter. The cost varies as per the quality of
                 the materials used for the structure and shed. Also the quality and density of irrigation
-                system define the polyhouse farming cost per acre. There are different types of polyhouse - 
-                Low cost polyhouse or wooden/bamboo polyhouse, Metal structured polyhouse and Net house Structure.
+                system define the polyhouse farming cost per acre. Dhanvantri Farms offers various types of polyhouses - 
+                Low cost polyhouse, Metal structured polyhouse, and Net house structures.
               </p>
-              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div className="bg-green-50 p-8 rounded-lg shadow-sm border border-green-200">
                   <h3 className="text-xl font-semibold text-green-700 mb-4">Naturally Ventilated Polyhouse Structure</h3>
@@ -813,7 +715,6 @@ const PolyhousePage = () => {
                     </li>
                   </ul>
                 </div>
-                
                 <div className="bg-green-50 p-8 rounded-lg shadow-sm border border-green-200">
                   <h3 className="text-xl font-semibold text-green-700 mb-4">Double Layer Pipe Purlin Nethouse</h3>
                   <p className="text-gray-600 mb-6">
@@ -831,19 +732,16 @@ const PolyhousePage = () => {
                   </ul>
                 </div>
               </div>
-              
               <div className="mt-8 p-6 bg-yellow-50 rounded-lg shadow-sm">
                 <p className="text-base text-yellow-700">
                   *Above prices are inclusive of GST. Note: The above prices are approximate and subject to change. 
                   Variations may occur based on fluctuations in the prices of metal and other market necessities.
                 </p>
               </div>
-              
               <div className="mt-6 p-6 bg-blue-50 rounded-lg shadow-sm">
                 <p className="text-base text-blue-700">
-                  Polyhouse can be designed in various ways as per the selected crop, geography and preferred longevity. 
-                  Though the construction cost is relatively high one can apply for Govt. subsidy which ranges from 50% to 75% 
-                  in different states.
+                  Dhanvantri Farms polyhouses can be designed for various crops, geographies, and longevity preferences. 
+                  Government subsidies ranging from 50% to 75% are available in different states.
                 </p>
               </div>
             </div>
@@ -888,11 +786,7 @@ const PolyhousePage = () => {
             ))}
           </div>
         </motion.section>
-
-     
       </main>
-
-   
     </div>
   );
 };

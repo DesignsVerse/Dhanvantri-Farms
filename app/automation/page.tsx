@@ -187,7 +187,7 @@ export default function AutomationPage() {
         <div className="absolute inset-0">
           <Image
             src="/images/automation/hero.jpg"
-            alt="Automation hero"
+            alt="Dhanvantri Farms Automation System"
             fill
             sizes="100vw"
             priority
@@ -202,14 +202,14 @@ export default function AutomationPage() {
             <motion.div variants={fadeUp}>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur text-green-100 text-xs md:text-sm mb-4">
                 <span className="inline-block h-2 w-2 rounded-full bg-lime-300" />
-                Intelligent Automation
+                Smart Automation Solutions
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-                Orchestrate Sensors, People, and Machines
+                Seamless Warehouse Automation
               </h1>
               <div className="w-28 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full my-6" />
               <p className="text-lg md:text-xl text-green-100/95 max-w-2xl">
-                Modular building blocks integrate sensing, PLC/SCADA, WMS workflows, alerts, and robotics into a cohesive, auditable system.
+                Dhanvantri Farms delivers intelligent automation solutions, integrating sensors, PLC/SCADA, WMS, and robotics for efficient, scalable warehouse operations.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a

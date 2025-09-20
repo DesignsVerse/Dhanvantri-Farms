@@ -100,17 +100,17 @@ export default function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-600">Touch</span>
+            Connect with Our Experts
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-teal-500 mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ready to start your smart farming journey? Contact our experts for personalized guidance
+            Dhanvantri Farms is here to guide you with tailored smart farming solutions. Reach out to start your journey towards sustainable agriculture.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-8">
             <motion.div 
               variants={itemVariants}
               className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
@@ -120,9 +120,9 @@ export default function ContactSection() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Visit Us</h3>
               <p className="text-gray-600">
-                123 Agriculture Innovation Park<br />
-                Sector 15, Gurugram<br />
-                Haryana 122001, India
+                Near Old SBI<br />
+                Garhakota, District Sagar<br />
+                Madhya Pradesh 470229, India
               </p>
             </motion.div>
 
@@ -155,7 +155,7 @@ export default function ContactSection() {
                 sales@dhanvantrifarms.com
               </p>
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
@@ -383,9 +383,7 @@ export default function ContactSection() {
             </motion.div>
           </div>
         </div>
-        </div>
-      </section>
-  
-    
+      </div>
+    </section>
   );
 }

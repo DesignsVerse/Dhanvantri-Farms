@@ -48,14 +48,11 @@ const SuccessStories = () => {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">
-              Success
-            </span>{' '}
-            Stories
+            Transforming Farms Across India
           </h2>
           <div className="h-1 w-28 sm:w-40 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Real results from farmers across India who transformed their agriculture with our solutions
+            Discover how Dhanvantri Farms' smart farming solutions have empowered farmers with sustainable, high-yield agriculture.
           </p>
         </motion.div>
 
@@ -77,7 +74,7 @@ const SuccessStories = () => {
                 <div className="relative aspect-video overflow-hidden">
                   <img 
                     src={story.image} 
-                    alt={story.title}
+                    alt={`${story.title}, ${story.crop}, ${story.location}`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute top-3 right-3 bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-md">

@@ -17,7 +17,7 @@ export default function OrganicVisualPage() {
         <div className="absolute inset-0">
           <Image
             src="/images/organic/hero.jpg"
-            alt="Organic fields at sunrise"
+            alt="Dhanvantri Farms Organic Fields"
             fill
             sizes="100vw"
             priority
@@ -30,13 +30,13 @@ export default function OrganicVisualPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur text-green-100 text-xs md:text-sm mb-4">
               <span className="inline-block h-2 w-2 rounded-full bg-lime-300" />
-              Organic Farming
+              Sustainable Organic Farming
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-              Image‑First Guide to Organic Excellence
+              Guide to Organic Farming Excellence
             </h1>
             <p className="text-lg md:text-xl text-green-100/95 max-w-2xl mt-4">
-              Build living soils, protect biodiversity, and deliver consistent quality—powered by rotations, cover crops, and organic inputs.
+              Discover Dhanvantri Farms’ organic solutions, fostering healthy soils, biodiversity, and premium-quality produce through sustainable practices.
             </p>
             <a
               href="#gallery"
@@ -53,7 +53,7 @@ export default function OrganicVisualPage() {
             <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden">
               <Image
                 src="/images/organic/soil.jpg"
-                alt="Rich organic soil"
+                alt="Healthy Soil by Dhanvantri Farms"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -62,7 +62,7 @@ export default function OrganicVisualPage() {
             <div>
               <h3 className="text-2xl md:text-3xl font-extrabold">Soil Health First</h3>
               <p className="text-green-100/95 mt-3 text-lg">
-                Living soils drive nutrient cycling and resilience; compost, cover crops, and reduced disturbance keep biology thriving for stable yields.
+                At Dhanvantri Farms, we prioritize living soils with compost and cover crops to enhance nutrient cycling, ensuring resilient and sustainable yields.
               </p>
             </div>
           </div>
@@ -71,7 +71,7 @@ export default function OrganicVisualPage() {
             <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden md:order-2">
               <Image
                 src="/images/organic/rotation.jpg"
-                alt="Crop rotation diversity"
+                alt="Crop Rotation by Dhanvantri Farms"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -80,7 +80,7 @@ export default function OrganicVisualPage() {
             <div className="md:order-1">
               <h3 className="text-2xl md:text-3xl font-extrabold">Rotations & Diversity</h3>
               <p className="text-green-100/95 mt-3 text-lg">
-                Rotate families, integrate legumes, and mix canopies to break pest cycles, balance fertility, and stabilize production quality year‑round.
+                Dhanvantri Farms promotes crop rotation and diverse planting to disrupt pest cycles and boost soil fertility, ensuring consistent organic production.
               </p>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function OrganicVisualPage() {
             <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden">
               <Image
                 src="/images/organic/cover-crops.jpg"
-                alt="Cover cropping for protection"
+                alt="Cover Crops by Dhanvantri Farms"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -98,7 +98,7 @@ export default function OrganicVisualPage() {
             <div>
               <h3 className="text-2xl md:text-3xl font-extrabold">Cover Crops & Habitat</h3>
               <p className="text-green-100/95 mt-3 text-lg">
-                Protect soil, fix nitrogen, smother weeds, and host beneficials; habitat strips and refuges lift natural pest control over time.
+                With Dhanvantri Farms’ organic solutions, cover crops and habitat strips protect soil, fix nitrogen, and enhance natural pest control for sustainable farming.
               </p>
             </div>
           </div>

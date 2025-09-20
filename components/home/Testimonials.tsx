@@ -69,14 +69,11 @@ const Testimonials = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            What Our{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">
-              Farmers Say
-            </span>
+            Farmer Success Stories
           </h2>
           <div className="h-1 w-48 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
           <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Success stories from farmers who trusted us with their agricultural transformation
+            Hear from farmers across India who have transformed their yields with Dhanvantri Farms' smart farming solutions.
           </p>
         </motion.div>
 
@@ -97,10 +94,9 @@ const Testimonials = () => {
                 <motion.img
                   whileHover={{ scale: 1.05 }}
                   src={testimonials[currentTestimonial].image}
-                  alt={testimonials[currentTestimonial].name}
+                  alt={`${testimonials[currentTestimonial].name}, ${testimonials[currentTestimonial].crop}, ${testimonials[currentTestimonial].location}`}
                   className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover shadow-md"
                 />
-
                 <div className="flex-1 text-center md:text-left">
                   {/* Stars */}
                   <div className="flex justify-center md:justify-start space-x-1 mb-4">

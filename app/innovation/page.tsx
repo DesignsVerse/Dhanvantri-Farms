@@ -183,7 +183,7 @@ export default function InnovationPage() {
         <div className="absolute inset-0">
           <Image
             src="/images/innovation/hero.jpg"
-            alt="Innovation hero"
+            alt="Dhanvantri Farms Innovation Lab"
             fill
             sizes="100vw"
             priority
@@ -193,32 +193,39 @@ export default function InnovationPage() {
         </div>
 
         <div className="relative z-10 py-28 md:py-36 text-white text-center px-6">
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-extrabold mb-4"
-          >
-            Innovation & Research
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl max-w-4xl mx-auto"
-          >
-            Pioneering the future of agriculture through cutting-edge research and sustainable technologies.
-          </motion.p>
-
-          <div className="mt-10 flex items-center justify-center">
-            <button
-              onClick={() => setPlayVideo(true)}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-full font-semibold text-green-900 bg-white shadow-lg hover:shadow-xl transition"
+          <motion.div initial="hidden" animate="visible" variants={stagger}>
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur text-green-100 text-xs md:text-sm mb-4">
+              <span className="inline-block h-2 w-2 rounded-full bg-lime-300" />
+              Smart Farming Innovations
+            </motion.div>
+            <motion.h1
+              variants={fadeUp}
+              className="text-4xl md:text-6xl font-extrabold mb-4"
             >
-              <Play className="h-5 w-5" />
-              Watch Demo
-            </button>
-          </div>
+              Advancing Sustainable Agriculture
+            </motion.h1>
+            <motion.p
+              variants={fadeUp}
+              className="text-xl md:text-2xl max-w-4xl mx-auto"
+            >
+              Dhanvantri Farms pioneers smart farming solutions, blending IoT, AI, and sustainable technologies for resilient, high-yield agriculture.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-10 flex items-center justify-center gap-4">
+              <button
+                onClick={() => setPlayVideo(true)}
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full font-semibold text-green-900 bg-white shadow-lg hover:shadow-xl transition"
+              >
+                <Play className="h-5 w-5" />
+                Watch Demo
+              </button>
+              <a
+                href="#areas"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur transition"
+              >
+                Explore Innovations <ArrowRight className="h-5 w-5" />
+              </a>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Decorative wave */}

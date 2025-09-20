@@ -25,39 +25,39 @@ const HeroSection = () => {
     () => [
       {
         type: 'video',
-        src: '',
-        title: 'Polyhouse Farming',
-        subtitle: 'Revolutionize your crop production with climate-controlled polyhouse structures.',
+        src: '/video/polyhouse-farming.mp4',
+        title: 'Revolutionizing Agriculture',
+        subtitle: 'Dhanvantri Farms’ climate-controlled polyhouse solutions boost crop yields with smart technology.',
       },
       {
         type: 'image',
-        src: '',
-        title: 'Organic Farming',
-        subtitle: 'Adopt chemical-free farming methods for healthier crops and sustainable growth.',
+        src: 'https://images.pexels.com/photos/2886937/pexels-photo-2886937.jpeg',
+        title: 'Sustainable Organic Farming',
+        subtitle: 'Embrace chemical-free farming with Dhanvantri Farms for healthier crops and eco-friendly growth.',
       },
       {
         type: 'image',
         src: '/hero/nethouse.jpg',
-        title: 'Nethouse Solutions',
-        subtitle: 'Protect your crops with advanced nethouse structures designed for durability and yield.',
+        title: 'Advanced Nethouse Solutions',
+        subtitle: 'Protect crops with durable nethouse structures designed by Dhanvantri Farms for optimal yield.',
       },
       {
         type: 'video',
         src: '/video/mushroom-farming.mp4',
-        title: 'Mushroom Farming',
-        subtitle: 'Unlock new income streams with modern mushroom farming techniques and setups.',
+        title: 'Modern Mushroom Farming',
+        subtitle: 'Explore new revenue streams with Dhanvantri Farms’ innovative mushroom farming setups.',
       },
       {
         type: 'image',
         src: '/hero/warehouse.jpg',
-        title: 'Agri Warehousing',
-        subtitle: 'Secure and preserve your harvest with world-class agricultural warehousing solutions.',
+        title: 'Smart Agri Warehousing',
+        subtitle: 'Secure your harvest with Dhanvantri Farms’ cutting-edge agricultural warehousing solutions.',
       },
       {
         type: 'image',
         src: '/hero/hydroponics.jpg',
-        title: 'Hydroponics',
-        subtitle: 'Grow more with less—experience soil-less farming powered by hydroponic systems.',
+        title: 'Next-Gen Hydroponics',
+        subtitle: 'Grow efficiently with Dhanvantri Farms’ soil-less hydroponic systems for higher yields.',
       },
     ],
     []
@@ -141,7 +141,7 @@ const HeroSection = () => {
             {slides[currentIndex].type === 'image' ? (
               <Image
                 src={slides[currentIndex].src}
-                alt={slides[currentIndex].title}
+                alt={`${slides[currentIndex].title} by Dhanvantri Farms`}
                 fill
                 sizes="100vw"
                 className="object-cover brightness- scale-105 transition-all duration-700 ease-out"

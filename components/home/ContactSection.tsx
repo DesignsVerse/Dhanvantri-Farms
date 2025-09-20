@@ -69,15 +69,11 @@ const ContactSection = () => {
         {/* Section Heading */}
         <motion.div variants={itemVariants} className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            Get in{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">
-              Touch
-            </span>
+            Connect with Our Experts
           </h2>
           <div className="h-1 w-48 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
           <p className="text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-            Ready to start your smart farming journey? Contact our experts for personalized
-            guidance.
+            Dhanvantri Farms is here to guide you with tailored smart farming solutions. Reach out to start your journey towards sustainable agriculture.
           </p>
         </motion.div>
 
@@ -91,11 +87,11 @@ const ContactSection = () => {
                 title: 'Visit Us',
                 text: (
                   <>
-                    123 Agriculture Innovation Park
+                    Near Old SBI
                     <br />
-                    Sector 15, Gurugram
+                    Garhakota, District Sagar
                     <br />
-                    Haryana 122001, India
+                    Madhya Pradesh 470229, India
                   </>
                 )
               },
@@ -275,8 +271,7 @@ const ContactSection = () => {
                 <div>
                   <p className="text-base font-bold text-green-800 mb-1">Quick Response Guarantee</p>
                   <p className="text-sm text-green-700 leading-relaxed">
-                    Our experts will contact you within 2 hours during business hours. For urgent
-                    inquiries, please call us directly.
+                    Dhanvantri Farms’ experts will contact you within 2 hours during business hours. For urgent inquiries, please call us directly.
                   </p>
                 </div>
               </div>

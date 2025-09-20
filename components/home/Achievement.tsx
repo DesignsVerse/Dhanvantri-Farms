@@ -82,14 +82,11 @@ const Achievements = () => {
           className="text-center mb-14 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            Our{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8bc34a] to-[#689f38]">
-              Achievements
-            </span>
+            Milestones of Impact
           </h2>
           <div className="h-1 w-24 sm:w-40 bg-gradient-to-r from-[#8bc34a] to-[#689f38] mx-auto mb-6 rounded-full" />
           <p className="text-base sm:text-lg lg:text-2xl text-gray-700 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed">
-            Proud milestones that showcase our dedication and growth in the farming industry
+            Discover Dhanvantri Farms’ proud milestones in revolutionizing agriculture with smart farming solutions across India.
           </p>
         </motion.div>
 
