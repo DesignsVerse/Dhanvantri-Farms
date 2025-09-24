@@ -56,22 +56,22 @@ export default function PolyhousePage() {
     {
       title: 'Naturally Ventilated Polyhouse',
       description: 'Cost-effective design using roof and side vents for natural airflow. Ideal for moderate climates and vegetable cultivation.',
-      image: 'https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg'
+      image:"/service/poly/3.jpg"
     },
     {
       title: 'Fan and Pad Cooling System',
       description: 'Advanced evaporative cooling for hot climates. Maintains lower temperatures through exhaust fans and wet pads.',
-      image: 'https://images.pexels.com/photos/1068474/pexels-photo-1068474.jpeg'
+      image:"/service/poly/5.jpg"
     },
     {
       title: 'Hi-Tech Climate-Controlled Polyhouse',
       description: 'Fully automated with HVAC, CO2 enrichment, and computerized controls. Perfect for high-value crops like flowers and herbs.',
-      image: 'https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg'
+      image:"/service/poly/4.jpg"
     },
     {
       title: 'Shade Net House',
       description: 'Partial shading structure for light-sensitive crops. Combines polyhouse benefits with shade cloth for temperature regulation.',
-      image: 'https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg'
+      image:"/service/poly/6.jpg"
     }
   ];
 
@@ -119,7 +119,7 @@ export default function PolyhousePage() {
       {/* Hero Section */}
       <section className="relative h-[80vh] overflow-hidden">
         <Image
-          src="https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg"
+          src="/service/poly/1.jpg"
           alt="Dhanvantri Farms Polyhouse Landscape"
           fill
           className="object-cover brightness-50"
@@ -184,8 +184,8 @@ export default function PolyhousePage() {
               className="relative h-96"
             >
               <Image
-                src="https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg"
-                alt="Inside a Dhanvantri Farms Polyhouse"
+          src="/service/poly/2.jpg"
+          alt="Inside a Dhanvantri Farms Polyhouse"
                 fill
                 className="object-cover rounded-3xl shadow-2xl"
               />
@@ -385,7 +385,7 @@ export default function PolyhousePage() {
       </motion.section>
 
       {/* Case Studies Section */}
-      <motion.section
+      {/* <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -439,7 +439,7 @@ export default function PolyhousePage() {
             ))}
           </div>
         </div>
-      </motion.section>
+      </motion.section> */}
 
       {/* Testimonials Section */}
       <motion.section

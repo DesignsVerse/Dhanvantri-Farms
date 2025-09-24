@@ -73,7 +73,7 @@ export default function NetHousePage() {
       {
         key: 'shade35',
         title: 'Shade Net House (35%)',
-        image: '/images/nethouse/shade-35.jpg',
+        image: '/service/net/1.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ 35% shade net houses provide ample light with reduced midday intensity, ideal for tender crops and nurseries in warm climates.' },
           { title: 'Optimal Light Diffusion', text: 'Uniform light spread minimizes leaf burn and supports healthy canopy growth.' },
@@ -83,7 +83,7 @@ export default function NetHousePage() {
       {
         key: 'shade50',
         title: 'Shade Net House (50%)',
-        image: '/images/nethouse/shade-50.jpg',
+        image: '/service/net/2.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ 50% shade net houses offer balanced light control for vegetables, herbs, and ornamentals, ensuring consistent quality.' },
           { title: 'Water Conservation', text: 'Reduced evaporation preserves irrigation water and maintains ideal humidity levels.' },
@@ -93,7 +93,7 @@ export default function NetHousePage() {
       {
         key: 'shade75',
         title: 'Shade Net House (75%)',
-        image: '/images/nethouse/shade-75.jpg',
+        image: '/service/net/3.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ 75% shade net houses cater to shade-loving crops and sensitive propagation stages with high shade levels.' },
           { title: 'Enhanced Crop Quality', text: 'Even light distribution reduces disorders and improves marketable grades.' },
@@ -103,7 +103,7 @@ export default function NetHousePage() {
       {
         key: 'insect',
         title: 'Insect Net House',
-        image: '/images/nethouse/insect-net.jpg',
+        image: '/service/net/4.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ insect net houses use fine mesh to block pests and birds, ensuring cleaner crop production.' },
           { title: 'Reduced Chemical Use', text: 'Lower pest pressure minimizes the need for pesticides, promoting sustainable farming.' },
@@ -165,9 +165,9 @@ export default function NetHousePage() {
   return (
     <main className="bg-white text-gray-900">
       {/* Intro */}
-      <section id="intro" className="relative overflow-hidden bg-green-900 text-white pt-20">
-        <div className="absolute inset-0">
-          <Image src="/hero/1.jpg" alt="Dhanvantri Farms Net House background" fill sizes="100vw" priority className="object-cover opacity-35" />
+      <section id="intro" className="relative overflow-hidden bg-green-900 text-white ">
+      <div className="absolute inset-0">
+          <Image src="/service/net/hero.jpg" alt="Dhanvantri Farms Net House background" fill sizes="100vw" priority className="object-cover opacity-35" />
           <div className="absolute inset-0 bg-gradient-to-b from-green-950/70 via-green-900/30 to-green-900" />
         </div>
         <div className="relative z-10 container mx-auto px-4 py-20 md:py-28">
@@ -197,20 +197,22 @@ export default function NetHousePage() {
               </div>
             </motion.div>
             <motion.div variants={fadeUp}>
-              <div className="rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-md shadow-2xl">
-                <div className="aspect-video">
-                  <iframe
-                    className="w-full h-full"
-                    src=""
-                    title="Dhanvantri Farms Net House overview"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-              <div className="mt-4 text-center text-green-100 text-sm">Discover Dhanvantri Farms’ net house solutions</div>
-            </motion.div>
+  <div className="rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-md shadow-2xl">
+    <div className="aspect-video relative">
+      <Image
+        src="/service/net/hero-1.jpg"
+        alt="Dhanvantri Farms Net House overview"
+        fill
+        className="object-cover"
+        unoptimized={true} // agar next export use kar rahe ho
+      />
+    </div>
+  </div>
+  <div className="mt-4 text-center text-green-100 text-sm">
+    Discover Dhanvantri Farms’ net house solutions
+  </div>
+</motion.div>
+
           </motion.div>
         </div>
       </section>

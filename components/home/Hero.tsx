@@ -2,13 +2,14 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight, Leaf, Pause, Play } from 'lucide-react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 
 type Slide = {
   type: 'video' | 'image';
   src: string;
+  poster?: string;
   title: string;
   subtitle: string;
 };
@@ -16,138 +17,86 @@ type Slide = {
 const AUTOPLAY_MS = 6000;
 
 const HeroSection = () => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
-  const [direction, setDirection] = useState<number>(0);
-  const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
 
-  const slides: Slide[] = useMemo(
-    () => [
-      {
-        type: 'video',
-        src: '/video/polyhouse-farming.mp4',
-        title: 'Revolutionizing Agriculture',
-        subtitle: 'Dhanvantri Farms’ climate-controlled polyhouse solutions boost crop yields with smart technology.',
-      },
-      {
-        type: 'image',
-        src: 'https://images.pexels.com/photos/2886937/pexels-photo-2886937.jpeg',
-        title: 'Sustainable Organic Farming',
-        subtitle: 'Embrace chemical-free farming with Dhanvantri Farms for healthier crops and eco-friendly growth.',
-      },
-      {
-        type: 'image',
-        src: '/hero/nethouse.jpg',
-        title: 'Advanced Nethouse Solutions',
-        subtitle: 'Protect crops with durable nethouse structures designed by Dhanvantri Farms for optimal yield.',
-      },
-      {
-        type: 'video',
-        src: '/video/mushroom-farming.mp4',
-        title: 'Modern Mushroom Farming',
-        subtitle: 'Explore new revenue streams with Dhanvantri Farms’ innovative mushroom farming setups.',
-      },
-      {
-        type: 'image',
-        src: '/hero/warehouse.jpg',
-        title: 'Smart Agri Warehousing',
-        subtitle: 'Secure your harvest with Dhanvantri Farms’ cutting-edge agricultural warehousing solutions.',
-      },
-      {
-        type: 'image',
-        src: '/hero/hydroponics.jpg',
-        title: 'Next-Gen Hydroponics',
-        subtitle: 'Grow efficiently with Dhanvantri Farms’ soil-less hydroponic systems for higher yields.',
-      },
-    ],
-    []
-  );
-  
-  // Auto-slide with hover/pause
+  const slides: Slide[] = useMemo(() => [
+    {
+      type: 'video',
+      src: '/video/polyhouse-farming.mp4',
+      poster: '/hero/1.jpg',
+      title: 'Revolutionizing Agriculture',
+      subtitle: 'Dhanvantri Farms’ climate-controlled polyhouse solutions boost crop yields with smart technology.',
+    },
+    {
+      type: 'image',
+      src: '/hero/2.jpg',
+      title: 'Sustainable Organic Farming',
+      subtitle: 'Embrace chemical-free farming with Dhanvantri Farms for healthier crops and eco-friendly growth.',
+    },
+    {
+      type: 'image',
+      src: '/hero/3.jpg',
+      title: 'Advanced Nethouse Solutions',
+      subtitle: 'Protect crops with durable nethouse structures designed by Dhanvantri Farms for optimal yield.',
+    },
+    {
+      type: 'video',
+      src: '/video/mushroom-farming.mp4',
+      poster: '/hero/4.jpg',
+      title: 'Modern Mushroom Farming',
+      subtitle: 'Explore new revenue streams with Dhanvantri Farms’ innovative mushroom farming setups.',
+    },
+    {
+      type: 'image',
+      src: '/hero/5.jpg',
+      title: 'Smart Agri Warehousing',
+      subtitle: 'Secure your harvest with Dhanvantri Farms’ cutting-edge agricultural warehousing solutions.',
+    },
+  ], []);
+
+  // Auto-slide
   useEffect(() => {
     if (!isPlaying || isHovering) return;
-    const t = setInterval(() => {
-      setDirection(1);
-      setCurrentIndex((p) => (p + 1) % slides.length);
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
     }, AUTOPLAY_MS);
-    return () => clearInterval(t);
+    return () => clearInterval(timer);
   }, [isPlaying, isHovering, slides.length]);
 
-  // Variants
-  const textVariant: Variants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] } },
-  };
-
-  const imageVariant: Variants = {
-    enter: (dir: number) => ({
-      opacity: 0,
-      scale: 1.05,
-      x: dir > 0 ? 200 : -200,
-    }),
-    center: {
-      opacity: 1,
-      scale: 1,
-      x: 0,
-      transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] },
-    },
-    exit: (dir: number) => ({
-      opacity: 0,
-      scale: 0.98,
-      x: dir < 0 ? 200 : -200,
-      transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] },
-    }),
-  };
-
-  const nextSlide = useCallback(() => {
-    setDirection(1);
-    setCurrentIndex((p) => (p + 1) % slides.length);
-  }, [slides.length]);
-
-  const prevSlide = useCallback(() => {
-    setDirection(-1);
-    setCurrentIndex((p) => (p - 1 + slides.length) % slides.length);
-  }, [slides.length]);
-
-  const goToSlide = useCallback(
-    (index: number) => {
-      if (index === currentIndex) return;
-      setDirection(index > currentIndex ? 1 : -1);
-      setCurrentIndex(index);
-    },
-    [currentIndex]
-  );
-
+  const nextSlide = useCallback(() => setCurrentIndex((p) => (p + 1) % slides.length), [slides.length]);
+  const prevSlide = useCallback(() => setCurrentIndex((p) => (p - 1 + slides.length) % slides.length), [slides.length]);
+  const goToSlide = useCallback((index: number) => { if (index !== currentIndex) setCurrentIndex(index); }, [currentIndex]);
   const toggleAutoplay = useCallback(() => setIsPlaying((v) => !v), []);
 
   return (
     <section
-      className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden "
+      className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* Background Media */}
+      {/* Background */}
       <div className="absolute inset-0">
-        <AnimatePresence initial={false} custom={direction}>
+        <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
             className="absolute inset-0"
-            custom={direction}
-            variants={imageVariant}
-            initial="enter"
-            animate="center"
-            exit="exit"
           >
             {slides[currentIndex].type === 'image' ? (
               <Image
                 src={slides[currentIndex].src}
-                alt={`${slides[currentIndex].title} by Dhanvantri Farms`}
+                alt={slides[currentIndex].title}
                 fill
+                className="object-cover"
                 sizes="100vw"
-                className="object-cover brightness- scale-105 transition-all duration-700 ease-out"
                 priority={currentIndex === 0}
                 loading={currentIndex === 0 ? 'eager' : 'lazy'}
-                quality={80}
+                quality={60}
               />
             ) : (
               <video
@@ -156,7 +105,8 @@ const HeroSection = () => {
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover "
+                poster={slides[currentIndex].poster}
+                className="w-full h-full object-cover"
               >
                 <source src={slides[currentIndex].src} type="video/mp4" />
               </video>
@@ -165,138 +115,67 @@ const HeroSection = () => {
         </AnimatePresence>
       </div>
 
-      {/* Gradient Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/40 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full sm:w-2/3 lg:w-1/2">
-          {/* Title (word-by-word) */}
-          <motion.h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 tracking-tight font-sans"
-            variants={textVariant}
-            initial="hidden"
-            animate="visible"
-            key={`title-${currentIndex}`}
+      <div className="relative z-20 w-full max-w-6xl px-4 sm:px-6 lg:px-8 text-white">
+        <motion.h1
+          className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {slides[currentIndex].title}
+        </motion.h1>
+        <motion.p
+          className="text-lg sm:text-xl lg:text-2xl max-w-2xl mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {slides[currentIndex].subtitle}
+        </motion.p>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Link href="/contact">
+            <button className="px-8 py-4 bg-lime-400 text-green-900 rounded-full font-bold hover:bg-lime-300 transition">
+              Start a Project <ArrowRight className="inline ml-2" size={20} />
+            </button>
+          </Link>
+          <a
+            href="https://api.whatsapp.com/send?phone=919090343490&text=Hello Agriplast Team, I'm interested in Hi-Tech Farming."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 bg-green-800 hover:bg-green-700 rounded-full font-bold flex items-center gap-2 transition"
           >
-            {slides[currentIndex].title.split(' ').map((word, i) => (
-              <motion.span
-                key={i}
-                className="inline-block mr-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.4, 0, 0.2, 1] }}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.h1>
-
-          {/* Divider */}
-          <motion.div
-            className="w-24 h-1.5 bg-lime-400 mb-6 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: 96 }}
-            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
-          />
-
-          {/* Subtitle */}
-          <motion.p
-            className="text-lg sm:text-xl lg:text-2xl text-gray-100 mb-8 max-w-lg leading-relaxed font-medium"
-            variants={textVariant}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2 }}
-            key={`desc-${currentIndex}`}
-          >
-            {slides[currentIndex].subtitle}
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4"
-            variants={textVariant}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.4 }}
-            key={`buttons-${currentIndex}`}
-          >
-            <Link href="/contact" className="inline-block group">
-              <motion.button
-                className="px-8 py-4 bg-lime-400 text-green-900 rounded-full font-bold text-base sm:text-lg hover:bg-lime-300 transition-all duration-300 flex items-center justify-center shadow-xl hover:shadow-2xl"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Start a Project
-                <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform duration-200" size={20} />
-              </motion.button>
-            </Link>
-
-            <motion.a
-              href="https://api.whatsapp.com/send?phone=919090343490&text=Hello Agriplast Team, I'm interested in Hi-Tech Farming. Please connect to me as soon as possible."
-              className="px-8 py-4 bg-green-800 hover:bg-green-700 text-white rounded-full font-bold text-base sm:text-lg flex items-center justify-center gap-3 transition-all duration-300 shadow-xl hover:shadow-2xl group"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <Leaf size={20} className="group-hover:rotate-12 transition-transform duration-200" />
-              Connect on WhatsApp
-            </motion.a>
-          </motion.div>
+            <Leaf size={20} /> Connect on WhatsApp
+          </a>
         </div>
       </div>
 
-      {/* Prev/Next */}
-      <motion.button
-        onClick={prevSlide}
-        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 bg-lime-500/20 backdrop-blur-lg text-white p-3 sm:p-4 rounded-full transition-all duration-200 shadow-xl hover:bg-lime-500/40"
-        aria-label="Previous slide"
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
-      >
-        <ChevronLeft size={28} />
-      </motion.button>
-      <motion.button
-        onClick={nextSlide}
-        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 bg-lime-500/20 backdrop-blur-lg text-white p-3 sm:p-4 rounded-full transition-all duration-200 shadow-xl hover:bg-lime-500/40"
-        aria-label="Next slide"
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
-      >
-        <ChevronRight size={28} />
-      </motion.button>
+      {/* Controls */}
+      <div className="absolute inset-0 flex items-center justify-between px-4 sm:px-8 z-30">
+        <button onClick={prevSlide} className="bg-lime-500/20 backdrop-blur-lg p-3 rounded-full">
+          <ChevronLeft size={28} />
+        </button>
+        <button onClick={nextSlide} className="bg-lime-500/20 backdrop-blur-lg p-3 rounded-full">
+          <ChevronRight size={28} />
+        </button>
+      </div>
 
       {/* Play/Pause */}
-      <motion.button
+      <button
         onClick={toggleAutoplay}
-        className="absolute right-4 sm:right-8 bottom-4 sm:bottom-8 z-30 bg-lime-500/20 backdrop-blur-lg text-white p-3 rounded-full transition-all duration-200 shadow-xl hover:bg-lime-500/40"
-        aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
+        className="absolute right-4 bottom-4 bg-lime-500/20 backdrop-blur-lg p-3 rounded-full z-30"
       >
         {isPlaying ? <Pause size={24} /> : <Play size={24} />}
-      </motion.button>
+      </button>
 
-      {/* Progress (segmented bars) */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className="relative w-12 h-2 rounded-full overflow-hidden bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all duration-200"
-            aria-label={`Go to slide ${index + 1}`}
-          >
-            {currentIndex === index && isPlaying && !isHovering && (
-              <motion.div
-                className="absolute top-0 left-0 h-full bg-lime-400 rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: '100%' }}
-                transition={{ duration: AUTOPLAY_MS / 1000, ease: 'linear' }}
-                key={`progress-${currentIndex}`}
-              />
-            )}
-          </button>
+      {/* Progress */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-30">
+        {slides.map((_, idx) => (
+          <div key={idx} className={`w-10 h-2 rounded-full ${idx === currentIndex ? 'bg-lime-400' : 'bg-white/30'}`} />
         ))}
       </div>
     </section>

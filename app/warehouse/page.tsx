@@ -32,8 +32,15 @@ import {
   ChevronRight,
   CheckCircle2,
   XCircle,
+  CheckCircleIcon,
+  WarehouseIcon,
+  TruckIcon,
 } from 'lucide-react';
-
+const flow = [
+  { n: 1, title: 'Receiving', text: 'Goods are received and scanned at the dock.', icon: TruckIcon },
+  { n: 2, title: 'Storage', text: 'Items are sorted and stored in the warehouse.', icon: WarehouseIcon },
+  { n: 3, title: 'Dispatch', text: 'Orders are picked, packed, and dispatched.', icon: CheckCircleIcon },
+];  
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.4, 0, 0.2, 1] } },
@@ -59,7 +66,7 @@ export default function WarehousePage() {
     () => [
       {
         title: 'Selective Pallet Racking',
-        image: '/images/warehouse/storage-selective.jpg',
+        image: '/service/warehouse/2.png',
         icon: Boxes,
         points: [
           '100% SKU accessibility for high mix warehouses',
@@ -69,7 +76,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Drive-in / Drive-through',
-        image: '/images/warehouse/storage-drivein.jpg',
+        image: '/service/warehouse/3.png',
         icon: Boxes,
         points: [
           'High-density lanes for low-SKU, high-volume products',
@@ -79,7 +86,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Push-back & Gravity Flow',
-        image: '/images/warehouse/storage-flow.jpg',
+        image: '/service/warehouse/4.png',
         icon: Layers,
         points: [
           'Cart-based or roller lanes for dynamic storage',
@@ -89,7 +96,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Mezzanine & Shelving',
-        image: '/images/warehouse/storage-mezz.jpg',
+        image: '/service/warehouse/5.png',
         icon: Package,
         points: [
           'Multi-tier for eComm bins and cartons',
@@ -99,7 +106,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Automation Ready (AS/RS)',
-        image: '/images/warehouse/storage-asrs.jpg',
+        image: '/service/warehouse/6.png',
         icon: Cpu,
         points: [
           'Shuttles/miniloads for totes and cartons',
@@ -109,7 +116,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Yard & Container Staging',
-        image: '/images/warehouse/storage-yard.jpg',
+        image: '/service/warehouse/7.png',
         icon: Container,
         points: [
           'Dock scheduling and yard visibility',
@@ -257,7 +264,7 @@ export default function WarehousePage() {
       <section id="hero" className="relative overflow-hidden bg-green-900 text-white pt-20">
         <div className="absolute inset-0">
           <Image
-            src="/images/warehouse/hero.jpg"
+            src="/service/warehouse/1.png"
             alt="Dhanvantri Farms Warehouse Facility"
             fill
             sizes="100vw"
@@ -388,43 +395,49 @@ export default function WarehousePage() {
         </div>
       </section>
 
-      {/* Operations flow — NEW: alternating vertical timeline */}
-      <section id="flow" className="bg-gray-50">
-        <div className="container mx-auto px-4 py-16 md:py-20">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold">Operations Timeline</h2>
-            <p className="text-gray-600 mt-3">Alternating steps with visual context from dock to dispatch for fewer touches and higher accuracy.</p>
-          </div>
 
-          <div className="mt-10 relative">
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-green-200 via-green-300 to-green-200" />
-            <div className="space-y-10">
-              {flow.map((f, i) => {
-                const left = i % 2 === 0;
-                return (
-                  <div key={f.n} className={`grid md:grid-cols-2 gap-6 items-center ${left ? '' : 'md:[&>*:first-child]:order-2'}`}>
-                    <div className="relative h-56 rounded-2xl overflow-hidden shadow-md">
-                      <Image src={f.image} alt={f.title} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
-                      <div className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/25 backdrop-blur text-white text-sm shadow">
-                        <f.icon className="h-4 w-4" />
-                        <span>Step {f.n}</span>
+      <section id="flow" className="bg-gray-50">
+      <div className="container mx-auto px-4 py-16 md:py-20">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold">Operations Timeline</h2>
+          <p className="text-gray-600 mt-3">
+            Alternating steps with visual context from dock to dispatch for fewer touches and higher accuracy.
+          </p>
+        </div>
+
+        <div className="mt-10 relative">
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-green-200 via-green-300 to-green-200" />
+          <div className="space-y-10">
+            {flow.map((f, i) => {
+              const left = i % 2 === 0;
+              return (
+                <div
+                  key={f.n}
+                  className={`grid md:grid-cols-2 gap-6 items-center ${left ? '' : 'md:[&>*:first-child]:order-2'}`}
+                >
+                  <div className="relative h-56 flex items-center justify-center rounded-2xl overflow-hidden shadow-md bg-gradient-to-t from-black/45 to-transparent">
+                    <div className="flex flex-col items-center gap-4">
+                      <f.icon className="h-16 w-16 text-green-500" /> {/* Larger icon with green color */}
+                      <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/25 backdrop-blur text-white text-sm shadow">
+                        <f.icon className="h-4 w-4 text-green-500" /> {/* Smaller icon with green color */}
+                        <span className='text-black'>Step {f.n}</span>
                       </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold">{f.title}</h3>
-                      <p className="text-gray-700 mt-2">{f.text}</p>
-                    </div>
                   </div>
-                );
-              })}
-            </div>
+                  <div>
+                    <h3 className="text-xl font-bold">{f.title}</h3>
+                    <p className="text-gray-700 mt-2">{f.text}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* WMS & Ops features — NEW: alternating splits */}
-      <section id="features" className="bg-white">
+      {/* <section id="features" className="bg-white">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold">WMS & Mobile Workflows</h2>
@@ -449,10 +462,10 @@ export default function WarehousePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* KPI snapshot — NEW: ring stats */}
-      <section id="kpi" className="bg-gray-50">
+      {/* <section id="kpi" className="bg-gray-50">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold">KPI Snapshot</h2>
@@ -483,10 +496,10 @@ export default function WarehousePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Case studies — refreshed card visuals */}
-      <section id="cases" className="bg-gray-50">
+      {/* <section id="cases" className="bg-gray-50">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold">Case Studies</h2>
@@ -520,7 +533,7 @@ export default function WarehousePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Comparison — keep logic, refine styling */}
       <section id="compare" className="bg-white">

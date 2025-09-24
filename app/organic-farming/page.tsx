@@ -16,7 +16,7 @@ export default function OrganicVisualPage() {
       <section id="story" className="relative overflow-hidden bg-green-900 text-white">
         <div className="absolute inset-0">
           <Image
-            src="/images/organic/hero.jpg"
+            src="/service/organic/1.jpg"
             alt="Dhanvantri Farms Organic Fields"
             fill
             sizes="100vw"
@@ -52,8 +52,8 @@ export default function OrganicVisualPage() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden">
               <Image
-                src="/images/organic/soil.jpg"
-                alt="Healthy Soil by Dhanvantri Farms"
+            src="/service/organic/2.jpg"
+            alt="Healthy Soil by Dhanvantri Farms"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -70,8 +70,8 @@ export default function OrganicVisualPage() {
           <div className="grid md:grid-cols-2 gap-8 items-center md:flex-row-reverse">
             <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden md:order-2">
               <Image
-                src="/images/organic/rotation.jpg"
-                alt="Crop Rotation by Dhanvantri Farms"
+            src="/service/organic/4.jpg"
+            alt="Crop Rotation by Dhanvantri Farms"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -88,8 +88,8 @@ export default function OrganicVisualPage() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden">
               <Image
-                src="/images/organic/cover-crops.jpg"
-                alt="Cover Crops by Dhanvantri Farms"
+            src="/service/organic/3.jpg"
+            alt="Cover Crops by Dhanvantri Farms"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -120,37 +120,37 @@ export default function OrganicVisualPage() {
               {
                 title: 'Compost in Action',
                 text: 'Stable organic matter feeds microbes, improves tilth, and boosts CEC for nutrient retention.',
-                src: '/images/organic/compost.jpg',
+                src: '/service/organic/5.jpg',
                 icon: <Droplets className="h-5 w-5" />,
               },
               {
                 title: 'Pollinator Strips',
                 text: 'Flowering borders attract beneficials, increasing biological control and fruit set.',
-                src: '/images/organic/habitat.jpg',
+                src: '/service/organic/6.jpg',
                 icon: <Flower2 className="h-5 w-5" />,
               },
               {
                 title: 'Agroforestry Lanes',
                 text: 'Trees buffer wind, cycle nutrients, and add perennial value to annual rotations.',
-                src: '/images/organic/agroforestry.jpg',
+                src: '/service/organic/7.jpg',
                 icon: <TreePine className="h-5 w-5" />,
               },
               {
                 title: 'Irrigation Efficiency',
                 text: 'Scheduling and mulches reduce evaporation and improve water productivity.',
-                src: '/images/organic/irrigation.jpg',
+                src: '/service/organic/8.jpg',
                 icon: <ShieldCheck className="h-5 w-5" />,
               },
               {
                 title: 'Seedling Vigor',
                 text: 'Transplants from biologically active media establish fast and uniform.',
-                src: '/images/organic/seedlings.jpg',
+                src: '/service/organic/9.jpg',
                 icon: <Sprout className="h-5 w-5" />,
               },
               {
                 title: 'Leafy Quality',
                 text: 'Cooler canopies and balanced nutrition deliver color, texture, and shelf life.',
-                src: '/images/organic/greens.jpg',
+                src: '/service/organic/10.jpg',
                 icon: <Leaf className="h-5 w-5" />,
               },
             ].map((card, idx) => (
@@ -180,7 +180,7 @@ export default function OrganicVisualPage() {
       </section>
 
       {/* Section 3: Longform with full-bleed images (minimal chrome, more content) */}
-      <section id="deep-dive" className="bg-gray-50">
+      {/* <section id="deep-dive" className="bg-gray-50">
         <div className="container mx-auto px-0 md:px-4 py-16 md:py-20">
           <div className="mx-auto max-w-4xl px-4">
             <h2 className="text-3xl md:text-4xl font-extrabold">Deep Dive: From Transition to Certification</h2>
@@ -189,7 +189,7 @@ export default function OrganicVisualPage() {
             </p>
           </div>
 
-          {/* Full-bleed image block */}
+      
           <div className="relative w-full h-[320px] sm:h-[420px] md:h-[520px] mt-10">
             <Image
               src="/images/organic/transition.jpg"
@@ -216,7 +216,7 @@ export default function OrganicVisualPage() {
             </p>
           </div>
 
-          {/* Second full-bleed image block */}
+         
           <div className="relative w-full h-[300px] sm:h-[380px] md:h-[460px] mt-12">
             <Image
               src="/images/organic/cert.jpg"
@@ -234,7 +234,7 @@ export default function OrganicVisualPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA */}
       <section id="cta" className="relative overflow-hidden bg-green-900 text-white">

@@ -116,7 +116,7 @@ export default function HydroponicsPage() {
       {
         key: 'dwc',
         title: 'Deep Water Culture Systems',
-        image: '/images/hydroponics/dwc.jpg',
+        image: '/service/hydro/1.jpg',
         paragraphs: [
           {
             text:
@@ -130,7 +130,7 @@ export default function HydroponicsPage() {
       {
         key: 'nft',
         title: 'Nutrient Film Technique (NFT)',
-        image: '/images/hydroponics/nft.jpg',
+        image: '/service/hydro/2.jpg',
         paragraphs: [
           {
             text:
@@ -144,7 +144,7 @@ export default function HydroponicsPage() {
       {
         key: 'dutch',
         title: 'Dutch Bucket Grow System',
-        image: '/images/hydroponics/dutch-bucket.jpg',
+        image: '/service/hydro/3.jpg',
         paragraphs: [
           {
             text:
@@ -158,7 +158,7 @@ export default function HydroponicsPage() {
       {
         key: 'aero',
         title: 'Aeroponic Systems',
-        image: '/images/hydroponics/aeroponics.jpg',
+        image: '/service/hydro/4.jpg',
         paragraphs: [
           {
             text:
@@ -190,7 +190,7 @@ export default function HydroponicsPage() {
       <section id="intro" className="relative overflow-hidden bg-green-900 text-white pt-20">
         <div className="absolute inset-0">
           <Image
-            src="/hero/2.jpg"
+            src="/service/hydro/herobg.jpg"
             alt="Dhanvantri Farms Hydroponics background"
             fill
             sizes="100vw"
@@ -233,35 +233,26 @@ export default function HydroponicsPage() {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="order-1 md:order-2 relative">
-              <div className="rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-md shadow-2xl">
-                <div className="aspect-video relative">
-                  <iframe
-                    ref={videoRef}
-                    className="w-full h-full"
-                    src={``}
-                    title="Dhanvantri Farms Hydroponics overview"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
-                  <button 
-                    onClick={togglePlay}
-                    className="absolute inset-0 flex items-center justify-center w-full h-full group"
-                    aria-label={isPlaying ? "Pause video" : "Play video"}
-                  >
-                    {!isPlaying && (
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition">
-                        <Play className="h-8 w-8 md:h-10 md:h-10 text-white fill-current" />
-                      </div>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div className="mt-4 text-center text-green-100 text-sm">
-                Watch our introduction to Dhanvantri Farms’ hydroponic farming
-              </div>
-            </motion.div>
+
+
+<motion.div variants={fadeUp} className="order-1 md:order-2 relative">
+  <div className="rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-md shadow-2xl">
+    <div className="aspect-video relative">
+      {/* Replace iframe with Next.js Image */}
+      <Image
+        src="/service/hydro/hero-2.jpg" // <-- Your image path
+        alt="Dhanvantri Farms Hydroponics overview"
+        fill
+        className="object-cover"
+      />
+
+     
+    </div>
+  </div>
+
+ 
+</motion.div>
+
           </motion.div>
         </div>
       </section>
@@ -470,7 +461,7 @@ export default function HydroponicsPage() {
             <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }}>
               <div className="relative h-72 sm:h-80 md:h-96 rounded-2xl overflow-hidden border border-gray-200 shadow-md group">
                 <Image
-                  src="/images/hydroponics/why.jpg"
+                  src="/service/hydro/5.jpg"
                   alt="Why choose Dhanvantri Farms Hydroponics"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
