@@ -6,9 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 type Slide = {
-  type: 'video' | 'image';
   src: string;
-  poster?: string;
   title: string;
   subtitle: string;
 };
@@ -18,36 +16,29 @@ const HeroSection = () => {
 
   const slides: Slide[] = useMemo(() => [
     {
-      type: 'video',
-      src: '/video/polyhouse-farming.mp4',
-      poster: '/hero/1.jpg',
+      src: '/hero/1.jpg',
       title: 'Revolutionizing Agriculture',
-      subtitle: 'Dhanvantri Farms’ climate-controlled polyhouse solutions boost crop yields with smart technology.',
+      subtitle: 'Dhanvantri Farms climate-controlled polyhouse solutions boost crop yields with smart technology.',
     },
     {
-      type: 'image',
       src: '/hero/2.jpg',
       title: 'Sustainable Organic Farming',
       subtitle: 'Embrace chemical-free farming with Dhanvantri Farms for healthier crops and eco-friendly growth.',
     },
     {
-      type: 'image',
       src: '/hero/3.jpg',
       title: 'Advanced Nethouse Solutions',
       subtitle: 'Protect crops with durable nethouse structures designed by Dhanvantri Farms for optimal yield.',
     },
     {
-      type: 'video',
-      src: '/video/mushroom-farming.mp4',
-      poster: '/hero/4.jpg',
+      src: '/hero/4.jpg',
       title: 'Modern Mushroom Farming',
-      subtitle: 'Explore new revenue streams with Dhanvantri Farms’ innovative mushroom farming setups.',
+      subtitle: 'Explore new revenue streams with Dhanvantri Farms innovative mushroom farming setups.',
     },
     {
-      type: 'image',
       src: '/hero/5.jpg',
       title: 'Smart Agri Warehousing',
-      subtitle: 'Secure your harvest with Dhanvantri Farms’ cutting-edge agricultural warehousing solutions.',
+      subtitle: 'Secure your harvest with Dhanvantri Farms cutting-edge agricultural warehousing solutions.',
     },
   ], []);
 
@@ -58,26 +49,17 @@ const HeroSection = () => {
     <section className="relative h-[90%] min-h-[650px] flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        {slides[currentIndex].type === 'image' ? (
-          <img
+        <Image
           src={slides[currentIndex].src}
           alt={slides[currentIndex].title}
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          priority={currentIndex === 0}
+          quality={85}
+          sizes="100vw"
+          className="object-cover"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
         />
-        
-        ) : (
-          <video
-            key={`vid-${currentIndex}`}
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster={slides[currentIndex].poster}
-            className="w-full h-full object-cover"
-          >
-            <source src={slides[currentIndex].src} type="video/mp4" />
-          </video>
-        )}
       </div>
 
       {/* Overlay */}
