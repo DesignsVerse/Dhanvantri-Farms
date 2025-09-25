@@ -59,16 +59,12 @@ const HeroSection = () => {
       {/* Background */}
       <div className="absolute inset-0">
         {slides[currentIndex].type === 'image' ? (
-          <Image
-            src={slides[currentIndex].src}
-            alt={slides[currentIndex].title}
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority={currentIndex === 0}
-            loading={currentIndex === 0 ? 'eager' : 'lazy'}
-            quality={50} // Reduced quality for faster loading
-          />
+          <img
+          src={slides[currentIndex].src}
+          alt={slides[currentIndex].title}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        
         ) : (
           <video
             key={`vid-${currentIndex}`}
