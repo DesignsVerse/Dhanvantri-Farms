@@ -2,8 +2,6 @@
 
 import Link from 'next/link';
 import { Leaf, Facebook, Twitter, Instagram, Youtube, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 
 const Footer = () => {
   const footerSections = {
@@ -55,18 +53,10 @@ const Footer = () => {
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid lg:grid-cols-6 gap-12">
-          {/* Company Info - Enhanced with animations */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-2"
-          >
+          {/* Company Info */}
+          <div className="lg:col-span-2">
             <Link href="/" className="flex items-center space-x-3 mb-8">
-              <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
-                <Leaf className="w-10 h-10 text-[#8bc34a]" />
-              </motion.div>
+              <Leaf className="w-10 h-10 text-[#8bc34a]" />
               <span className="text-3xl font-extrabold">Dhanvantri Farms</span>
             </Link>
             
@@ -93,76 +83,50 @@ const Footer = () => {
             
             <div className="flex space-x-6">
               {[Facebook, Twitter, Instagram, Youtube, Linkedin].map((Icon, index) => (
-                <motion.a 
+                <a 
                   key={index} 
                   href="#" 
-                  whileHover={{ scale: 1.2, rotate: 360 }}
-                  transition={{ duration: 0.4 }}
-                  className="p-3 bg-gray-800 rounded-full hover:bg-[#8bc34a] transition-all duration-300 shadow-md hover:shadow-lg"
+                  className="p-3 bg-gray-800 rounded-full"
                 >
                   <Icon className="w-6 h-6" />
-                </motion.a>
+                </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Footer Links - Enhanced with staggered animations */}
+          {/* Footer Links */}
           {[
             { title: 'Overview', items: footerSections.overview },
             { title: 'Polyhouse / Greenhouse', items: footerSections.polyhouse },
             { title: 'Automation', items: footerSections.automation, additional: { title: 'Policies', items: footerSections.policies } },
             { title: 'Hydroponics', items: footerSections.hydroponics, additional: { title: 'Net House', items: footerSections.netHouse } }
-          ].map((section, sectionIndex) => (
+          ].map((section) => (
             <div key={section.title}>
-              <motion.h3 
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: sectionIndex * 0.15 }}
-                className="text-xl font-bold mb-6 text-[#8bc34a]"
-              >
+              <h3 className="text-xl font-bold mb-6 text-[#8bc34a]">
                 {section.title}
-              </motion.h3>
+              </h3>
               <ul className="space-y-3">
-                {section.items.map((link, index) => (
-                  <motion.li 
-                    key={link.label}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: (sectionIndex * 0.15) + (index * 0.08) }}
-                  >
-                    <Link href={link.href} className="text-gray-300 hover:text-[#8bc34a] transition-colors duration-300 text-base">
+                {section.items.map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="text-gray-300 text-base">
                       {link.label}
                     </Link>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
 
               {section.additional && (
                 <>
-                  <motion.h3 
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: (sectionIndex * 0.15) + 0.4 }}
-                    className="text-xl font-bold mb-6 text-[#8bc34a] mt-8"
-                  >
+                  <h3 className="text-xl font-bold mb-6 text-[#8bc34a] mt-8">
                     {section.additional.title}
-                  </motion.h3>
+                  </h3>
                   <ul className="space-y-3">
-                    {section.additional.items.map((link, index) => (
-                      <motion.li 
-                        key={link.label}
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: (sectionIndex * 0.15) + 0.4 + (index * 0.08) }}
-                      >
-                        <Link href={link.href} className="text-gray-300 hover:text-[#8bc34a] transition-colors duration-300 text-base">
+                    {section.additional.items.map((link) => (
+                      <li key={link.label}>
+                        <Link href={link.href} className="text-gray-300 text-base">
                           {link.label}
                         </Link>
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
                 </>
@@ -172,7 +136,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar - Enhanced with subtle animation */}
+      {/* Bottom Bar */}
       <div className="border-t border-gray-800 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
@@ -180,24 +144,14 @@ const Footer = () => {
               © 2024 Dhanvantri Farms. All rights reserved.
             </p>
             
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center space-x-8"
-            >
+            <div className="flex items-center space-x-8">
               <span className="text-base text-gray-400">Trusted by 15,000+ farmers</span>
               <div className="flex items-center space-x-2">
                 <span className="text-base text-gray-400">Made with</span>
-                <motion.span 
-                  animate={{ scale: [1, 1.3, 1] }}
-                  transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
-                  className="text-[#8bc34a] text-xl"
-                >♥</motion.span>
+                <span className="text-[#8bc34a] text-xl">♥</span>
                 <span className="text-base text-gray-400">in India</span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

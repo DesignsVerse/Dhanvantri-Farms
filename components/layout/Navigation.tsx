@@ -44,15 +44,15 @@ const Navigation = () => {
         { label: 'Contact Experts', href: '/hydroponics#contact' },
       ],
     },
-    {
-      label: 'Automation',
-      href: '/automation',
-      dropdown: [
-        { label: 'Polyhouse Controls', href: '/automation/polyhouse' },
-        { label: 'Hydroponics Controls', href: '/automation/hydroponics' },
-        { label: 'Smart Priva Systems', href: '/automation/priva' },
-      ],
-    },
+    // {
+    //   label: 'Automation',
+    //   href: '/automation',
+    //   dropdown: [
+    //     { label: 'Polyhouse Controls', href: '/automation/polyhouse' },
+    //     { label: 'Hydroponics Controls', href: '/automation/hydroponics' },
+    //     { label: 'Smart Priva Systems', href: '/automation/priva' },
+    //   ],
+    // },
     {
       label: 'Polyhouse',
       href: '/polyhouse',
