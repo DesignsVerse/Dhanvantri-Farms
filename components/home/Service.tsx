@@ -1,17 +1,45 @@
 'use client';
 
 import Link from 'next/link';
-import { Sprout, Home, Droplets, Settings, Leaf, Warehouse, Snowflake } from 'lucide-react';
 
 const OurServices = () => {
   const categories = [
-    { icon: Home, title: 'Polyhouse', description: 'Climate-controlled farming solutions', href: '/polyhouse' },
-    { icon: Sprout, title: 'Net House', description: 'Protected cultivation structures', href: '/net-house' },
-    { icon: Droplets, title: 'Hydroponics', description: 'Soilless farming systems', href: '/hydroponics' },
-    // { icon: Settings, title: 'Automation', description: 'Smart IoT-integrated solutions', href: '/automation' },
-    { icon: Leaf, title: 'Organic Farming', description: 'Sustainable and chemical-free agriculture', href: '/organic-farming' },
-    { icon: Warehouse, title: 'Warehouse', description: 'Efficient storage solutions', href: '/warehouse' },
-    { icon: Snowflake, title: 'Cold Storage', description: 'Temperature-controlled storage', href: '/cold-storage' },
+    {
+      image: '/1.jpg', // Replace with your image path
+      title: 'Polyhouse',
+      description: 'Climate-controlled farming solutions',
+      href: '/polyhouse',
+    },
+    {
+      image: '/2.jpg', // Replace with your image path
+      title: 'Net House',
+      description: 'Protected cultivation structures',
+      href: '/net-house',
+    },
+    {
+      image: '/3.jpg', // Replace with your image path
+      title: 'Hydroponics',
+      description: 'Soilless farming systems',
+      href: '/hydroponics',
+    },
+    {
+      image: '/4.jpg', // Replace with your image path
+      title: 'Organic Farming',
+      description: 'Sustainable and chemical-free agriculture',
+      href: '/organic-farming',
+    },
+    {
+      image: '/5.jpg', // Replace with your image path
+      title: 'Warehouse',
+      description: 'Efficient storage solutions',
+      href: '/warehouse',
+    },
+    {
+      image: '/6.jpg', // Replace with your image path
+      title: 'Cold Storage',
+      description: 'Temperature-controlled storage',
+      href: '/cold-storage',
+    },
   ];
 
   return (
@@ -31,62 +59,64 @@ const OurServices = () => {
         <div className="space-y-10">
           {/* First Row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-            {categories.slice(0, 4).map((category, index) => {
-              const Icon = category.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white shadow-md overflow-hidden border border-green-100 rounded-xl"
-                >
-                  <div className="relative h-36 sm:h-44 lg:h-56 flex items-center justify-center bg-green-50">
-                    <Icon className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 text-[#8bc34a]" />
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2">{category.title}</h3>
-                    <p className="text-gray-800 text-xs sm:text-sm md:text-base font-medium mb-4 hidden sm:block">{category.description}</p>
-                    <Link
-                      href={category.href}
-                      className="inline-flex items-center space-x-2 text-[#8bc34a] font-semibold text-xs sm:text-sm md:text-base"
-                    >
-                      <span>Learn More</span>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </div>
+            {categories.slice(0, 4).map((category, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-md overflow-hidden border border-green-100 rounded-xl"
+              >
+                <div className="relative h-36 sm:h-44 lg:h-56 flex items-center justify-center bg-green-50">
+                  <img
+                    src={category.image}
+                    alt={category.title}
+                    className="w-full h-full object-cover" // Use object-cover to ensure the image fills the container
+                  />
                 </div>
-              );
-            })}
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2">{category.title}</h3>
+                  <p className="text-gray-800 text-xs sm:text-sm md:text-base font-medium mb-4 hidden sm:block">{category.description}</p>
+                  <Link
+                    href={category.href}
+                    className="inline-flex items-center space-x-2 text-[#8bc34a] font-semibold text-xs sm:text-sm md:text-base"
+                  >
+                    <span>Learn More</span>
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Second Row */}
           <div className="grid grid-cols-2 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
-            {categories.slice(4, 7).map((category, index) => {
-              const Icon = category.icon;
-              return (
-                <div
-                  key={index + 4}
-                  className="bg-white shadow-md overflow-hidden border border-green-100 rounded-xl"
-                >
-                  <div className="relative h-36 sm:h-44 lg:h-56 flex items-center justify-center bg-green-50">
-                    <Icon className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 text-[#8bc34a]" />
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2">{category.title}</h3>
-                    <p className="text-gray-800 text-xs sm:text-sm md:text-base font-medium mb-4 hidden sm:block">{category.description}</p>
-                    <Link
-                      href={category.href}
-                      className="inline-flex items-center space-x-2 text-[#8bc34a] font-semibold text-xs sm:text-sm md:text-base"
-                    >
-                      <span>Learn More</span>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </div>
+            {categories.slice(4, 6).map((category, index) => (
+              <div
+                key={index + 4}
+                className="bg-white shadow-md overflow-hidden border border-green-100 rounded-xl"
+              >
+                <div className="relative h-36 sm:h-44 lg:h-56 flex items-center justify-center bg-green-50">
+                  <img
+                    src={category.image}
+                    alt={category.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              );
-            })}
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2">{category.title}</h3>
+                  <p className="text-gray-800 text-xs sm:text-sm md:text-base font-medium mb-4 hidden sm:block">{category.description}</p>
+                  <Link
+                    href={category.href}
+                    className="inline-flex items-center space-x-2 text-[#8bc34a] font-semibold text-xs sm:text-sm md:text-base"
+                  >
+                    <span>Learn More</span>
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

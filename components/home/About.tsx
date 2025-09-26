@@ -11,7 +11,7 @@ const About = () => {
         {/* Image Section */}
         <div className="relative flex items-center justify-center overflow-hidden rounded-2xl shadow-md">
           <Image
-            src="/hero/1.jpg"
+            src="/farm.jpg"
             alt="Greenhouse farming solutions for sustainable agriculture"
             width={600}
             height={400}

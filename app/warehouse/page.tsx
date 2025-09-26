@@ -66,7 +66,7 @@ export default function WarehousePage() {
     () => [
       {
         title: 'Selective Pallet Racking',
-        image: '/service/warehouse/2.png',
+        image: '/service/warehouse/2.jpg',
         icon: Boxes,
         points: [
           '100% SKU accessibility for high mix warehouses',
@@ -76,7 +76,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Drive-in / Drive-through',
-        image: '/service/warehouse/3.png',
+        image: '/service/warehouse/3.jpg',
         icon: Boxes,
         points: [
           'High-density lanes for low-SKU, high-volume products',
@@ -86,7 +86,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Push-back & Gravity Flow',
-        image: '/service/warehouse/4.png',
+        image: '/service/warehouse/4.jpg',
         icon: Layers,
         points: [
           'Cart-based or roller lanes for dynamic storage',
@@ -96,7 +96,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Mezzanine & Shelving',
-        image: '/service/warehouse/5.png',
+        image: '/service/warehouse/5.jpg',
         icon: Package,
         points: [
           'Multi-tier for eComm bins and cartons',
@@ -106,7 +106,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Automation Ready (AS/RS)',
-        image: '/service/warehouse/6.png',
+        image: '/service/warehouse/6.jpg',
         icon: Cpu,
         points: [
           'Shuttles/miniloads for totes and cartons',
@@ -116,7 +116,7 @@ export default function WarehousePage() {
       },
       {
         title: 'Yard & Container Staging',
-        image: '/service/warehouse/7.png',
+        image: '/service/warehouse/7.jpg',
         icon: Container,
         points: [
           'Dock scheduling and yard visibility',
@@ -264,7 +264,7 @@ export default function WarehousePage() {
       <section id="hero" className="relative overflow-hidden bg-green-900 text-white pt-20">
         <div className="absolute inset-0">
           <Image
-            src="/service/warehouse/1.png"
+            src="/service/warehouse/1.jpg"
             alt="Dhanvantri Farms Warehouse Facility"
             fill
             sizes="100vw"

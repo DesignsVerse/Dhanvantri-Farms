@@ -46,25 +46,25 @@ const PolyhousePage = () => {
       title: "TEMPERATURE CONTROL",
       description: "Plants are grown under controlled temperature",
       icon: "🌡️",
-      image: "https://images.pexels.com/photos/6272328/pexels-photo-6272328.jpeg"
+      image: "/service/poly/6.jpg"
     },
     {
       title: "DAMAGE FREE",
       description: "Less chances of crop loss or damage",
       icon: "🛡️",
-      image: "https://images.pexels.com/photos/6001997/pexels-photo-6001997.jpeg"
+      image: "/service/poly/7.jpg"
     },
     {
       title: "LESS PESTICIDES",
       description: "Less pests and insects in a polyhouse",
       icon: "🚫",
-      image: "https://images.pexels.com/photos/4917238/pexels-photo-4917238.jpeg"
+      image: "/service/poly/8.jpg"
     },
     {
       title: "HIGHER PRODUCTION",
       description: "Quality of produce is higher in a polyhouse",
       icon: "📈",
-      image: "https://images.pexels.com/photos/6001991/pexels-photo-6001991.jpeg"
+      image: "/service/poly/9.jpg"
     }
   ];
 
@@ -110,19 +110,14 @@ const PolyhousePage = () => {
   ];
 
   const polyhouseTypes = [
-    { id: 'menu1', name: 'Naturally Ventilated Polyhouse', image: "https://images.pexels.com/photos/6272328/pexels-photo-6272328.jpeg" },
-    { id: 'menu2', name: 'Butterfly Ventilated Polyhouse', image: "https://images.pexels.com/photos/6001997/pexels-photo-6001997.jpeg" },
-    { id: 'menu3', name: 'Tropical Polyhouse', image: "https://images.pexels.com/photos/4917238/pexels-photo-4917238.jpeg" },
-    { id: 'menu4', name: 'Gothic Polyhouse', image: "https://images.pexels.com/photos/6001991/pexels-photo-6001991.jpeg" },
-    { id: 'menu5', name: 'Customized Polyhouse', image: "https://images.pexels.com/photos/105804/pexels-photo-105804.jpeg" },
+    { id: 'menu1', name: 'Naturally Ventilated Polyhouse', image: "/service/poly/9.jpg" },
+    { id: 'menu2', name: 'Butterfly Ventilated Polyhouse', image: "/service/poly/10.jpg" },
+    { id: 'menu3', name: 'Tropical Polyhouse', image: "/service/poly/11.jpg" },
+    { id: 'menu4', name: 'Gothic Polyhouse', image: "/service/poly/12.jpg" },
+    { id: 'menu5', name: 'Customized Polyhouse', image: "/service/poly/4.jpg" },
   ];
 
-  const galleryImages = [
-    'https://images.pexels.com/photos/105804/pexels-photo-105804.jpeg',
-    'https://images.pexels.com/photos/533360/pexels-photo-533360.jpeg',
-    'https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg',
-    'https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg',
-  ];
+
 
   const testimonials = [
     { name: 'Rajesh Kumar', quote: 'Agriplast polyhouse ne meri fasal ko double kar diya!', location: 'Pune', image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" },
@@ -145,8 +140,6 @@ const PolyhousePage = () => {
     { title: 'Eco-Friendly', desc: 'Promotes organic methods and reduces environmental impact.', icon: "🌍" },
   ];
 
-  const nextGallery = () => setCurrentGalleryIndex((prev) => (prev + 1) % galleryImages.length);
-  const prevGallery = () => setCurrentGalleryIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
@@ -217,34 +210,34 @@ const PolyhousePage = () => {
       <main className="container mx-auto px-4 py-12">
         {/* Introduction Section */}
         <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="md:flex">
-              <div className="md:w-1/2 p-8">
-                <h2 className="text-3xl font-semibold text-green-800 mb-6">What is a Polyhouse?</h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  A polyhouse is a modern agricultural structure made of translucent polyethylene, designed to create a controlled environment for optimal crop growth. At Dhanvantri Farms, our polyhouses use advanced technology to regulate temperature, humidity, and light, ensuring higher yields and better-quality produce.
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Perfect for protected cultivation, Dhanvantri Farms polyhouses shield crops from harsh weather, pests, and diseases while reducing water usage by up to 50%. Ideal for vegetables, flowers, and exotic fruits, they enable year-round farming with 3-5x higher productivity compared to traditional methods.
-                </p>
-              </div>
-              <div className="md:w-1/2">
-                <Image
-                  src="https://images.pexels.com/photos/105804/pexels-photo-105804.jpeg"
-                  alt="Dhanvantri Farms Polyhouse Structure"
-                  width={600}
-                  height={400}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </motion.section>
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  className="mb-20 scroll-mt-24"
+>
+  <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+    <div className="flex flex-col md:flex-row">
+      <div className="md:w-1/2 p-6 md:p-8 order-2 md:order-1">
+        <h2 className="text-2xl md:text-3xl font-semibold text-green-800 mb-6">What is a Polyhouse?</h2>
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+          A polyhouse is a modern agricultural structure made of translucent polyethylene, designed to create a controlled environment for optimal crop growth. At Dhanvantri Farms, our polyhouses use advanced technology to regulate temperature, humidity, and light, ensuring higher yields and better-quality produce.
+        </p>
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+          Perfect for protected cultivation, Dhanvantri Farms polyhouses shield crops from harsh weather, pests, and diseases while reducing water usage by up to 50%. Ideal for vegetables, flowers, and exotic fruits, they enable year-round farming with 3-5x higher productivity compared to traditional methods.
+        </p>
+      </div>
+      <div className="md:w-1/2 aspect-[3/2] order-1 md:order-2">
+        <Image
+          src="/service/poly/7.jpg"
+          alt="Dhanvantri Farms Polyhouse Structure"
+          width={600}
+          height={400}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</motion.section>
 
         {/* Key Advantages Section */}
         <motion.section
@@ -302,8 +295,8 @@ const PolyhousePage = () => {
               <div className="md:w-1/2">
                 <div className="h-full relative">
                   <Image
-                    src="https://images.pexels.com/photos/6272328/pexels-photo-6272328.jpeg"
-                    alt="Modern Polyhouse Farming by Dhanvantri Farms"
+      src= "/service/poly/8.jpg"
+      alt="Modern Polyhouse Farming by Dhanvantri Farms"
                     fill
                     className="object-cover"
                   />
@@ -319,39 +312,7 @@ const PolyhousePage = () => {
           </div>
         </motion.section>
 
-        {/* Features Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <h2 className="text-3xl font-semibold text-green-800 mb-8 text-center">Why Choose Dhanvantri Farms?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all"
-              >
-                <div className="h-48 relative">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold text-green-700 mb-4">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+    
 
         {/* Detailed Benefits Section */}
         <motion.section
@@ -430,8 +391,8 @@ const PolyhousePage = () => {
           </div>
         </motion.section>
 
-        {/* Polyhouse Types Sections */}
-        {polyhouseTypes.map((type) => (
+     {/* Polyhouse Types Sections */}
+     {polyhouseTypes.map((type) => (
           <motion.section
             key={type.id}
             id={type.id}
@@ -442,17 +403,8 @@ const PolyhousePage = () => {
             className="mb-20 scroll-mt-24"
           >
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="md:flex md:flex-row-reverse">
-                <div className="md:w-1/2">
-                  <Image
-                    src={type.image}
-                    alt={type.name}
-                    width={600}
-                    height={400}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="md:w-1/2 p-8">
+              <div className="md:flex">
+                <div className="md:w-1/2 p-8 md:p-8 order-2 md:order-1">
                   <h2 className="text-3xl font-semibold text-green-800 mb-6">{type.name}</h2>
                   {type.id === 'menu1' && (
                     <>
@@ -590,52 +542,21 @@ const PolyhousePage = () => {
                     </>
                   )}
                 </div>
+                <div className="md:w-1/2 aspect-[3/2] order-1 md:order-2">
+                  <Image
+                    src={type.image}
+                    alt={type.name}
+                    width={600}
+                    height={400}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </motion.section>
         ))}
 
-        {/* Gallery Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <h2 className="text-3xl font-semibold text-green-800 mb-8 text-center">Polyhouse Gallery</h2>
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl shadow-lg">
-              <Image
-                src={galleryImages[currentGalleryIndex]}
-                alt={`Dhanvantri Farms Polyhouse Image ${currentGalleryIndex + 1}`}
-                width={1200}
-                height={600}
-                className="w-full h-[500px] object-cover"
-              />
-            </div>
-            <button
-              onClick={prevGallery}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-3 rounded-full shadow-md hover:bg-white transition-all"
-            >
-              <ChevronLeft size={24} className="text-green-800" />
-            </button>
-            <button
-              onClick={nextGallery}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-3 rounded-full shadow-md hover:bg-white transition-all"
-            >
-              <ChevronRight size={24} className="text-green-800" />
-            </button>
-          </div>
-          <div className="flex justify-center gap-2 mt-4">
-            {galleryImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentGalleryIndex(index)}
-                className={`w-3 h-3 rounded-full ${index === currentGalleryIndex ? 'bg-green-600' : 'bg-green-200'}`}
-              />
-            ))}
-          </div>
-        </motion.section>
+    
 
         {/* Testimonials Section */}
         <motion.section
