@@ -73,7 +73,7 @@ export default function SaffronPage() {
       {
         key: 'hydroponic',
         title: 'Hydroponic Saffron',
-        image: '/service/saffron/1.png',
+        image: '/service/saffron/1.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ hydroponic saffron cultivation uses nutrient-rich water solutions for high-quality yield in controlled indoor setups.' },
           { title: 'Optimal Nutrient Delivery', text: 'Precise nutrient solutions ensure robust stigma growth and vibrant color.' },
@@ -83,7 +83,7 @@ export default function SaffronPage() {
       {
         key: 'aeroponic',
         title: 'Aeroponic Saffron',
-        image: '/service/saffron/2.png',
+        image: '/service/saffron/2.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ aeroponic saffron grows corms in air with misted nutrients, maximizing potency and yield.' },
           { title: 'High Oxygenation', text: 'Mist systems enhance root health, leading to stronger saffron threads.' },
@@ -93,7 +93,7 @@ export default function SaffronPage() {
       {
         key: 'vertical',
         title: 'Vertical Saffron Farming',
-        image: '/service/saffron/3.png',
+        image: '/service/saffron/3.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ vertical saffron systems stack trays to maximize space, ideal for urban indoor farming.' },
           { title: 'Space Optimization', text: 'Multi-tier setups produce 5-10x more saffron per square foot.' },
@@ -103,7 +103,7 @@ export default function SaffronPage() {
       {
         key: 'organic',
         title: 'Organic Saffron',
-        image: '/service/saffron/4.png',
+        image: '/service/saffron/4.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ organic saffron uses natural substrates and pest control for premium, chemical-free threads.' },
           { title: 'Eco-Friendly Practices', text: 'Compost-based substrates ensure sustainable, high-potency saffron.' },

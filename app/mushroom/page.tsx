@@ -73,7 +73,7 @@ export default function MushroomPage() {
       {
         key: 'button',
         title: 'Button Mushroom',
-        image: '/service/mushroom/3.png',
+        image: '/service/mushroom/3.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ button mushroom cultivation uses composted substrates for high yields in controlled environments.' },
           { title: 'Nutrient-Rich Growth', text: 'Optimal compost mix ensures robust mycelium development and premium quality mushrooms.' },
@@ -83,7 +83,7 @@ export default function MushroomPage() {
       {
         key: 'oyster',
         title: 'Oyster Mushroom',
-        image: '/service/mushroom/4.png',
+        image: '/service/mushroom/4.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ oyster mushrooms grow on straw or sawdust, ideal for quick cycles and high nutritional value.' },
           { title: 'Fast Harvest', text: 'Ready in 3-4 weeks with multiple flushes, supporting efficient production.' },
@@ -93,7 +93,7 @@ export default function MushroomPage() {
       {
         key: 'shiitake',
         title: 'Shiitake Mushroom',
-        image: '/service/mushroom/5.png',
+        image: '/service/mushroom/5.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ shiitake cultivation on hardwood logs or synthetic bags yields flavorful, medicinal mushrooms.' },
           { title: 'Long-Term Yields', text: 'Multiple harvests over 4-6 years with proper soaking and shocking techniques.' },
@@ -103,7 +103,7 @@ export default function MushroomPage() {
       {
         key: 'milky',
         title: 'Milky Mushroom',
-        image: '/service/mushroom/6.png',
+        image: '/service/mushroom/6.jpg',
         paragraphs: [
           { text: 'Dhanvantri Farms’ milky mushrooms thrive in tropical climates on paddy straw for crisp texture and mild flavor.' },
           { title: 'Heat Tolerance', text: 'Grows at 30-35°C, suitable for warmer regions with high humidity.' },
@@ -167,7 +167,7 @@ export default function MushroomPage() {
       {/* Intro */}
       <section id="intro" className="relative overflow-hidden bg-green-900 text-white ">
         <div className="absolute inset-0">
-          <Image src="/service/mushroom/1.png" alt="Dhanvantri Farms Mushroom Farming background" fill sizes="100vw" priority className="object-cover opacity-35" />
+          <Image src="/service/mushroom/1.jpg" alt="Dhanvantri Farms Mushroom Farming background" fill sizes="100vw" priority className="object-cover opacity-35" />
           <div className="absolute inset-0 bg-gradient-to-b from-green-950/70 via-green-900/30 to-green-900" />
         </div>
         <div className="relative z-10 container mx-auto px-4 py-20 md:py-28">
@@ -200,7 +200,7 @@ export default function MushroomPage() {
               <div className="rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-md shadow-2xl">
                 <div className="aspect-video relative">
                   <Image
-                    src="/service/mushroom/2.png"
+                    src="/service/mushroom/2.jpg"
                     alt="Dhanvantri Farms Mushroom Farming overview"
                     fill
                     className="object-cover"
