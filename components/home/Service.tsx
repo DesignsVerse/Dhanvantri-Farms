@@ -40,6 +40,18 @@ const OurServices = () => {
       description: 'Temperature-controlled storage',
       href: '/cold-storage',
     },
+    {
+      image: '/service/saffron/1.png', // Replace with your image path
+      title: 'Indoor Saffron',
+      description: 'Temperature-controlled storage',
+      href: '/indoor-saffron',
+    },
+    {
+      image: '/service/mushroom/2.png', // Replace with your image path
+      title: 'Mushroom Farming',
+      description: 'Temperature-controlled storage',
+      href: '/mushroom',
+    },
   ];
 
   return (
@@ -89,8 +101,8 @@ const OurServices = () => {
           </div>
 
           {/* Second Row */}
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
-            {categories.slice(4, 6).map((category, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 max-w-8xl mx-auto">
+            {categories.slice(4, 9).map((category, index) => (
               <div
                 key={index + 4}
                 className="bg-white shadow-md overflow-hidden border border-green-100 rounded-xl"
