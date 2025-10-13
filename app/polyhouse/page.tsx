@@ -86,31 +86,12 @@ export default function PolyhousePage() {
     'Rainwater harvesting integration for sustainability'
   ];
 
-  const caseStudies = [
-    {
-      title: 'Tomato Farm in Maharashtra',
-      description: 'Increased yield from 20 tons/acre to 80 tons/acre with our naturally ventilated polyhouse. ROI achieved in 2 years.',
-      image: 'https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg',
-      metrics: ['400% yield increase', '50% water savings', 'Premium market access']
-    },
-    {
-      title: 'Flower Cultivation in Karnataka',
-      description: 'Hi-tech polyhouse enabled export-quality roses year-round, with 30% reduction in pesticide use and higher shelf life.',
-      image: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg',
-      metrics: ['Year-round production', 'Export standards met', '35% profit margin']
-    }
-  ];
-
   const testimonials = [
     {
       quote: 'Our polyhouse from this company transformed our farm. We now produce high-quality vegetables throughout the year with minimal water usage.',
-      author: 'Rajesh Patel, Farmer in Gujarat',
-      image: 'https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg' // Placeholder
     },
     {
       quote: 'The climate control features are outstanding. We\'ve seen a massive increase in yield and quality for our exotic flowers.',
-      author: 'Priya Sharma, Agri-Entrepreneur in Tamil Nadu',
-      image: 'https://images.pexels.com/photos/7654321/pexels-photo-7654321.jpeg' // Placeholder
     }
   ];
 
@@ -348,7 +329,7 @@ export default function PolyhousePage() {
               className="relative h-96 order-last lg:order-first"
             >
               <Image
-                src="https://images.pexels.com/photos/1212407/pexels-photo-1212407.jpeg"
+                src="/service/poly/poly.jpg"
                 alt="Polyhouse Components"
                 fill
                 className="object-cover rounded-3xl shadow-2xl"
@@ -474,17 +455,7 @@ export default function PolyhousePage() {
               >
                 <Users className="w-8 h-8 text-green-600 mb-4 mx-auto" />
                 <p className="text-gray-700 text-lg mb-6 italic">"{testimonial.quote}"</p>
-                <div className="flex items-center justify-center space-x-4">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-md">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.author}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <span className="font-semibold text-gray-900">{testimonial.author}</span>
-                </div>
+                
               </motion.div>
             ))}
           </div>

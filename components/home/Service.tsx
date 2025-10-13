@@ -41,13 +41,13 @@ const OurServices = () => {
       href: '/cold-storage',
     },
     {
-      image: '/service/saffron/1.png', // Replace with your image path
+      image: '/7.jpg', // Replace with your image path
       title: 'Indoor Saffron',
       description: 'Temperature-controlled storage',
       href: '/indoor-saffron',
     },
     {
-      image: '/service/mushroom/2.png', // Replace with your image path
+      image: '/8.jpg', // Replace with your image path
       title: 'Mushroom Farming',
       description: 'Temperature-controlled storage',
       href: '/mushroom',
