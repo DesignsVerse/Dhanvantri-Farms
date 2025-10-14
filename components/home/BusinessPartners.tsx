@@ -1,18 +1,11 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import { Users, Award, TrendingUp, Shield } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const BusinessPartners = () => {
   const partners = [
-    { name: 'Bluelab', logo: '/partners/bluelab.png' },
-    { name: 'Autogrow', logo: '/partners/autogrow.png' },
-    { name: 'Priva', logo: '/partners/priva.png' },
-    { name: 'Netafim', logo: '/partners/netafim.png' },
-    { name: 'Rivulis', logo: '/partners/rivulis.png' },
-    { name: 'Irritec', logo: '/partners/irritec.png' },
+    { name: 'Vandana Krishi Enterprises', color: 'text-[#8bc34a]' },
+    { name: 'Vaidehi Enterprises', color: 'text-[#689f38]' },
   ];
 
   const benefits = [
@@ -55,30 +48,16 @@ const BusinessPartners = () => {
           </p>
         </div>
 
-        {/* Partners Marquee */}
-        <div className="relative overflow-hidden mb-16">
-          <motion.div
-            className="flex gap-8 whitespace-nowrap"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ repeat: Infinity, duration: 25, ease: 'linear' }}
-          >
-            {[...partners, ...partners].map((partner, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center min-w-[140px] sm:min-w-[160px] bg-white rounded-2xl shadow-md border border-green-100 px-4 py-2"
-              >
-                <Image
-                  src={partner.logo}
-                  alt={`${partner.name} Logo`}
-                  width={120}
-                  height={60}
-                  className="object-contain h-12 sm:h-16"
-                  quality={50} // Reduced quality for faster loading
-                  loading="lazy" // Lazy loading for all images
-                />
-              </div>
-            ))}
-          </motion.div>
+        {/* Partners Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
+          {partners.map((partner, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center bg-white rounded-2xl shadow-md border border-green-100 px-4 py-4"
+            >
+              <span className={`text-xl sm:text-2xl font-semibold ${partner.color}`}>{partner.name}</span>
+            </div>
+          ))}
         </div>
 
         {/* Benefits */}
