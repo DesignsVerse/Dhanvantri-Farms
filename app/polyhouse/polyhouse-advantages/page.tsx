@@ -619,40 +619,7 @@ const PolyhousePage = () => {
                 system define the polyhouse farming cost per acre. Dhanvantri Farms offers various types of polyhouses - 
                 Low cost polyhouse, Metal structured polyhouse, and Net house structures.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div className="bg-green-50 p-8 rounded-lg shadow-sm border border-green-200">
-                  <h3 className="text-xl font-semibold text-green-700 mb-4">Naturally Ventilated Polyhouse Structure</h3>
-                  <p className="text-gray-600 mb-6">
-                    Structure + Secondary Layer (White Shade Net 50%) + Trellising + FLC (Chain Pulley Mechanism) + Installation
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex justify-between text-lg">
-                      <span>Cost per acre:</span>
-                      <span className="font-semibold">₹40,84,962*</span>
-                    </li>
-                    <li className="flex justify-between text-lg">
-                      <span>With NHB Subsidy:</span>
-                      <span className="font-semibold">₹20,42,431*</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-green-50 p-8 rounded-lg shadow-sm border border-green-200">
-                  <h3 className="text-xl font-semibold text-green-700 mb-4">Double Layer Pipe Purlin Nethouse</h3>
-                  <p className="text-gray-600 mb-6">
-                    Structure + Secondary Layer (White Shade Net 50%) + Trellising + Installation
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex justify-between text-lg">
-                      <span>Cost per acre:</span>
-                      <span className="font-semibold">₹32,30,306*</span>
-                    </li>
-                    <li className="flex justify-between text-lg">
-                      <span>With NHB Subsidy:</span>
-                      <span className="font-semibold">₹17,77,646*</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              
               <div className="mt-8 p-6 bg-yellow-50 rounded-lg shadow-sm">
                 <p className="text-base text-yellow-700">
                   *Above prices are inclusive of GST. Note: The above prices are approximate and subject to change. 

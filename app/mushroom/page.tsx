@@ -140,7 +140,6 @@ export default function MushroomPage() {
     { feature: 'Shelf Life', dhanvantri: '7–10 Days', highlight: 'Extended Freshness', others: '3–5 Days', othersTag: 'Limited' },
     { feature: 'Contamination Control', dhanvantri: 'Sterilized Setup', highlight: 'Hygienic', others: 'Basic Hygiene', othersTag: 'Limited' },
     { feature: 'ROI Efficiency', dhanvantri: '1.5 Years', highlight: 'Fast Payback', others: '3+ Years', othersTag: 'Limited' },
-    { feature: 'Subsidy & Support', dhanvantri: '₹35–40 Lakh Subsidy', highlight: 'Financial Support', others: 'No Subsidy', othersTag: 'Limited' },
     { feature: 'Market Readiness', dhanvantri: 'Packaged & Branded Output', highlight: 'Market Ready', others: 'Raw Bulk', othersTag: 'Basic' },
   ];
 
