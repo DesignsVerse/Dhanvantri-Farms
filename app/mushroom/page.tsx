@@ -48,6 +48,8 @@ type ComparisonRow = {
   feature: string;
   dhanvantri: string;
   others: string;
+  highlight?: string; // optional
+  othersTag?: string; // optional
 };
 
 // Comparison helpers
@@ -130,26 +132,16 @@ export default function MushroomPage() {
 
   // Comparison data
   const comparisonData: ComparisonRow[] = [
-    { feature: 'Growing Environment', dhanvantri: 'Fully Controlled Rooms', others: 'Basic Sheds' },
-    { feature: 'Humidity Control', dhanvantri: 'Automated 85-95%', others: 'Manual Spraying' },
-    { feature: 'Temperature Regulation', dhanvantri: 'Precise 15-35°C', others: 'Ambient' },
-    { feature: 'Substrate Quality', dhanvantri: 'Organic Compost', others: 'Local Mix' },
-    { feature: 'Spawn Source', dhanvantri: 'High-Quality Lab Spawn', others: 'Basic Spawn' },
-    { feature: 'Yield per Sq Ft', dhanvantri: '2-3 kg', others: '1-1.5 kg' },
-    { feature: 'Harvest Cycles', dhanvantri: 'Multiple Flushes', others: 'Single Flush' },
-    { feature: 'Contamination Prevention', dhanvantri: 'Sterilized Setup', others: 'Basic Hygiene' },
-    { feature: 'Shelf Life', dhanvantri: '7-10 Days', others: '3-5 Days' },
-    { feature: 'Water Usage', dhanvantri: 'Efficient Misting', others: 'High Consumption' },
-    { feature: 'Energy Efficiency', dhanvantri: 'LED Lighting', others: 'Traditional Bulbs' },
-    { feature: 'Support Services', dhanvantri: '1 Year Agronomist', others: 'None' },
-    { feature: 'Automation Level', dhanvantri: 'Semi-Automated', others: 'Manual' },
-    { feature: 'Pest Management', dhanvantri: 'Integrated Organic', others: 'Chemical-Based' },
-    { feature: 'Market Readiness', dhanvantri: 'Packaged & Branded', others: 'Raw Bulk' },
-    { feature: 'Training Provided', dhanvantri: 'Free Initial Training', others: 'N/A' },
-    { feature: 'Sustainability Features', dhanvantri: 'Waste Recycling', others: 'None' },
-    { feature: 'Cost per Setup', dhanvantri: 'Optimized ROI', others: 'Higher Long-Term' },
-    { feature: 'Variety Options', dhanvantri: 'Multiple Types', others: 'Limited' },
-    { feature: 'Quality Certification', dhanvantri: 'Organic Certified', others: 'None' },
+    { feature: 'Growing Environment', dhanvantri: 'Fully Controlled Chambers', highlight: 'Advanced', others: 'Basic Sheds', othersTag: 'Limited' },
+    { feature: 'Humidity Control', dhanvantri: 'Automated 85–95%', highlight: 'Smart Control', others: 'Manual Spraying', othersTag: 'Limited' },
+    { feature: 'Temperature Regulation', dhanvantri: '15–35°C Automated', highlight: 'Energy Efficient', others: 'Ambient', othersTag: 'Limited' },
+    { feature: 'Substrate Quality', dhanvantri: 'Organic Compost Mix', highlight: 'Premium', others: 'Local Mix', othersTag: 'Basic' },
+    { feature: 'Yield per Sq Ft', dhanvantri: '2–3 Kg', highlight: 'High Output', others: '1–1.5 Kg', othersTag: 'Limited' },
+    { feature: 'Shelf Life', dhanvantri: '7–10 Days', highlight: 'Extended Freshness', others: '3–5 Days', othersTag: 'Limited' },
+    { feature: 'Contamination Control', dhanvantri: 'Sterilized Setup', highlight: 'Hygienic', others: 'Basic Hygiene', othersTag: 'Limited' },
+    { feature: 'ROI Efficiency', dhanvantri: '1.5 Years', highlight: 'Fast Payback', others: '3+ Years', othersTag: 'Limited' },
+    { feature: 'Subsidy & Support', dhanvantri: '₹35–40 Lakh Subsidy', highlight: 'Financial Support', others: 'No Subsidy', othersTag: 'Limited' },
+    { feature: 'Market Readiness', dhanvantri: 'Packaged & Branded Output', highlight: 'Market Ready', others: 'Raw Bulk', othersTag: 'Basic' },
   ];
 
   // Comparison filter
@@ -360,134 +352,127 @@ export default function MushroomPage() {
         </div>
       </section>
 
-      {/* Comparison */}
       <section id="comparison" className="bg-white py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Dhanvantri Farms vs Others</h2>
-            <p className="text-gray-600 mt-3">Compare our advanced mushroom farming setups against standard methods</p>
-            <div className="w-40 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full mx-auto mt-6" />
-          </div>
+  <div className="container mx-auto px-4">
 
-          {/* Search */}
-          <div className="mt-8 max-w-xl mx-auto">
-            <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 shadow-sm focus-within:ring-2 focus-within:ring-lime-300">
-              <Search className="h-5 w-5 text-gray-500" />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search features, specs or methods…"
-                className="w-full bg-transparent outline-none text-sm md:text-base placeholder:text-gray-400"
-              />
+    {/* Heading */}
+    <div className="text-center max-w-3xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-[#2e7d32]">
+        Dhanvantri Farms vs Others
+      </h2>
+      <p className="text-gray-600 mt-3">
+        Compare our advanced mushroom farming system, cost efficiency, and returns with traditional methods.
+      </p>
+      <div className="w-36 h-1.5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] rounded-full mx-auto mt-5" />
+    </div>
+
+    {/* 💸 Financial Overview */}
+    <div className="mt-12 max-w-4xl mx-auto bg-gradient-to-br from-[#f1f8e9] to-white border border-lime-200 rounded-2xl p-8 shadow-sm">
+      <h3 className="text-2xl font-bold text-[#2e7d32] mb-6 text-center">Financial Overview</h3>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+        <div className="p-4 border rounded-xl bg-white shadow-sm">
+          <h4 className="font-semibold text-gray-700">Total Project Cost</h4>
+          <p className="text-2xl font-bold text-[#2e7d32] mt-2">₹1.5 Cr</p>
+        </div>
+
+        <div className="p-4 border rounded-xl bg-white shadow-sm">
+          <h4 className="font-semibold text-gray-700">Annual Revenue</h4>
+          <p className="text-2xl font-bold text-[#2e7d32] mt-2">₹1.44 Cr</p>
+        </div>
+
+        <div className="p-4 border rounded-xl bg-white shadow-sm">
+          <h4 className="font-semibold text-gray-700">Annual Profit</h4>
+          <p className="text-2xl font-bold text-[#2e7d32] mt-2">₹89 Lakh</p>
+        </div>
+
+        <div className="p-4 border rounded-xl bg-white shadow-sm">
+          <h4 className="font-semibold text-gray-700">Operating Expense (OPEX)</h4>
+          <p className="text-xl font-bold text-[#689f38] mt-2">₹55 Lakh / Year</p>
+        </div>
+
+        <div className="p-4 border rounded-xl bg-white shadow-sm">
+          <h4 className="font-semibold text-gray-700">Subsidy Benefit</h4>
+          <p className="text-xl font-bold text-[#689f38] mt-2">₹35–40 Lakh</p>
+        </div>
+
+        <div className="p-4 border rounded-xl bg-white shadow-sm">
+          <h4 className="font-semibold text-gray-700">ROI Period</h4>
+          <p className="text-xl font-bold text-[#689f38] mt-2">~1.5 Years</p>
+        </div>
+      </div>
+
+      <div className="mt-6 text-gray-600 text-sm text-center">
+        <p>*Production starts within 45–60 days | 30 cycles per year | 2 kg yield per bag*</p>
+      </div>
+    </div>
+
+    {/* 🔍 Comparison Table */}
+    <div className="mt-14 hidden lg:block">
+      <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+        <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
+          <div className="grid grid-cols-12 px-6 py-4 text-sm font-semibold text-gray-700">
+            <div className="col-span-4">Feature</div>
+            <div className="col-span-4 text-[#2e7d32] flex items-center gap-2 font-semibold">
+              <ShieldCheck className="h-5 w-5 text-[#689f38]" />
+              Dhanvantri Farms
             </div>
-          </div>
-
-          {/* Desktop table */}
-          <div className="mt-10 hidden lg:block">
-            <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
-              <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
-                <div className="grid grid-cols-12 px-6 py-4 text-sm font-semibold text-gray-700">
-                  <div className="col-span-4">Feature</div>
-                  <div className="col-span-4 flex items-center gap-2">
-                    <ShieldCheck className="h-5 w-5 text-[#689f38]" />
-                    <span className="text-[#2e7d32]">Dhanvantri Farms</span>
-                  </div>
-                  <div className="col-span-4">Others</div>
-                </div>
-              </div>
-
-              <div className="divide-y divide-gray-200">
-                {filteredRows.map((row, idx) => {
-                  const neg = isNegative(row.others);
-                  const chips = highlightChips(row.dhanvantri);
-                  return (
-                    <div key={row.feature + idx} className="grid grid-cols-12 px-6 py-4 items-start hover:bg-gray-50/70 transition">
-                      <div className="col-span-4">
-                        <div className="font-semibold text-gray-900">{row.feature}</div>
-                      </div>
-                      <div className="col-span-4">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-gray-800">{row.dhanvantri}</span>
-                          {chips.map((c) => (
-                            <span key={c} className="inline-flex items-center rounded-full bg-lime-500/15 text-green-800 border border-lime-400/40 px-2 py-0.5 text-xs font-medium">
-                              {c}
-                            </span>
-                          ))}
-                          {hasHighlight(row.dhanvantri) && !chips.length ? (
-                            <span className="inline-flex items-center rounded-full bg-lime-500/15 text-green-800 border border-lime-400/40 px-2 py-0.5 text-xs font-medium">
-                              Premium
-                            </span>
-                          ) : null}
-                        </div>
-                      </div>
-                      <div className="col-span-4">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-gray-700">{row.others}</span>
-                          {neg ? (
-                            <span className="inline-flex items-center gap-1 rounded-full bg-red-500/10 text-red-700 border border-red-300 px-2 py-0.5 text-xs font-medium">
-                              <XCircle className="h-4 w-4" />
-                              Limited
-                            </span>
-                          ) : null}
-                          {!neg && row.others.toLowerCase().includes('basic') ? (
-                            <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 text-amber-700 border border-amber-300 px-2 py-0.5 text-xs font-medium">
-                              <Info className="h-4 w-4" />
-                              Basic
-                            </span>
-                          ) : null}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile cards */}
-          <div className="lg:hidden mt-8 grid sm:grid-cols-2 gap-6">
-            {filteredRows.map((row, idx) => {
-              const neg = isNegative(row.others);
-              const chips = highlightChips(row.dhanvantri);
-              return (
-                <div key={row.feature + idx} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                  <div className="font-bold text-gray-900 mb-3">{row.feature}</div>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-[#689f38] mt-0.5" />
-                      <div>
-                        <div className="text-sm text-gray-800">{row.dhanvantri}</div>
-                        <div className="mt-1 flex flex-wrap gap-1.5">
-                          {chips.map((c) => (
-                            <span key={c} className="inline-flex items-center rounded-full bg-lime-500/15 text-green-800 border border-lime-400/40 px-2 py-0.5 text-[11px] font-medium">
-                              {c}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      {neg ? <XCircle className="h-5 w-5 text-red-600 mt-0.5" /> : <Info className="h-5 w-5 text-gray-500 mt-0.5" />}
-                      <div className="text-sm text-gray-700">{row.others}</div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* CTA */}
-          <div className="mt-12 text-center">
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-green-900 bg-gradient-to-b from-[#8bc34a] to-[#689f38] shadow-[0_12px_24px_-8px_rgba(139,195,74,0.45)] hover:shadow-[0_16px_28px_-6px_rgba(104,159,56,0.55)] transition-all duration-300 hover:-translate-y-0.5"
-            >
-              Get a Custom Quote
-              <ArrowRight className="h-5 w-5" />
-            </a>
+            <div className="col-span-4">Others</div>
           </div>
         </div>
-      </section>
+
+        <div className="divide-y divide-gray-200">
+          {filteredRows.map((row, idx) => (
+            <div
+              key={row.feature + idx}
+              className="grid grid-cols-12 px-6 py-4 items-start hover:bg-gray-50 transition"
+            >
+              <div className="col-span-4 font-semibold text-gray-900">{row.feature}</div>
+              <div className="col-span-4 text-gray-800 flex flex-wrap gap-2">
+                <span>{row.dhanvantri}</span>
+                {row.highlight && (
+                  <span className="inline-flex items-center rounded-full bg-lime-500/15 text-green-800 border border-lime-400/40 px-2 py-0.5 text-xs font-medium">
+                    {row.highlight}
+                  </span>
+                )}
+              </div>
+              <div className="col-span-4 text-gray-700 flex flex-wrap gap-2">
+                <span>{row.others}</span>
+                {row.othersTag && (
+                  <span
+                    className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium border ${
+                      row.othersTag === "Limited"
+                        ? "bg-red-500/10 text-red-700 border-red-300"
+                        : "bg-amber-500/10 text-amber-700 border-amber-300"
+                    }`}
+                  >
+                    {row.othersTag === "Limited" ? (
+                      <XCircle className="h-4 w-4" />
+                    ) : (
+                      <Info className="h-4 w-4" />
+                    )}
+                    {row.othersTag}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* CTA */}
+    <div className="mt-12 text-center">
+      <a
+        href="/contact"
+        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-green-900 bg-gradient-to-b from-[#8bc34a] to-[#689f38] shadow-[0_12px_24px_-8px_rgba(139,195,74,0.45)] hover:shadow-[0_16px_28px_-6px_rgba(104,159,56,0.55)] transition-all duration-300 hover:-translate-y-0.5"
+      >
+        Get a Custom Quote
+        <ArrowRight className="h-5 w-5" />
+      </a>
+    </div>
+  </div>
+</section>
 
       {/* FAQ */}
       <section id="faq" className="bg-gray-50">

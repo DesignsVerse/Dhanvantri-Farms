@@ -130,29 +130,19 @@ export default function NetHousePage() {
 
   // Comparison data
   const comparisonData: ComparisonRow[] = [
-    { feature: 'Height of Structure', dhanvantri: '6.8M to 7.2M', others: '6.2M to 6.5M' },
-    { feature: 'Side Ventilation', dhanvantri: '4 meters', others: '2.5 meters' },
-    { feature: 'Top Vent', dhanvantri: '1.2 to 1.4 meters', others: '0.9 meters' },
-    { feature: 'Pipe Quality', dhanvantri: '375-400 GSM', others: '150-250 GSM' },
-    { feature: 'Nut Bolts', dhanvantri: '22 Micron Zinc Coated', others: 'No Coating' },
-    { feature: 'Foundation', dhanvantri: '76mm, 2mm Thick', others: '63mm, 1.6mm Thick' },
-    { feature: 'Door', dhanvantri: 'Aluminium Double Sliding', others: 'Basic GI Door' },
-    { feature: 'Gutter', dhanvantri: '1.6mm, 275 GSM', others: '0.6-1mm, Non-Galvanized' },
-    { feature: 'End Gutters', dhanvantri: 'Yes, both ends', others: 'N/A' },
-    { feature: 'Shade Net Mechanism', dhanvantri: 'Pulley System', others: 'Hook Mechanism' },
-    { feature: 'Reinforcement', dhanvantri: 'Multiple provided', others: 'None' },
-    { feature: 'Hockey Pipe', dhanvantri: 'Square Pipes', others: 'Round Pipes' },
-    { feature: 'Tonnage', dhanvantri: '20-21 Tonnes Steel', others: '16 Tonnes Steel' },
-    { feature: 'Profile', dhanvantri: 'Aluminium', others: 'GI Profile' },
-    { feature: 'Spring', dhanvantri: 'PVC-Coated', others: 'GI Spring' },
-    { feature: 'Polyfilm', dhanvantri: 'Ginegar Israel', others: 'Local' },
-    { feature: 'Shade/Insect Net', dhanvantri: 'Dhanvantri Farms', others: 'Local' },
-    { feature: 'Connectors', dhanvantri: 'Israeli-designed', others: 'Local' },
-    { feature: 'Other Features', dhanvantri: 'Curtain Box, FLC', others: 'None' },
-    { feature: 'Agronomist Support', dhanvantri: '1 Year Free', others: 'None' },
+    { feature: 'Crop', dhanvantri: 'Tomato (Shade Net House)', others: 'Traditional Open Field' },
+    { feature: 'Area', dhanvantri: '1 Acre', others: '1 Acre' },
+    { feature: 'Initial Investment', dhanvantri: '₹35 Lakhs', others: '₹25 Lakhs' },
+    { feature: 'Government Subsidy', dhanvantri: '₹17–20 Lakhs', others: '₹5–7 Lakhs' },
+    { feature: 'No. of Plants', dhanvantri: '12,000', others: '8,000–9,000' },
+    { feature: 'Plant Life Cycle', dhanvantri: '8–9 Months', others: '5–6 Months' },
+    { feature: 'Product Per Plant', dhanvantri: '10 Kg', others: '5–6 Kg' },
+    { feature: 'Total Production Per Year', dhanvantri: '100–120 Tons', others: '50–60 Tons' },
+    { feature: 'Total Income Per Year', dhanvantri: '₹15–20 Lakhs', others: '₹8–10 Lakhs' },
+    { feature: 'Running Cost Per Year', dhanvantri: '₹5–6 Lakhs', others: '₹7–8 Lakhs' },
+    { feature: 'Return on Investment', dhanvantri: '1.5–2 Years', others: '3+ Years' },
   ];
 
-  // Comparison filter
   const [query, setQuery] = useState('');
   const filteredRows = useMemo(() => {
     if (!query) return comparisonData;
