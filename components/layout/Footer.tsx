@@ -58,7 +58,9 @@ const Footer = () => {
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-[#8bc34a] mt-1" />
-                <span className="text-sm sm:text-base">Agriculture Innovation Park, Sector 15, Gurugram, Haryana 122001</span>
+                <span className="text-sm sm:text-base">Near Old SBI
+Garhakota, District Sagar
+Madhya Pradesh 470229, India</span>
               </div>
             </div>
             
