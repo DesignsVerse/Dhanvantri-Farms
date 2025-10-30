@@ -87,27 +87,28 @@ const PolyhousePage = () => {
   ];
 
   const comparisonData = [
-    { feature: "Height of Structure", Dhanvantri Farms: "6.8M to 7.2M from Ground Level", others: "6.2M to 6.5M from Ground Level" },
-    { feature: "Side Ventilation", Dhanvantri Farms: "4 meters", others: "2.5 meters" },
-    { feature: "Top Vent", Dhanvantri Farms: "1.2 to 1.4 meters", others: "0.9 meters" },
-    { feature: "Pipe Quality and Galvanization", Dhanvantri Farms: "375 GSM to 400 GSM", others: "150 GSM to 250 GSM" },
-    { feature: "Nut Bolts and Connectors", Dhanvantri Farms: "22 Micron Zinc Ferrous Coated", others: "No Coating / 2mm Coating" },
-    { feature: "Foundation", Dhanvantri Farms: "76mm Diameter, 2mm Thickness, Crimped Foundation", others: "63mm Diameter, 1.6mm Thickness, Point Load Foundation" },
-    { feature: "Door", Dhanvantri Farms: "Aluminium Double Sliding Door with Buffer Zone", others: "Basic Non-Sliding GI Door without buffer zone" },
-    { feature: "Gutter", Dhanvantri Farms: "1.6mm Thickness, 275 GSM Zinc Coated", others: "0.6mm to 1mm Thickness, Non-Galvanized" },
-    { feature: "End Gutters", Dhanvantri Farms: "Yes, at both ends of the structure", others: "N/A" },
-    { feature: "Shade Net and Mechanism", Dhanvantri Farms: "Pulley System Hybrid Mechanism", others: "Hook Mechanism" },
-    { feature: "Reinforcement and Anti-Wind Breakers", Dhanvantri Farms: "Multiple reinforcement provided", others: "No reinforcements" },
-    { feature: "Hockey Pipe", Dhanvantri Farms: "Square Pipes for more stability", others: "Round pipes with less stability" },
-    { feature: "Tonnage of Structure", Dhanvantri Farms: "20-21 Tonnes Steel, Total ~24 tonnes", others: "16 Tonnes Steel, Total ~19 tonnes" },
-    { feature: "Profile", Dhanvantri Farms: "Aluminium Profile (heat doesn't transfer)", others: "GI Profile (heats plastic)" },
-    { feature: "Spring", Dhanvantri Farms: "PVC-Coated Springs (don't heat plastic)", others: "GI spring (heats plastic)" },
-    { feature: "Polyfilm", Dhanvantri Farms: "Ginegar Israel", others: "Ginegar / Local" },
-    { feature: "Shade Net/Insect net", Dhanvantri Farms: "Agriplast", others: "Agriplast/Local" },
-    { feature: "Multiple Designed Connectors", Dhanvantri Farms: "Israeli-designed connectors", others: "Local Connectors" },
-    { feature: "Other Features", Dhanvantri Farms: "Curtain Box System, FLC Mechanism, Aluminet Shade Net", others: "No genuine Aluminet" },
-    { feature: "Agronomist Support", Dhanvantri Farms: "One Year Free Agronomist Support", others: "No Support" },
+    { feature: "Height of Structure", "Dhanvantri Farms": "6.8M to 7.2M from Ground Level", "others": "6.2M to 6.5M from Ground Level" },
+    { feature: "Side Ventilation", "Dhanvantri Farms": "4 meters", "others": "2.5 meters" },
+    { feature: "Top Vent", "Dhanvantri Farms": "1.2 to 1.4 meters", "others": "0.9 meters" },
+    { feature: "Pipe Quality and Galvanization", "Dhanvantri Farms": "375 GSM to 400 GSM", "others": "150 GSM to 250 GSM" },
+    { feature: "Nut Bolts and Connectors", "Dhanvantri Farms": "22 Micron Zinc Ferrous Coated", "others": "No Coating / 2mm Coating" },
+    { feature: "Foundation", "Dhanvantri Farms": "76mm Diameter, 2mm Thickness, Crimped Foundation", "others": "63mm Diameter, 1.6mm Thickness, Point Load Foundation" },
+    { feature: "Door", "Dhanvantri Farms": "Aluminium Double Sliding Door with Buffer Zone", "others": "Basic Non-Sliding GI Door without buffer zone" },
+    { feature: "Gutter", "Dhanvantri Farms": "1.6mm Thickness, 275 GSM Zinc Coated", "others": "0.6mm to 1mm Thickness, Non-Galvanized" },
+    { feature: "End Gutters", "Dhanvantri Farms": "Yes, at both ends of the structure", "others": "N/A" },
+    { feature: "Shade Net and Mechanism", "Dhanvantri Farms": "Pulley System Hybrid Mechanism", "others": "Hook Mechanism" },
+    { feature: "Reinforcement and Anti-Wind Breakers", "Dhanvantri Farms": "Multiple reinforcement provided", "others": "No reinforcements" },
+    { feature: "Hockey Pipe", "Dhanvantri Farms": "Square Pipes for more stability", "others": "Round pipes with less stability" },
+    { feature: "Tonnage of Structure", "Dhanvantri Farms": "20-21 Tonnes Steel, Total ~24 tonnes", "others": "16 Tonnes Steel, Total ~19 tonnes" },
+    { feature: "Profile", "Dhanvantri Farms": "Aluminium Profile (heat doesn't transfer)", "others": "GI Profile (heats plastic)" },
+    { feature: "Spring", "Dhanvantri Farms": "PVC-Coated Springs (don't heat plastic)", "others": "GI spring (heats plastic)" },
+    { feature: "Polyfilm", "Dhanvantri Farms": "Ginegar Israel", "others": "Ginegar / Local" },
+    { feature: "Shade Net/Insect net", "Dhanvantri Farms": "Agriplast", "others": "Agriplast/Local" },
+    { feature: "Multiple Designed Connectors", "Dhanvantri Farms": "Israeli-designed connectors", "others": "Local Connectors" },
+    { feature: "Other Features", "Dhanvantri Farms": "Curtain Box System, FLC Mechanism, Aluminet Shade Net", "others": "No genuine Aluminet" },
+    { feature: "Agronomist Support", "Dhanvantri Farms": "One Year Free Agronomist Support", "others": "No Support" },
   ];
+    
 
   const polyhouseTypes = [
     { id: 'menu1', name: 'Naturally Ventilated Polyhouse', image: "/service/poly/9.jpg" },
@@ -372,11 +373,12 @@ const PolyhousePage = () => {
                     >
                       <td className="p-4 font-medium text-green-900">{row.feature}</td>
                       <td className="p-4">
-                        <div className="flex items-center text-green-700">
-                          <Check size={20} className="text-green-600 mr-2" />
-                          {row.Dhanvantri Farms}
-                        </div>
-                      </td>
+  <div className="flex items-center text-green-700">
+    <Check size={20} className="text-green-600 mr-2" />
+    {row["Dhanvantri Farms"]}
+  </div>
+</td>
+
                       <td className="p-4">
                         <div className="flex items-center text-red-700">
                           <X size={20} className="text-red-600 mr-2" />
