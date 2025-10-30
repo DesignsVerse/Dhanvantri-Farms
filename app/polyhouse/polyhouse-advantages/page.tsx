@@ -103,7 +103,7 @@ const PolyhousePage = () => {
     { feature: "Profile", "Dhanvantri Farms": "Aluminium Profile (heat doesn't transfer)", "others": "GI Profile (heats plastic)" },
     { feature: "Spring", "Dhanvantri Farms": "PVC-Coated Springs (don't heat plastic)", "others": "GI spring (heats plastic)" },
     { feature: "Polyfilm", "Dhanvantri Farms": "Ginegar Israel", "others": "Ginegar / Local" },
-    { feature: "Shade Net/Insect net", "Dhanvantri Farms": "Agriplast", "others": "Agriplast/Local" },
+    { feature: "Shade Net/Insect net", "Dhanvantri Farms": "Dhanvantri Farms", "others": "Dhanvantri Farms/Local" },
     { feature: "Multiple Designed Connectors", "Dhanvantri Farms": "Israeli-designed connectors", "others": "Local Connectors" },
     { feature: "Other Features", "Dhanvantri Farms": "Curtain Box System, FLC Mechanism, Aluminet Shade Net", "others": "No genuine Aluminet" },
     { feature: "Agronomist Support", "Dhanvantri Farms": "One Year Free Agronomist Support", "others": "No Support" },
@@ -121,7 +121,7 @@ const PolyhousePage = () => {
 
 
   const testimonials = [
-    { name: 'Rajesh Kumar', quote: 'Agriplast polyhouse ne meri fasal ko double kar diya!', location: 'Pune', image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" },
+    { name: 'Rajesh Kumar', quote: 'Dhanvantri Farms polyhouse ne meri fasal ko double kar diya!', location: 'Pune', image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" },
     { name: 'Priya Singh', quote: 'Best support and quality structure.', location: 'Bangalore', image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" },
     { name: 'Amit Patel', quote: 'Cost-effective and reliable for tropical crops.', location: 'Ahmedabad', image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" },
   ];
