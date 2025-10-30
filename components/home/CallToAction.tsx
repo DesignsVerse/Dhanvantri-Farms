@@ -119,7 +119,7 @@ const CallToAction = () => {
           className="text-center mt-12"
         >
           <p className="text-green-100 text-lg">
-            🌱 Over 15,000 farmers trust Dhanvantri Farms • 98% success rate • 50+ years of expertise
+            🌱 Over 15,000 farmers trust Dhanvantri Farms • 98% success rate • 11+ years of expertise
           </p>
         </motion.div>
       </motion.div>

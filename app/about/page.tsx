@@ -13,7 +13,7 @@ export default function AboutPage() {
   const stats = [
     { icon: Users, value: '15,000+', label: 'Happy Farmers' },
     { icon: Globe, value: '100+', label: 'Cities Presence' },
-    { icon: Award, value: '50+', label: 'Years Experience' },
+    { icon: Award, value: '11+', label: 'Years Experience' },
     { icon: TrendingUp, value: '400%', label: 'Avg Yield Increase' }
   ];
 
@@ -80,7 +80,7 @@ export default function AboutPage() {
             className="inline-flex items-center text-base text-green-100 bg-green-800/30 backdrop-blur-md px-6 py-3 rounded-full mb-8 border border-green-600/30 shadow-lg"
           >
             <span className="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse"></span>
-            Pioneering Agricultural Innovation Since 1972
+            Pioneering Agricultural Innovation Since 2015
           </motion.div>
           
           <motion.h1 
@@ -265,7 +265,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="absolute -bottom-12 right-12 bg-gradient-to-r from-[#8bc34a] to-[#689f38] p-8 rounded-3xl shadow-xl text-white"
               >
-                <div className="text-6xl font-extrabold mb-2">50+</div>
+                <div className="text-6xl font-extrabold mb-2">11+</div>
                 <div className="text-lg font-medium">Years of Excellence</div>
               </motion.div>
             </motion.div>

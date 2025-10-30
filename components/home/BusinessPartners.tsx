@@ -12,7 +12,7 @@ const BusinessPartners = () => {
     {
       icon: Users,
       title: 'Expert Team',
-      description: '50+ years of combined experience in agriculture technology',
+      description: '11+ years of combined experience in agriculture technology',
     },
     {
       icon: Award,
