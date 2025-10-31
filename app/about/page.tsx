@@ -108,7 +108,7 @@ export default function AboutPage() {
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >
             <Link 
-              href="/solutions" 
+              href="/about" 
               className="px-10 py-5 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-bold text-xl flex items-center justify-center gap-3 hover:from-green-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl"
             >
               Explore Our Solutions <ChevronRight className="w-6 h-6" />
@@ -315,7 +315,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <Link 
-                  href="/history" 
+                  href="/about" 
                   className="inline-block mt-12 px-10 py-5 bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-white rounded-xl font-bold text-xl hover:from-[#689f38] hover:to-[#8bc34a] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl flex items-center gap-3"
                 >
                   Read Full History <ChevronRight className="w-6 h-6" />

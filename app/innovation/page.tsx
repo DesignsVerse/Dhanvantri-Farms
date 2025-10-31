@@ -67,7 +67,7 @@ export default function InnovationPage() {
           'Automated decision-making systems',
           'Mobile app integration for remote control',
         ],
-        image: '/images/innovation/iot.jpg',
+        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&h=800&fit=crop&q=80',
       },
       {
         icon: Droplets,
@@ -79,7 +79,7 @@ export default function InnovationPage() {
           'Nutrient solution recycling systems',
           'Weather-based irrigation scheduling',
         ],
-        image: '/images/innovation/water.jpg',
+        image: 'https://images.unsplash.com/photo-1492962827063-e5ea0d8c01f5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1200&h=800',
       },
       {
         icon: Leaf,
@@ -91,7 +91,7 @@ export default function InnovationPage() {
           'Biodegradable growing media',
           'Carbon footprint reduction technologies',
         ],
-        image: '/images/innovation/sustain.jpg',
+        image: 'https://images.unsplash.com/photo-1470058869958-2a77ade41c02?w=1200&h=800&fit=crop&q=80',
       },
       {
         icon: Globe,
@@ -103,7 +103,7 @@ export default function InnovationPage() {
           'Adaptive ventilation technologies',
           'Energy-efficient climate control',
         ],
-        image: '/images/innovation/climate.jpg',
+        image: 'https://images.unsplash.com/photo-1591608971362-f08b2a75731a?w=1200&h=800&fit=crop&q=80',
       },
     ],
     []
@@ -115,25 +115,25 @@ export default function InnovationPage() {
         title: 'Artificial Intelligence in Agriculture',
         description: 'Developing AI algorithms for crop prediction, disease detection, and yield optimization',
         progress: 85,
-        image: '/images/innovation/ai.jpg',
+        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=800&fit=crop&q=80',
       },
       {
         title: 'Vertical Farming Technologies',
         description: 'Advanced multi-tier growing systems for urban agriculture and space optimization',
         progress: 78,
-        image: '/images/innovation/vertical.jpg',
+        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=1200&h=800&fit=crop&q=80',
       },
       {
         title: 'Renewable Energy Integration',
         description: 'Solar and wind energy solutions for sustainable farm operations',
         progress: 92,
-        image: '/images/innovation/renewable.jpg',
+        image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=800&fit=crop&q=80',
       },
       {
         title: 'Biotechnology Applications',
         description: 'Plant breeding, tissue culture, and genetic optimization for better yields',
         progress: 70,
-        image: '/images/innovation/biotech.jpg',
+        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=800&fit=crop&q=80',
       },
     ],
     []
@@ -152,25 +152,25 @@ export default function InnovationPage() {
         year: '2024',
         title: 'AI-Powered Crop Monitoring',
         description: 'Launch of advanced AI systems for real-time crop health monitoring and predictive analytics',
-        image: '/images/innovation/timeline-2024.jpg',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&q=80',
       },
       {
         year: '2023',
         title: 'Solar Integration Systems',
         description: 'Development of fully solar-powered polyhouse automation systems',
-        image: '/images/innovation/timeline-2023.jpg',
+        image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&h=800&fit=crop&q=80',
       },
       {
         year: '2022',
         title: 'Vertical Farming Solutions',
         description: 'Introduction of space-efficient vertical hydroponic systems for urban farming',
-        image: '/images/innovation/timeline-2022.jpg',
+        image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&h=800&fit=crop&q=80',
       },
       {
         year: '2021',
         title: 'IoT Platform Launch',
         description: 'Comprehensive IoT platform for remote farm monitoring and control',
-        image: '/images/innovation/timeline-2021.jpg',
+        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop&q=80',
       },
     ],
     []
@@ -182,7 +182,7 @@ export default function InnovationPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/innovation/hero.jpg"
+            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&h=1080&fit=crop&q=80"
             alt="Dhanvantri Farms Innovation Lab"
             fill
             sizes="100vw"
@@ -251,7 +251,7 @@ export default function InnovationPage() {
             <div className="aspect-video">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/31_1BOYBQpA?autoplay=1&mute=1"
+                // src="https://www.youtube.com/embed/31_1BOYBQpA?autoplay=1&mute=1"
                 title="Innovation demo"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

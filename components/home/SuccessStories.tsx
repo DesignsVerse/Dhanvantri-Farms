@@ -97,7 +97,7 @@ const SuccessStories = () => {
                 </p>
                 
                 <Link
-                  href="/case-studies"
+                  href="/about"
                   className="inline-flex items-center space-x-2 text-[#8bc34a] font-semibold"
                 >
                   <span>Read Case Study</span>
@@ -110,7 +110,7 @@ const SuccessStories = () => {
 
         {/* CTA Button */}
         <div className="text-center">
-          <Link href="/projects" className="inline-block">
+          <Link href="/about" className="inline-block">
             <button className="bg-gradient-to-r from-[#8bc34a] to-[#689f38] text-white text-base sm:text-lg px-8 sm:px-10 py-3 sm:py-4 rounded-xl font-bold shadow-md">
               View All Projects
             </button>

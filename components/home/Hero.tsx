@@ -139,7 +139,7 @@ const HeroSection = () => {
 
         {/* CTA Buttons - Upar shifted */}
         <div className="flex flex-col sm:flex-row gap-4 lg:gap-6">
-          <Link href="/services" className="block">
+          <Link href="/about" className="block">
             <button className="group w-full sm:w-auto px-8 lg:px-10 py-4 bg-lime-400 hover:bg-lime-300 text-green-900 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-2xl hover:shadow-2xl border-2 border-lime-400">
               <span className="flex items-center justify-center text-base lg:text-lg">
                 View More Services

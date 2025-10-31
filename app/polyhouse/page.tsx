@@ -255,7 +255,7 @@ export default function PolyhousePage() {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Link href="/polyhouse/advantages" className="inline-flex items-center px-8 py-4 bg-lime-400 text-green-900 rounded-full font-bold text-lg hover:bg-lime-300 transition-all shadow-lg hover:shadow-xl">
+            <Link href="/polyhouse/polyhouse-advantages" className="inline-flex items-center px-8 py-4 bg-lime-400 text-green-900 rounded-full font-bold text-lg hover:bg-lime-300 transition-all shadow-lg hover:shadow-xl">
               Explore Detailed Benefits <ArrowRight className="ml-2" size={20} />
             </Link>
           </div>
@@ -482,7 +482,7 @@ export default function PolyhousePage() {
             <Link href="/contact" className="inline-flex items-center px-10 py-4 bg-lime-400 text-green-900 rounded-full font-bold text-lg hover:bg-lime-300 transition-all shadow-lg hover:shadow-xl">
               Request Free Quote <ArrowRight className="ml-2" size={20} />
             </Link>
-            <Link href="/polyhouse/demo" className="inline-flex items-center px-10 py-4 border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white hover:text-green-700 transition-all shadow-lg hover:shadow-xl">
+            <Link href="/contact" className="inline-flex items-center px-10 py-4 border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white hover:text-green-700 transition-all shadow-lg hover:shadow-xl">
               Schedule Demo <ArrowRight className="ml-2" size={20} />
             </Link>
           </div>

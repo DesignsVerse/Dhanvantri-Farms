@@ -69,42 +69,42 @@ export default function AutomationPage() {
         icon: Satellite,
         title: 'Sensing & Telemetry',
         text: 'Wireless sensors and gateways stream real‑time data for environment and equipment status.',
-        image: '/images/automation/telemetry.jpg',
+        image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=800&fit=crop&q=80',
         bullets: ['Temp/RH, pressure, and door states', 'Power meters and vibration sensing', 'Gateway failover and buffering'],
       },
       {
         icon: CircuitBoard,
         title: 'PLC/SCADA Control',
         text: 'PLC logic with SCADA dashboards orchestrates setpoints, sequences, and interlocks safely.',
-        image: '/images/automation/plc.jpg',
+        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=800&fit=crop&q=80',
         bullets: ['VFD drives and PID loops', 'Interlocks and permissives', 'Remote access and audit trails'],
       },
       {
         icon: Workflow,
         title: 'WMS & Workflow',
         text: 'Mobile tasks, barcode/QR, and rule engines align people and flows with live priorities.',
-        image: '/images/automation/wms.jpg',
+        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=800&fit=crop&q=80',
         bullets: ['ASN→Putaway→Pick→Pack', 'Cluster/batch/zone picks', 'Exceptions and escalations'],
       },
       {
         icon: BellRing,
         title: 'Alerts & Escalations',
         text: 'Thresholds trigger tiered notifications, acknowledgements, and CAPA workflows.',
-        image: '/images/automation/alerts.jpg',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80',
         bullets: ['SMS/Email/WhatsApp', 'Silence windows and repeats', 'Incident closure notes'],
       },
       {
         icon: Bot,
         title: 'Robotics & Conveyance',
         text: 'AGVs/AMRs, conveyors, and sorters integrate for safer, faster, lower‑touch operations.',
-        image: '/images/automation/robotics.jpg',
+        image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=800&fit=crop&q=80',
         bullets: ['Zone handoffs and IO link', 'Pick‑to‑light/put‑to‑wall', 'Throughput balancing'],
       },
       {
         icon: LineChart,
         title: 'Analytics & Reporting',
         text: 'KPI dashboards and trend lines surface energy, uptime, and SLA adherence clearly.',
-        image: '/images/automation/analytics.jpg',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&q=80',
         bullets: ['Deviation logs and drill‑downs', 'Exportable audit reports', 'Live tiles and wallboards'],
       },
     ],
@@ -117,35 +117,35 @@ export default function AutomationPage() {
         n: 1,
         title: 'Sense',
         text: 'Collect signals from sensors, meters, scanners, and robotic endpoints into gateways.',
-        image: '/images/automation/flow-sense.jpg',
+        image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=800&fit=crop&q=80',
         icon: Satellite,
       },
       {
         n: 2,
         title: 'Decide',
         text: 'PLC rules, WMS priorities, and policy engines resolve next actions and interlocks.',
-        image: '/images/automation/flow-decide.jpg',
+        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=800&fit=crop&q=80',
         icon: Cpu,
       },
       {
         n: 3,
         title: 'Act',
         text: 'Drives, relays, robots, and tasks execute with feedback loops for stability.',
-        image: '/images/automation/flow-act.jpg',
+        image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=800&fit=crop&q=80',
         icon: Cog,
       },
       {
         n: 4,
         title: 'Verify',
         text: 'Barcode/QR scans, sensors, and telemetries confirm outcomes and close loops.',
-        image: '/images/automation/flow-verify.jpg',
+        image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1200&h=800&fit=crop&q=80',
         icon: QrCode,
       },
       {
         n: 5,
         title: 'Learn',
         text: 'Dashboards and trends feed optimization cycles for energy and throughput gains.',
-        image: '/images/automation/flow-learn.jpg',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&q=80',
         icon: LineChart,
       },
     ],
@@ -163,19 +163,19 @@ export default function AutomationPage() {
     {
       title: 'High‑Velocity eCom Node',
       impact: 'Throughput +28%',
-      image: '/images/automation/case-ecom.jpg',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=800&fit=crop&q=80',
       bullets: ['Zone picking + PTL', 'Sorter + WMS rules', 'Exception dashboards'],
     },
     {
       title: 'Cold‑Chain DC',
       impact: 'Energy/t −18%',
-      image: '/images/automation/case-cold.jpg',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop&q=80',
       bullets: ['VFD ramps + defrost tuning', 'Door discipline analytics', 'Alert escalations'],
     },
     {
       title: 'AGV‑Enabled Hub',
       impact: 'Touch reduction −25%',
-      image: '/images/automation/case-agv.jpg',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=800&fit=crop&q=80',
       bullets: ['AMR orchestration', 'IO‑linked handoffs', 'Task heatmaps'],
     },
   ];
@@ -186,7 +186,7 @@ export default function AutomationPage() {
       <section className="relative overflow-hidden bg-green-900 text-white">
         <div className="absolute inset-0">
           <Image
-            src="/images/automation/hero.jpg"
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&q=80"
             alt="Dhanvantri Farms Automation System"
             fill
             sizes="100vw"
@@ -363,9 +363,9 @@ export default function AutomationPage() {
 
           <div className="mt-10 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
             {[
-              { title: 'Energy & Load', text: 'kW, kWh/order, and heatmaps by time and zone.', image: '/images/automation/db-energy.jpg' },
-              { title: 'Throughput & SLA', text: 'Wave completion, order aging, and dwell times.', image: '/images/automation/db-sla.jpg' },
-              { title: 'Quality & Alerts', text: 'Deviation logs, acks, and CAPA closures.', image: '/images/automation/db-quality.jpg' },
+              { title: 'Energy & Load', text: 'kW, kWh/order, and heatmaps by time and zone.', image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=800&fit=crop&q=80' },
+              { title: 'Throughput & SLA', text: 'Wave completion, order aging, and dwell times.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80' },
+              { title: 'Quality & Alerts', text: 'Deviation logs, acks, and CAPA closures.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&q=80' },
             ].map((card) => (
               <article key={card.title} className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
                 <div className="relative h-44">
@@ -420,7 +420,7 @@ export default function AutomationPage() {
       <section id="cta" className="relative overflow-hidden bg-green-900 text-white">
         <div className="absolute inset-0">
           <Image
-            src="/images/automation/cta.jpg"
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&q=80"
             alt="Automation CTA"
             fill
             sizes="100vw"

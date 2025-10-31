@@ -58,7 +58,7 @@ const About = () => {
 
           {/* CTA Button */}
           <div>
-            <Link href="/success-stories" className="inline-block">
+            <Link href="/about" className="inline-block">
               <button className="bg-gradient-to-r from-lime-400 to-green-700 text-white text-sm sm:text-base px-6 py-2.5 rounded-lg font-semibold shadow-md">
                 Read Success Stories
               </button>
