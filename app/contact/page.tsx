@@ -135,9 +135,9 @@ export default function ContactSection() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Call Us</h3>
               <p className="text-gray-600">
-                Sales: +91-9876543210<br />
-                Support: +91-9876543211<br />
-                WhatsApp: +91-9876543212
+               <br />
+                Support: +91-8839582448<br />
+                WhatsApp: +91-8839582448
               </p>
             </motion.div>
 
@@ -152,7 +152,7 @@ export default function ContactSection() {
               <p className="text-gray-600">
                 info@dhanvantrifarms.com<br />
                 support@dhanvantrifarms.com<br />
-                sales@dhanvantrifarms.com
+                
               </p>
             </motion.div>
           </motion.div>
