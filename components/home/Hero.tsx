@@ -4,6 +4,8 @@ import { useState, useCallback, useMemo, useEffect } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useHeroSlides } from '@/lib/hooks/useCMS';
+import type { HeroSlide } from '@/lib/data/types';
 
 type Slide = {
   src: string;
@@ -14,34 +16,48 @@ type Slide = {
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const { data: heroSlides, loading } = useHeroSlides();
 
-  const slides: Slide[] = useMemo(() => [
-    {
-      src: '/service/poly/1.jpg',
-      title: 'Polyhouse Farming',
-      subtitle: 'Maximize productivity with our climate-controlled polyhouses designed for year-round farming success.',
-    },
-    {
-      src: '/service/organic/1.jpg',
-      title: 'Sustainable Organic Farming',
-      subtitle: 'Embrace chemical-free farming with Dhanvantri Farms for healthier crops and eco-friendly growth.',
-    },
-    {
-      src: '/service/8.jpg',
-      title: 'Modern Mushroom Farming',
-      subtitle: 'Explore new revenue streams with Dhanvantri Farms innovative mushroom farming setups.',
-    },
-    {
-      src: '/service/warehouse/1.jpg',
-      title: 'Smart Agri Warehousing',
-      subtitle: 'Secure your harvest with Dhanvantri Farms cutting-edge agricultural warehousing solutions.',
-    },
-    {
-      src: '/service/cold/cold.jpg',
-      title: 'Cold Storage Facilities',
-      subtitle: 'Preserve freshness and extend shelf life with Dhanvantri Farms state-of-the-art cold storage systems.',
-    },
-  ], []);
+  // Convert CMS data to slides format, with fallback to default
+  const slides: Slide[] = useMemo(() => {
+    if (heroSlides && heroSlides.length > 0) {
+      return heroSlides
+        .sort((a, b) => a.order - b.order)
+        .map((slide: HeroSlide) => ({
+          src: slide.image,
+          title: slide.title,
+          subtitle: slide.subtitle,
+        }));
+    }
+    // Fallback to default slides if CMS data not available
+    return [
+      {
+        src: '/service/poly/1.jpg',
+        title: 'Polyhouse Farming',
+        subtitle: 'Maximize productivity with our climate-controlled polyhouses designed for year-round farming success.',
+      },
+      {
+        src: '/service/organic/1.jpg',
+        title: 'Sustainable Organic Farming',
+        subtitle: 'Embrace chemical-free farming with Dhanvantri Farms for healthier crops and eco-friendly growth.',
+      },
+      {
+        src: '/service/8.jpg',
+        title: 'Modern Mushroom Farming',
+        subtitle: 'Explore new revenue streams with Dhanvantri Farms innovative mushroom farming setups.',
+      },
+      {
+        src: '/service/warehouse/1.jpg',
+        title: 'Smart Agri Warehousing',
+        subtitle: 'Secure your harvest with Dhanvantri Farms cutting-edge agricultural warehousing solutions.',
+      },
+      {
+        src: '/service/cold/cold.jpg',
+        title: 'Cold Storage Facilities',
+        subtitle: 'Preserve freshness and extend shelf life with Dhanvantri Farms state-of-the-art cold storage systems.',
+      },
+    ];
+  }, [heroSlides]);
 
   // Auto-scroll functionality
   useEffect(() => {
