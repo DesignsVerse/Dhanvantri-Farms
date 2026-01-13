@@ -22,7 +22,7 @@ export function createSession(): string {
 export function validateSession(sessionToken: string): boolean {
   // Simple validation (in production, use proper session management)
   // For now, we'll use a simple check
-  return sessionToken && sessionToken.length > 0;
+  return Boolean(sessionToken && sessionToken.length > 0);
 }
 
 
