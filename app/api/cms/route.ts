@@ -20,10 +20,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ success: true, data: content });
   } catch (error) {
     console.error('Error fetching content:', error);
-    return NextResponse.json(
-      { success: false, error: 'Failed to fetch content' },
-      { status: 500 }
-    );
+    // In production, still return default content instead of failing
+    const content = readContent();
+    return NextResponse.json({ 
+      success: true, 
+      data: section && section in content ? content[section as keyof CMSContent] : content,
+      warning: 'Using default content due to storage error'
+    });
   }
 }
 

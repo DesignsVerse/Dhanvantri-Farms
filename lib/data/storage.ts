@@ -162,20 +162,37 @@ export function readContent(): CMSContent {
   try {
     if (fs.existsSync(DATA_FILE)) {
       const fileContent = fs.readFileSync(DATA_FILE, 'utf-8');
-      return JSON.parse(fileContent);
+      const parsedContent = JSON.parse(fileContent);
+      // Ensure all required sections exist
+      return { ...defaultContent, ...parsedContent };
     }
   } catch (error) {
-    console.error('Error reading content:', error);
+    console.error('Error reading content file, using default content:', error);
   }
+  
+  // Try to create the file with default content if it doesn't exist
+  try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    fs.writeFileSync(DATA_FILE, JSON.stringify(defaultContent, null, 2), 'utf-8');
+    console.log('Created default CMS content file');
+  } catch (writeError) {
+    console.warn('Could not create CMS content file (read-only filesystem?):', writeError);
+  }
+  
   return defaultContent;
 }
 
 export function writeContent(content: CMSContent): void {
   try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
     fs.writeFileSync(DATA_FILE, JSON.stringify(content, null, 2), 'utf-8');
   } catch (error) {
-    console.error('Error writing content:', error);
-    throw error;
+    console.error('Error writing content (filesystem may be read-only):', error);
+    throw new Error('Unable to save content. This may be due to a read-only filesystem in production.');
   }
 }
 
