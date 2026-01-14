@@ -72,16 +72,16 @@ export default function AboutManagement() {
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">About Content Management</h2>
+          <div className="bg-white rounded-xl shadow-md border border-gray-200 p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">About Content Management</h2>
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 touch-manipulation min-h-[44px] text-sm sm:text-base"
               >
                 <Save className="w-4 h-4" />
-                {saving ? 'Saving...' : 'Save'}
+                <span>{saving ? 'Saving...' : 'Save'}</span>
               </button>
             </div>
 
@@ -95,23 +95,23 @@ export default function AboutManagement() {
               </div>
             )}
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">Title</label>
                 <input
                   type="text"
                   value={content.title}
                   onChange={(e) => setContent({ ...content, title: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">Description</label>
                 <textarea
                   value={content.description}
                   onChange={(e) => setContent({ ...content, description: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
                   rows={5}
                 />
               </div>
@@ -124,12 +124,12 @@ export default function AboutManagement() {
               />
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Tagline</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">Tagline</label>
                 <input
                   type="text"
                   value={content.tagline}
                   onChange={(e) => setContent({ ...content, tagline: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
                 />
               </div>
             </div>

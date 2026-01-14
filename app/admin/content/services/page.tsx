@@ -41,14 +41,14 @@ export default function ServicesManagement() {
   };
 
   const renderItem = (item: Service, index: number) => (
-    <div className="flex items-center gap-4">
-      <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-        <Settings className="w-6 h-6 text-gray-400" />
+    <div className="flex items-center gap-3 sm:gap-4">
+      <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+        <Settings className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400" />
       </div>
-      <div className="flex-1">
-        <h4 className="font-semibold text-gray-900">{item.title}</h4>
-        <p className="text-sm text-gray-500">{item.description}</p>
-        <p className="text-xs text-gray-400 mt-1">Link: {item.href}</p>
+      <div className="flex-1 min-w-0">
+        <h4 className="font-semibold text-gray-900 text-sm sm:text-base truncate">{item.title}</h4>
+        <p className="text-xs sm:text-sm text-gray-500 line-clamp-1">{item.description}</p>
+        <p className="text-xs text-gray-400 mt-1 truncate">Link: {item.href}</p>
       </div>
     </div>
   );
@@ -82,7 +82,7 @@ export default function ServicesManagement() {
             type="text"
             value={formData.title || ''}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             required
           />
         </div>
@@ -92,7 +92,7 @@ export default function ServicesManagement() {
             type="text"
             value={formData.description || ''}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             required
           />
         </div>
@@ -108,22 +108,22 @@ export default function ServicesManagement() {
             type="text"
             value={formData.href || ''}
             onChange={(e) => setFormData({ ...formData, href: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             placeholder="/polyhouse"
             required
           />
         </div>
-        <div className="flex gap-3 pt-4">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4">
           <button
             type="submit"
-            className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="flex-1 bg-green-600 text-white py-2.5 sm:py-2 rounded-lg hover:bg-green-700 transition-colors touch-manipulation min-h-[44px] text-sm sm:text-base"
           >
             Save
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition-colors"
+            className="flex-1 bg-gray-200 text-gray-700 py-2.5 sm:py-2 rounded-lg hover:bg-gray-300 transition-colors touch-manipulation min-h-[44px] text-sm sm:text-base"
           >
             Cancel
           </button>

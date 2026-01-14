@@ -41,16 +41,16 @@ export default function HeroManagement() {
   };
 
   const renderItem = (item: HeroSlide, index: number) => (
-    <div className="flex items-center gap-4">
-      <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center">
-        <ImageIcon className="w-8 h-8 text-gray-400" />
+    <div className="flex items-center gap-3 sm:gap-4">
+      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+        <ImageIcon className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
       </div>
-      <div className="flex-1">
-        <h4 className="font-semibold text-gray-900">{item.title}</h4>
-        <p className="text-sm text-gray-500 line-clamp-2">{item.subtitle}</p>
-        <p className="text-xs text-gray-400 mt-1">Image: {item.image}</p>
+      <div className="flex-1 min-w-0">
+        <h4 className="font-semibold text-gray-900 text-sm sm:text-base truncate">{item.title}</h4>
+        <p className="text-xs sm:text-sm text-gray-500 line-clamp-2 mt-0.5">{item.subtitle}</p>
+        <p className="text-xs text-gray-400 mt-1 truncate">Image: {item.image}</p>
       </div>
-      <div className="text-sm text-gray-500">Order: {item.order}</div>
+      <div className="text-xs sm:text-sm text-gray-500 flex-shrink-0">#{item.order}</div>
     </div>
   );
 
@@ -90,7 +90,7 @@ export default function HeroManagement() {
             type="text"
             value={formData.title || ''}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             required
           />
         </div>
@@ -99,22 +99,22 @@ export default function HeroManagement() {
           <textarea
             value={formData.subtitle || ''}
             onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             rows={3}
             required
           />
         </div>
-        <div className="flex gap-3 pt-4">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4">
           <button
             type="submit"
-            className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="flex-1 bg-green-600 text-white py-2.5 sm:py-2 rounded-lg hover:bg-green-700 transition-colors touch-manipulation min-h-[44px] text-sm sm:text-base"
           >
             Save
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition-colors"
+            className="flex-1 bg-gray-200 text-gray-700 py-2.5 sm:py-2 rounded-lg hover:bg-gray-300 transition-colors touch-manipulation min-h-[44px] text-sm sm:text-base"
           >
             Cancel
           </button>

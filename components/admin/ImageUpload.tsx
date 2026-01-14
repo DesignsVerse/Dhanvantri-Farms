@@ -79,12 +79,12 @@ export default function ImageUpload({ value, onChange, folder = 'uploads', label
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 sm:space-y-3">
       <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
       
       {/* Image Preview */}
       {preview && (
-        <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden border border-gray-300">
+        <div className="relative w-full h-40 sm:h-48 bg-gray-100 rounded-lg overflow-hidden border border-gray-300">
           <Image
             src={preview}
             alt="Preview"
@@ -95,10 +95,11 @@ export default function ImageUpload({ value, onChange, folder = 'uploads', label
           <button
             type="button"
             onClick={handleRemove}
-            className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+            className="absolute top-2 right-2 p-1.5 sm:p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors touch-manipulation min-w-[32px] min-h-[32px] flex items-center justify-center"
             title="Remove image"
+            aria-label="Remove image"
           >
-            <X className="w-4 h-4" />
+            <X className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>
       )}
@@ -107,7 +108,7 @@ export default function ImageUpload({ value, onChange, folder = 'uploads', label
       {!preview && (
         <div
           onClick={handleClick}
-          className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-green-500 hover:bg-green-50 transition-colors"
+          className="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-6 text-center cursor-pointer hover:border-green-500 hover:bg-green-50 transition-colors touch-manipulation"
         >
           <input
             ref={fileInputRef}
@@ -119,13 +120,13 @@ export default function ImageUpload({ value, onChange, folder = 'uploads', label
           />
           {uploading ? (
             <div className="flex flex-col items-center gap-2">
-              <div className="w-8 h-8 border-t-2 border-green-600 rounded-full animate-spin"></div>
-              <p className="text-sm text-gray-600">Uploading...</p>
+              <div className="w-6 h-6 sm:w-8 sm:h-8 border-t-2 border-green-600 rounded-full animate-spin"></div>
+              <p className="text-xs sm:text-sm text-gray-600">Uploading...</p>
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2">
-              <Upload className="w-8 h-8 text-gray-400" />
-              <p className="text-sm text-gray-600">
+              <Upload className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
+              <p className="text-xs sm:text-sm text-gray-600">
                 Click to upload or drag and drop
               </p>
               <p className="text-xs text-gray-500">PNG, JPG, GIF up to 5MB</p>
@@ -135,7 +136,7 @@ export default function ImageUpload({ value, onChange, folder = 'uploads', label
       )}
 
       {/* Manual Path Input */}
-      <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row gap-2">
         <input
           type="text"
           value={value}
@@ -143,30 +144,30 @@ export default function ImageUpload({ value, onChange, folder = 'uploads', label
             onChange(e.target.value);
             setPreview(e.target.value || null);
           }}
-          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 text-sm"
+          className="flex-1 px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
           placeholder="/service/poly/1.jpg or upload above"
         />
         {!preview && (
           <button
             type="button"
             onClick={handleClick}
-            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm flex items-center gap-2"
+            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm flex items-center justify-center gap-2 touch-manipulation min-h-[44px] sm:min-h-0"
             disabled={uploading}
           >
             <ImageIcon className="w-4 h-4" />
-            Upload
+            <span className="sm:inline">Upload</span>
           </button>
         )}
       </div>
 
       {/* Error Message */}
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-xs sm:text-sm text-red-600">{error}</p>
       )}
 
       {/* Current Image Info */}
       {preview && (
-        <p className="text-xs text-gray-500">Current: {preview}</p>
+        <p className="text-xs text-gray-500 break-all">Current: {preview}</p>
       )}
     </div>
   );

@@ -89,25 +89,25 @@ export default function ContentEditor<T extends { id: string; order: number }>({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
-        <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{title}</h2>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
           <button
             onClick={handleAdd}
-            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm sm:text-base"
           >
             <Plus className="w-4 h-4" />
-            Add New
+            <span className="sm:inline">Add New</span>
           </button>
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 text-sm sm:text-base"
           >
             <Save className="w-4 h-4" />
-            {saving ? 'Saving...' : 'Save All'}
+            <span>{saving ? 'Saving...' : 'Save All'}</span>
           </button>
         </div>
       </div>
@@ -131,44 +131,48 @@ export default function ContentEditor<T extends { id: string; order: number }>({
       {/* Items List */}
       <div className="bg-white rounded-xl shadow-md border border-gray-200 divide-y">
         {localItems.length === 0 ? (
-          <div className="p-8 text-center text-gray-500">No items. Click "Add New" to create one.</div>
+          <div className="p-6 sm:p-8 text-center text-gray-500 text-sm sm:text-base">No items. Click "Add New" to create one.</div>
         ) : (
           localItems
             .sort((a, b) => a.order - b.order)
             .map((item, index) => (
-              <div key={getItemId(item)} className="p-4 hover:bg-gray-50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex-1">{renderItem(item, index)}</div>
-                  <div className="flex items-center gap-2">
+              <div key={getItemId(item)} className="p-3 sm:p-4 hover:bg-gray-50 transition-colors">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div className="flex-1 min-w-0">{renderItem(item, index)}</div>
+                  <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
                     <button
                       onClick={() => handleMove(index, 'up')}
                       disabled={index === 0}
-                      className="p-2 text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                      className="p-2 sm:p-2 text-gray-400 hover:text-gray-600 disabled:opacity-30 touch-manipulation"
                       title="Move up"
+                      aria-label="Move up"
                     >
-                      <ArrowUp className="w-4 h-4" />
+                      <ArrowUp className="w-4 h-4 sm:w-4 sm:h-4" />
                     </button>
                     <button
                       onClick={() => handleMove(index, 'down')}
                       disabled={index === localItems.length - 1}
-                      className="p-2 text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                      className="p-2 sm:p-2 text-gray-400 hover:text-gray-600 disabled:opacity-30 touch-manipulation"
                       title="Move down"
+                      aria-label="Move down"
                     >
-                      <ArrowDown className="w-4 h-4" />
+                      <ArrowDown className="w-4 h-4 sm:w-4 sm:h-4" />
                     </button>
                     <button
                       onClick={() => handleEdit(item)}
-                      className="p-2 text-blue-600 hover:bg-blue-50 rounded"
+                      className="p-2 sm:p-2 text-blue-600 hover:bg-blue-50 rounded touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
                       title="Edit"
+                      aria-label="Edit"
                     >
-                      <Edit2 className="w-4 h-4" />
+                      <Edit2 className="w-4 h-4 sm:w-4 sm:h-4" />
                     </button>
                     <button
                       onClick={() => handleDelete(getItemId(item))}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded"
+                      className="p-2 sm:p-2 text-red-600 hover:bg-red-50 rounded touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
                       title="Delete"
+                      aria-label="Delete"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-4 h-4 sm:w-4 sm:h-4" />
                     </button>
                   </div>
                 </div>
@@ -184,26 +188,27 @@ export default function ContentEditor<T extends { id: string; order: number }>({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4"
             onClick={() => setEditingItem(null)}
           >
             <motion.div
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
-              className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold">
+                  <h3 className="text-lg sm:text-xl font-bold">
                     {localItems.find((i) => getItemId(i) === getItemId(editingItem as T))
                       ? 'Edit Item'
                       : 'Add New Item'}
                   </h3>
                   <button
                     onClick={() => setEditingItem(null)}
-                    className="p-2 hover:bg-gray-100 rounded"
+                    className="p-2 hover:bg-gray-100 rounded touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
+                    aria-label="Close"
                   >
                     <X className="w-5 h-5" />
                   </button>

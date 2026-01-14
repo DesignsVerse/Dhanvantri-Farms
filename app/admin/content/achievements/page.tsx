@@ -40,15 +40,15 @@ export default function AchievementsManagement() {
   };
 
   const renderItem = (item: Achievement, index: number) => (
-    <div className="flex items-center gap-4">
-      <div className="p-2 bg-yellow-100 rounded-lg">
-        <Award className="w-5 h-5 text-yellow-600" />
+    <div className="flex items-center gap-3 sm:gap-4">
+      <div className="p-1.5 sm:p-2 bg-yellow-100 rounded-lg flex-shrink-0">
+        <Award className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-600" />
       </div>
-      <div className="flex-1">
-        <div className="text-2xl font-bold text-gray-900">
+      <div className="flex-1 min-w-0">
+        <div className="text-xl sm:text-2xl font-bold text-gray-900">
           {item.value.toLocaleString()}{item.suffix}
         </div>
-        <div className="text-sm text-gray-600">{item.label}</div>
+        <div className="text-xs sm:text-sm text-gray-600">{item.label}</div>
       </div>
     </div>
   );
@@ -82,19 +82,19 @@ export default function AchievementsManagement() {
             type="text"
             value={formData.label || ''}
             onChange={(e) => setFormData({ ...formData, label: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             placeholder="Projects"
             required
           />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Value *</label>
             <input
               type="number"
               value={formData.value || 0}
               onChange={(e) => setFormData({ ...formData, value: parseInt(e.target.value) || 0 })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
               required
             />
           </div>
@@ -104,22 +104,22 @@ export default function AchievementsManagement() {
               type="text"
               value={formData.suffix || ''}
               onChange={(e) => setFormData({ ...formData, suffix: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
               placeholder="+ or K+"
             />
           </div>
         </div>
-        <div className="flex gap-3 pt-4">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4">
           <button
             type="submit"
-            className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="flex-1 bg-green-600 text-white py-2.5 sm:py-2 rounded-lg hover:bg-green-700 transition-colors touch-manipulation min-h-[44px] text-sm sm:text-base"
           >
             Save
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition-colors"
+            className="flex-1 bg-gray-200 text-gray-700 py-2.5 sm:py-2 rounded-lg hover:bg-gray-300 transition-colors touch-manipulation min-h-[44px] text-sm sm:text-base"
           >
             Cancel
           </button>

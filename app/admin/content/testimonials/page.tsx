@@ -40,14 +40,14 @@ export default function TestimonialsManagement() {
   };
 
   const renderItem = (item: Testimonial, index: number) => (
-    <div className="flex items-start gap-4">
-      <div className="p-2 bg-purple-100 rounded-lg">
-        <MessageSquare className="w-5 h-5 text-purple-600" />
+    <div className="flex items-start gap-3 sm:gap-4">
+      <div className="p-1.5 sm:p-2 bg-purple-100 rounded-lg flex-shrink-0">
+        <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
       </div>
-      <div className="flex-1">
-        <p className="text-gray-700 italic mb-2">"{item.quote}"</p>
+      <div className="flex-1 min-w-0">
+        <p className="text-sm sm:text-base text-gray-700 italic mb-2">"{item.quote}"</p>
         {(item.author || item.location) && (
-          <p className="text-sm text-gray-500">
+          <p className="text-xs sm:text-sm text-gray-500">
             {item.author && <span className="font-semibold">{item.author}</span>}
             {item.author && item.location && ' • '}
             {item.location && <span>{item.location}</span>}
@@ -85,7 +85,7 @@ export default function TestimonialsManagement() {
           <textarea
             value={formData.quote || ''}
             onChange={(e) => setFormData({ ...formData, quote: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             rows={4}
             required
           />
@@ -96,7 +96,7 @@ export default function TestimonialsManagement() {
             type="text"
             value={formData.author || ''}
             onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
           />
         </div>
         <div>
@@ -105,20 +105,20 @@ export default function TestimonialsManagement() {
             type="text"
             value={formData.location || ''}
             onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-3 py-2.5 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
           />
         </div>
-        <div className="flex gap-3 pt-4">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4">
           <button
             type="submit"
-            className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="flex-1 bg-green-600 text-white py-2.5 sm:py-2 rounded-lg hover:bg-green-700 transition-colors touch-manipulation min-h-[44px] text-sm sm:text-base"
           >
             Save
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition-colors"
+            className="flex-1 bg-gray-200 text-gray-700 py-2.5 sm:py-2 rounded-lg hover:bg-gray-300 transition-colors touch-manipulation min-h-[44px] text-sm sm:text-base"
           >
             Cancel
           </button>
