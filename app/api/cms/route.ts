@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const section = searchParams.get('section');
 
-    const content = readContent();
+    const content = await readContent();
 
     if (section && section in content) {
       return NextResponse.json({ 
@@ -21,12 +21,21 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error fetching content:', error);
     // In production, still return default content instead of failing
-    const content = readContent();
-    return NextResponse.json({ 
-      success: true, 
-      data: section && section in content ? content[section as keyof CMSContent] : content,
-      warning: 'Using default content due to storage error'
-    });
+    try {
+      const content = await readContent();
+      const { searchParams } = new URL(request.url);
+      const section = searchParams.get('section');
+      return NextResponse.json({ 
+        success: true, 
+        data: section && section in content ? content[section as keyof CMSContent] : content,
+        warning: 'Using default content due to storage error'
+      });
+    } catch (fallbackError) {
+      return NextResponse.json(
+        { success: false, error: 'Failed to fetch content' },
+        { status: 500 }
+      );
+    }
   }
 }
 
@@ -44,14 +53,17 @@ export async function POST(request: NextRequest) {
     }
 
     if (section === 'all') {
-      writeContent(data as CMSContent);
-    } else if (section in readContent()) {
-      updateContentSection(section as keyof CMSContent, data);
+      await writeContent(data as CMSContent);
     } else {
-      return NextResponse.json(
-        { success: false, error: 'Invalid section' },
-        { status: 400 }
-      );
+      const currentContent = await readContent();
+      if (section in currentContent) {
+        await updateContentSection(section as keyof CMSContent, data);
+      } else {
+        return NextResponse.json(
+          { success: false, error: 'Invalid section' },
+          { status: 400 }
+        );
+      }
     }
 
     return NextResponse.json({ success: true, message: 'Content updated successfully' });

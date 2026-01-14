@@ -1,15 +1,15 @@
-// Simple file-based storage for CMS content
+// Hybrid storage: Vercel KV for production, file system for local development
 import fs from 'fs';
 import path from 'path';
+import { kv } from '@vercel/kv';
 import type { CMSContent } from './types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DATA_FILE = path.join(DATA_DIR, 'cms-content.json');
+const KV_KEY = 'cms-content';
 
-// Ensure data directory exists
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
+// Check if we're using Vercel KV (production) or file system (local)
+const useKV = Boolean(process.env.KV_URL || process.env.KV_REST_API_URL);
 
 // Initialize default content if file doesn't exist
 const defaultContent: CMSContent = {
@@ -158,50 +158,93 @@ const defaultContent: CMSContent = {
   },
 };
 
-export function readContent(): CMSContent {
+// File system helpers (for local development)
+function ensureDataDir(): void {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+}
+
+function readFromFile(): CMSContent {
   try {
     if (fs.existsSync(DATA_FILE)) {
       const fileContent = fs.readFileSync(DATA_FILE, 'utf-8');
       const parsedContent = JSON.parse(fileContent);
-      // Ensure all required sections exist
       return { ...defaultContent, ...parsedContent };
     }
   } catch (error) {
-    console.error('Error reading content file, using default content:', error);
+    console.error('Error reading content file:', error);
   }
-  
-  // Try to create the file with default content if it doesn't exist
-  try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-    fs.writeFileSync(DATA_FILE, JSON.stringify(defaultContent, null, 2), 'utf-8');
-    console.log('Created default CMS content file');
-  } catch (writeError) {
-    console.warn('Could not create CMS content file (read-only filesystem?):', writeError);
-  }
-  
   return defaultContent;
 }
 
-export function writeContent(content: CMSContent): void {
+function writeToFile(content: CMSContent): void {
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
+    ensureDataDir();
     fs.writeFileSync(DATA_FILE, JSON.stringify(content, null, 2), 'utf-8');
   } catch (error) {
-    console.error('Error writing content (filesystem may be read-only):', error);
-    throw new Error('Unable to save content. This may be due to a read-only filesystem in production.');
+    console.error('Error writing content file:', error);
+    throw new Error('Unable to save content to file system.');
   }
 }
 
-export function updateContentSection<T extends keyof CMSContent>(
-  section: T,
-  data: CMSContent[T]
-): void {
-  const content = readContent();
-  content[section] = data;
-  writeContent(content);
+// KV helpers (for production)
+async function readFromKV(): Promise<CMSContent> {
+  try {
+    const stored = await kv.get<CMSContent>(KV_KEY);
+    if (stored) {
+      return { ...defaultContent, ...stored };
+    }
+  } catch (error) {
+    console.error('Error reading from KV:', error);
+  }
+  return defaultContent;
 }
 
+async function writeToKV(content: CMSContent): Promise<void> {
+  try {
+    await kv.set(KV_KEY, content);
+  } catch (error) {
+    console.error('Error writing to KV:', error);
+    throw new Error('Unable to save content to KV storage.');
+  }
+}
+
+// Main exported functions
+export async function readContent(): Promise<CMSContent> {
+  if (useKV) {
+    return await readFromKV();
+  } else {
+    return readFromFile();
+  }
+}
+
+export async function writeContent(content: CMSContent): Promise<void> {
+  if (useKV) {
+    await writeToKV(content);
+  } else {
+    writeToFile(content);
+  }
+}
+
+export async function updateContentSection<T extends keyof CMSContent>(
+  section: T,
+  data: CMSContent[T]
+): Promise<void> {
+  const content = await readContent();
+  content[section] = data;
+  await writeContent(content);
+}
+
+// Initialize default content on first run (only for file system)
+if (!useKV) {
+  try {
+    if (!fs.existsSync(DATA_FILE)) {
+      ensureDataDir();
+      fs.writeFileSync(DATA_FILE, JSON.stringify(defaultContent, null, 2), 'utf-8');
+      console.log('Created default CMS content file');
+    }
+  } catch (error) {
+    console.warn('Could not create CMS content file:', error);
+  }
+}
