@@ -1,15 +1,24 @@
-// Hybrid storage: Vercel KV for production, file system for local development
+// Hybrid storage: Upstash Redis for production, file system for local development
 import fs from 'fs';
 import path from 'path';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import type { CMSContent } from './types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DATA_FILE = path.join(DATA_DIR, 'cms-content.json');
-const KV_KEY = 'cms-content';
+const REDIS_KEY = 'cms-content';
 
-// Check if we're using Vercel KV (production) or file system (local)
-const useKV = Boolean(process.env.KV_URL || process.env.KV_REST_API_URL);
+// Initialize Upstash Redis if credentials are available
+let redis: Redis | null = null;
+if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+  redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  });
+}
+
+// Check if we're using Redis (production) or file system (local)
+const useRedis = Boolean(redis);
 
 // Initialize default content if file doesn't exist
 const defaultContent: CMSContent = {
@@ -188,40 +197,42 @@ function writeToFile(content: CMSContent): void {
   }
 }
 
-// KV helpers (for production)
-async function readFromKV(): Promise<CMSContent> {
+// Redis helpers (for production)
+async function readFromRedis(): Promise<CMSContent> {
+  if (!redis) return defaultContent;
   try {
-    const stored = await kv.get<CMSContent>(KV_KEY);
+    const stored = await redis.get<CMSContent>(REDIS_KEY);
     if (stored) {
       return { ...defaultContent, ...stored };
     }
   } catch (error) {
-    console.error('Error reading from KV:', error);
+    console.error('Error reading from Redis:', error);
   }
   return defaultContent;
 }
 
-async function writeToKV(content: CMSContent): Promise<void> {
+async function writeToRedis(content: CMSContent): Promise<void> {
+  if (!redis) throw new Error('Redis not configured');
   try {
-    await kv.set(KV_KEY, content);
+    await redis.set(REDIS_KEY, content);
   } catch (error) {
-    console.error('Error writing to KV:', error);
-    throw new Error('Unable to save content to KV storage.');
+    console.error('Error writing to Redis:', error);
+    throw new Error('Unable to save content to Redis storage.');
   }
 }
 
 // Main exported functions
 export async function readContent(): Promise<CMSContent> {
-  if (useKV) {
-    return await readFromKV();
+  if (useRedis) {
+    return await readFromRedis();
   } else {
     return readFromFile();
   }
 }
 
 export async function writeContent(content: CMSContent): Promise<void> {
-  if (useKV) {
-    await writeToKV(content);
+  if (useRedis) {
+    await writeToRedis(content);
   } else {
     writeToFile(content);
   }
@@ -237,7 +248,7 @@ export async function updateContentSection<T extends keyof CMSContent>(
 }
 
 // Initialize default content on first run (only for file system)
-if (!useKV) {
+if (!useRedis) {
   try {
     if (!fs.existsSync(DATA_FILE)) {
       ensureDataDir();
