@@ -8,17 +8,33 @@ const DATA_DIR = path.join(process.cwd(), 'data');
 const DATA_FILE = path.join(DATA_DIR, 'cms-content.json');
 const REDIS_KEY = 'cms-content';
 
-// Initialize Upstash Redis if credentials are available
-let redis: Redis | null = null;
-if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
-  redis = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN,
-  });
+// Lazy initialization of Redis (check at runtime, not module load)
+function getRedis(): Redis | null {
+  // Check for Upstash Redis environment variables
+  // Vercel might use different variable names, so check multiple possibilities
+  const url = process.env.UPSTASH_REDIS_REST_URL || 
+              process.env.KV_REST_API_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN || 
+                process.env.KV_REST_API_TOKEN;
+
+  if (url && token) {
+    try {
+      return new Redis({
+        url: url,
+        token: token,
+      });
+    } catch (error) {
+      console.error('Failed to initialize Redis:', error);
+      return null;
+    }
+  }
+  return null;
 }
 
 // Check if we're using Redis (production) or file system (local)
-const useRedis = Boolean(redis);
+function useRedis(): boolean {
+  return Boolean(getRedis());
+}
 
 // Initialize default content if file doesn't exist
 const defaultContent: CMSContent = {
@@ -199,7 +215,11 @@ function writeToFile(content: CMSContent): void {
 
 // Redis helpers (for production)
 async function readFromRedis(): Promise<CMSContent> {
-  if (!redis) return defaultContent;
+  const redis = getRedis();
+  if (!redis) {
+    console.warn('Redis not available, using default content');
+    return defaultContent;
+  }
   try {
     const stored = await redis.get<CMSContent>(REDIS_KEY);
     if (stored) {
@@ -212,7 +232,18 @@ async function readFromRedis(): Promise<CMSContent> {
 }
 
 async function writeToRedis(content: CMSContent): Promise<void> {
-  if (!redis) throw new Error('Redis not configured');
+  const redis = getRedis();
+  if (!redis) {
+    // In production, this should never happen if Redis is properly configured
+    const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+    if (isProduction) {
+      console.error('Redis not configured in production! Check environment variables:');
+      console.error('UPSTASH_REDIS_REST_URL:', process.env.UPSTASH_REDIS_REST_URL ? 'SET' : 'MISSING');
+      console.error('UPSTASH_REDIS_REST_TOKEN:', process.env.UPSTASH_REDIS_REST_TOKEN ? 'SET' : 'MISSING');
+      throw new Error('Redis not configured in production. Please add Upstash Redis integration in Vercel Storage.');
+    }
+    throw new Error('Redis not configured');
+  }
   try {
     await redis.set(REDIS_KEY, content);
   } catch (error) {
@@ -223,7 +254,7 @@ async function writeToRedis(content: CMSContent): Promise<void> {
 
 // Main exported functions
 export async function readContent(): Promise<CMSContent> {
-  if (useRedis) {
+  if (useRedis()) {
     return await readFromRedis();
   } else {
     return readFromFile();
@@ -231,9 +262,20 @@ export async function readContent(): Promise<CMSContent> {
 }
 
 export async function writeContent(content: CMSContent): Promise<void> {
-  if (useRedis) {
+  if (useRedis()) {
     await writeToRedis(content);
   } else {
+    // In production, we should never reach here if Redis is configured
+    const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+    if (isProduction) {
+      console.error('Attempting to write to file system in production!');
+      console.error('Environment check:');
+      console.error('NODE_ENV:', process.env.NODE_ENV);
+      console.error('VERCEL:', process.env.VERCEL);
+      console.error('UPSTASH_REDIS_REST_URL:', process.env.UPSTASH_REDIS_REST_URL ? 'SET' : 'MISSING');
+      console.error('UPSTASH_REDIS_REST_TOKEN:', process.env.UPSTASH_REDIS_REST_TOKEN ? 'SET' : 'MISSING');
+      throw new Error('Cannot write to file system in production. Please configure Upstash Redis in Vercel Storage.');
+    }
     writeToFile(content);
   }
 }
@@ -248,7 +290,8 @@ export async function updateContentSection<T extends keyof CMSContent>(
 }
 
 // Initialize default content on first run (only for file system)
-if (!useRedis) {
+// Only run this check if we're definitely not in production
+if (!process.env.VERCEL && !process.env.UPSTASH_REDIS_REST_URL) {
   try {
     if (!fs.existsSync(DATA_FILE)) {
       ensureDataDir();
