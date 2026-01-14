@@ -137,6 +137,7 @@ export default function AboutManagement() {
             </div>
           </div>
         </div>
+        </div>
       </AdminLayout>
     </ProtectedRoute>
   );
