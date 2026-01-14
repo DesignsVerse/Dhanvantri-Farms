@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import ProtectedRoute from '@/components/admin/ProtectedRoute';
+import AdminLayout from '@/components/admin/AdminLayout';
 import ContentEditor from '@/components/admin/ContentEditor';
 import type { FAQ } from '@/lib/data/types';
 import { HelpCircle } from 'lucide-react';
@@ -132,19 +133,21 @@ export default function FAQsManagement() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
-        <div className="max-w-6xl mx-auto">
-          <ContentEditor
-            title="FAQs Management"
-            items={faqs}
-            onSave={handleSave}
-            renderItem={renderItem}
-            FormComponent={FAQForm}
-            createNew={createNew}
-            getItemId={(item) => item.id}
-          />
+      <AdminLayout>
+        <div className="p-4 sm:p-6 lg:p-8">
+          <div className="max-w-6xl mx-auto">
+            <ContentEditor
+              title="FAQs Management"
+              items={faqs}
+              onSave={handleSave}
+              renderItem={renderItem}
+              FormComponent={FAQForm}
+              createNew={createNew}
+              getItemId={(item) => item.id}
+            />
+          </div>
         </div>
-      </div>
+      </AdminLayout>
     </ProtectedRoute>
   );
 }

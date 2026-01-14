@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import ProtectedRoute from '@/components/admin/ProtectedRoute';
+import AdminLayout from '@/components/admin/AdminLayout';
 import ContentEditor from '@/components/admin/ContentEditor';
 import type { Achievement } from '@/lib/data/types';
 import { Award } from 'lucide-react';
@@ -148,19 +149,21 @@ export default function AchievementsManagement() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
-        <div className="max-w-6xl mx-auto">
-          <ContentEditor
-            title="Achievements Management"
-            items={achievements}
-            onSave={handleSave}
-            renderItem={renderItem}
-            FormComponent={AchievementForm}
-            createNew={createNew}
-            getItemId={(item) => item.id}
-          />
+      <AdminLayout>
+        <div className="p-4 sm:p-6 lg:p-8">
+          <div className="max-w-6xl mx-auto">
+            <ContentEditor
+              title="Achievements Management"
+              items={achievements}
+              onSave={handleSave}
+              renderItem={renderItem}
+              FormComponent={AchievementForm}
+              createNew={createNew}
+              getItemId={(item) => item.id}
+            />
+          </div>
         </div>
-      </div>
+      </AdminLayout>
     </ProtectedRoute>
   );
 }

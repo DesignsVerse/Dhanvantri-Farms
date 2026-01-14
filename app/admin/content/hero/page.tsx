@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import ProtectedRoute from '@/components/admin/ProtectedRoute';
+import AdminLayout from '@/components/admin/AdminLayout';
 import ContentEditor from '@/components/admin/ContentEditor';
 import ImageUpload from '@/components/admin/ImageUpload';
 import type { HeroSlide } from '@/lib/data/types';
@@ -143,19 +144,21 @@ export default function HeroManagement() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
-        <div className="max-w-6xl mx-auto">
-          <ContentEditor
-            title="Hero Slides Management"
-            items={heroSlides}
-            onSave={handleSave}
-            renderItem={renderItem}
-            FormComponent={HeroForm}
-            createNew={createNew}
-            getItemId={(item) => item.id}
-          />
+      <AdminLayout>
+        <div className="p-4 sm:p-6 lg:p-8">
+          <div className="max-w-6xl mx-auto">
+            <ContentEditor
+              title="Hero Slides Management"
+              items={heroSlides}
+              onSave={handleSave}
+              renderItem={renderItem}
+              FormComponent={HeroForm}
+              createNew={createNew}
+              getItemId={(item) => item.id}
+            />
+          </div>
         </div>
-      </div>
+      </AdminLayout>
     </ProtectedRoute>
   );
 }
