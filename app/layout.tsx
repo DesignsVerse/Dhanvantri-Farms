@@ -1,3 +1,5 @@
+import Navigation from '@/components/layout/Navigation'
+import Footer from '@/components/layout/Footer'
 import Script from 'next/script'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
