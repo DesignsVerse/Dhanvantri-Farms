@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
+      <body className={`${inter.className} ${poppins.variable}`}>
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9KZME0F68Q"
@@ -40,7 +40,6 @@ export default function RootLayout({
             gtag('config', 'G-9KZME0F68Q');
           `}
         </Script>
-      </head>
       <body className={`${inter.className} ${poppins.variable}`}>
         <Navigation />
         <main className="min-h-screen">
