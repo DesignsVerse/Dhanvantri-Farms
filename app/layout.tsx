@@ -26,8 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-    <body className={`${inter.className} ${poppins.variable}`}>
-        <Analytics />
+      <body className={`${inter.className} ${poppins.variable}`}>
+        {/* Google Analytics */}
+        <GoogleAnalytics gaId="G-9KZME0F68Q" />
       <body className={`${inter.className} ${poppins.variable}`}>
         <Navigation />
         <main className="min-h-screen">
