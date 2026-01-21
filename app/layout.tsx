@@ -1,41 +1,42 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
-import Navigation from '@/components/layout/Navigation';
-import Footer from '@/components/layout/Footer';
+import './globals.css'
+import type { Metadata } from 'next'
+import { Inter, Poppins } from 'next/font/google'
+import Navigation from '@/components/layout/Navigation'
+import Footer from '@/components/layout/Footer'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
-const inter = Inter({ subsets: ['latin'] });
-const poppins = Poppins({ 
+const inter = Inter({ subsets: ['latin'] })
+const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--font-poppins'
-});
+  variable: '--font-poppins',
+})
 
 export const metadata: Metadata = {
   title: 'Dhanvantri Farms - Smart Farming Solutions',
-  description: 'Global leader in smart farming solutions delivering premium infrastructure and technology in Polyhouse, Net House, Hydroponics, and Automation.',
+  description:
+    'Global leader in smart farming solutions delivering premium infrastructure and technology in Polyhouse, Net House, Hydroponics, and Automation.',
   verification: {
     google: 'bQMG5pbXUPw1M_Gr4AAloHh-BhS9UeJiy3LD2wucqh4',
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
       <body className={`${inter.className} ${poppins.variable}`}>
-        {/* Google Analytics */}
-        <GoogleAnalytics gaId="G-9KZME0F68Q" />
-      <body className={`${inter.className} ${poppins.variable}`}>
         <Navigation />
-        <main className="min-h-screen">
-          {children}
-        </main>
+
+        <main className="min-h-screen">{children}</main>
+
         <Footer />
+
+        <GoogleAnalytics gaId="G-9KZME0F68Q" />
       </body>
     </html>
-  );
+  )
 }
