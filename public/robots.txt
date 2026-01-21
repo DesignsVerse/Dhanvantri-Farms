@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: 
-Disallow: /cgi-bin/
-Disallow: /admin
-Sitemap: https://www.dhanvantarifarms.com/sitemap.xml
