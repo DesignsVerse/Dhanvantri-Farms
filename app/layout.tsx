@@ -1,5 +1,5 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
@@ -14,6 +14,12 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'Dhanvantri Farms - Smart Farming Solutions',
   description: 'Global leader in smart farming solutions delivering premium infrastructure and technology in Polyhouse, Net House, Hydroponics, and Automation.',
+};
+
+// Ensure correct mobile scaling so Tailwind breakpoints behave as expected on real devices.
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
