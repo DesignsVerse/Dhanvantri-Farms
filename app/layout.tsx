@@ -1,8 +1,9 @@
 import './globals.css';
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({ 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 // Ensure correct mobile scaling so Tailwind breakpoints behave as expected on real devices.
-export const viewport: Viewport = {
+export const viewport = {
   width: 'device-width',
   initialScale: 1,
 };
@@ -31,10 +32,24 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} ${poppins.variable}`}>
         <Navigation />
-        <main className="min-h-screen">
-          {children}
-        </main>
+
+        <main className="min-h-screen">{children}</main>
+
         <Footer />
+
+        {/* GA4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-9KZME0F68Q"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-setup" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-9KZME0F68Q');
+          `}
+        </Script>
       </body>
     </html>
   );
