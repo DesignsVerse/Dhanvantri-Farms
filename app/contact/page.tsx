@@ -135,9 +135,7 @@ export default function ContactSection() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Call Us</h3>
               <p className="text-gray-600">
-               <br />
-                Support: +91-8839582448<br />
-                WhatsApp: +91-8839582448
+                +91-7415282414
               </p>
             </motion.div>
 

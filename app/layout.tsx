@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -36,6 +37,9 @@ export default function RootLayout({
         <main className="min-h-screen">{children}</main>
 
         <Footer />
+
+        {/* WhatsApp Floating Button */}
+        <WhatsAppButton />
 
         {/* GA4 */}
         <Script

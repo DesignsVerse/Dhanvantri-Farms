@@ -100,11 +100,7 @@ const ContactSection = () => {
                 title: 'Call Us',
                 text: (
                   <>
-                    Sales: +91-9876543210
-                    <br />
-                    Support: +91-9876543211
-                    <br />
-                    WhatsApp: +91-9876543212
+                    +91-7415282414
                   </>
                 )
               },

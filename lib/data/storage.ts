@@ -177,7 +177,7 @@ const defaultContent: CMSContent = {
       { label: 'Automation Systems', href: '/automation' },
       { label: 'Cold Storage Solutions', href: '/cold-storage' },
     ],
-    phone: '+91-8839582448',
+    phone: '+91-7415282414',
     email: 'info@dhanvantrifarms.com',
     address: 'Near Old SBI\nGarhakota, District Sagar\nMadhya Pradesh 470229, India',
   },

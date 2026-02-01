@@ -101,7 +101,7 @@ const CallToAction = () => {
           </Link>
           
           <a 
-            href="tel:+91-9876543210" 
+            href="tel:+91-7415282414" 
             className="group border-2 border-white hover:bg-white hover:text-[#8bc34a] px-10 py-5 rounded-xl font-bold text-xl flex items-center space-x-3 transition-all duration-300 transform hover:scale-105"
           >
             <Phone className="w-6 h-6" />
