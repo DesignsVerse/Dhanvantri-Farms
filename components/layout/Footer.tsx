@@ -4,6 +4,15 @@ import Link from 'next/link';
 import { Leaf, Facebook, Twitter, Instagram, Youtube, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
+  // Social Media Links - Update these with your actual social media URLs
+  const socialMediaLinks = {
+    facebook: 'https://www.facebook.com/dhanvantrifarms', // Update with your Facebook page URL
+    twitter: 'https://twitter.com/dhanvantrifarms', // Update with your Twitter/X profile URL
+    instagram: 'https://www.instagram.com/dhanvantrifarms', // Update with your Instagram profile URL
+    youtube: 'https://www.youtube.com/@dhanvantrifarms', // Update with your YouTube channel URL
+    linkedin: 'https://www.linkedin.com/company/dhanvantrifarms', // Update with your LinkedIn company page URL
+  };
+
   const footerSections = {
     company: [
       { label: 'About the Company', href: '/about' },
@@ -65,11 +74,20 @@ Madhya Pradesh 470229, India</span>
             </div>
             
             <div className="flex space-x-4">
-              {[Facebook, Twitter, Instagram, Youtube, Linkedin].map((Icon, index) => (
+              {[
+                { Icon: Facebook, url: socialMediaLinks.facebook, label: 'Facebook' },
+                { Icon: Twitter, url: socialMediaLinks.twitter, label: 'Twitter' },
+                { Icon: Instagram, url: socialMediaLinks.instagram, label: 'Instagram' },
+                { Icon: Youtube, url: socialMediaLinks.youtube, label: 'YouTube' },
+                { Icon: Linkedin, url: socialMediaLinks.linkedin, label: 'LinkedIn' },
+              ].map(({ Icon, url, label }) => (
                 <a 
-                  key={index} 
-                  href="#" 
-                  className="p-3 bg-gray-800 rounded-full hover:bg-[#8bc34a] transition-colors"
+                  key={label}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-gray-800 rounded-full hover:bg-[#8bc34a] transition-all duration-300 hover:scale-110"
+                  aria-label={`Follow us on ${label}`}
                 >
                   <Icon className="w-5 h-5" />
                 </a>
