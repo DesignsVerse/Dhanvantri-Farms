@@ -59,11 +59,15 @@ const Footer = () => {
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-[#8bc34a]" />
-                <span className="text-sm sm:text-base">+91-7415282414</span>
+                <a href="tel:+917415282414" className="text-sm sm:text-base hover:text-[#8bc34a] transition-colors">
+                  +91-7415282414
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-[#8bc34a]" />
-                <span className="text-sm sm:text-base">info@dhanvantrifarms.com</span>
+                <a href="mailto:info@dhanvantrifarms.com" className="text-sm sm:text-base hover:text-[#8bc34a] transition-colors">
+                  info@dhanvantrifarms.com
+                </a>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-[#8bc34a] mt-1" />

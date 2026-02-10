@@ -288,7 +288,51 @@ if (!fs.existsSync(DATA_FILE)) {
       "phone": "+91-7415282414",
       "email": "info@dhanvantrifarms.com",
       "address": "Near Old SBI\nGarhakota, District Sagar\nMadhya Pradesh 470229, India"
-    }
+    },
+    "blogs": [
+      {
+        "id": "1",
+        "title": "The Future of Smart Farming: How Technology is Revolutionizing Agriculture",
+        "slug": "future-of-smart-farming",
+        "excerpt": "Discover how modern technology and smart farming solutions are transforming traditional agriculture, increasing yields, and promoting sustainable practices.",
+        "content": "<p>In recent years, the agricultural sector has witnessed a remarkable transformation, driven by technological innovations and smart farming solutions. At Dhanvantri Farms, we are at the forefront of this revolution, helping farmers across India embrace modern agricultural practices.</p><h2>The Rise of Smart Farming</h2><p>Smart farming integrates advanced technologies like IoT sensors, automated irrigation systems, and climate-controlled environments to optimize crop production. These innovations enable farmers to:</p><ul><li>Monitor crop health in real-time</li><li>Optimize water and nutrient usage</li><li>Reduce dependency on weather conditions</li><li>Increase crop yields by 300-400%</li><li>Minimize environmental impact</li></ul><h2>Key Technologies in Modern Agriculture</h2><p>From polyhouse farming to hydroponics, modern agricultural technologies offer unprecedented control over growing conditions. Climate-controlled environments ensure year-round production, while automated systems reduce manual labor and human error.</p><h2>Conclusion</h2><p>The future of farming is here, and it's smarter, more efficient, and more sustainable than ever before. By adopting these technologies, farmers can not only increase their productivity but also contribute to a more sustainable agricultural ecosystem.</p>",
+        "author": "Dhanvantri Farms Team",
+        "publishedAt": "2024-01-15",
+        "image": "/service/poly/1.jpg",
+        "category": "Technology",
+        "tags": ["Smart Farming", "Technology", "Innovation"],
+        "featured": true,
+        "order": 1
+      },
+      {
+        "id": "2",
+        "title": "Maximizing Crop Yields with Polyhouse Farming: A Complete Guide",
+        "slug": "maximizing-crop-yields-polyhouse",
+        "excerpt": "Learn how polyhouse farming can help you achieve 3-4x higher yields compared to traditional farming methods, with year-round production capabilities.",
+        "content": "<p>Polyhouse farming has emerged as one of the most effective methods for maximizing agricultural productivity. This comprehensive guide explores how you can leverage polyhouse technology to transform your farming operations.</p><h2>What is Polyhouse Farming?</h2><p>Polyhouse farming involves growing crops in a controlled environment covered with polyethylene sheets. This structure protects crops from adverse weather conditions while maintaining optimal temperature, humidity, and light levels.</p><h2>Benefits of Polyhouse Farming</h2><ul><li><strong>Year-round Production:</strong> Grow crops regardless of seasonal changes</li><li><strong>Higher Yields:</strong> Achieve 3-4x more production than open-field farming</li><li><strong>Water Efficiency:</strong> Reduce water consumption by up to 70%</li><li><strong>Pest Control:</strong> Better protection against pests and diseases</li><li><strong>Quality Improvement:</strong> Produce premium quality crops with consistent characteristics</li></ul><h2>Getting Started</h2><p>Starting a polyhouse farm requires careful planning and investment. At Dhanvantri Farms, we provide end-to-end solutions including design, installation, and training to help you succeed.</p>",
+        "author": "Agricultural Experts",
+        "publishedAt": "2024-01-10",
+        "image": "/service/poly/2.jpg",
+        "category": "Farming Techniques",
+        "tags": ["Polyhouse", "Crop Yield", "Farming"],
+        "featured": true,
+        "order": 2
+      },
+      {
+        "id": "3",
+        "title": "Sustainable Agriculture: Building a Greener Future",
+        "slug": "sustainable-agriculture-green-future",
+        "excerpt": "Explore sustainable farming practices that protect the environment while ensuring food security for future generations.",
+        "content": "<p>Sustainable agriculture is not just a trend—it's a necessity for our planet's future. This article delves into how modern farming practices can be both productive and environmentally responsible.</p><h2>The Importance of Sustainability</h2><p>With growing concerns about climate change and environmental degradation, sustainable farming practices have become crucial. These methods focus on:</p><ul><li>Reducing chemical usage</li><li>Conserving water resources</li><li>Maintaining soil health</li><li>Protecting biodiversity</li><li>Reducing carbon footprint</li></ul><h2>Organic Farming Solutions</h2><p>Organic farming represents a key pillar of sustainable agriculture. By eliminating synthetic chemicals and focusing on natural processes, organic farming promotes healthier ecosystems and produces safer food products.</p><h2>Our Commitment</h2><p>At Dhanvantri Farms, we are committed to promoting sustainable agricultural practices. Our solutions are designed to maximize productivity while minimizing environmental impact.</p>",
+        "author": "Sustainability Team",
+        "publishedAt": "2024-01-05",
+        "image": "/service/organic/1.jpg",
+        "category": "Sustainability",
+        "tags": ["Sustainability", "Organic Farming", "Environment"],
+        "featured": false,
+        "order": 3
+      }
+    ]
   };
 
   fs.writeFileSync(DATA_FILE, JSON.stringify(defaultContent, null, 2));

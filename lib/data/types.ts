@@ -68,6 +68,21 @@ export interface FooterContent {
   address: string;
 }
 
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  publishedAt: string;
+  image?: string;
+  category?: string;
+  tags?: string[];
+  featured?: boolean;
+  order: number;
+}
+
 export interface CMSContent {
   hero: HeroSlide[];
   services: Service[];
@@ -77,6 +92,7 @@ export interface CMSContent {
   about: AboutContent;
   navigation: NavigationItem[];
   footer: FooterContent;
+  blogs: BlogPost[];
 }
 
 

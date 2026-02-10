@@ -135,7 +135,9 @@ export default function ContactSection() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Call Us</h3>
               <p className="text-gray-600">
-                +91-7415282414
+                <a href="tel:+917415282414" className="hover:text-green-700 transition-colors">
+                  +91-7415282414
+                </a>
               </p>
             </motion.div>
 
@@ -148,9 +150,13 @@ export default function ContactSection() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Us</h3>
               <p className="text-gray-600">
-                info@dhanvantrifarms.com<br />
-                support@dhanvantrifarms.com<br />
-                
+                <a href="mailto:info@dhanvantrifarms.com" className="hover:text-green-700 transition-colors">
+                  info@dhanvantrifarms.com
+                </a>
+                <br />
+                <a href="mailto:support@dhanvantrifarms.com" className="hover:text-green-700 transition-colors">
+                  support@dhanvantrifarms.com
+                </a>
               </p>
             </motion.div>
           </motion.div>

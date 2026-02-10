@@ -38,6 +38,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { icon: MessageSquare, label: 'Testimonials', href: '/admin/content/testimonials' },
     { icon: Award, label: 'Achievements', href: '/admin/content/achievements' },
     { icon: FileText, label: 'About Content', href: '/admin/content/about' },
+    { icon: FileText, label: 'Blog Posts', href: '/admin/content/blogs' },
   ];
 
   return (

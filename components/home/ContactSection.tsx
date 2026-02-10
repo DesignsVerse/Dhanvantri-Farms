@@ -99,9 +99,9 @@ const ContactSection = () => {
                 icon: <Phone className="w-7 h-7 text-[#8bc34a]" />,
                 title: 'Call Us',
                 text: (
-                  <>
+                  <a href="tel:+917415282414" className="hover:text-[#8bc34a] transition-colors">
                     +91-7415282414
-                  </>
+                  </a>
                 )
               },
               {
@@ -109,11 +109,17 @@ const ContactSection = () => {
                 title: 'Email Us',
                 text: (
                   <>
-                    info@dhanvantrifarms.com
+                    <a href="mailto:info@dhanvantrifarms.com" className="hover:text-[#8bc34a] transition-colors">
+                      info@dhanvantrifarms.com
+                    </a>
                     <br />
-                    support@dhanvantrifarms.com
+                    <a href="mailto:support@dhanvantrifarms.com" className="hover:text-[#8bc34a] transition-colors">
+                      support@dhanvantrifarms.com
+                    </a>
                     <br />
-                    sales@dhanvantrifarms.com
+                    <a href="mailto:sales@dhanvantrifarms.com" className="hover:text-[#8bc34a] transition-colors">
+                      sales@dhanvantrifarms.com
+                    </a>
                   </>
                 )
               }
