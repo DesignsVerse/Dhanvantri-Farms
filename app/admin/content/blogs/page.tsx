@@ -229,10 +229,11 @@ export default function BlogsManagement() {
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
           <ImageUpload
-            currentImage={formData.image || ''}
-            onImageChange={(url) => setFormData({ ...formData, image: url })}
+            value={formData.image || ''}
+            onChange={(url) => setFormData({ ...formData, image: url })}
+            folder="blog"
+            label="Featured Image"
           />
         </div>
         <div className="flex items-center gap-2">
