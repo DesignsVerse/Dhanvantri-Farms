@@ -128,7 +128,7 @@ Madhya Pradesh 470229, India</span>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2024 Dhanvantri Farms. All rights reserved.
+              © 2026 Dhanvantri Farms. All rights reserved.
             </p>
             
             <div className="flex items-center space-x-6">
