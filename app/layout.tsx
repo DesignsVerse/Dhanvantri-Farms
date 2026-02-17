@@ -4,6 +4,7 @@ import { Inter, Poppins } from 'next/font/google';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import Chatbot from '@/components/Chatbot';
 import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -40,6 +41,9 @@ export default function RootLayout({
 
         {/* WhatsApp Floating Button */}
         <WhatsAppButton />
+
+        {/* Chatbot */}
+        <Chatbot />
 
         {/* GA4 */}
         <Script
