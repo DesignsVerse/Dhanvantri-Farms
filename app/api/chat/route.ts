@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // Using Google Gemini API (free tier)
 // Get your API key from: https://makersuite.google.com/app/apikey
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent';
 
 export async function POST(request: NextRequest) {
   try {
