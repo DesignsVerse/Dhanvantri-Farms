@@ -150,17 +150,30 @@ const Chatbot = () => {
       setUserData({ ...userData, expertCall: value });
       
       // Send final summary and connect user
-      const summary = `Thank you! Here's your information:\n\n` +
-        `Interest: ${userData.interest}\n` +
-        `Land Size: ${userData.landSize}\n` +
-        `Subsidy Info: ${userData.subsidyInfo ? 'Yes' : 'No'}\n` +
-        `Cost Details: Requested\n` +
-        `Contact Preference: ${value === 'call' ? 'Phone Call' : 'WhatsApp'}\n\n` +
-        `Our expert will contact you soon! 📞\n\n` +
-        `You can also reach us:\n` +
-        `Phone: +91-7415282414\n` +
-        `WhatsApp: +91-7415282414\n` +
-        `Email: info@dhanvantrifarms.com`;
+      const getInterestLabel = (interest?: string) => {
+        if (interest === 'polyhouse') return '🏠 Polyhouse';
+        if (interest === 'shade-net') return '🌤 Shade Net';
+        if (interest === 'guidance') return '🌱 Need Guidance';
+        return interest || 'Not specified';
+      };
+
+      const getLandLabel = (land?: string) => {
+        if (land === '<1') return '📏 <1 Acre';
+        if (land === '1-3') return '1–3 Acres';
+        if (land === '3+') return '3+ Acres';
+        return land || 'Not specified';
+      };
+
+      const summary = `Perfect! ✅ Here's what we've noted:\n\n` +
+        `🌿 Interest: ${getInterestLabel(userData.interest)}\n` +
+        `📏 Land Size: ${getLandLabel(userData.landSize)}\n` +
+        `💰 Subsidy Info: ${userData.subsidyInfo ? 'Yes' : 'No'}\n` +
+        `📊 Cost & Profit Details: Requested\n` +
+        `📞 Contact: ${value === 'call' ? 'Phone Call' : 'WhatsApp'}\n\n` +
+        `Our farming expert will reach out to you shortly! 🚀\n\n` +
+        `📞 Phone/WhatsApp: +91-7415282414\n` +
+        `📧 Email: info@dhanvantrifarms.com\n\n` +
+        `Thank you for choosing Dhanvantri Farms! 🌿`;
 
       const summaryMsg: Message = {
         role: 'assistant',
