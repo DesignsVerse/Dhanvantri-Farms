@@ -30,39 +30,25 @@ const WhatsAppButton = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="fixed bottom-6 left-6 z-50 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full p-3 shadow-2xl hover:shadow-[#25D366]/50 transition-all duration-300 group relative"
+      className="fixed bottom-24 left-6 z-50 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-full p-4 shadow-2xl hover:shadow-green-600/50 transition-all duration-300 group"
       aria-label="Contact us on WhatsApp"
     >
       {/* WhatsApp Logo Image */}
-      <div className="relative w-8 h-8 md:w-9 md:h-9">
+      <div className="relative w-6 h-6 md:w-7 md:h-7">
         <Image
           src="/whatsapp-logo.png"
           alt="WhatsApp"
           fill
-          sizes="36px"
+          sizes="(max-width: 768px) 24px, 28px"
           className="object-contain"
         />
       </div>
-
+      
       {/* Tooltip */}
       <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
         Chat on WhatsApp
         <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900"></div>
       </div>
-
-      {/* Pulse animation ring */}
-      <motion.div
-        className="absolute inset-0 rounded-full bg-[#25D366] opacity-75 -z-10"
-        animate={{
-          scale: [1, 1.5, 1.5],
-          opacity: [0.75, 0, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: 'easeOut',
-        }}
-      />
     </motion.a>
   );
 };
