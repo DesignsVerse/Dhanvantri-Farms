@@ -24,15 +24,11 @@ const Navigation = () => {
       label: 'Our Services',
       href: '#',
       dropdown: [
-        { id: 'net-house', label: 'Net House', href: '/net-house' },
-        { id: 'hydroponics', label: 'Hydroponics', href: '/hydroponics' },
+        { id: 'all-services', label: 'All Services', href: '/services' },
         { id: 'polyhouse', label: 'Polyhouse', href: '/polyhouse' },
+        { id: 'hydroponics', label: 'Hydroponics', href: '/hydroponics' },
+        { id: 'net-house', label: 'Net House', href: '/net-house' },
         { id: 'organic-farming', label: 'Organic Farming', href: '/organic-farming' },
-        { id: 'mushroom', label: 'Mushroom', href: '/mushroom' },
-        { id: 'indoor-saffron', label: 'Indoor Saffron', href: '/indoor-saffron' },
-        { id: 'warehouse', label: 'Warehouse', href: '/warehouse' },
-        { id: 'cold-storage', label: 'Cold Storage', href: '/cold-storage' },
-        { id: 'automation', label: 'Automation', href: '/automation' },
       ],
     },
     {
