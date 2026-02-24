@@ -36,7 +36,7 @@ const WhatsAppButton = () => {
       {/* WhatsApp Logo Image */}
       <div className="relative w-6 h-6 md:w-7 md:h-7">
         <Image
-          src="/whatsapp-logo.png"
+          src="/image.png"
           alt="WhatsApp"
           fill
           sizes="(max-width: 768px) 24px, 28px"
