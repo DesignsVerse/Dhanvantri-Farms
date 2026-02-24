@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: 'Dhanvantri Farms - Smart Farming Solutions',
   description: 'Global leader in smart farming solutions delivering premium infrastructure and technology in Polyhouse, Net House, Hydroponics, and Automation.',
 };
+ verification: {
+    google: 'bQMG5pbXUPw1M_Gr4AAloHh-BhS9UeJiy3LD2wucqh4',
+  },
 
 // Ensure correct mobile scaling so Tailwind breakpoints behave as expected on real devices.
 export const viewport = {
