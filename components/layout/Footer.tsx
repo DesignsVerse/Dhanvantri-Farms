@@ -83,7 +83,6 @@ Madhya Pradesh 470229, India</span>
                 { Icon: Twitter, url: socialMediaLinks.twitter, label: 'Twitter' },
                 { Icon: Instagram, url: socialMediaLinks.instagram, label: 'Instagram' },
                 { Icon: Youtube, url: socialMediaLinks.youtube, label: 'YouTube' },
-                { Icon: Linkedin, url: socialMediaLinks.linkedin, label: 'LinkedIn' },
               ].map(({ Icon, url, label }) => (
                 <a 
                   key={label}
@@ -96,6 +95,13 @@ Madhya Pradesh 470229, India</span>
                   <Icon className="w-5 h-5" />
                 </a>
               ))}
+              {/* LinkedIn - unclickable */}
+              <div 
+                className="p-3 bg-gray-800 rounded-full opacity-60 cursor-not-allowed"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </div>
             </div>
           </div>
 

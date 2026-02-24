@@ -43,6 +43,22 @@ const Chatbot = () => {
     }
   }, [isOpen]);
 
+  // Auto-open chatbot after 5 seconds on first visit
+  useEffect(() => {
+    const hasSeenChatbot = localStorage.getItem('chatbot-shown');
+    
+    if (!hasSeenChatbot && !isOpen && messages.length === 0) {
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+        setMessages([initialMessage, step1Message]);
+        setCurrentStep(1);
+        localStorage.setItem('chatbot-shown', 'true');
+      }, 5000); // 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, messages.length]);
+
   const initialMessage: Message = {
     role: 'system',
     content: '🌿 Welcome to Dhanvantri Farms!\n\nI\'m here to help you with smart farming solutions. Let\'s get started!',
