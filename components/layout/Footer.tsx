@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Leaf, Facebook, Twitter, Instagram, Youtube, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
+import Image from 'next/image';
+import { Facebook, Twitter, Instagram, Youtube, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   // Social Media Links - Update these with your actual social media URLs
@@ -48,8 +49,15 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center space-x-3 mb-6">
-              <Leaf className="w-10 h-10 text-[#8bc34a]" />
-              <span className="text-2xl sm:text-3xl font-extrabold">Dhanvantri Farms</span>
+              <div className="relative h-12 w-auto">
+                <Image
+                  src="/Logo.jpeg"
+                  alt="Dhanvantri Farms Logo"
+                  width={150}
+                  height={48}
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
             </Link>
             
             <p className="text-gray-300 mb-8 text-sm sm:text-base leading-relaxed">

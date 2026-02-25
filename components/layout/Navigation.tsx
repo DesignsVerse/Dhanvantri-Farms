@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronDown, Menu, X, Leaf } from 'lucide-react';
+import Image from 'next/image';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation = () => {
@@ -67,10 +68,16 @@ const Navigation = () => {
         <div className="max-w-8xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-2">
-              <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
-                <Leaf className="w-8 h-8 text-lime-400" />
+              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="relative h-10 w-auto">
+                <Image
+                  src="/Logo.jpeg"
+                  alt="Dhanvantri Farms Logo"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto object-contain"
+                  priority
+                />
               </motion.div>
-              <span className="text-xl sm:text-2xl font-extrabold text-green-950">Dhanvantri Farms</span>
             </Link>
 
             {/* Desktop Menu */}
