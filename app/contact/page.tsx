@@ -21,33 +21,38 @@ export default function ContactSection() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission (replace with actual API call)
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    console.log('Form submitted:', formData);
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      interest: '',
-      landSize: '',
-      location: '',
-      budget: '',
-      message: ''
-    });
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => setSubmitSuccess(false), 5000);
+    setSubmitError('');
+
+    try {
+      const payload = {
+        access_key: 'fbab9313-4f43-47ee-8469-2adc6c824e9a',
+        subject: `New Lead: ${formData.name} - ${formData.interest || 'General Inquiry'}`,
+        from_name: 'Dhanvantri Farms Website',
+        ...formData,
+      };
+
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
+
+      setSubmitSuccess(true);
+      setFormData({ name: '', email: '', phone: '', company: '', interest: '', landSize: '', location: '', budget: '', message: '' });
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } catch {
+      setSubmitError('Something went wrong. Please try again or call us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -185,6 +190,16 @@ export default function ContactSection() {
                   >
                     <Leaf className="w-5 h-5 text-green-500" />
                     <span>Thank you! Your message has been sent successfully.</span>
+                  </motion.div>
+                )}
+                {submitError && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg"
+                  >
+                    {submitError}
                   </motion.div>
                 )}
               </AnimatePresence>
