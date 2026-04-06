@@ -7,8 +7,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface Message {
   role: 'user' | 'assistant' | 'system';
   content: string;
-  type?: 'text' | 'button';
+  type?: 'text' | 'button' | 'lead-form';
   buttons?: { label: string; value: string }[];
+}
+
+interface LeadForm {
+  name: string;
+  email: string;
+  phone: string;
 }
 
 interface UserData {
@@ -17,6 +23,7 @@ interface UserData {
   subsidyInfo?: boolean;
   costDetails?: boolean;
   expertCall?: string;
+  lead?: LeadForm;
 }
 
 const Chatbot = () => {
@@ -26,6 +33,8 @@ const Chatbot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState<UserData>({});
   const [currentStep, setCurrentStep] = useState<number>(0);
+  const [leadForm, setLeadForm] = useState<LeadForm>({ name: '', email: '', phone: '' });
+  const [isSubmittingLead, setIsSubmittingLead] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -164,49 +173,70 @@ const Chatbot = () => {
       }, 500);
     } else if (currentStep === 5) {
       setUserData({ ...userData, expertCall: value });
-      
-      // Send final summary and connect user
-      const getInterestLabel = (interest?: string) => {
-        if (interest === 'polyhouse') return '🏠 Polyhouse';
-        if (interest === 'shade-net') return '🌤 Shade Net';
-        if (interest === 'guidance') return '🌱 Need Guidance';
-        return interest || 'Not specified';
-      };
 
-      const getLandLabel = (land?: string) => {
-        if (land === '<1') return '📏 <1 Acre';
-        if (land === '1-3') return '1–3 Acres';
-        if (land === '3+') return '3+ Acres';
-        return land || 'Not specified';
+      const leadFormMsg: Message = {
+        role: 'system',
+        content: '📋 Almost there! Please share your details so our expert can reach you:',
+        type: 'lead-form',
       };
-
-      const summary = `Perfect! ✅ Here's what we've noted:\n\n` +
-        `🌿 Interest: ${getInterestLabel(userData.interest)}\n` +
-        `📏 Land Size: ${getLandLabel(userData.landSize)}\n` +
-        `💰 Subsidy Info: ${userData.subsidyInfo ? 'Yes' : 'No'}\n` +
-        `📊 Cost & Profit Details: Requested\n` +
-        `📞 Contact: ${value === 'call' ? 'Phone Call' : 'WhatsApp'}\n\n` +
-        `Our farming expert will reach out to you shortly! 🚀\n\n` +
-        `📞 Phone/WhatsApp: +91-7415282414\n` +
-        `📧 Email: info@dhanvantrifarms.com\n\n` +
-        `Thank you for choosing Dhanvantri Farms! 🌿`;
-
-      const summaryMsg: Message = {
-        role: 'assistant',
-        content: summary,
-        type: 'text',
-      };
-      
       setTimeout(() => {
-        setMessages((prev) => [...prev, summaryMsg]);
-        
-        // Open WhatsApp or prepare for call
-        if (value === 'whatsapp') {
-          const whatsappUrl = `https://wa.me/917415282414?text=${encodeURIComponent('Hello! I am interested in your farming solutions.')}`;
-          window.open(whatsappUrl, '_blank');
-        }
+        setMessages((prev) => [...prev, leadFormMsg]);
+        setCurrentStep(6);
       }, 500);
     }
+  };
+
+  const handleLeadSubmit = async () => {
+    if (!leadForm.name || !leadForm.phone) return;
+    setIsSubmittingLead(true);
+
+    const getInterestLabel = (interest?: string) => {
+      if (interest === 'polyhouse') return 'Polyhouse';
+      if (interest === 'shade-net') return 'Shade Net';
+      if (interest === 'guidance') return 'Need Guidance';
+      return interest || 'Not specified';
+    };
+
+    try {
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: 'fbab9313-4f43-47ee-8469-2adc6c824e9a',
+          subject: `Chatbot Lead: ${leadForm.name} - ${getInterestLabel(userData.interest)}`,
+          from_name: 'Dhanvantri Farms Chatbot',
+          name: leadForm.name,
+          email: leadForm.email || 'Not provided',
+          phone: leadForm.phone,
+          interest: getInterestLabel(userData.interest),
+          land_size: userData.landSize || 'Not specified',
+          subsidy_info: userData.subsidyInfo ? 'Yes' : 'No',
+          contact_preference: userData.expertCall === 'call' ? 'Phone Call' : 'WhatsApp',
+        }),
+      });
+    } catch {
+      // silently fail, still show success to user
+    }
+
+    const summary =
+      `✅ Thank you, ${leadForm.name}!\n\n` +
+      `Our expert will contact you at ${leadForm.phone} shortly.\n\n` +
+      `📞 Phone/WhatsApp: +91-7415282414\n` +
+      `📧 Email: info@dhanvantrifarms.com\n\n` +
+      `Thank you for choosing Dhanvantri Farms! 🌿`;
+
+    setMessages((prev) => [
+      ...prev,
+      { role: 'assistant', content: summary, type: 'text' },
+    ]);
+
+    if (userData.expertCall === 'whatsapp') {
+      const whatsappUrl = `https://wa.me/917415282414?text=${encodeURIComponent(`Hello! I'm ${leadForm.name}, interested in ${getInterestLabel(userData.interest)}.`)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    setIsSubmittingLead(false);
+    setCurrentStep(7);
   };
 
   const sendMessage = async (content: string) => {
@@ -360,6 +390,39 @@ const Chatbot = () => {
                             {button.label}
                           </button>
                         ))}
+                      </div>
+                    )}
+
+                    {msg.type === 'lead-form' && currentStep === 6 && (
+                      <div className="mt-3 space-y-2">
+                        <input
+                          type="text"
+                          placeholder="Your Name *"
+                          value={leadForm.name}
+                          onChange={(e) => setLeadForm((p) => ({ ...p, name: e.target.value }))}
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800"
+                        />
+                        <input
+                          type="email"
+                          placeholder="Email (optional)"
+                          value={leadForm.email}
+                          onChange={(e) => setLeadForm((p) => ({ ...p, email: e.target.value }))}
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800"
+                        />
+                        <input
+                          type="tel"
+                          placeholder="Phone Number *"
+                          value={leadForm.phone}
+                          onChange={(e) => setLeadForm((p) => ({ ...p, phone: e.target.value }))}
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800"
+                        />
+                        <button
+                          onClick={handleLeadSubmit}
+                          disabled={!leadForm.name || !leadForm.phone || isSubmittingLead}
+                          className="w-full py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg disabled:opacity-50 transition-colors"
+                        >
+                          {isSubmittingLead ? 'Submitting...' : 'Submit →'}
+                        </button>
                       </div>
                     )}
                   </div>

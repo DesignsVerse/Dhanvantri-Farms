@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import HeroSection from '@/components/home/Hero';
 import BusinessPartners from '@/components/home/BusinessPartners';
 import SuccessStories from '@/components/home/SuccessStories';
@@ -8,6 +9,11 @@ import CallToAction from '@/components/home/CallToAction';
 import ContactSection from '@/components/home/ContactSection';
 import Achievements from '@/components/home/Achievement';
 import About from '@/components/home/About';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+  robots: { index: true, follow: true },
+};
 
 export default function Home() {
   return (
